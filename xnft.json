@@ -1,0 +1,24 @@
+{
+  "name": "SNS Manager (Beta)",
+  "version": "0.0.14",
+  "storage": "ipfs",
+  "description": "All-in-one tool for SNS",
+  "longDescription": "Your all-in-one tool for handling Solana Name Service (SNS) domains",
+  "website": "https://github.com/Bonfida/sns-manager",
+  "kind": "app",
+  "icon": {
+    "md": "./assets/icon.png"
+  },
+  "contact": "contact@bonfida.com",
+  "screenshots": [
+    "./assets/screenshot-1.png",
+    "./assets/screenshot-2.png",
+    "./assets/screenshot-3.png",
+    "./assets/screenshot-4.png"
+  ],
+  "entrypoints": {
+    "default": {
+      "web": "./web-build/index.html"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="400" role="img" viewBox="0 0 80 80" width="400">
+  <mask height="80" id="mask__pixel" mask-type="alpha" maskUnits="userSpaceOnUse" width="80" x="0" y="0">
+    <rect fill="#FFFFFF" height="80" rx="160" width="80"/>
+  </mask>
+  <g mask="url(#mask__pixel)">
+    <rect height="10" width="10"/>
+    <rect fill="#FEED5B" height="10" width="10" x="20"/>
+    <rect fill="#FEED5B" height="10" width="10" x="40"/>
+    <rect fill="#29DBD1" height="10" width="10" x="60"/>
+    <rect fill="#FEED5B" height="10" width="10" x="10"/>
+    <rect fill="#6260FF" height="10" width="10" x="30"/>
+    <rect fill="#29DBD1" height="10" width="10" x="50"/>
+    <rect fill="#FEED5B" height="10" width="10" x="70"/>
+    <rect fill="#FF6F5B" height="10" width="10" y="10"/>
+    <rect fill="#29DBD1" height="10" width="10" y="20"/>
+    <rect fill="#6260FF" height="10" width="10" y="30"/>
+    <rect fill="#29DBD1" height="10" width="10" y="40"/>
+    <rect fill="#C061F7" height="10" width="10" y="50"/>
+    <rect fill="#FEED5B" height="10" width="10" y="60"/>
+    <rect fill="#FEED5B" height="10" width="10" y="70"/>
+    <rect fill="#6260FF" height="10" width="10" x="20" y="10"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="20" y="20"/>
+    <rect fill="#C061F7" height="10" width="10" x="20" y="30"/>
+    <rect fill="#29DBD1" height="10" width="10" x="20" y="40"/>
+    <rect fill="#C061F7" height="10" width="10" x="20" y="50"/>
+    <rect fill="#6260FF" height="10" width="10" x="20" y="60"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="20" y="70"/>
+    <rect fill="#C061F7" height="10" width="10" x="40" y="10"/>
+    <rect fill="#29DBD1" height="10" width="10" x="40" y="20"/>
+    <rect fill="#FEED5B" height="10" width="10" x="40" y="30"/>
+    <rect fill="#6260FF" height="10" width="10" x="40" y="40"/>
+    <rect fill="#FEED5B" height="10" width="10" x="40" y="50"/>
+    <rect fill="#29DBD1" height="10" width="10" x="40" y="60"/>
+    <rect fill="#FEED5B" height="10" width="10" x="40" y="70"/>
+    <rect fill="#6260FF" height="10" width="10" x="60" y="10"/>
+    <rect fill="#6260FF" height="10" width="10" x="60" y="20"/>
+    <rect fill="#FEED5B" height="10" width="10" x="60" y="30"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="60" y="40"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="60" y="50"/>
+    <rect fill="#C061F7" height="10" width="10" x="60" y="60"/>
+    <rect fill="#6260FF" height="10" width="10" x="60" y="70"/>
+    <rect fill="#FEED5B" height="10" width="10" x="10" y="10"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="10" y="20"/>
+    <rect fill="#29DBD1" height="10" width="10" x="10" y="30"/>
+    <rect fill="#C061F7" height="10" width="10" x="10" y="40"/>
+    <rect fill="#6260FF" height="10" width="10" x="10" y="50"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="10" y="60"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="10" y="70"/>
+    <rect fill="#C061F7" height="10" width="10" x="30" y="10"/>
+    <rect fill="#FEED5B" height="10" width="10" x="30" y="20"/>
+    <rect fill="#6260FF" height="10" width="10" x="30" y="30"/>
+    <rect fill="#FEED5B" height="10" width="10" x="30" y="40"/>
+    <rect fill="#29DBD1" height="10" width="10" x="30" y="50"/>
+    <rect fill="#FEED5B" height="10" width="10" x="30" y="60"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="30" y="70"/>
+    <rect fill="#6260FF" height="10" width="10" x="50" y="10"/>
+    <rect fill="#C061F7" height="10" width="10" x="50" y="20"/>
+    <rect fill="#6260FF" height="10" width="10" x="50" y="30"/>
+    <rect fill="#FEED5B" height="10" width="10" x="50" y="40"/>
+    <rect fill="#29DBD1" height="10" width="10" x="50" y="50"/>
+    <rect fill="#6260FF" height="10" width="10" x="50" y="60"/>
+    <rect fill="#C061F7" height="10" width="10" x="50" y="70"/>
+    <rect fill="#29DBD1" height="10" width="10" x="70" y="10"/>
+    <rect fill="#FEED5B" height="10" width="10" x="70" y="20"/>
+    <rect fill="#FEED5B" height="10" width="10" x="70" y="30"/>
+    <rect fill="#6260FF" height="10" width="10" x="70" y="40"/>
+    <rect fill="#FF6F5B" height="10" width="10" x="70" y="50"/>
+    <rect fill="#6260FF" height="10" width="10" x="70" y="60"/>
+    <rect fill="#6260FF" height="10" width="10" x="70" y="70"/>
+  </g>
+</svg>

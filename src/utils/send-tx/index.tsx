@@ -1,0 +1,20 @@
+import {
+  Connection,
+  PublicKey,
+  TransactionInstruction,
+  Transaction,
+} from "@solana/web3.js";
+
+export const sendTx = async (
+  connection: Connection,
+  feePayer: PublicKey,
+  ixs: TransactionInstruction[]
+) => {
+  let tx = new Transaction().add(...ixs);
+  tx.feePayer = feePayer;
+  tx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
+  tx = await window.xnft.solana.signTransaction(tx);
+  const sig = await connection.sendRawTransaction(tx.serialize());
+  await connection.confirmTransaction(sig, "processed");
+  return sig;
+};
