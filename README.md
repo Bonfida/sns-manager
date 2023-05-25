@@ -42,6 +42,7 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 
 | Feature             | Description                                                       | In progress | Completed | Bounty |
 | ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ |
+| UI/UX Redesign      | New UI/UX design for the app                                      | ❌          | ❌        | ✅     |
 | Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |
 | Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |
 | Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |
