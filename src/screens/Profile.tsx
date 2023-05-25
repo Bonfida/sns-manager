@@ -4,16 +4,14 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  TextInput,
   Image,
-  Platform,
 } from "react-native";
 import tw from "../utils/tailwind";
 import { Screen } from "../components/Screen";
 import { useDomains } from "../hooks/useDomains";
 import SkeletonContent from "react-native-skeleton-content";
 import { Feather } from "@expo/vector-icons";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useFavoriteDomain } from "../hooks/useFavoriteDomain";
 import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
 import { useModal } from "react-native-modalfy";

@@ -1,11 +1,5 @@
-import { useAsync } from "react-async-hook";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
-import tw from "../utils/tailwind";
-import {
-  NameRegistryState,
-  Record,
-  getRecord,
-} from "@bonfida/spl-name-service";
+import { Record } from "@bonfida/spl-name-service";
 import * as snsHooks from "@bonfida/sns-react";
 
 export type AddressRecord =
