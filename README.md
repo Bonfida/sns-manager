@@ -79,4 +79,4 @@ SNS Manager is more than just an app, it's a step towards a more decentralized f
 
 <hr>
 
-_If you have any questions or suggestions, feel free to open an issue or pull request, or simply contact us at [insert contact info]. We're always here for a good chat about Solana and the decentralized web!_
+_If you have any questions or suggestions, feel free to open an issue or pull request, or simply contact us at [@bonfida](https://twitter.com/bonfida). We're always here for a good chat about Solana and the decentralized web!_
