@@ -37,6 +37,19 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 This open-source mobile app is designed to provide a seamless and user-friendly way to interact with Solana Name Service (SNS). If you're a fan of the decentralized web and love Solana, SNS Manager is the tool you need.
 
 <br />
+<h2 align="center">Rodmap 🗺️</h2>
+<br />
+
+| Feature             | Description                                                       | In progress | Completed | Bounty |
+| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ |
+| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |
+| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |
+| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |
+| Chinese translation | Translate the app in Chinese                                      | ❌          | ❌        | ✅     |
+| Korean translation  | Translate the app in Korean                                       | ❌          | ❌        | ✅     |
+| Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |
+
+<br />
 <h2 align="center">Features 🛠️</h2>
 <br />
 
@@ -52,22 +65,15 @@ See all the domains you own and transfer them as needed. Keep track of your digi
 
 Discover new domains, see their records, and learn more about their owners. Maybe you'll find your next big investment!
 
-## Contribution 🤝
+<br />
+<h2 align="center">Contribution 🤝</h2>
+<br />
 
 We love our community and we embrace contributions. If you're an open-source enthusiast, a Solana aficionado, or someone who loves building cool stuff, come join us! Check out our [contribution guidelines](CONTRIBUTING.md) and become a part of the SNS Manager journey.
 
-## Rodmap 🗺️
-
-| Feature             | Description                                                       | In progress | Completed | Bounty |
-| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ |
-| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |
-| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |
-| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |
-| Chinese translation | Translate the app in Chinese                                      | ❌          | ❌        | ✅     |
-| Korean translation  | Translate the app in Korean                                       | ❌          | ❌        | ✅     |
-| Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |
-
-## License 📄
+<br />
+<h2 align="center">License 📄</h2>
+<br />
 
 SNS Manager is an open-source project licensed under MIT. Feel free to explore, expand, and improve!
 
