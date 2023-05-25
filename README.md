@@ -17,7 +17,7 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 
 <br />
 <center>
-<img height="400px" src="./assets/illustration.png" />
+<img src="./assets/illustration.png" />
 </center>
 <br />
 
