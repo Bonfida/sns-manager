@@ -2,10 +2,13 @@
   "private": true,
   "homepage": ".",
   "scripts": {
-    "build": "expo export:web",
+    "build:xnft": "XNFT=true expo export:web",
+    "build:web": "WEB=true expo export:web",
     "start": "yarn build && npx xnft web",
     "bundle": "yarn build && npx xnft bundle",
-    "dev": "GENERATE_SOURCEMAP=false expo start --web & npx xnft --iframe http://localhost:19006"
+    "dev": "GENERATE_SOURCEMAP=false expo start --clear --web & npx xnft --iframe http://localhost:19006",
+    "dev:xnft": "XNFT=true yarn dev",
+    "dev:web": "WEB=true yarn dev"
   },
   "dependencies": {
     "@adraffy/ens-normalize": "^1.9.0",
@@ -25,6 +28,8 @@
     "@react-navigation/stack": "6.2.1",
     "@solana/buffer-layout": "^4.0.1",
     "@solana/spl-token": "^0.3.7",
+    "@solana/wallet-adapter-react": "^0.15.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.31",
     "@solana/web3.js": "^1.75.0",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",

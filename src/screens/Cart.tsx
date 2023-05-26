@@ -17,7 +17,7 @@ import { priceFromLength } from "../utils/price/price-from-length";
 import { usePyth } from "../hooks/usePyth";
 import { Feather } from "@expo/vector-icons";
 import { registerDomainName } from "@bonfida/spl-name-service";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import {
   Connection,
@@ -30,6 +30,7 @@ import { unwrapSol } from "../utils/tokens/unwrap-sol";
 import { chunkIx } from "../utils/tx/chunk-tx";
 import { useModal } from "react-native-modalfy";
 import { OrderSummary } from "../components/OrderSummary";
+import { useWallet } from "../hooks/useWallet";
 
 const checkEnoughFunds = async (
   connection: Connection,
@@ -45,7 +46,7 @@ const checkEnoughFunds = async (
 
 export const Cart = () => {
   const connection = useSolanaConnection();
-  const publicKeys = usePublicKeys();
+  const { publicKey, signAllTransactions } = useWallet();
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useRecoilState(cartState);
   const pyth = usePyth();
@@ -63,8 +64,7 @@ export const Cart = () => {
   const total = totalUsd / (price || 1);
 
   const handle = async () => {
-    const publicKey = publicKeys.get("solana");
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signAllTransactions) return;
     if (
       !(await checkEnoughFunds(
         connection,
@@ -116,7 +116,7 @@ export const Cart = () => {
         e.recentBlockhash = blockhash;
       });
 
-      txs = await window.xnft.solana.signAllTransactions(txs);
+      txs = await signAllTransactions(txs);
       for (let tx of txs) {
         const sig = await connection.sendRawTransaction(tx.serialize());
         await connection.confirmTransaction(sig);

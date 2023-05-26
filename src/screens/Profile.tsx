@@ -13,7 +13,7 @@ import SkeletonContent from "react-native-skeleton-content";
 import { Feather } from "@expo/vector-icons";
 import { useEffect, useMemo } from "react";
 import { useFavoriteDomain } from "../hooks/useFavoriteDomain";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { useModal } from "react-native-modalfy";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { abbreviate } from "../utils/abbreviate";
@@ -22,6 +22,7 @@ import { useUserProgress } from "../hooks/useUserProgress";
 import { useIsFocused } from "@react-navigation/native";
 import { useProfilePic } from "@bonfida/sns-react";
 import { DomainRow } from "../components/DomainRow";
+import { useWallet } from "../hooks/useWallet";
 
 export const LoadingState = () => {
   return (
@@ -45,9 +46,9 @@ export const LoadingState = () => {
 export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const connection = useSolanaConnection();
   const { openModal } = useModal();
-  const publicKey = usePublicKeys().get("solana");
-  owner = owner || publicKey!;
-  const domains = useDomains(owner || publicKey!);
+  const { connected, publicKey, setVisible } = useWallet();
+  owner = owner || publicKey?.toBase58();
+  const domains = useDomains(owner || publicKey?.toBase58());
   const isFocused = useIsFocused();
   const favorite = useFavoriteDomain(owner);
   const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
@@ -75,6 +76,12 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   useEffect(() => {
     refresh().then();
   }, [isFocused]);
+
+  useEffect(() => {
+    if (!connected) {
+      setVisible(true);
+    }
+  }, [connected]);
 
   const list = useMemo(() => {
     if (favorite.result) {

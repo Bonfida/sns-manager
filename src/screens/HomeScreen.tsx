@@ -15,6 +15,8 @@ import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 
+require("@solana/wallet-adapter-react-ui/styles.css");
+
 export function HomeScreen() {
   const { openModal } = useModal();
   const [search, setSearch] = useState("");
