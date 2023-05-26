@@ -94,6 +94,8 @@ function TabNavigator() {
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
 
+  console.log("Connected: ", connected);
+
   useEffect(() => {
     if (!connected) {
       setVisible(true);
@@ -112,6 +114,15 @@ function TabNavigator() {
         name="Profile"
         initialParams={{ owner: publicKey?.toBase58() }}
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            if (!connected) {
+              return setVisible(true);
+            }
+            navigation.navigate("Profile", { owner: publicKey?.toBase58() });
+          },
+        })}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (

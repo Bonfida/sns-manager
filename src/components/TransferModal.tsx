@@ -27,7 +27,7 @@ export const TransferModal = ({
   modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
 }) => {
   const { openModal } = useModal();
-  const { publicKey, signTransaction } = useWallet();
+  const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ export const TransferModal = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Confirm</Text>

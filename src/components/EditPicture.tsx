@@ -43,7 +43,7 @@ export const EditPicture = ({
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
-  const { publicKey, signTransaction } = useWallet();
+  const { publicKey, signTransaction, setVisible, connected } = useWallet();
 
   const handle = async () => {
     if (!pic) return;
@@ -183,7 +183,7 @@ export const EditPicture = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Confirm</Text>

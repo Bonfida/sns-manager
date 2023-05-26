@@ -41,7 +41,7 @@ export const EditRecordModal = ({
   const currentContent = getParam<string | undefined>("currentValue");
   const refresh = getParam<() => Promise<void>>("refresh");
   const connection = useSolanaConnection();
-  const { publicKey, signTransaction } = useWallet();
+  const { publicKey, signTransaction, setVisible, connected } = useWallet();
   const { openModal } = useModal();
 
   const [value, setValue] = useState(currentContent ? currentContent : "");
@@ -231,7 +231,7 @@ export const EditRecordModal = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handleUpdate}
+            onPress={connected ? handleUpdate : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Confirm</Text>
@@ -239,7 +239,7 @@ export const EditRecordModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={handleDelete}
+            onPress={connected ? handleDelete : () => setVisible(true)}
             style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Delete</Text>

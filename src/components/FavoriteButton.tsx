@@ -24,7 +24,7 @@ export const FavoriteButton = ({
   const [loading, setLoading] = useState(false);
   const { openModal } = useModal();
   const connection = useSolanaConnection();
-  const { publicKey, signTransaction } = useWallet();
+  const { publicKey, signTransaction, connected, setVisible } = useWallet();
 
   const handle = async () => {
     try {
@@ -60,7 +60,10 @@ export const FavoriteButton = ({
   };
 
   return (
-    <TouchableOpacity disabled={isFav} onPress={handle}>
+    <TouchableOpacity
+      disabled={isFav}
+      onPress={connected ? handle : () => setVisible(true)}
+    >
       {loading ? (
         <ActivityIndicator size={21} />
       ) : isFav ? (

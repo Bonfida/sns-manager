@@ -46,7 +46,7 @@ const checkEnoughFunds = async (
 
 export const Cart = () => {
   const connection = useSolanaConnection();
-  const { publicKey, signAllTransactions } = useWallet();
+  const { publicKey, signAllTransactions, connected, setVisible } = useWallet();
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useRecoilState(cartState);
   const pyth = usePyth();
@@ -213,7 +213,7 @@ export const Cart = () => {
 
         <View style={tw`w-full mt-4`}>
           <TouchableOpacity
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             disabled={loading || cart.length === 0}
             style={[
               tw`bg-blue-900 h-[50px] rounded-lg flex items-center justify-center flex-row`,
