@@ -1,6 +1,7 @@
 import { Event, XnftMetadata } from "@coral-xyz/common-public";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { useEffect, useState } from "react";
+import { URL } from "../utils/rpc";
 
 declare global {
   interface Window {
@@ -55,7 +56,7 @@ export function useConnection(): Connection | undefined {
   //     setConnection(window.xnft.solana.connection);
   //   }
   // }, [didLaunch, setConnection]);
-  return new Connection("https://rpc-public.hellomoon.io", "processed");
+  return new Connection(URL, "processed");
 }
 
 export function useSolanaConnection(): Connection | undefined {
@@ -69,7 +70,7 @@ export function useSolanaConnection(): Connection | undefined {
   //     setConnection(window.xnft.solana.connection);
   //   }
   // }, [didLaunch, setConnection]);
-  return new Connection("https://rpc-public.hellomoon.io", "processed");
+  return new Connection(URL, "processed");
 }
 
 export function useEthereumConnection(): Connection | undefined {

@@ -36,6 +36,7 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "./hooks/useWallet";
+import { URL } from "./utils/rpc";
 
 console.table([
   ["isXnft", "isMobile", "isWeb"],
@@ -215,7 +216,7 @@ const Wrap = ({ children }: { children: ReactNode }) => {
   }
   if (isWeb) {
     return (
-      <ConnectionProvider endpoint="https://rpc-public.hellomoon.io">
+      <ConnectionProvider endpoint={URL}>
         <WalletProvider autoConnect wallets={wallets}>
           <WalletModalProvider>{children}</WalletModalProvider>
         </WalletProvider>
