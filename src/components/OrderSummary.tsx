@@ -40,7 +40,7 @@ export const OrderSummary = ({
       <Row value={`${format(totalUsd, true)} USD`} label="Total USD" />
       {/* Gas cost */}
       <Row
-        value={`◎${rent.loading ? 0 : rent.result?.toFixed(3)}`}
+        value={`◎${rent.loading ? 0 : (rent.result || 0)?.toFixed(3)}`}
         label="Gas"
       />
 
