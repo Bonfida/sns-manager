@@ -54,7 +54,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
   const progress = useUserProgress();
 
-  const isOwner = owner === publicKey;
+  const isOwner = owner === publicKey?.toBase58();
 
   const completedStep = (progress?.result || [])?.filter(
     (e) => !!e.value
