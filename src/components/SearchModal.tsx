@@ -26,7 +26,7 @@ export const SearchModal = ({
   const [search, setSearch] = useState("");
 
   const list = useMemo(
-    () => domains.filter((e) => e.domain.includes(search)),
+    () => domains?.filter((e) => e.domain.includes(search)),
     [search]
   );
 
@@ -52,7 +52,7 @@ export const SearchModal = ({
           />
         </View>
 
-        {search !== "" && list.length !== 0 && (
+        {search !== "" && list?.length !== 0 && (
           <FlatList
             data={list}
             renderItem={({ item }) => (
@@ -68,7 +68,7 @@ export const SearchModal = ({
             keyExtractor={(item) => item.domain}
           />
         )}
-        {search !== "" && list.length === 0 && (
+        {search !== "" && list?.length === 0 && (
           <View>
             <Text style={tw`text-lg font-bold text-center`}>
               No domain found

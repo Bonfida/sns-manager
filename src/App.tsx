@@ -36,7 +36,7 @@ import { messages as enMessages } from "./locales/en/messages";
 import { messages as krMessages } from "./locales/kr/messages";
 
 i18n.load({ en: enMessages, kr: krMessages });
-i18n.activate("en");
+i18n.activate("kr");
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 

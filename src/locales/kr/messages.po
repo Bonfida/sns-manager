@@ -13,15 +13,36 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/screens/SearchResult.tsx:48
+msgid "{input}.sol is not a valid domain"
+msgstr "{input}.sol은(는) 유효한 도메인이 아닙니다"
+
 #: src/screens/HomeScreen.tsx:36
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol은(는) 유효한 도메인이 아닙니다."
+
+#: src/screens/Profile.tsx:181
+msgid "Domains"
+msgstr "도메인"
+
+#: src/screens/Profile.tsx:181
+msgid "My domains"
+msgstr "나의 도메인"
+
+#: src/screens/Profile.tsx:217
+msgid "No domain found"
+msgstr "도메인을 찾을 수 없습니다"
+
+#: src/screens/Profile.tsx:155
+msgid "Profile completed: {percentage}%"
+msgstr "프로필 완료율: {percentage}%"
 
 #: src/screens/HomeScreen.tsx:87
 msgid "Search"
 msgstr "검색"
 
 #: src/screens/HomeScreen.tsx:73
+#: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr "당신의 이름.sol을 검색하세요"
 

@@ -13,8 +13,28 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/screens/SearchResult.tsx:48
+msgid "{input}.sol is not a valid domain"
+msgstr ""
+
 #: src/screens/HomeScreen.tsx:36
 msgid "{search}.sol is not a valid domain"
+msgstr ""
+
+#: src/screens/Profile.tsx:181
+msgid "Domains"
+msgstr ""
+
+#: src/screens/Profile.tsx:181
+msgid "My domains"
+msgstr ""
+
+#: src/screens/Profile.tsx:217
+msgid "No domain found"
+msgstr ""
+
+#: src/screens/Profile.tsx:155
+msgid "Profile completed: {percentage}%"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:87
@@ -22,6 +42,7 @@ msgid "Search"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:73
+#: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr ""
 
