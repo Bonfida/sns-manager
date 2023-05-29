@@ -14,6 +14,7 @@ import { profileScreenProp, searchResultScreenProp } from "../../types";
 import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
+import { Trans, t } from "@lingui/macro";
 
 export function HomeScreen() {
   const { openModal } = useModal();
@@ -31,7 +32,9 @@ export function HomeScreen() {
       });
     }
     if (!validate(search)) {
-      return openModal("Error", { msg: `${search}.sol is not a valid domain` });
+      return openModal("Error", {
+        msg: t`${search}.sol is not a valid domain`,
+      });
     }
     navigation.navigate("Search", {
       screen: "Search Result",
@@ -48,13 +51,14 @@ export function HomeScreen() {
           source={require("../../assets/fida.svg")}
         />
       </View>
-
       <Text style={tw`text-3xl font-bold text-center text-blue-grey-900`}>
-        Your <Text style={tw`text-blue-700 underline`}>Name</Text>. Your{" "}
-        <Text style={tw`text-blue-700 underline`}>Power</Text>.
+        <Trans>
+          Your <Text style={tw`text-blue-700 underline`}>Name</Text>. Your{" "}
+          <Text style={tw`text-blue-700 underline`}>Power</Text>.
+        </Trans>
       </Text>
       <Text style={tw`px-10 my-5 text-sm text-center text-blue-grey-500`}>
-        Seize your online identity.
+        <Trans>Seize your online identity.</Trans>
       </Text>
       <View
         style={tw`flex flex-row h-[71px] justify-center w-full items-center border-[1px] border-black/10 rounded-lg`}
@@ -66,7 +70,7 @@ export function HomeScreen() {
           ]}
           onChangeText={(newText) => setSearch(newText)}
           value={search}
-          placeholder="Search for your name.sol"
+          placeholder={t({ message: "Search for your name.sol" })}
           placeholderTextColor="#BCCCDC"
           onKeyPress={(e) => {
             if (e.nativeEvent.key === "Enter") {
@@ -79,7 +83,9 @@ export function HomeScreen() {
           onPress={handle}
           style={tw`bg-blue-900 w-[30%] h-[72px] rounded-tr-lg rounded-br-lg flex items-center justify-center`}
         >
-          <Text style={tw`text-lg font-bold text-white`}>Search</Text>
+          <Text style={tw`text-lg font-bold text-white`}>
+            <Trans>Search</Trans>
+          </Text>
         </TouchableOpacity>
       </View>
     </Screen>

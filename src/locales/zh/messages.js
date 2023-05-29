@@ -1,0 +1,1 @@
+/*eslint-disable*/module.exports={messages:JSON.parse("{\"tJoYL1\":[[\"search\"],\".sol is not a valid domain\"],\"A1taO8\":\"Search\",\"8GCCCL\":\"Search for your name.sol\",\"PUWQel\":\"Seize your online identity.\",\"X7REkE\":\"Your <0>Name</0>. Your <1>Power</1>.\"}")};

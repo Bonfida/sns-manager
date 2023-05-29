@@ -30,6 +30,14 @@ import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
 
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
+import { messages as enMessages } from "./locales/en/messages";
+import { messages as krMessages } from "./locales/kr/messages";
+
+i18n.load({ en: enMessages, kr: krMessages });
+i18n.activate("en");
+
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
 const modalConfig = {
@@ -168,9 +176,11 @@ function App() {
   return (
     <RecoilRoot>
       <NavigationContainer>
-        <ModalProvider stack={stackModal}>
-          <TabNavigator />
-        </ModalProvider>
+        <I18nProvider i18n={i18n}>
+          <ModalProvider stack={stackModal}>
+            <TabNavigator />
+          </ModalProvider>
+        </I18nProvider>
       </NavigationContainer>
     </RecoilRoot>
   );

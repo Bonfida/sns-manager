@@ -1,0 +1,1 @@
+/*eslint-disable*/module.exports={messages:JSON.parse("{\"tJoYL1\":[[\"search\"],\".sol은(는) 유효한 도메인이 아닙니다.\"],\"A1taO8\":\"검색\",\"8GCCCL\":\"당신의 이름.sol을 검색하세요\",\"PUWQel\":\"당신의 온라인 신원을 확보하세요.\",\"X7REkE\":\"당신의 <0>이름</0>. 당신의 <1>선택</1>.\"}")};
