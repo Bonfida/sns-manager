@@ -21,7 +21,6 @@ import { DomainView } from "./screens/DomainView";
 import { SuccessCheckoutModal } from "./components/SuccessCheckoutModal";
 import { EditRecordModal } from "./components/EditRecordModal";
 import { ErrorModal } from "./components/ErrorModal";
-import { usePublicKeys } from "./hooks/xnft-hooks";
 import { SuccessModal } from "./components/SuccessModal";
 import { TransferModal } from "./components/TransferModal";
 import { WormholeExplainerModal } from "./components/WormholeExplainerModal";
@@ -29,6 +28,16 @@ import { EditPicture } from "./components/EditPicture";
 import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
+import { isXnft, isMobile, isWeb } from "./utils/platform";
+import { ReactNode, useEffect, useMemo } from "react";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "./hooks/useWallet";
+import { URL } from "./utils/rpc";
+import { useReferrer } from "./hooks/useReferrer";
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -79,8 +88,18 @@ const SearchNavigator = () => {
 };
 
 function TabNavigator() {
+  useReferrer();
   const [cart] = useRecoilState(cartState);
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey, setVisible, connected } = useWallet();
+
+  console.log("Connected: ", connected);
+
+  useEffect(() => {
+    if (!connected) {
+      setVisible(true);
+    }
+  }, []);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -91,8 +110,17 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Profile"
-        initialParams={{ owner: publicKey }}
+        initialParams={{ owner: publicKey?.toBase58() }}
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            if (!connected) {
+              return setVisible(true);
+            }
+            navigation.navigate("Profile", { owner: publicKey?.toBase58() });
+          },
+        })}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
@@ -166,14 +194,40 @@ function App() {
   }
 
   return (
-    <RecoilRoot>
-      <NavigationContainer>
-        <ModalProvider stack={stackModal}>
-          <TabNavigator />
-        </ModalProvider>
-      </NavigationContainer>
-    </RecoilRoot>
+    <Wrap>
+      <RecoilRoot>
+        <NavigationContainer>
+          <ModalProvider stack={stackModal}>
+            <TabNavigator />
+          </ModalProvider>
+        </NavigationContainer>
+      </RecoilRoot>
+    </Wrap>
   );
 }
+
+const Wrap = ({ children }: { children: ReactNode }) => {
+  const wallets = useMemo(() => [], []);
+  if (isXnft) {
+    return <>{children}</>;
+  }
+  if (isWeb) {
+    return (
+      <ConnectionProvider endpoint={URL}>
+        <WalletProvider autoConnect wallets={wallets}>
+          <WalletModalProvider>{children}</WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    );
+  }
+  if (isMobile) {
+    <ConnectionProvider endpoint={URL}>
+      <WalletProvider autoConnect wallets={wallets}>
+        <WalletModalProvider>{children}</WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>;
+  }
+  return <>{children}</>;
+};
 
 export default registerRootComponent(App);

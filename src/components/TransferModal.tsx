@@ -15,10 +15,11 @@ import {
 } from "@bonfida/spl-name-service";
 import tw from "../utils/tailwind";
 import { PublicKey } from "@solana/web3.js";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
+import { useWallet } from "../hooks/useWallet";
 
 export const TransferModal = ({
   modal: { closeModal, getParam },
@@ -26,7 +27,7 @@ export const TransferModal = ({
   modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
 }) => {
   const { openModal } = useModal();
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ export const TransferModal = ({
   const refresh = getParam<() => Promise<void>>("refresh");
 
   const handle = async () => {
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signTransaction) return;
     try {
       setLoading(true);
 
@@ -49,12 +50,12 @@ export const TransferModal = ({
         NAME_PROGRAM_ID,
         getDomainKeySync(domain).pubkey,
         newOwner,
-        new PublicKey(publicKey),
+        publicKey,
         undefined,
         ROOT_DOMAIN_ACCOUNT
       );
 
-      const sig = await sendTx(connection, new PublicKey(publicKey), [ix]);
+      const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
       setLoading(false);
       closeModal();
@@ -80,7 +81,7 @@ export const TransferModal = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Confirm</Text>
