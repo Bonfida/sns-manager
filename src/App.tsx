@@ -39,11 +39,6 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 
-console.table([
-  ["isXnft", "isMobile", "isWeb"],
-  [isXnft, isMobile, isWeb],
-]);
-
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
 const modalConfig = {
