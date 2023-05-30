@@ -51,6 +51,24 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 | Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |
 
 <br />
+<h2 align="center">Development and Build Commands 💻</h2>
+<br />
+
+This section introduces commands to expedite the development and building processes of our React Native project for web and xNFT platforms, enhancing the wallet connection experience.
+
+### Development
+
+For development, you can initiate the server with `yarn dev:xnft` for the xNFT target and `yarn dev:web` for the web target.
+
+### Building
+
+To transition to a production-ready build, use `yarn build:xnft` for the xNFT target and `yarn build:web` for the web target.
+
+### Wallet Connection
+
+Both development and build configurations accommodate seamless wallet connection for web and xNFT platforms. Thus, these commands facilitate a unified and efficient experience of developing and building applications for different targets. Please report issues or suggestions through an issue or a pull request.
+
+<br />
 <h2 align="center">Features 🛠️</h2>
 <br />
 
