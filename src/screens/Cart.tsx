@@ -16,7 +16,7 @@ import { FIDA_MINT, tokenList } from "../utils/tokens/popular-tokens";
 import { priceFromLength } from "../utils/price/price-from-length";
 import { usePyth } from "../hooks/usePyth";
 import { Feather } from "@expo/vector-icons";
-import { registerDomainName } from "@bonfida/spl-name-service";
+import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import {
@@ -31,6 +31,7 @@ import { chunkIx } from "../utils/tx/chunk-tx";
 import { useModal } from "react-native-modalfy";
 import { OrderSummary } from "../components/OrderSummary";
 import { useWallet } from "../hooks/useWallet";
+import { referrerState } from "../atoms/referrer";
 
 const checkEnoughFunds = async (
   connection: Connection,
@@ -45,6 +46,7 @@ const checkEnoughFunds = async (
 };
 
 export const Cart = () => {
+  const [referrer] = useRecoilState(referrerState);
   const connection = useSolanaConnection();
   const { publicKey, signAllTransactions, connected, setVisible } = useWallet();
   const [loading, setLoading] = useState(false);
@@ -83,7 +85,6 @@ export const Cart = () => {
       const mintKey = new PublicKey(mint);
       const space = 1_000;
       const ata = getAssociatedTokenAddressSync(mintKey, buyer);
-
       for (let d of cart) {
         const [, ix] = await registerDomainName(
           connection,
@@ -91,7 +92,8 @@ export const Cart = () => {
           space,
           buyer,
           ata,
-          mintKey
+          mintKey,
+          referrer ? REFERRERS[referrer] : undefined
         );
         ixs.push(...ix);
       }

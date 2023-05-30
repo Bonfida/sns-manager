@@ -37,6 +37,7 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
+import { useReferrer } from "./hooks/useReferrer";
 
 console.table([
   ["isXnft", "isMobile", "isWeb"],
@@ -92,6 +93,7 @@ const SearchNavigator = () => {
 };
 
 function TabNavigator() {
+  useReferrer();
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
 
