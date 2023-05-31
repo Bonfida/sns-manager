@@ -33,7 +33,6 @@ import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { messages as enMessages } from "./locales/en/messages";
-import { messages as krMessages } from "./locales/kr/messages";
 import { t } from "@lingui/macro";
 
 i18n.load({ en: enMessages });
