@@ -9,6 +9,8 @@ import tw from "../utils/tailwind";
 import { useModal } from "react-native-modalfy";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { Feather } from "@expo/vector-icons";
+import { Trans, t } from "@lingui/macro";
+import { getTranslatedName } from "../utils/record/place-holder";
 
 export const getIcon = (record: SocialRecord) => {
   switch (record) {
@@ -61,19 +63,21 @@ export const SocialRecordCard = ({
 
         {/* Record title & content */}
         <View style={tw`flex flex-col items-start justify-start`}>
-          <Text style={tw`font-bold text-blue-900 capitalize`}>{record}</Text>
+          <Text style={tw`font-bold text-blue-900 capitalize`}>
+            {getTranslatedName(record)}
+          </Text>
           {des ? (
             <TouchableOpacity
               onPress={() => {
                 Clipboard.setString(des);
-                openModal("Success", { msg: "Copied!" });
+                openModal("Success", { msg: t`Copied!` });
               }}
             >
               <Text style={tw`text-sm font-bold`}>{des}</Text>
             </TouchableOpacity>
           ) : (
             <Text style={tw`text-sm font-bold text-blue-grey-400`}>
-              Not set
+              <Trans>Not set</Trans>
             </Text>
           )}
         </View>

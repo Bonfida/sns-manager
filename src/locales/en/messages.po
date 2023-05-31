@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/FavoriteButton.tsx:54
+msgid "{domain}.sol successfully set as favorite domain name"
+msgstr ""
+
+#: src/components/TransferModal.tsx:62
+msgid "{domain}.sol successfully transfered!"
+msgstr ""
+
 #: src/screens/SearchResult.tsx:48
 msgid "{input}.sol is not a valid domain"
 msgstr ""
@@ -21,24 +29,286 @@ msgstr ""
 msgid "{search}.sol is not a valid domain"
 msgstr ""
 
+#: src/components/ProgressExplainerModal.tsx:34
+msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:41
+msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:48
+msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:55
+msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:62
+msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:69
+msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
+msgstr ""
+
+#: src/screens/DomainView.tsx:184
+msgid "Addresses"
+msgstr ""
+
+#: src/components/SuccessCheckoutModal.tsx:26
+msgid "All your domains have been purchased"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:49
+msgid "ARWV"
+msgstr ""
+
+#: src/components/AvailableRow.tsx:45
+msgid "Available"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:75
+msgid "Backpack"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:23
+msgid "Boost Your Profile Journey! 🚀"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:71
+msgid "BSC"
+msgstr ""
+
+#: src/components/EditPicture.tsx:197
+#: src/components/EditRecordModal.tsx:272
+#: src/components/TransferModal.tsx:100
+msgid "Cancel"
+msgstr ""
+
+#: src/App.tsx:145
+msgid "Cart"
+msgstr ""
+
+#: src/screens/Cart.tsx:153
+msgid "Clear all"
+msgstr ""
+
+#: src/components/SuccessModal.tsx:31
+msgid "Close"
+msgstr ""
+
+#: src/components/EditPicture.tsx:187
+#: src/components/EditRecordModal.tsx:252
+#: src/components/TransferModal.tsx:90
+#: src/screens/Cart.tsx:229
+msgid "Confirm"
+msgstr ""
+
+#: src/components/SuccessCheckoutModal.tsx:22
+msgid "Congrats!"
+msgstr ""
+
+#: src/components/SocialRecord.tsx:73
+msgid "Copied!"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:262
+msgid "Delete"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:55
+msgid "Discord"
+msgstr ""
+
+#: src/components/OrderSummary.tsx:55
+msgid "Discount"
+msgstr ""
+
+#: src/screens/Cart.tsx:142
 #: src/screens/Profile.tsx:181
 msgid "Domains"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:237
+msgid "Edit {0} record"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:234
+#~ msgid "Edit {record} record"
+#~ msgstr ""
+
+#: src/components/EditPicture.tsx:162
+msgid "Edit Picture"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:51
+msgid "Email"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:39
+msgid "Enter your {x} record"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:8
+msgid "Enter your Backpack username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:28
+msgid "Enter your Bitcoin address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:26
+msgid "Enter your BNB address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:10
+msgid "Enter your Discord username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:36
+msgid "Enter your Dogecoin address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:12
+msgid "Enter your email address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:30
+msgid "Enter your Ethereum address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:14
+msgid "Enter your Github username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:34
+msgid "Enter your Injective address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:32
+msgid "Enter your Litecoin address"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:16
+msgid "Enter your Reddit username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:18
+msgid "Enter your Telegram username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:20
+msgid "Enter your Twitter username"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:22
+msgid "Enter your website URL"
+msgstr ""
+
+#: src/components/OrderSummary.tsx:47
+msgid "Gas"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:57
+msgid "Github"
+msgstr ""
+
+#: src/components/SuccessCheckoutModal.tsx:36
+msgid "Go to Profile"
+msgstr ""
+
+#: src/App.tsx:116
+msgid "Home"
+msgstr ""
+
+#: src/components/DiscountExplainerModal.tsx:26
+msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:73
+msgid "Injective"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:80
+msgid "Invalid Arweave record"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:86
+msgid "Invalid BSC address"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:74
+msgid "Invalid IPFS record - Must start with ipfs://"
+msgstr ""
+
+#: src/components/EditPicture.tsx:63
+#: src/components/EditRecordModal.tsx:68
+msgid "Invalid URL"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:47
+msgid "IPFS"
 msgstr ""
 
 #: src/screens/Profile.tsx:181
 msgid "My domains"
 msgstr ""
 
+#: src/components/EditPicture.tsx:175
+msgid "New picture URL"
+msgstr ""
+
+#: src/components/SearchModal.tsx:75
 #: src/screens/Profile.tsx:217
 msgid "No domain found"
+msgstr ""
+
+#: src/components/SocialRecord.tsx:80
+#: src/screens/DomainView.tsx:272
+msgid "Not set"
+msgstr ""
+
+#: src/components/OrderSummary.tsx:35
+msgid "Order summary"
+msgstr ""
+
+#: src/screens/Cart.tsx:185
+msgid "Pay with"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:65
+msgid "Pic"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:69
+msgid "POINT"
+msgstr ""
+
+#: src/App.tsx:106
+msgid "Profile"
 msgstr ""
 
 #: src/screens/Profile.tsx:155
 msgid "Profile completed: {percentage}%"
 msgstr ""
 
+#: src/utils/record/place-holder.tsx:59
+msgid "Reddit"
+msgstr ""
+
+#: src/components/DiscountExplainerModal.tsx:22
+msgid "Registration discount"
+msgstr ""
+
+#: src/App.tsx:135
 #: src/screens/HomeScreen.tsx:87
 msgid "Search"
+msgstr ""
+
+#: src/components/SearchModal.tsx:51
+msgid "Search domains"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:73
@@ -46,10 +316,84 @@ msgstr ""
 msgid "Search for your name.sol"
 msgstr ""
 
+#: src/components/ProgressExplainerModal.tsx:27
+msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
+msgstr ""
+
 #: src/screens/HomeScreen.tsx:61
 msgid "Seize your online identity."
 msgstr ""
 
+#: src/utils/record/place-holder.tsx:67
+msgid "SHDW"
+msgstr ""
+
+#: src/screens/DomainView.tsx:160
+msgid "Socials"
+msgstr ""
+
+#: src/components/ErrorModal.tsx:12
+#: src/components/ErrorModal.tsx:20
+msgid "Something went wrong"
+msgstr ""
+
+#: src/components/EditPicture.tsx:154
+#: src/components/EditRecordModal.tsx:203
+#: src/components/EditRecordModal.tsx:229
+#: src/components/FavoriteButton.tsx:62
+#: src/components/TransferModal.tsx:67
+msgid "Something went wrong - try again"
+msgstr ""
+
+#: src/components/SuccessModal.tsx:20
+msgid "Success!"
+msgstr ""
+
+#: src/components/UnavailableRow.tsx:19
+msgid "Taken"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:63
+msgid "Telegram"
+msgstr ""
+
+#: src/components/EditRecordModal.tsx:150
+#: src/components/EditRecordModal.tsx:157
+msgid "The record must be a valid wallet address"
+msgstr ""
+
+#: src/components/UnavailableRow.tsx:36
+msgid "This domain has already been purchased"
+msgstr ""
+
+#: src/components/WormholeExplainerModal.tsx:13
+msgid "This domain has been bridged via Wormhole and is available on BNB"
+msgstr ""
+
+#: src/components/OrderSummary.tsx:40
+msgid "Total"
+msgstr ""
+
+#: src/components/OrderSummary.tsx:43
+msgid "Total USD"
+msgstr ""
+
+#: src/screens/DomainView.tsx:214
+msgid "Transfer"
+msgstr ""
+
+#: src/components/TransferModal.tsx:75
+msgid "Transfer {domain}.sol"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:61
+msgid "Twitter"
+msgstr ""
+
+#: src/utils/record/place-holder.tsx:53
+msgid "Url"
+msgstr ""
+
 #: src/screens/HomeScreen.tsx:55
 msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr "Your <0>Name</0>. Your <1>Power</1>."
+msgstr ""

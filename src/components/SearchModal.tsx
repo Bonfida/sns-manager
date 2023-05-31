@@ -13,6 +13,7 @@ import { Feather } from "@expo/vector-icons";
 import { Result } from "../hooks/useDomains";
 import { DomainRow } from "./DomainRow";
 import { WrapModal } from "./WrapModal";
+import { Trans, t } from "@lingui/macro";
 
 export const SearchModal = ({
   modal: { closeModal, getParam },
@@ -47,7 +48,7 @@ export const SearchModal = ({
               ,
               tw`w-full h-full ml-4 font-semibold`,
             ]}
-            placeholder="Search domains"
+            placeholder={t`Search domains`}
             placeholderTextColor="#BCCCDC"
           />
         </View>
@@ -71,7 +72,7 @@ export const SearchModal = ({
         {search !== "" && list?.length === 0 && (
           <View>
             <Text style={tw`text-lg font-bold text-center`}>
-              No domain found
+              <Trans>No domain found</Trans>
             </Text>
           </View>
         )}
