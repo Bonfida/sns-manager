@@ -58,6 +58,7 @@
     "@expo/webpack-config": "^18.0.1",
     "@types/react": "~18.0.28",
     "@types/react-native": "~0.71.3",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "commander": "^9.4.1",
     "fast-glob": "^3.2.12",
     "glob": "^8.0.3",
