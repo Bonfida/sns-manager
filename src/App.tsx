@@ -221,11 +221,13 @@ const Wrap = ({ children }: { children: ReactNode }) => {
     );
   }
   if (isMobile) {
-    <ConnectionProvider endpoint={URL}>
-      <WalletProvider autoConnect wallets={wallets}>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>;
+    return (
+      <ConnectionProvider endpoint={URL}>
+        <WalletProvider autoConnect wallets={wallets}>
+          <WalletModalProvider>{children}</WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    );
   }
   return <>{children}</>;
 };
