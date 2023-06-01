@@ -6,6 +6,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: kr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #: src/components/FavoriteButton.tsx:54
 msgid "{domain}.sol successfully set as favorite domain name"
@@ -81,7 +87,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:145
+#: src/App.tsx:144
 msgid "Cart"
 msgstr ""
 
@@ -209,7 +215,7 @@ msgstr ""
 msgid "Go to Profile"
 msgstr ""
 
-#: src/App.tsx:116
+#: src/App.tsx:115
 msgid "Home"
 msgstr ""
 
@@ -276,7 +282,7 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:106
+#: src/App.tsx:105
 msgid "Profile"
 msgstr ""
 
@@ -292,7 +298,7 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/App.tsx:135
+#: src/App.tsx:134
 #: src/screens/HomeScreen.tsx:87
 msgid "Search"
 msgstr ""
