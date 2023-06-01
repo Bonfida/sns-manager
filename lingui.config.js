@@ -1,7 +1,7 @@
 /** @type {import('@lingui/conf').LinguiConfig} */
 module.exports = {
-  // English, Korean, Chinese
-  locales: ["en", "kr", "zh"],
+  // English, Korean, Simplified Chinese
+  locales: ["en", "kr", "zh-Hans"],
   catalogs: [
     {
       path: "src/locales/{locale}/messages",
