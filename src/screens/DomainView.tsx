@@ -27,6 +27,7 @@ import { Screen } from "../components/Screen";
 import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
+import { Trans } from "@lingui/macro";
 
 export const LoadingState = () => {
   return (
@@ -156,7 +157,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         <View style={tw`px-4`}>
           <View style={tw`flex flex-row items-center w-full justify-between`}>
             <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-              Socials
+              <Trans>Socials</Trans>
             </Text>
 
             <TouchableOpacity onPress={refresh}>
@@ -180,7 +181,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           </View>
 
           <Text style={tw`text-xl font-bold text-blue-grey-900 mt-4 mb-1`}>
-            Addresses
+            <Trans>Addresses</Trans>
           </Text>
           <FlatList
             style={tw`mb-3`}
@@ -210,7 +211,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
             >
               <Text style={tw`text-white font-bold text-xl mr-3`}>
-                Transfer
+                <Trans>Transfer</Trans>
               </Text>
             </TouchableOpacity>
           )}
@@ -267,7 +268,9 @@ const RenderRecord = ({
               </TouchableOpacity>
             </>
           ) : (
-            <Text style={tw`text-sm font-bold`}>Not set</Text>
+            <Text style={tw`text-sm font-bold`}>
+              <Trans>Not set</Trans>
+            </Text>
           )}
         </View>
       </View>

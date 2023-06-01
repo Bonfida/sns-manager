@@ -19,6 +19,7 @@ import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
 import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
+import { Trans, t } from "@lingui/macro";
 
 export const TransferModal = ({
   modal: { closeModal, getParam },
@@ -58,19 +59,21 @@ export const TransferModal = ({
       console.log(sig);
       setLoading(false);
       closeModal();
-      openModal("Success", { msg: `${domain}.sol successfully transfered!` });
+      openModal("Success", { msg: t`${domain}.sol successfully transfered!` });
       refresh();
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>Transfer {domain}.sol</Text>
+        <Text style={tw`text-xl font-bold`}>
+          <Trans>Transfer {domain}.sol</Trans>
+        </Text>
         <TextInput
           placeholder={`New ${domain}.sol owner`}
           onChangeText={(text) => setValue(text)}
@@ -83,7 +86,9 @@ export const TransferModal = ({
             onPress={handle}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Confirm</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Confirm</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
           <TouchableOpacity
@@ -91,7 +96,9 @@ export const TransferModal = ({
             onPress={closeModal}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Cancel</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Cancel</Trans>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

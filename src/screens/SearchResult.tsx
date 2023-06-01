@@ -19,6 +19,7 @@ import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { profileScreenProp } from "../../types";
+import { t } from "@lingui/macro";
 
 export const SearchResult = ({ domain }: { domain: string }) => {
   const { openModal, currentModal } = useModal();
@@ -44,7 +45,7 @@ export const SearchResult = ({ domain }: { domain: string }) => {
       });
     }
     if (!validate(input)) {
-      return openModal("Error", { msg: `${input}.sol is not a valid domain` });
+      return openModal("Error", { msg: t`${input}.sol is not a valid domain` });
     }
     setSearch(trimTld(input));
   };
@@ -65,7 +66,7 @@ export const SearchResult = ({ domain }: { domain: string }) => {
             ]}
             onChangeText={(newText) => setInput(newText)}
             value={input}
-            placeholder="Search for your name.sol"
+            placeholder={t`Search for your name.sol`}
             placeholderTextColor="#BCCCDC"
             editable={currentModal !== "Error"}
             onKeyPress={(e) => {

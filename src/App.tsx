@@ -30,6 +30,14 @@ import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
 
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
+import { messages as enMessages } from "./locales/en/messages";
+import { t } from "@lingui/macro";
+
+i18n.load({ en: enMessages });
+i18n.activate("en");
+
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
 const modalConfig = {
@@ -94,7 +102,7 @@ function TabNavigator() {
         initialParams={{ owner: publicKey }}
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: t`Profile`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
@@ -104,7 +112,7 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: t`Home`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
@@ -123,7 +131,7 @@ function TabNavigator() {
         })}
         options={{
           headerShown: false,
-          tabBarLabel: "Search",
+          tabBarLabel: t`Search`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="search" size={size} color={color} />
           ),
@@ -133,7 +141,7 @@ function TabNavigator() {
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: "Cart",
+          tabBarLabel: t`Cart`,
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
@@ -168,9 +176,11 @@ function App() {
   return (
     <RecoilRoot>
       <NavigationContainer>
-        <ModalProvider stack={stackModal}>
-          <TabNavigator />
-        </ModalProvider>
+        <I18nProvider i18n={i18n}>
+          <ModalProvider stack={stackModal}>
+            <TabNavigator />
+          </ModalProvider>
+        </I18nProvider>
       </NavigationContainer>
     </RecoilRoot>
   );

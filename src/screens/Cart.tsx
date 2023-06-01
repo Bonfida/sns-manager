@@ -30,6 +30,7 @@ import { unwrapSol } from "../utils/tokens/unwrap-sol";
 import { chunkIx } from "../utils/tx/chunk-tx";
 import { useModal } from "react-native-modalfy";
 import { OrderSummary } from "../components/OrderSummary";
+import { Trans } from "@lingui/macro";
 
 const checkEnoughFunds = async (
   connection: Connection,
@@ -138,7 +139,7 @@ export const Cart = () => {
       <Screen>
         <View style={tw`flex flex-col justify-between`}>
           <Text style={tw`mt-4 mb-2 text-xl font-bold`}>
-            Domains ({cart.length})
+            <Trans>Domains</Trans> ({cart.length})
           </Text>
           <ScrollView
             showsHorizontalScrollIndicator={false}
@@ -148,7 +149,9 @@ export const Cart = () => {
               onPress={() => setCart([])}
               style={tw`flex flex-row justify-end mb-2`}
             >
-              <Text style={tw`font-bold text-blue-grey-600`}>Clear all</Text>
+              <Text style={tw`font-bold text-blue-grey-600`}>
+                <Trans>Clear all</Trans>
+              </Text>
             </TouchableOpacity>
             <FlatList
               style={tw`border-[1px] border-blue-600/10 rounded-lg px-2`}
@@ -178,7 +181,9 @@ export const Cart = () => {
             />
           </ScrollView>
 
-          <Text style={tw`mt-4 mb-2 text-xl font-bold`}>Pay with</Text>
+          <Text style={tw`mt-4 mb-2 text-xl font-bold`}>
+            <Trans>Pay with</Trans>
+          </Text>
           <View style={tw`flex flex-row flex-wrap items-center`}>
             {tokenList.map((e) => {
               const selected = e.mintAddress === mint;
@@ -220,7 +225,9 @@ export const Cart = () => {
               cart.length === 0 && tw`bg-blue-grey-300`,
             ]}
           >
-            <Text style={tw`text-lg font-bold text-white`}>Confirm</Text>
+            <Text style={tw`text-lg font-bold text-white`}>
+              <Trans>Confirm</Trans>
+            </Text>
             {loading ? <ActivityIndicator style={tw`ml-3`} /> : null}
           </TouchableOpacity>
         </View>

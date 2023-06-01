@@ -30,8 +30,12 @@ import { useModal } from "react-native-modalfy";
 import { sleep } from "../utils/sleep";
 import { removeZeroRight } from "../utils/record/zero";
 import { WrapModal } from "./WrapModal";
-import { getPlaceholder } from "../utils/record/place-holder";
+import {
+  getPlaceholder,
+  getTranslatedName,
+} from "../utils/record/place-holder";
 import { sendTx } from "../utils/send-tx";
+import { Trans, t } from "@lingui/macro";
 
 export const EditRecordModal = ({
   modal: { closeModal, getParam },
@@ -61,25 +65,25 @@ export const EditRecordModal = ({
           new URL(value);
         } catch (err) {
           setLoading(false);
-          return openModal("Error", { msg: "Invalid URL" });
+          return openModal("Error", { msg: t`Invalid URL` });
         }
       } else if (record === Record.IPFS) {
         if (!value.startsWith("ipfs://")) {
           setLoading(false);
           return openModal("Error", {
-            msg: "Invalid IPFS record - Must start with ipfs://",
+            msg: t`Invalid IPFS record - Must start with ipfs://`,
           });
         }
       } else if (record === Record.ARWV) {
         if (!value.startsWith("arw://")) {
           setLoading(false);
-          return openModal("Error", { msg: "Invalid Arweave record" });
+          return openModal("Error", { msg: t`Invalid Arweave record` });
         }
       } else if ([Record.BSC, Record.ETH].includes(record)) {
         const buffer = Buffer.from(value.slice(2), "hex");
         if (!value.startsWith("0x") || buffer.length !== 20) {
           setLoading(false);
-          return openModal("Error", { msg: "Invalid BSC address" });
+          return openModal("Error", { msg: t`Invalid BSC address` });
         }
       }
 
@@ -143,14 +147,14 @@ export const EditRecordModal = ({
         if (!value.startsWith("0x")) {
           setLoading(false);
           return openModal("Error", {
-            msg: "The record must be a valid wallet address",
+            msg: t`The record must be a valid wallet address`,
           });
         }
         data = Buffer.from(value.slice(2), "hex");
         if (data.length !== 20) {
           setLoading(false);
           return openModal("Error", {
-            msg: "The record must be a valid wallet address",
+            msg: t`The record must be a valid wallet address`,
           });
         }
       } else {
@@ -196,7 +200,7 @@ export const EditRecordModal = ({
       console.error(err);
       setLoading(false);
       await refresh();
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 
@@ -222,14 +226,16 @@ export const EditRecordModal = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>Edit {record} record</Text>
+        <Text style={tw`text-xl font-bold`}>
+          <Trans>Edit {getTranslatedName(record)} record</Trans>
+        </Text>
         <TextInput
           placeholder={getPlaceholder(record)}
           onChangeText={(text) => setValue(text)}
@@ -242,7 +248,9 @@ export const EditRecordModal = ({
             onPress={handleUpdate}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Confirm</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Confirm</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
           <TouchableOpacity
@@ -250,7 +258,9 @@ export const EditRecordModal = ({
             onPress={handleDelete}
             style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Delete</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Delete</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
           <TouchableOpacity
@@ -258,7 +268,9 @@ export const EditRecordModal = ({
             onPress={closeModal}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Cancel</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Cancel</Trans>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

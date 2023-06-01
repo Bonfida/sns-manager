@@ -4,6 +4,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "../../types";
+import { Trans } from "@lingui/macro";
 
 export const UnavailableRow = ({ domain }: { domain: string }) => {
   const navigation = useNavigation<domainViewScreenProp>();
@@ -14,7 +15,9 @@ export const UnavailableRow = ({ domain }: { domain: string }) => {
           <Text style={tw`font-semibold`}>{domain}.sol</Text>
           <View style={tw`flex flex-row items-center mt-1`}>
             <FontAwesome name="ban" size={14} style={tw`mr-1`} color="black" />
-            <Text style={tw`text-blue-grey-600`}>Taken</Text>
+            <Text style={tw`text-blue-grey-600`}>
+              <Trans>Taken</Trans>
+            </Text>
           </View>
         </View>
         <View>
@@ -30,7 +33,7 @@ export const UnavailableRow = ({ domain }: { domain: string }) => {
         style={tw`w-full rounded-b-lg h-[25px] bg-yellow-vivid-700 flex flex-row justify-center items-center`}
       >
         <Text style={tw`font-bold text-white`}>
-          This domain has already been purchased
+          <Trans>This domain has already been purchased</Trans>
         </Text>
       </View>
     </View>
