@@ -87,7 +87,7 @@ msgstr "바이낸스 스마트 체인"
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:145
+#: src/App.tsx:144
 msgid "Cart"
 msgstr "카트"
 
@@ -215,7 +215,7 @@ msgstr "깃허브"
 msgid "Go to Profile"
 msgstr "프로필로 가기"
 
-#: src/App.tsx:116
+#: src/App.tsx:115
 msgid "Home"
 msgstr "홈"
 
@@ -282,7 +282,7 @@ msgstr "사진"
 msgid "POINT"
 msgstr "포인트"
 
-#: src/App.tsx:106
+#: src/App.tsx:105
 msgid "Profile"
 msgstr "프로필"
 
@@ -298,7 +298,7 @@ msgstr "레딧"
 msgid "Registration discount"
 msgstr "등록 할인"
 
-#: src/App.tsx:135
+#: src/App.tsx:134
 #: src/screens/HomeScreen.tsx:87
 msgid "Search"
 msgstr "검색"
