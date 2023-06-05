@@ -8,6 +8,7 @@ import { format } from "../utils/price/format";
 import { FIDA_MINT, tokenList } from "../utils/tokens/popular-tokens";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useModal } from "react-native-modalfy";
+import { useStorageMap } from "../hooks/useStorageMap";
 
 export const OrderSummary = ({
   mint,
@@ -22,7 +23,12 @@ export const OrderSummary = ({
 }) => {
   const { openModal } = useModal();
   const [cart] = useRecoilState(cartState);
-  const rent = useRent(cart.length * 1_000);
+  const [map] = useStorageMap();
+  const totalStorage = cart
+    .map((e) => map.get(e) || 1_000)
+    .reduce((acc, x) => acc + x, 0);
+
+  const rent = useRent(totalStorage);
 
   const token = tokenList.find((e) => e.mintAddress === mint);
 

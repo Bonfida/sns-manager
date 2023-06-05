@@ -38,6 +38,7 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
+import { DomainSizeModal } from "./components/DomainSizeModal";
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -52,6 +53,7 @@ const modalConfig = {
   ProgressExplainerModal: ProgressExplainerModal,
   SearchModal: SearchModal,
   DiscountExplainerModal: DiscountExplainerModal,
+  DomainSizeModal: DomainSizeModal,
 };
 
 const stackModal = createModalStack(modalConfig);
