@@ -39,6 +39,11 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
+// import xnftjson from "../xnft.json";
+
+const xnftjson = require("../xnft.json");
+
+console.log(`Version: ${xnftjson.version}`);
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -94,9 +99,9 @@ function TabNavigator() {
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
 
-  console.log("Connected: ", connected);
-
   useEffect(() => {
+    console.table(isMobile, isXnft, isWeb);
+    if (isXnft) return;
     if (!connected) {
       setVisible(true);
     }
