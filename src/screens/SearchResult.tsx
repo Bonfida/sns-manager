@@ -61,7 +61,7 @@ export const SearchResult = ({ domain }: { domain: string }) => {
         >
           <TextInput
             style={[
-              tw`w-70% bg-white h-full rounded-l-lg pl-5 font-semibold border-0 shadow-xl shadow-blue-900`,
+              tw`w-full h-full pl-5 font-semibold bg-white border-0 rounded-l-lg shadow-xl shadow-blue-900`,
               Platform.OS === "web" && { outlineWidth: 0 },
             ]}
             onChangeText={(newText) => setInput(newText)}
@@ -83,7 +83,10 @@ export const SearchResult = ({ domain }: { domain: string }) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handle}
-            style={tw`bg-blue-900 w-[20%] h-[55px] rounded-tr-lg rounded-br-lg flex items-center justify-center`}
+            style={[
+              tw`bg-blue-900 h-[55px] rounded-tr-lg rounded-br-lg flex items-center justify-center`,
+              { width: "calc(30% - 40px)", maxWidth: 300, minWidth: 50 },
+            ]}
           >
             <Feather name="search" size={24} color="white" />
           </TouchableOpacity>

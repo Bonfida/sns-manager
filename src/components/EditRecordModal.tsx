@@ -18,12 +18,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import tw from "../utils/tailwind";
-import {
-  PublicKey,
-  Transaction,
-  TransactionInstruction,
-} from "@solana/web3.js";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Buffer } from "buffer";
 import { useModal } from "react-native-modalfy";
@@ -36,6 +32,7 @@ import {
 } from "../utils/record/place-holder";
 import { sendTx } from "../utils/send-tx";
 import { Trans, t } from "@lingui/macro";
+import { useWallet } from "../hooks/useWallet";
 
 export const EditRecordModal = ({
   modal: { closeModal, getParam },
@@ -48,13 +45,13 @@ export const EditRecordModal = ({
   const currentContent = getParam<string | undefined>("currentValue");
   const refresh = getParam<() => Promise<void>>("refresh");
   const connection = useSolanaConnection();
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey, signTransaction, setVisible, connected } = useWallet();
   const { openModal } = useModal();
 
   const [value, setValue] = useState(currentContent ? currentContent : "");
 
   const handleUpdate = async () => {
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signTransaction) return;
     try {
       setLoading(true);
       const ixs: TransactionInstruction[] = [];
@@ -98,8 +95,8 @@ export const EditRecordModal = ({
           connection,
           Buffer.from([1]).toString() + record,
           space, // Hardcode space to 2kB
-          new PublicKey(publicKey),
-          new PublicKey(publicKey),
+          publicKey,
+          publicKey,
           lamports,
           undefined,
           parent
@@ -112,16 +109,16 @@ export const EditRecordModal = ({
           pubkey
         );
 
-        if (!registry.owner.equals(new PublicKey(publicKey))) {
+        if (!registry.owner.equals(publicKey)) {
           // Record was created before domain was transfered
           const ix = transferInstruction(
             NAME_PROGRAM_ID,
             pubkey,
-            new PublicKey(publicKey),
+            publicKey,
             registry.owner,
             undefined,
             parent,
-            new PublicKey(publicKey)
+            publicKey
           );
           ixs.push(ix);
         }
@@ -134,7 +131,7 @@ export const EditRecordModal = ({
             pubkey,
             new Numberu32(0),
             zero,
-            new PublicKey(publicKey)
+            publicKey
           );
           ixs.push(ix);
         }
@@ -166,7 +163,7 @@ export const EditRecordModal = ({
         pubkey,
         new Numberu32(0),
         data,
-        new PublicKey(publicKey)
+        publicKey
       );
       ixs.push(ix);
 
@@ -176,19 +173,14 @@ export const EditRecordModal = ({
           ChainId.BSC,
           Network.Mainnet,
           domain,
-          new PublicKey(publicKey),
+          publicKey,
           1_000,
           pubkey
         );
         ixs.push(...ix);
       }
 
-      let tx = new Transaction().add(...ixs);
-      tx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
-      tx.feePayer = new PublicKey(publicKey);
-      tx = await window.xnft.solana.signTransaction(tx);
-
-      const sig = await connection.sendRawTransaction(tx.serialize());
+      const sig = await sendTx(connection, publicKey, ixs, signTransaction);
       console.log(sig);
 
       await sleep(400);
@@ -205,17 +197,17 @@ export const EditRecordModal = ({
   };
 
   const handleDelete = async () => {
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signTransaction) return;
     try {
       setLoading(true);
       const { pubkey } = getDomainKeySync(record + "." + domain, true);
       const ix = deleteInstruction(
         NAME_PROGRAM_ID,
         pubkey,
-        new PublicKey(publicKey),
-        new PublicKey(publicKey)
+        publicKey,
+        publicKey
       );
-      const sig = await sendTx(connection, new PublicKey(publicKey), [ix]);
+      const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
 
       await sleep(400);
@@ -245,7 +237,7 @@ export const EditRecordModal = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handleUpdate}
+            onPress={connected ? handleUpdate : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>
@@ -255,7 +247,7 @@ export const EditRecordModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={handleDelete}
+            onPress={connected ? handleDelete : () => setVisible(true)}
             style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>
