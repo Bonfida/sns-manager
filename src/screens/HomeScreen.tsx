@@ -16,6 +16,8 @@ import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { Trans, t } from "@lingui/macro";
 
+require("@solana/wallet-adapter-react-ui/styles.css");
+
 export function HomeScreen() {
   const { openModal } = useModal();
   const [search, setSearch] = useState("");

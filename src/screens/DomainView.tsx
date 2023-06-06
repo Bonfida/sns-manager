@@ -15,7 +15,7 @@ import {
 } from "../hooks/useRecords";
 import { NameRegistryState, Record } from "@bonfida/spl-name-service";
 import { Feather } from "@expo/vector-icons";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useNavigation } from "@react-navigation/native";
@@ -28,6 +28,7 @@ import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
 import { Trans } from "@lingui/macro";
+import { useWallet } from "../hooks/useWallet";
 
 export const LoadingState = () => {
   return (
@@ -72,10 +73,10 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
   const picRecord = useProfilePic(connection!, domain);
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey } = useWallet();
   const navigation = useNavigation<profileScreenProp>();
 
-  const isOwner = domainInfo.result?.owner === publicKey;
+  const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
   const loading =
     socialRecords.loading ||
