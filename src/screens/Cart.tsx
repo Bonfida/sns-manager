@@ -16,8 +16,8 @@ import { FIDA_MINT, tokenList } from "../utils/tokens/popular-tokens";
 import { priceFromLength } from "../utils/price/price-from-length";
 import { usePyth } from "../hooks/usePyth";
 import { Feather } from "@expo/vector-icons";
-import { registerDomainName } from "@bonfida/spl-name-service";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import {
   Connection,
@@ -31,6 +31,9 @@ import { chunkIx } from "../utils/tx/chunk-tx";
 import { useModal } from "react-native-modalfy";
 import { OrderSummary } from "../components/OrderSummary";
 import { Trans } from "@lingui/macro";
+import { useWallet } from "../hooks/useWallet";
+import { referrerState } from "../atoms/referrer";
+import { useStorageMap } from "../hooks/useStorageMap";
 
 const checkEnoughFunds = async (
   connection: Connection,
@@ -44,14 +47,18 @@ const checkEnoughFunds = async (
   return balances.value.uiAmount > total;
 };
 
+const DEFAULT_SPACE = 1_000;
+
 export const Cart = () => {
+  const [referrer] = useRecoilState(referrerState);
   const connection = useSolanaConnection();
-  const publicKeys = usePublicKeys();
+  const { publicKey, signAllTransactions, connected, setVisible } = useWallet();
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useRecoilState(cartState);
   const pyth = usePyth();
   const [mint, setMint] = useState(tokenList[0].mintAddress);
   const { openModal } = useModal();
+  const [map, actions] = useStorageMap();
 
   const discountMul = mint === FIDA_MINT ? 0.95 : 1;
   const totalUsd = cart.reduce(
@@ -64,8 +71,7 @@ export const Cart = () => {
   const total = totalUsd / (price || 1);
 
   const handle = async () => {
-    const publicKey = publicKeys.get("solana");
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signAllTransactions) return;
     if (
       !(await checkEnoughFunds(
         connection,
@@ -82,17 +88,17 @@ export const Cart = () => {
 
       const buyer = new PublicKey(publicKey);
       const mintKey = new PublicKey(mint);
-      const space = 1_000;
-      const ata = getAssociatedTokenAddressSync(mintKey, buyer);
 
+      const ata = getAssociatedTokenAddressSync(mintKey, buyer);
       for (let d of cart) {
         const [, ix] = await registerDomainName(
           connection,
           d,
-          space,
+          map.get(d) || DEFAULT_SPACE,
           buyer,
           ata,
-          mintKey
+          mintKey,
+          referrer ? REFERRERS[referrer] : undefined
         );
         ixs.push(...ix);
       }
@@ -117,7 +123,7 @@ export const Cart = () => {
         e.recentBlockhash = blockhash;
       });
 
-      txs = await window.xnft.solana.signAllTransactions(txs);
+      txs = await signAllTransactions(txs);
       for (let tx of txs) {
         const sig = await connection.sendRawTransaction(tx.serialize());
         await connection.confirmTransaction(sig);
@@ -158,11 +164,31 @@ export const Cart = () => {
               data={cart}
               renderItem={({ item, index }) => (
                 <View
-                  style={tw`h-[40px] flex flex-row justify-between items-center border-b-[${
+                  style={tw`h-[50px] flex flex-row justify-between items-center border-b-[${
                     index < cart.length - 1 ? 1 : 0
                   }px] border-black/10`}
                 >
-                  <Text style={tw`mr-1 font-bold`}>{item}.sol</Text>
+                  <View style={tw`flex flex-col`}>
+                    <Text style={tw`mr-1 font-bold`}>{item}.sol</Text>
+                    <View style={tw`flex flex-row items-center py-1`}>
+                      <Text style={tw`mr-2 text-xs text-blue-grey-600`}>
+                        Storage: {(map.get(item) || DEFAULT_SPACE) / 1_000}kB
+                      </Text>
+                      <TouchableOpacity
+                        onPress={() =>
+                          openModal("DomainSizeModal", {
+                            set: actions.set,
+                            map,
+                            domain: item,
+                          })
+                        }
+                      >
+                        <Text style={tw`text-xs underline text-blue-grey-600`}>
+                          Edit
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
 
                   <View style={tw`flex flex-row items-center`}>
                     <Text style={tw`mr-3 font-bold text-blue-grey-500`}>
@@ -218,7 +244,7 @@ export const Cart = () => {
 
         <View style={tw`w-full mt-4`}>
           <TouchableOpacity
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             disabled={loading || cart.length === 0}
             style={[
               tw`bg-blue-900 h-[50px] rounded-lg flex items-center justify-center flex-row`,

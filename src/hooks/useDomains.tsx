@@ -11,7 +11,7 @@ export interface Response {
   result: Result[];
 }
 
-const get = async (key: string | undefined) => {
+const get = async (key: string | undefined | null) => {
   if (!key) return;
   const { data }: { data: Response } = await axios.get(
     `https://sns-sdk-proxy.bonfida.workers.dev/domains/${key}`
@@ -21,6 +21,6 @@ const get = async (key: string | undefined) => {
   return data.result;
 };
 
-export const useDomains = (owner: string) => {
+export const useDomains = (owner: string | null | undefined) => {
   return useAsync(get, [owner]);
 };

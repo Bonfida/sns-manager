@@ -20,7 +20,7 @@ import {
   Numberu32,
   NAME_OFFERS_ID,
 } from "@bonfida/spl-name-service";
-import { usePublicKeys, useSolanaConnection } from "../hooks/xnft-hooks";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import { removeZeroRight } from "../utils/record/zero";
 import { sendTx } from "../utils/send-tx";
@@ -29,6 +29,7 @@ import { isTokenized } from "@bonfida/name-tokenizer";
 import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
 import { Trans, t } from "@lingui/macro";
+import { useWallet } from "../hooks/useWallet";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -43,11 +44,11 @@ export const EditPicture = ({
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey, signTransaction, setVisible, connected } = useWallet();
 
   const handle = async () => {
     if (!pic) return;
-    if (!connection || !publicKey) return;
+    if (!connection || !publicKey || !signTransaction) return;
     try {
       setLoading(true);
       const ixs: TransactionInstruction[] = [];
@@ -142,7 +143,12 @@ export const EditPicture = ({
       );
       ixs.push(ix);
 
-      const sig = await sendTx(connection, new PublicKey(publicKey), ixs);
+      const sig = await sendTx(
+        connection,
+        new PublicKey(publicKey),
+        ixs,
+        signTransaction
+      );
       console.log(sig);
 
       setLoading(false);
@@ -180,7 +186,7 @@ export const EditPicture = ({
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
-            onPress={handle}
+            onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>

@@ -3,10 +3,9 @@ import {
   getFavoriteDomain,
   getRecord,
 } from "@bonfida/spl-name-service";
-import { usePublicKeys, useSolanaConnection } from "./xnft-hooks";
-import { PublicKey } from "@solana/web3.js";
-import { useRecords } from "./useRecords";
+import { useSolanaConnection } from "./xnft-hooks";
 import { useAsync } from "react-async-hook";
+import { useWallet } from "./useWallet";
 
 export enum ProgressStep {
   Favorite = 0,
@@ -31,7 +30,7 @@ const RECORDS = [
 ];
 
 export const useUserProgress = () => {
-  const publicKey = usePublicKeys().get("solana");
+  const { publicKey } = useWallet();
   const connection = useSolanaConnection();
 
   const fn = async () => {
@@ -40,7 +39,7 @@ export const useUserProgress = () => {
 
     let favDomain: string;
     try {
-      const fav = await getFavoriteDomain(connection, new PublicKey(publicKey));
+      const fav = await getFavoriteDomain(connection, publicKey);
       favDomain = fav.reverse;
       res.push({ step: ProgressStep.Favorite, value: favDomain });
     } catch (err) {

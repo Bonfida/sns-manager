@@ -1,12 +1,13 @@
 import { getFavoriteDomain } from "@bonfida/spl-name-service";
 import { PublicKey } from "@solana/web3.js";
-import { usePublicKeys, useSolanaConnection } from "./xnft-hooks";
+import { useSolanaConnection } from "./xnft-hooks";
 import { useAsync } from "react-async-hook";
+import { useWallet } from "./useWallet";
 
 export const useFavoriteDomain = (owner: string | undefined) => {
   const connection = useSolanaConnection();
-  const publicKey = usePublicKeys().get("solana");
-  owner = owner || publicKey;
+  const { publicKey } = useWallet();
+  owner = owner || publicKey?.toBase58();
 
   const fn = async () => {
     if (!connection || !owner) return;
