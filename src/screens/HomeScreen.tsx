@@ -59,7 +59,7 @@ export function HomeScreen() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Screen style={tw`flex flex-col items-center justify-center`}>
+    <Screen style={tw`flex flex-col items-center justify-center relative`}>
       <View style={tw`mb-4`}>
         <Image
           resizeMode="contain"
@@ -104,7 +104,7 @@ export function HomeScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={tw`mt-4`}>
+      <View style={tw`absolute top-3 left-4`}>
         <DropDownPicker
           items={supportedLanguages}
           open={open}
@@ -114,6 +114,24 @@ export function HomeScreen() {
             const newValue = callback(currentLanguage);
             handleLanguageChange(newValue);
           }}
+          containerStyle={{ width: 100 }}
+          textStyle={tw`text-blue-700`}
+          listItemLabelStyle={tw`text-blue-grey-500`}
+          dropDownDirection="BOTTOM"
+          selectedItemLabelStyle={tw`text-blue-700`}
+          tickIconStyle={{
+            width: 15,
+            height: 15,
+          }}
+          arrowIconStyle={{
+            width: 15,
+            height: 15,
+          }}
+          placeholder={currentLanguage}
+          placeholderStyle={tw`text-blue-700`}
+          // Undo for Modal popup styling
+          // listMode="MODAL"
+          // modalAnimationType="slide"
         />
       </View>
     </Screen>
