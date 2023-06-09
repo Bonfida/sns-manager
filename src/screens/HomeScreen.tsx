@@ -15,6 +15,9 @@ import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { Trans, t } from "@lingui/macro";
+import DropDownPicker from "react-native-dropdown-picker";
+import { useLanguageContext } from "../contexts/LanguageContext";
+import { supportedLanguages } from "../locales";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -24,6 +27,8 @@ export function HomeScreen() {
   const navigation = useNavigation<
     searchResultScreenProp | profileScreenProp
   >();
+
+  const { setLanguage, currentLanguage } = useLanguageContext();
 
   const handle = async () => {
     if (!search) return;
@@ -43,6 +48,15 @@ export function HomeScreen() {
       params: { domain: trimTld(search) },
     });
   };
+
+  const handleLanguageChange = (lang: string) => {
+    const language = supportedLanguages.find((l) => l.value === lang);
+    if (!language) {
+      return;
+    }
+    setLanguage(language.value);
+  };
+  const [open, setOpen] = useState(false);
 
   return (
     <Screen style={tw`flex flex-col items-center justify-center`}>
@@ -89,6 +103,18 @@ export function HomeScreen() {
             <Trans>Search</Trans>
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={tw`mt-4`}>
+        <DropDownPicker
+          items={supportedLanguages}
+          open={open}
+          setOpen={setOpen}
+          value={currentLanguage}
+          setValue={(callback) => {
+            const newValue = callback(currentLanguage);
+            handleLanguageChange(newValue);
+          }}
+        />
       </View>
     </Screen>
   );

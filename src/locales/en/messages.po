@@ -13,11 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/FavoriteButton.tsx:54
+#: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr ""
 
-#: src/components/TransferModal.tsx:62
+#: src/components/TransferModal.tsx:63
 msgid "{domain}.sol successfully transfered!"
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid "{input}.sol is not a valid domain"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:36
+#: src/screens/HomeScreen.tsx:43
 msgid "{search}.sol is not a valid domain"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
 msgstr ""
 
-#: src/screens/DomainView.tsx:184
+#: src/screens/DomainView.tsx:185
 msgid "Addresses"
 msgstr ""
 
@@ -81,17 +81,17 @@ msgstr ""
 msgid "BSC"
 msgstr ""
 
-#: src/components/EditPicture.tsx:197
-#: src/components/EditRecordModal.tsx:272
-#: src/components/TransferModal.tsx:100
+#: src/components/EditPicture.tsx:203
+#: src/components/EditRecordModal.tsx:264
+#: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:144
+#: src/App.tsx:175
 msgid "Cart"
 msgstr ""
 
-#: src/screens/Cart.tsx:153
+#: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr ""
 
@@ -99,10 +99,10 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/components/EditPicture.tsx:187
-#: src/components/EditRecordModal.tsx:252
-#: src/components/TransferModal.tsx:90
-#: src/screens/Cart.tsx:229
+#: src/components/EditPicture.tsx:193
+#: src/components/EditRecordModal.tsx:244
+#: src/components/TransferModal.tsx:91
+#: src/screens/Cart.tsx:255
 msgid "Confirm"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "Copied!"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:262
+#: src/components/EditRecordModal.tsx:254
 msgid "Delete"
 msgstr ""
 
@@ -122,16 +122,16 @@ msgstr ""
 msgid "Discord"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:55
+#: src/components/OrderSummary.tsx:61
 msgid "Discount"
 msgstr ""
 
-#: src/screens/Cart.tsx:142
-#: src/screens/Profile.tsx:181
+#: src/screens/Cart.tsx:148
+#: src/screens/Profile.tsx:188
 msgid "Domains"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:237
+#: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgstr ""
 #~ msgid "Edit {record} record"
 #~ msgstr ""
 
-#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:168
 msgid "Edit Picture"
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Enter your website URL"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:47
+#: src/components/OrderSummary.tsx:53
 msgid "Gas"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Go to Profile"
 msgstr ""
 
-#: src/App.tsx:115
+#: src/App.tsx:146
 msgid "Home"
 msgstr ""
 
@@ -231,20 +231,20 @@ msgstr ""
 msgid "Injective"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:80
+#: src/components/EditRecordModal.tsx:77
 msgid "Invalid Arweave record"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:86
+#: src/components/EditRecordModal.tsx:83
 msgid "Invalid BSC address"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:74
+#: src/components/EditRecordModal.tsx:71
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr ""
 
-#: src/components/EditPicture.tsx:63
-#: src/components/EditRecordModal.tsx:68
+#: src/components/EditPicture.tsx:64
+#: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
 msgstr ""
 
@@ -252,29 +252,29 @@ msgstr ""
 msgid "IPFS"
 msgstr ""
 
-#: src/screens/Profile.tsx:181
+#: src/screens/Profile.tsx:188
 msgid "My domains"
 msgstr ""
 
-#: src/components/EditPicture.tsx:175
+#: src/components/EditPicture.tsx:181
 msgid "New picture URL"
 msgstr ""
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile.tsx:217
+#: src/screens/Profile.tsx:224
 msgid "No domain found"
 msgstr ""
 
 #: src/components/SocialRecord.tsx:80
-#: src/screens/DomainView.tsx:272
+#: src/screens/DomainView.tsx:273
 msgid "Not set"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:35
+#: src/components/OrderSummary.tsx:41
 msgid "Order summary"
 msgstr ""
 
-#: src/screens/Cart.tsx:185
+#: src/screens/Cart.tsx:211
 msgid "Pay with"
 msgstr ""
 
@@ -286,11 +286,11 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:105
+#: src/App.tsx:136
 msgid "Profile"
 msgstr ""
 
-#: src/screens/Profile.tsx:155
+#: src/screens/Profile.tsx:162
 msgid "Profile completed: {percentage}%"
 msgstr ""
 
@@ -302,8 +302,8 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/App.tsx:134
-#: src/screens/HomeScreen.tsx:87
+#: src/App.tsx:165
+#: src/screens/HomeScreen.tsx:103
 msgid "Search"
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "Search domains"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:73
+#: src/screens/HomeScreen.tsx:89
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr ""
@@ -320,7 +320,7 @@ msgstr ""
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:61
+#: src/screens/HomeScreen.tsx:77
 msgid "Seize your online identity."
 msgstr ""
 
@@ -328,7 +328,7 @@ msgstr ""
 msgid "SHDW"
 msgstr ""
 
-#: src/screens/DomainView.tsx:160
+#: src/screens/DomainView.tsx:161
 msgid "Socials"
 msgstr ""
 
@@ -337,11 +337,11 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: src/components/EditPicture.tsx:154
-#: src/components/EditRecordModal.tsx:203
-#: src/components/EditRecordModal.tsx:229
-#: src/components/FavoriteButton.tsx:62
-#: src/components/TransferModal.tsx:67
+#: src/components/EditPicture.tsx:160
+#: src/components/EditRecordModal.tsx:195
+#: src/components/EditRecordModal.tsx:221
+#: src/components/FavoriteButton.tsx:59
+#: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr ""
 
@@ -357,8 +357,8 @@ msgstr ""
 msgid "Telegram"
 msgstr ""
 
-#: src/components/EditRecordModal.tsx:150
-#: src/components/EditRecordModal.tsx:157
+#: src/components/EditRecordModal.tsx:147
+#: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
 msgstr ""
 
@@ -370,19 +370,19 @@ msgstr ""
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:40
+#: src/components/OrderSummary.tsx:46
 msgid "Total"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:43
+#: src/components/OrderSummary.tsx:49
 msgid "Total USD"
 msgstr ""
 
-#: src/screens/DomainView.tsx:214
+#: src/screens/DomainView.tsx:215
 msgid "Transfer"
 msgstr ""
 
-#: src/components/TransferModal.tsx:75
+#: src/components/TransferModal.tsx:76
 msgid "Transfer {domain}.sol"
 msgstr ""
 
@@ -394,6 +394,6 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:55
+#: src/screens/HomeScreen.tsx:71
 msgid "Your <0>Name</0>. Your <1>Power</1>."
 msgstr ""

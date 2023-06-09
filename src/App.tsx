@@ -29,7 +29,7 @@ import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
 import { isXnft, isMobile, isWeb } from "./utils/platform";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -39,15 +39,12 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
-
-import { i18n } from "@lingui/core";
-import { I18nProvider } from "@lingui/react";
-import { messages as enMessages } from "./locales/en/messages";
-import { messages as krMessages } from "./locales/kr/messages";
 import { t } from "@lingui/macro";
-
-i18n.load({ en: enMessages, kr: krMessages });
-i18n.activate("kr");
+import { i18n } from "@lingui/core";
+import {
+  LanguageProvider,
+  useLanguageContext,
+} from "./contexts/LanguageContext";
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -102,6 +99,7 @@ function TabNavigator() {
   useReferrer();
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
+  const { currentLanguage } = useLanguageContext();
 
   console.log("Connected: ", connected);
 
@@ -118,6 +116,7 @@ function TabNavigator() {
         header: () => null,
         tabBarActiveTintColor: "#186FAF",
       }}
+      key={currentLanguage} // trigger tab re-render when translation is toggled
     >
       <Tab.Screen
         name="Profile"
@@ -208,11 +207,11 @@ function App() {
     <Wrap>
       <RecoilRoot>
         <NavigationContainer>
-          <I18nProvider i18n={i18n}>
+          <LanguageProvider i18n={i18n}>
             <ModalProvider stack={stackModal}>
               <TabNavigator />
             </ModalProvider>
-          </I18nProvider>
+          </LanguageProvider>
         </NavigationContainer>
       </RecoilRoot>
     </Wrap>
