@@ -215,7 +215,7 @@ msgstr "主页"
 
 #: src/components/DiscountExplainerModal.tsx:26
 msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
-msgstr "如果你使用 FIDA 注册域名，你可以享受 5% 的折扣！"
+msgstr "使用 FIDA 注册域名可以享受 5% 的折扣!"
 
 #: src/utils/record/place-holder.tsx:73
 msgid "Injective"
@@ -223,20 +223,20 @@ msgstr "Injective"
 
 #: src/components/EditRecordModal.tsx:80
 msgid "Invalid Arweave record"
-msgstr "无效的 Arweave 记录"
+msgstr "Arweave 记录无效"
 
 #: src/components/EditRecordModal.tsx:86
 msgid "Invalid BSC address"
-msgstr "无效的 BSC 地址"
+msgstr "BSC 地址无效"
 
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid IPFS record - Must start with ipfs://"
-msgstr "无效的 IPFS 记录 - 必须以 ipfs:// 开头"
+msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
 
 #: src/components/EditPicture.tsx:63
 #: src/components/EditRecordModal.tsx:68
 msgid "Invalid URL"
-msgstr "无效的网址"
+msgstr "网址无效"
 
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
@@ -308,7 +308,7 @@ msgstr "搜索你的 name.sol"
 
 #: src/components/ProgressExplainerModal.tsx:27
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr "msgstr """
+msgstr "看看上面的进度条！那是你构建一个强大而吸引的个人资料指南。以下是它的运作方式"
 
 #: src/screens/HomeScreen.tsx:61
 msgid "Seize your online identity."
@@ -325,7 +325,7 @@ msgstr "社交媒体"
 #: src/components/ErrorModal.tsx:12
 #: src/components/ErrorModal.tsx:20
 msgid "Something went wrong"
-msgstr "出现问题"
+msgstr "问题出现了"
 
 #: src/components/EditPicture.tsx:154
 #: src/components/EditRecordModal.tsx:203
@@ -333,7 +333,7 @@ msgstr "出现问题"
 #: src/components/FavoriteButton.tsx:62
 #: src/components/TransferModal.tsx:67
 msgid "Something went wrong - try again"
-msgstr "出现问题，请重试"
+msgstr "问题出现了，请重试"
 
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
