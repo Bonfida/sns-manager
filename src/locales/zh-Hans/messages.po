@@ -9,323 +9,323 @@ msgstr ""
 
 #: src/components/FavoriteButton.tsx:54
 msgid "{domain}.sol successfully set as favorite domain name"
-msgstr ""
+msgstr "{domain}.sol 成功设置为喜爱的域名"
 
 #: src/components/TransferModal.tsx:62
 msgid "{domain}.sol successfully transfered!"
-msgstr ""
+msgstr "成功汇款"
 
 #: src/screens/SearchResult.tsx:48
 msgid "{input}.sol is not a valid domain"
-msgstr ""
+msgstr "{input}.sol 不是有效的域名"
 
 #: src/screens/HomeScreen.tsx:36
 msgid "{search}.sol is not a valid domain"
-msgstr ""
+msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr ""
+msgstr "1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
-msgstr ""
+msgstr "<0>2. 个人头像：</0>上传一张照片，让我们看到真实的你"
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-msgstr ""
+msgstr "<0>3. 背包记录：</0>将你的背包用户名连接到你的链上身份 🎒"
 
 #: src/components/ProgressExplainerModal.tsx:55
 msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
-msgstr ""
+msgstr "<0>4. 推特记录：</0>连接推特以便快速分享和交流 🐦"
 
 #: src/components/ProgressExplainerModal.tsx:62
 msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-msgstr ""
+msgstr "<0>5. TG记录：</0>连接TG进行实时社区聊天 📨"
 
 #: src/components/ProgressExplainerModal.tsx:69
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
-msgstr ""
+msgstr "<0>6. Discord 记录：</0>连接 Discord，保持对话畅通 🎮"
 
 #: src/screens/DomainView.tsx:184
 msgid "Addresses"
-msgstr ""
+msgstr "地址"
 
 #: src/components/SuccessCheckoutModal.tsx:26
 msgid "All your domains have been purchased"
-msgstr ""
+msgstr "你所有的域名都已购买"
 
 #: src/utils/record/place-holder.tsx:49
 msgid "ARWV"
-msgstr ""
+msgstr "ARWV"
 
 #: src/components/AvailableRow.tsx:45
 msgid "Available"
-msgstr ""
+msgstr "可用"
 
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
-msgstr ""
+msgstr "背包"
 
 #: src/components/ProgressExplainerModal.tsx:23
 msgid "Boost Your Profile Journey! 🚀"
-msgstr ""
+msgstr "提升你的个人资料之旅！🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
-msgstr ""
+msgstr "BSC"
 
 #: src/components/EditPicture.tsx:197
 #: src/components/EditRecordModal.tsx:272
 #: src/components/TransferModal.tsx:100
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/App.tsx:144
 msgid "Cart"
-msgstr ""
+msgstr "购物车"
 
 #: src/screens/Cart.tsx:153
 msgid "Clear all"
-msgstr ""
+msgstr "清除所有"
 
 #: src/components/SuccessModal.tsx:31
 msgid "Close"
-msgstr ""
+msgstr "关闭"
 
 #: src/components/EditPicture.tsx:187
 #: src/components/EditRecordModal.tsx:252
 #: src/components/TransferModal.tsx:90
 #: src/screens/Cart.tsx:229
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #: src/components/SuccessCheckoutModal.tsx:22
 msgid "Congrats!"
-msgstr ""
+msgstr "恭喜!"
 
 #: src/components/SocialRecord.tsx:73
 msgid "Copied!"
-msgstr ""
+msgstr "已复制!"
 
 #: src/components/EditRecordModal.tsx:262
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
-msgstr ""
+msgstr "Discord"
 
 #: src/components/OrderSummary.tsx:55
 msgid "Discount"
-msgstr ""
+msgstr "折扣"
 
 #: src/screens/Cart.tsx:142
 #: src/screens/Profile.tsx:181
 msgid "Domains"
-msgstr ""
+msgstr "域名"
 
 #: src/components/EditRecordModal.tsx:237
 msgid "Edit {0} record"
-msgstr ""
+msgstr "编辑 {0} 记录"
 
 #: src/components/EditPicture.tsx:162
 msgid "Edit Picture"
-msgstr ""
+msgstr "编辑图片"
 
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
-msgstr ""
+msgstr "电子邮件"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
-msgstr ""
+msgstr "输入你的 {x} 记录"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
-msgstr ""
+msgstr "输入你的背包用户名"
 
 #: src/utils/record/place-holder.tsx:28
 msgid "Enter your Bitcoin address"
-msgstr ""
+msgstr "输入你的比特币地址"
 
 #: src/utils/record/place-holder.tsx:26
 msgid "Enter your BNB address"
-msgstr ""
+msgstr "输入你的 BNB 地址"
 
 #: src/utils/record/place-holder.tsx:10
 msgid "Enter your Discord username"
-msgstr ""
+msgstr "输入你的 Discord 用户名"
 
 #: src/utils/record/place-holder.tsx:36
 msgid "Enter your Dogecoin address"
-msgstr ""
+msgstr "输入你的 Dogecoin 地址"
 
 #: src/utils/record/place-holder.tsx:12
 msgid "Enter your email address"
-msgstr ""
+msgstr "输入你的电子邮件地址"
 
 #: src/utils/record/place-holder.tsx:30
 msgid "Enter your Ethereum address"
-msgstr ""
+msgstr "输入你的以太坊地址"
 
 #: src/utils/record/place-holder.tsx:14
 msgid "Enter your Github username"
-msgstr ""
+msgstr "输入你的 Github 用户名"
 
 #: src/utils/record/place-holder.tsx:34
 msgid "Enter your Injective address"
-msgstr ""
+msgstr "输入你的 Injective 地址"
 
 #: src/utils/record/place-holder.tsx:32
 msgid "Enter your Litecoin address"
-msgstr ""
+msgstr "输入你的 Litecoin 地址"
 
 #: src/utils/record/place-holder.tsx:16
 msgid "Enter your Reddit username"
-msgstr ""
+msgstr "输入你的 Reddit 用户名"
 
 #: src/utils/record/place-holder.tsx:18
 msgid "Enter your Telegram username"
-msgstr ""
+msgstr "输入你的TG用户名"
 
 #: src/utils/record/place-holder.tsx:20
 msgid "Enter your Twitter username"
-msgstr ""
+msgstr "输入你的推特用户名"
 
 #: src/utils/record/place-holder.tsx:22
 msgid "Enter your website URL"
-msgstr ""
+msgstr "输入你的网站 URL"
 
 #: src/components/OrderSummary.tsx:47
 msgid "Gas"
-msgstr ""
+msgstr "矿工费"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
-msgstr ""
+msgstr "Github"
 
 #: src/components/SuccessCheckoutModal.tsx:36
 msgid "Go to Profile"
-msgstr ""
+msgstr "前往个人资料"
 
 #: src/App.tsx:115
 msgid "Home"
-msgstr ""
+msgstr "主页"
 
 #: src/components/DiscountExplainerModal.tsx:26
 msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
-msgstr ""
+msgstr "使用 FIDA 注册域名可以享受 5% 的折扣!"
 
 #: src/utils/record/place-holder.tsx:73
 msgid "Injective"
-msgstr ""
+msgstr "Injective"
 
 #: src/components/EditRecordModal.tsx:80
 msgid "Invalid Arweave record"
-msgstr ""
+msgstr "Arweave 记录无效"
 
 #: src/components/EditRecordModal.tsx:86
 msgid "Invalid BSC address"
-msgstr ""
+msgstr "BSC 地址无效"
 
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid IPFS record - Must start with ipfs://"
-msgstr ""
+msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
 
 #: src/components/EditPicture.tsx:63
 #: src/components/EditRecordModal.tsx:68
 msgid "Invalid URL"
-msgstr ""
+msgstr "网址无效"
 
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
-msgstr ""
+msgstr "IPFS"
 
 #: src/screens/Profile.tsx:181
 msgid "My domains"
-msgstr ""
+msgstr "我的域名"
 
 #: src/components/EditPicture.tsx:175
 msgid "New picture URL"
-msgstr ""
+msgstr "新图片网址"
 
 #: src/components/SearchModal.tsx:75
 #: src/screens/Profile.tsx:217
 msgid "No domain found"
-msgstr ""
+msgstr "未找到域名"
 
 #: src/components/SocialRecord.tsx:80
 #: src/screens/DomainView.tsx:272
 msgid "Not set"
-msgstr ""
+msgstr "未设置"
 
 #: src/components/OrderSummary.tsx:35
 msgid "Order summary"
-msgstr ""
+msgstr "订单摘要"
 
 #: src/screens/Cart.tsx:185
 msgid "Pay with"
-msgstr ""
+msgstr "支付方式"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
-msgstr ""
+msgstr "图片"
 
 #: src/utils/record/place-holder.tsx:69
 msgid "POINT"
-msgstr ""
+msgstr "积分"
 
 #: src/App.tsx:105
 msgid "Profile"
-msgstr ""
+msgstr "个人资料"
 
 #: src/screens/Profile.tsx:155
 msgid "Profile completed: {percentage}%"
-msgstr ""
+msgstr "个人资料完成：{percentage}%"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
-msgstr ""
+msgstr "Reddit"
 
 #: src/components/DiscountExplainerModal.tsx:22
 msgid "Registration discount"
-msgstr ""
+msgstr "注册折扣"
 
 #: src/App.tsx:134
 #: src/screens/HomeScreen.tsx:87
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: src/components/SearchModal.tsx:51
 msgid "Search domains"
-msgstr ""
+msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:73
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
-msgstr ""
+msgstr "搜索你的 name.sol"
 
 #: src/components/ProgressExplainerModal.tsx:27
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr ""
+msgstr "看看上面的进度条！那是你构建一个强大而吸引的个人资料指南。以下是它的运作方式"
 
 #: src/screens/HomeScreen.tsx:61
 msgid "Seize your online identity."
-msgstr ""
+msgstr "抓住你的在线身份。"
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
-msgstr ""
+msgstr "SHDW"
 
 #: src/screens/DomainView.tsx:160
 msgid "Socials"
-msgstr ""
+msgstr "社交媒体"
 
 #: src/components/ErrorModal.tsx:12
 #: src/components/ErrorModal.tsx:20
 msgid "Something went wrong"
-msgstr ""
+msgstr "问题出现了"
 
 #: src/components/EditPicture.tsx:154
 #: src/components/EditRecordModal.tsx:203
@@ -333,57 +333,57 @@ msgstr ""
 #: src/components/FavoriteButton.tsx:62
 #: src/components/TransferModal.tsx:67
 msgid "Something went wrong - try again"
-msgstr ""
+msgstr "问题出现了，请重试"
 
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
-msgstr ""
+msgstr "成功！"
 
 #: src/components/UnavailableRow.tsx:19
 msgid "Taken"
-msgstr ""
+msgstr "已被使用"
 
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
-msgstr ""
+msgstr "Telegram"
 
 #: src/components/EditRecordModal.tsx:150
 #: src/components/EditRecordModal.tsx:157
 msgid "The record must be a valid wallet address"
-msgstr ""
+msgstr "记录必须是有效的钱包地址"
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
-msgstr ""
+msgstr "该域名已被购买"
 
 #: src/components/WormholeExplainerModal.tsx:13
 msgid "This domain has been bridged via Wormhole and is available on BNB"
-msgstr ""
+msgstr "该域名已通过Wormhole桥接，可在BNB上使用"
 
 #: src/components/OrderSummary.tsx:40
 msgid "Total"
-msgstr ""
+msgstr "总计"
 
 #: src/components/OrderSummary.tsx:43
 msgid "Total USD"
-msgstr ""
+msgstr "总计美元"
 
 #: src/screens/DomainView.tsx:214
 msgid "Transfer"
-msgstr ""
+msgstr "转移"
 
 #: src/components/TransferModal.tsx:75
 msgid "Transfer {domain}.sol"
-msgstr ""
+msgstr "转移 {domain}.sol"
 
 #: src/utils/record/place-holder.tsx:61
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
-msgstr ""
+msgstr "网址"
 
 #: src/screens/HomeScreen.tsx:55
 msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr ""
+msgstr "你的 <0>名字</0>。你的 <1>力量</1>。"
