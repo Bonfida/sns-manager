@@ -87,7 +87,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:175
+#: src/App.tsx:174
 msgid "Cart"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Go to Profile"
 msgstr ""
 
-#: src/App.tsx:146
+#: src/App.tsx:145
 msgid "Home"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:136
+#: src/App.tsx:135
 msgid "Profile"
 msgstr ""
 
@@ -302,7 +302,7 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/App.tsx:165
+#: src/App.tsx:164
 #: src/screens/HomeScreen.tsx:103
 msgid "Search"
 msgstr ""

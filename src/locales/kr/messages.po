@@ -59,11 +59,11 @@ msgstr "주소들"
 
 #: src/components/SuccessCheckoutModal.tsx:26
 msgid "All your domains have been purchased"
-msgstr "모든 도메인이 구매되었습니다"
+msgstr "모든 도메인이 결제되었습니다"
 
 #: src/utils/record/place-holder.tsx:49
 msgid "ARWV"
-msgstr "아위브"
+msgstr "아위브(ARWV)"
 
 #: src/components/AvailableRow.tsx:45
 msgid "Available"
@@ -71,7 +71,7 @@ msgstr "사용 가능"
 
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
-msgstr "백팩"
+msgstr "백팩(Backpack)"
 
 #: src/components/ProgressExplainerModal.tsx:23
 msgid "Boost Your Profile Journey! 🚀"
@@ -79,7 +79,7 @@ msgstr "프로필 여정을 향상시키세요! 🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
-msgstr "바이낸스 스마트 체인"
+msgstr "바이낸스 스마트 체인(BSC)"
 
 #: src/components/EditPicture.tsx:203
 #: src/components/EditRecordModal.tsx:264
@@ -87,9 +87,9 @@ msgstr "바이낸스 스마트 체인"
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:175
+#: src/App.tsx:174
 msgid "Cart"
-msgstr "카트"
+msgstr "장바구니"
 
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
@@ -149,7 +149,7 @@ msgstr "기록 {x}을(를) 입력하세요"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
-msgstr "백팩 사용자 이름을 입력하세요"
+msgstr "백팩(Backpack) 사용자 이름을 입력하세요"
 
 #: src/utils/record/place-holder.tsx:28
 msgid "Enter your Bitcoin address"
@@ -165,7 +165,7 @@ msgstr "디스코드 사용자 이름을 입력하세요"
 
 #: src/utils/record/place-holder.tsx:36
 msgid "Enter your Dogecoin address"
-msgstr "도지코인 주소를 입력하세요"
+msgstr "도지코인(Dogecoin) 주소를 입력하세요"
 
 #: src/utils/record/place-holder.tsx:12
 msgid "Enter your email address"
@@ -173,7 +173,7 @@ msgstr "이메일 주소를 입력하세요"
 
 #: src/utils/record/place-holder.tsx:30
 msgid "Enter your Ethereum address"
-msgstr "이더리움 주소를 입력하세요"
+msgstr "이더리움(Ethereum) 주소를 입력하세요"
 
 #: src/utils/record/place-holder.tsx:14
 msgid "Enter your Github username"
@@ -185,7 +185,7 @@ msgstr "인젝티브 주소를 입력하세요"
 
 #: src/utils/record/place-holder.tsx:32
 msgid "Enter your Litecoin address"
-msgstr "라이트코인 주소를 입력하세요"
+msgstr "라이트코인(Litecoin) 주소를 입력하세요"
 
 #: src/utils/record/place-holder.tsx:16
 msgid "Enter your Reddit username"
@@ -205,7 +205,7 @@ msgstr "웹사이트 URL을 입력하세요"
 
 #: src/components/OrderSummary.tsx:53
 msgid "Gas"
-msgstr "가스비"
+msgstr "가스비(Gas)"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
@@ -215,7 +215,7 @@ msgstr "깃허브"
 msgid "Go to Profile"
 msgstr "프로필로 가기"
 
-#: src/App.tsx:146
+#: src/App.tsx:145
 msgid "Home"
 msgstr "홈"
 
@@ -229,11 +229,11 @@ msgstr "인젝티브"
 
 #: src/components/EditRecordModal.tsx:77
 msgid "Invalid Arweave record"
-msgstr "유효하지 않은 아위브 기록입니다"
+msgstr "유효하지 않은 아위브(Arweave) 기록입니다"
 
 #: src/components/EditRecordModal.tsx:83
 msgid "Invalid BSC address"
-msgstr "유효하지 않은 바이낸스 스마트 체인 주소입니다"
+msgstr "유효하지 않은 바이낸스 스마트(BSC) 체인 주소입니다"
 
 #: src/components/EditRecordModal.tsx:71
 msgid "Invalid IPFS record - Must start with ipfs://"
@@ -282,7 +282,7 @@ msgstr "사진"
 msgid "POINT"
 msgstr "포인트"
 
-#: src/App.tsx:136
+#: src/App.tsx:135
 msgid "Profile"
 msgstr "프로필"
 
@@ -298,7 +298,7 @@ msgstr "레딧"
 msgid "Registration discount"
 msgstr "등록 할인"
 
-#: src/App.tsx:165
+#: src/App.tsx:164
 #: src/screens/HomeScreen.tsx:103
 msgid "Search"
 msgstr "검색"
@@ -314,7 +314,7 @@ msgstr "당신의 이름.sol을 검색하세요"
 
 #: src/components/ProgressExplainerModal.tsx:27
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr "위쪽의 멋진 진행률 막대를 보셨나요? 이것이 바로 당신의 강력하고 매력적인 프로필을 만드는 개인 가이드입니다. 사용 방법은 다음과 같습니다:"
+msgstr "상단의 진행률은 당신의 멋지고 매력적인 프로필을 만드는 가이드 역할입니다. 사용 방법은 다음과 같습니다:"
 
 #: src/screens/HomeScreen.tsx:77
 msgid "Seize your online identity."
