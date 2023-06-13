@@ -31,7 +31,7 @@ msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr "1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
+msgstr "<0>1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
