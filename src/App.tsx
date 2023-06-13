@@ -29,7 +29,7 @@ import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
 import { isXnft, isMobile, isWeb } from "./utils/platform";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -46,6 +46,10 @@ import {
   useLanguageContext,
 } from "./contexts/LanguageContext";
 import { LanguageModal } from "./components/LanguageModal";
+
+const xnftjson = require("../xnft.json");
+
+console.log(`Version: ${xnftjson.version}`);
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -103,9 +107,9 @@ function TabNavigator() {
   const { publicKey, setVisible, connected } = useWallet();
   const { currentLanguage } = useLanguageContext();
 
-  console.log("Connected: ", connected);
-
   useEffect(() => {
+    console.table(isMobile, isXnft, isWeb);
+    if (isXnft) return;
     if (!connected) {
       setVisible(true);
     }

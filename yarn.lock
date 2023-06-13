@@ -1371,7 +1371,7 @@
     "@solana/web3.js" "^1.73.3"
     react-async-hook "^4.0.0"
 
-"@bonfida/spl-name-service@0.2.11", "@bonfida/spl-name-service@latest":
+"@bonfida/spl-name-service@0.2.11":
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/@bonfida/spl-name-service/-/spl-name-service-0.2.11.tgz#2104a2e7ef38dd3377ac332c6227cdc83d8029d5"
   integrity sha512-ik6qsV8Y6WxChkWDof7U0rtHJW4tsUjabUxUA7TtTukfwvkg7UVFkTxtdspIyE1nNwc99RU3n1rcX/F9PckS3A==
@@ -1405,6 +1405,21 @@
   version "0.2.9"
   resolved "https://registry.npmjs.org/@bonfida/spl-name-service/-/spl-name-service-0.2.9.tgz"
   integrity sha512-dwCFW8lwAcdxs/iQp6wMLqivaBKDADBNT7y3SokrGgWp/uikTqkp/3WhDRBt6d7NpZPBvmRXH8+U/IU2tPK/gg==
+  dependencies:
+    "@bonfida/name-tokenizer" "0.0.9"
+    "@ethersproject/sha2" "^5.7.0"
+    "@pythnetwork/client" "2.17.0"
+    "@solana/buffer-layout" "^4.0.1"
+    "@solana/spl-token" "0.3.7 "
+    bn.js "^5.2.1"
+    borsh "^0.7.0"
+    buffer "^6.0.3"
+    tweetnacl "^1.0.3"
+
+"@bonfida/spl-name-service@latest":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@bonfida/spl-name-service/-/spl-name-service-0.2.12.tgz#12ed1d995cf624a12c7b38f6bb96b72e2904f419"
+  integrity sha512-JVBGVD80LzwH2IMMxQAORXSUcKHeuBg9lwctaVRxSzEvzDaXGP0+0/Fa2EX2nQ/Cfp/NpKVjOEiZl3OkEKYr2w==
   dependencies:
     "@bonfida/name-tokenizer" "0.0.9"
     "@ethersproject/sha2" "^5.7.0"

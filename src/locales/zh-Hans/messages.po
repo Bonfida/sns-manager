@@ -25,7 +25,7 @@ msgstr "成功汇款"
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol 不是有效的域名"
 
-#: src/screens/HomeScreen.tsx:39
+#: src/screens/HomeScreen.tsx:41
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol 不是有效的域名"
 
@@ -87,7 +87,7 @@ msgstr "BSC"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/App.tsx:176
+#: src/App.tsx:180
 msgid "Cart"
 msgstr "购物车"
 
@@ -215,7 +215,7 @@ msgstr "Github"
 msgid "Go to Profile"
 msgstr "前往个人资料"
 
-#: src/App.tsx:147
+#: src/App.tsx:151
 msgid "Home"
 msgstr "主页"
 
@@ -249,7 +249,7 @@ msgid "IPFS"
 msgstr "IPFS"
 
 #: src/components/LanguageModal.tsx:22
-#: src/screens/HomeScreen.tsx:103
+#: src/screens/HomeScreen.tsx:105
 msgid "Language"
 msgstr "语言"
 
@@ -287,7 +287,7 @@ msgstr "图片"
 msgid "POINT"
 msgstr "积分"
 
-#: src/App.tsx:137
+#: src/App.tsx:141
 msgid "Profile"
 msgstr "个人资料"
 
@@ -303,8 +303,8 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "注册折扣"
 
-#: src/App.tsx:166
-#: src/screens/HomeScreen.tsx:90
+#: src/App.tsx:170
+#: src/screens/HomeScreen.tsx:92
 msgid "Search"
 msgstr "搜索"
 
@@ -312,7 +312,7 @@ msgstr "搜索"
 msgid "Search domains"
 msgstr "搜索域名"
 
-#: src/screens/HomeScreen.tsx:76
+#: src/screens/HomeScreen.tsx:78
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr "搜索你的 name.sol"
@@ -321,7 +321,7 @@ msgstr "搜索你的 name.sol"
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
 msgstr "看看上面的进度条！那是你构建一个强大而吸引的个人资料指南。以下是它的运作方式"
 
-#: src/screens/HomeScreen.tsx:64
+#: src/screens/HomeScreen.tsx:66
 msgid "Seize your online identity."
 msgstr "抓住你的在线身份。"
 
@@ -395,6 +395,6 @@ msgstr "Twitter"
 msgid "Url"
 msgstr "网址"
 
-#: src/screens/HomeScreen.tsx:58
+#: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."
 msgstr "你的 <0>名字</0>。你的 <1>力量</1>。"

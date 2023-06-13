@@ -19,6 +19,8 @@ import { FontAwesome } from "@expo/vector-icons";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
+require("@solana/wallet-adapter-react-ui/styles.css");
+
 export function HomeScreen() {
   const { openModal } = useModal();
   const [search, setSearch] = useState("");
