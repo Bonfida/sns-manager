@@ -15,9 +15,7 @@ import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { Trans, t } from "@lingui/macro";
-import DropDownPicker from "react-native-dropdown-picker";
-import { useLanguageContext } from "../contexts/LanguageContext";
-import { supportedLanguages } from "../locales";
+import { FontAwesome } from "@expo/vector-icons";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -27,8 +25,6 @@ export function HomeScreen() {
   const navigation = useNavigation<
     searchResultScreenProp | profileScreenProp
   >();
-
-  const { setLanguage, currentLanguage } = useLanguageContext();
 
   const handle = async () => {
     if (!search) return;
@@ -48,15 +44,6 @@ export function HomeScreen() {
       params: { domain: trimTld(search) },
     });
   };
-
-  const handleLanguageChange = (lang: string) => {
-    const language = supportedLanguages.find((l) => l.value === lang);
-    if (!language) {
-      return;
-    }
-    setLanguage(language.value);
-  };
-  const [open, setOpen] = useState(false);
 
   return (
     <Screen style={tw`flex flex-col items-center justify-center relative`}>
@@ -104,35 +91,18 @@ export function HomeScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={tw`absolute top-3 left-4`}>
-        <DropDownPicker
-          items={supportedLanguages}
-          open={open}
-          setOpen={setOpen}
-          value={currentLanguage}
-          setValue={(callback) => {
-            const newValue = callback(currentLanguage);
-            handleLanguageChange(newValue);
-          }}
-          containerStyle={{ width: 100 }}
-          textStyle={tw`text-blue-700`}
-          listItemLabelStyle={tw`text-blue-grey-500`}
-          dropDownDirection="BOTTOM"
-          selectedItemLabelStyle={tw`text-blue-700`}
-          tickIconStyle={{
-            width: 15,
-            height: 15,
-          }}
-          arrowIconStyle={{
-            width: 15,
-            height: 15,
-          }}
-          placeholder={currentLanguage}
-          placeholderStyle={tw`text-blue-700`}
-          // Undo for Modal popup styling
-          // listMode="MODAL"
-          // modalAnimationType="slide"
-        />
+      <View style={tw`mt-10`}>
+        <TouchableOpacity
+          onPress={() => openModal("LanguageModal")}
+          style={tw`flex flex-row items-center`}
+        >
+          <FontAwesome name="language" size={24} color="black" />
+          <Text
+            style={tw`ml-2 text-sm font-medium text-center text-blue-grey-500`}
+          >
+            <Trans>Language</Trans>
+          </Text>
+        </TouchableOpacity>
       </View>
     </Screen>
   );

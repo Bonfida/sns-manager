@@ -45,6 +45,7 @@ import {
   LanguageProvider,
   useLanguageContext,
 } from "./contexts/LanguageContext";
+import { LanguageModal } from "./components/LanguageModal";
 
 const Stack = createStackNavigator<RootBottomTabParamList>();
 
@@ -60,6 +61,7 @@ const modalConfig = {
   SearchModal: SearchModal,
   DiscountExplainerModal: DiscountExplainerModal,
   DomainSizeModal: DomainSizeModal,
+  LanguageModal: LanguageModal,
 };
 
 const stackModal = createModalStack(modalConfig);

@@ -25,7 +25,7 @@ msgstr "{domain}.sol이 성공적으로 전송되었습니다!"
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol은(는) 유효한 도메인이 아닙니다"
 
-#: src/screens/HomeScreen.tsx:43
+#: src/screens/HomeScreen.tsx:39
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol은(는) 유효한 도메인이 아닙니다."
 
@@ -87,7 +87,7 @@ msgstr "바이낸스 스마트 체인(BSC)"
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:174
+#: src/App.tsx:176
 msgid "Cart"
 msgstr "장바구니"
 
@@ -142,6 +142,10 @@ msgstr "사진 편집"
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
 msgstr "이메일"
+
+#: src/locales/index.ts:15
+msgid "English"
+msgstr "English"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -215,7 +219,7 @@ msgstr "깃허브"
 msgid "Go to Profile"
 msgstr "프로필로 가기"
 
-#: src/App.tsx:145
+#: src/App.tsx:147
 msgid "Home"
 msgstr "홈"
 
@@ -247,6 +251,15 @@ msgstr "유효하지 않은 URL입니다"
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
 msgstr "IPFS"
+
+#: src/locales/index.ts:16
+msgid "Korean"
+msgstr "한국어"
+
+#: src/components/LanguageModal.tsx:22
+#: src/screens/HomeScreen.tsx:103
+msgid "Language"
+msgstr "언어"
 
 #: src/screens/Profile.tsx:188
 msgid "My domains"
@@ -282,7 +295,7 @@ msgstr "사진"
 msgid "POINT"
 msgstr "포인트"
 
-#: src/App.tsx:135
+#: src/App.tsx:137
 msgid "Profile"
 msgstr "프로필"
 
@@ -298,8 +311,8 @@ msgstr "레딧"
 msgid "Registration discount"
 msgstr "등록 할인"
 
-#: src/App.tsx:164
-#: src/screens/HomeScreen.tsx:103
+#: src/App.tsx:166
+#: src/screens/HomeScreen.tsx:90
 msgid "Search"
 msgstr "검색"
 
@@ -307,7 +320,7 @@ msgstr "검색"
 msgid "Search domains"
 msgstr "도메인 검색"
 
-#: src/screens/HomeScreen.tsx:89
+#: src/screens/HomeScreen.tsx:76
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr "당신의 이름.sol을 검색하세요"
@@ -316,13 +329,17 @@ msgstr "당신의 이름.sol을 검색하세요"
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
 msgstr "상단의 진행률은 당신의 멋지고 매력적인 프로필을 만드는 가이드 역할입니다. 사용 방법은 다음과 같습니다:"
 
-#: src/screens/HomeScreen.tsx:77
+#: src/screens/HomeScreen.tsx:64
 msgid "Seize your online identity."
 msgstr "당신의 온라인 신원을 확보하세요."
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
 msgstr "섀도우 드라이브"
+
+#: src/locales/index.ts:19
+msgid "Simplified Chinese"
+msgstr "中文(简体)"
 
 #: src/screens/DomainView.tsx:161
 msgid "Socials"
@@ -390,6 +407,6 @@ msgstr "트위터"
 msgid "Url"
 msgstr "URL"
 
-#: src/screens/HomeScreen.tsx:71
+#: src/screens/HomeScreen.tsx:58
 msgid "Your <0>Name</0>. Your <1>Power</1>."
 msgstr "당신의 <0>이름</0>. 당신의 <1>선택</1>."
