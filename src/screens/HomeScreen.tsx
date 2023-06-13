@@ -15,6 +15,7 @@ import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { Trans, t } from "@lingui/macro";
+import { FontAwesome } from "@expo/vector-icons";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -45,7 +46,7 @@ export function HomeScreen() {
   };
 
   return (
-    <Screen style={tw`flex flex-col items-center justify-center`}>
+    <Screen style={tw`flex flex-col items-center justify-center relative`}>
       <View style={tw`mb-4`}>
         <Image
           resizeMode="contain"
@@ -87,6 +88,19 @@ export function HomeScreen() {
         >
           <Text style={tw`text-lg font-bold text-white`}>
             <Trans>Search</Trans>
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={tw`mt-10`}>
+        <TouchableOpacity
+          onPress={() => openModal("LanguageModal")}
+          style={tw`flex flex-row items-center`}
+        >
+          <FontAwesome name="language" size={24} color="black" />
+          <Text
+            style={tw`ml-2 text-sm font-medium text-center text-blue-grey-500`}
+          >
+            <Trans>Language</Trans>
           </Text>
         </TouchableOpacity>
       </View>

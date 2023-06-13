@@ -25,7 +25,7 @@ msgstr ""
 msgid "{input}.sol is not a valid domain"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:38
+#: src/screens/HomeScreen.tsx:39
 msgid "{search}.sol is not a valid domain"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:175
+#: src/App.tsx:176
 msgid "Cart"
 msgstr ""
 
@@ -146,6 +146,10 @@ msgstr ""
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
 msgstr ""
+
+#: src/locales/index.ts:15
+#~ msgid "English"
+#~ msgstr ""
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -219,7 +223,7 @@ msgstr ""
 msgid "Go to Profile"
 msgstr ""
 
-#: src/App.tsx:146
+#: src/App.tsx:147
 msgid "Home"
 msgstr ""
 
@@ -250,6 +254,11 @@ msgstr ""
 
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
+msgstr ""
+
+#: src/components/LanguageModal.tsx:22
+#: src/screens/HomeScreen.tsx:103
+msgid "Language"
 msgstr ""
 
 #: src/screens/Profile.tsx:188
@@ -286,7 +295,7 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:136
+#: src/App.tsx:137
 msgid "Profile"
 msgstr ""
 
@@ -302,8 +311,8 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/App.tsx:165
-#: src/screens/HomeScreen.tsx:89
+#: src/App.tsx:166
+#: src/screens/HomeScreen.tsx:90
 msgid "Search"
 msgstr ""
 
@@ -311,7 +320,7 @@ msgstr ""
 msgid "Search domains"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:75
+#: src/screens/HomeScreen.tsx:76
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr ""
@@ -320,7 +329,7 @@ msgstr ""
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:63
+#: src/screens/HomeScreen.tsx:64
 msgid "Seize your online identity."
 msgstr ""
 
@@ -394,6 +403,6 @@ msgstr ""
 msgid "Url"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:57
+#: src/screens/HomeScreen.tsx:58
 msgid "Your <0>Name</0>. Your <1>Power</1>."
 msgstr ""

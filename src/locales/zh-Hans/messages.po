@@ -25,13 +25,13 @@ msgstr "成功汇款"
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol 不是有效的域名"
 
-#: src/screens/HomeScreen.tsx:38
+#: src/screens/HomeScreen.tsx:39
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr "1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
+msgstr "<0>1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
@@ -87,7 +87,7 @@ msgstr "BSC"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/App.tsx:175
+#: src/App.tsx:176
 msgid "Cart"
 msgstr "购物车"
 
@@ -215,7 +215,7 @@ msgstr "Github"
 msgid "Go to Profile"
 msgstr "前往个人资料"
 
-#: src/App.tsx:146
+#: src/App.tsx:147
 msgid "Home"
 msgstr "主页"
 
@@ -247,6 +247,11 @@ msgstr "网址无效"
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
 msgstr "IPFS"
+
+#: src/components/LanguageModal.tsx:22
+#: src/screens/HomeScreen.tsx:103
+msgid "Language"
+msgstr "语言"
 
 #: src/screens/Profile.tsx:188
 msgid "My domains"
@@ -282,7 +287,7 @@ msgstr "图片"
 msgid "POINT"
 msgstr "积分"
 
-#: src/App.tsx:136
+#: src/App.tsx:137
 msgid "Profile"
 msgstr "个人资料"
 
@@ -298,8 +303,8 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "注册折扣"
 
-#: src/App.tsx:165
-#: src/screens/HomeScreen.tsx:89
+#: src/App.tsx:166
+#: src/screens/HomeScreen.tsx:90
 msgid "Search"
 msgstr "搜索"
 
@@ -307,7 +312,7 @@ msgstr "搜索"
 msgid "Search domains"
 msgstr "搜索域名"
 
-#: src/screens/HomeScreen.tsx:75
+#: src/screens/HomeScreen.tsx:76
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
 msgstr "搜索你的 name.sol"
@@ -316,7 +321,7 @@ msgstr "搜索你的 name.sol"
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
 msgstr "看看上面的进度条！那是你构建一个强大而吸引的个人资料指南。以下是它的运作方式"
 
-#: src/screens/HomeScreen.tsx:63
+#: src/screens/HomeScreen.tsx:64
 msgid "Seize your online identity."
 msgstr "抓住你的在线身份。"
 
@@ -390,6 +395,6 @@ msgstr "Twitter"
 msgid "Url"
 msgstr "网址"
 
-#: src/screens/HomeScreen.tsx:57
+#: src/screens/HomeScreen.tsx:58
 msgid "Your <0>Name</0>. Your <1>Power</1>."
 msgstr "你的 <0>名字</0>。你的 <1>力量</1>。"
