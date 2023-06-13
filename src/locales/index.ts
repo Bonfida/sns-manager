@@ -2,7 +2,6 @@
 import { messages as enMessages } from "./en/messages";
 import { messages as krMessages } from "./kr/messages";
 import { messages as zh_HansMessages } from "./zh-Hans/messages";
-import { t } from "@lingui/macro";
 
 // Define a type for language with label, locale and messages
 export type Language = {
