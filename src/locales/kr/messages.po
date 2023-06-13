@@ -143,10 +143,6 @@ msgstr "사진 편집"
 msgid "Email"
 msgstr "이메일"
 
-#: src/locales/index.ts:15
-msgid "English"
-msgstr "English"
-
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
 msgstr "기록 {x}을(를) 입력하세요"
@@ -252,10 +248,6 @@ msgstr "유효하지 않은 URL입니다"
 msgid "IPFS"
 msgstr "IPFS"
 
-#: src/locales/index.ts:16
-msgid "Korean"
-msgstr "한국어"
-
 #: src/components/LanguageModal.tsx:22
 #: src/screens/HomeScreen.tsx:103
 msgid "Language"
@@ -336,10 +328,6 @@ msgstr "당신의 온라인 신원을 확보하세요."
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
 msgstr "섀도우 드라이브"
-
-#: src/locales/index.ts:19
-msgid "Simplified Chinese"
-msgstr "中文(简体)"
 
 #: src/screens/DomainView.tsx:161
 msgid "Socials"

@@ -148,8 +148,8 @@ msgid "Email"
 msgstr ""
 
 #: src/locales/index.ts:15
-msgid "English"
-msgstr ""
+#~ msgid "English"
+#~ msgstr ""
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -256,10 +256,6 @@ msgstr ""
 msgid "IPFS"
 msgstr ""
 
-#: src/locales/index.ts:16
-msgid "Korean"
-msgstr "한국어"
-
 #: src/components/LanguageModal.tsx:22
 #: src/screens/HomeScreen.tsx:103
 msgid "Language"
@@ -340,10 +336,6 @@ msgstr ""
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
 msgstr ""
-
-#: src/locales/index.ts:19
-msgid "Simplified Chinese"
-msgstr "中文(简体)"
 
 #: src/screens/DomainView.tsx:161
 msgid "Socials"

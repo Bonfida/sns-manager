@@ -41,9 +41,7 @@ export const LanguageModal = ({
                     }
                   />
 
-                  <Text key={currentLanguage} style={tw`ml-1`}>
-                    {e.label}
-                  </Text>
+                  <Text style={tw`ml-1`}>{e.label}</Text>
                 </TouchableOpacity>
               </View>
             );

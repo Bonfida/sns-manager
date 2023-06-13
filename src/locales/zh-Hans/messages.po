@@ -143,10 +143,6 @@ msgstr "编辑图片"
 msgid "Email"
 msgstr "电子邮件"
 
-#: src/locales/index.ts:15
-msgid "English"
-msgstr "English"
-
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
 msgstr "输入你的 {x} 记录"
@@ -252,10 +248,6 @@ msgstr "网址无效"
 msgid "IPFS"
 msgstr "IPFS"
 
-#: src/locales/index.ts:16
-msgid "Korean"
-msgstr "한국어"
-
 #: src/components/LanguageModal.tsx:22
 #: src/screens/HomeScreen.tsx:103
 msgid "Language"
@@ -336,10 +328,6 @@ msgstr "抓住你的在线身份。"
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
 msgstr "SHDW"
-
-#: src/locales/index.ts:19
-msgid "Simplified Chinese"
-msgstr "中文(简体)"
 
 #: src/screens/DomainView.tsx:161
 msgid "Socials"

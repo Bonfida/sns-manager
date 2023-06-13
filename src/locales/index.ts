@@ -12,11 +12,14 @@ export type Language = {
 };
 
 export const LANGUAGES: Language[] = [
-  { locale: "en", label: t`English`, messages: enMessages },
-  { locale: "kr", label: t`Korean`, messages: krMessages },
+  // English
+  { locale: "en", label: "English", messages: enMessages },
+  // Korean
+  { locale: "kr", label: "한국어", messages: krMessages },
+  // Simplified Chinese
   {
     locale: "zh-Hans",
-    label: t`Simplified Chinese`, // 中文(简体)
+    label: "中文(简体)",
     messages: zh_HansMessages,
   },
 ];
