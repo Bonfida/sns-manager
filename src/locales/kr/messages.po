@@ -374,7 +374,7 @@ msgstr "기록은 유효한 지갑 주소여야 합니다"
 
 #: src/components/DomainSizeModal.tsx:50
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
-msgstr "저장 용량은 도메인에 저장할 수 있는 데이터의 최대량을 결정합니다."
+msgstr "저장 용량은 도메인에 저장할 수 있는 데이터의 최대량입니다."
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
