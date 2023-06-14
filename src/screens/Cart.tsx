@@ -172,7 +172,8 @@ export const Cart = () => {
                     <Text style={tw`mr-1 font-bold`}>{item}.sol</Text>
                     <View style={tw`flex flex-row items-center py-1`}>
                       <Text style={tw`mr-2 text-xs text-blue-grey-600`}>
-                        Storage: {(map.get(item) || DEFAULT_SPACE) / 1_000}kB
+                        <Trans>Storage:</Trans>{" "}
+                        {(map.get(item) || DEFAULT_SPACE) / 1_000}kB
                       </Text>
                       <TouchableOpacity
                         onPress={() =>
@@ -184,7 +185,7 @@ export const Cart = () => {
                         }
                       >
                         <Text style={tw`text-xs underline text-blue-grey-600`}>
-                          Edit
+                          <Trans>Edit</Trans>
                         </Text>
                       </TouchableOpacity>
                     </View>

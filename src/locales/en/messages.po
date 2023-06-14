@@ -102,7 +102,7 @@ msgstr ""
 #: src/components/EditPicture.tsx:193
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
-#: src/screens/Cart.tsx:255
+#: src/screens/Cart.tsx:256
 msgid "Confirm"
 msgstr ""
 
@@ -129,6 +129,10 @@ msgstr ""
 #: src/screens/Cart.tsx:148
 #: src/screens/Profile.tsx:188
 msgid "Domains"
+msgstr ""
+
+#: src/screens/Cart.tsx:188
+msgid "Edit"
 msgstr ""
 
 #: src/components/EditRecordModal.tsx:229
@@ -283,7 +287,7 @@ msgstr ""
 msgid "Order summary"
 msgstr ""
 
-#: src/screens/Cart.tsx:211
+#: src/screens/Cart.tsx:212
 msgid "Pay with"
 msgstr ""
 
@@ -354,6 +358,14 @@ msgstr ""
 msgid "Something went wrong - try again"
 msgstr ""
 
+#: src/components/DomainSizeModal.tsx:46
+msgid "Storage size"
+msgstr ""
+
+#: src/screens/Cart.tsx:175
+msgid "Storage:"
+msgstr ""
+
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
 msgstr ""
@@ -369,6 +381,10 @@ msgstr ""
 #: src/components/EditRecordModal.tsx:147
 #: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
+msgstr ""
+
+#: src/components/DomainSizeModal.tsx:50
+msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr ""
 
 #: src/components/UnavailableRow.tsx:36
