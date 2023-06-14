@@ -261,6 +261,10 @@ msgstr ""
 msgid "My domains"
 msgstr ""
 
+#: src/components/TransferModal.tsx:79
+msgid "New {domain}.sol owner"
+msgstr ""
+
 #: src/components/EditPicture.tsx:181
 msgid "New picture URL"
 msgstr ""

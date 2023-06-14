@@ -67,7 +67,7 @@ msgstr "아위브(ARWV)"
 
 #: src/components/AvailableRow.tsx:45
 msgid "Available"
-msgstr "사용 가능"
+msgstr "구매 가능"
 
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
@@ -260,6 +260,10 @@ msgstr "언어"
 #: src/screens/Profile.tsx:188
 msgid "My domains"
 msgstr "나의 도메인"
+
+#: src/components/TransferModal.tsx:79
+msgid "New {domain}.sol owner"
+msgstr "새로운 {domain}.sol 소유자"
 
 #: src/components/EditPicture.tsx:181
 msgid "New picture URL"
