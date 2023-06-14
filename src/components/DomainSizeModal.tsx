@@ -43,7 +43,7 @@ export const DomainSizeModal = ({
             color="#16a34a"
           />
           <Text style={tw`ml-2 text-lg font-bold`}>
-            <Trans>Storage size</Trans>
+            <Trans>Storage Size</Trans>
           </Text>
         </View>
         <Text style={tw`pl-2 mt-2 text-sm`}>
