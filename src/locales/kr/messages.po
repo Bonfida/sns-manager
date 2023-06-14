@@ -131,6 +131,10 @@ msgstr "할인"
 msgid "Domains"
 msgstr "도메인"
 
+#: src/screens/Cart.tsx:187
+msgid "Edit"
+msgstr ""
+
 #: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
 msgstr "{0} 기록 수정"
@@ -346,6 +350,10 @@ msgstr "문제가 발생했습니다"
 msgid "Something went wrong - try again"
 msgstr "문제가 발생했습니다 - 다시 시도하세요"
 
+#: src/components/DomainSizeModal.tsx:46
+msgid "Storage size"
+msgstr ""
+
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
 msgstr "완료되었습니다!"
@@ -362,6 +370,10 @@ msgstr "텔레그램"
 #: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
 msgstr "기록은 유효한 지갑 주소여야 합니다"
+
+#: src/components/DomainSizeModal.tsx:50
+msgid "The storage size will determine the maximum amount of data you can store on your domain."
+msgstr ""
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"

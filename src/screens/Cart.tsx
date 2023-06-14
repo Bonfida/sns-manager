@@ -184,7 +184,7 @@ export const Cart = () => {
                         }
                       >
                         <Text style={tw`text-xs underline text-blue-grey-600`}>
-                          Edit
+                          <Trans>Edit</Trans>
                         </Text>
                       </TouchableOpacity>
                     </View>
