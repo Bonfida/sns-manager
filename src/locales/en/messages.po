@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-05-29 20:08+1000\n"
+"POT-Creation-Date: 2023-06-14 17:06+1000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -102,7 +102,7 @@ msgstr ""
 #: src/components/EditPicture.tsx:193
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
-#: src/screens/Cart.tsx:256
+#: src/screens/Cart.tsx:257
 msgid "Confirm"
 msgstr ""
 
@@ -131,17 +131,13 @@ msgstr ""
 msgid "Domains"
 msgstr ""
 
-#: src/screens/Cart.tsx:188
+#: src/screens/Cart.tsx:189
 msgid "Edit"
 msgstr ""
 
 #: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
 msgstr ""
-
-#: src/components/EditRecordModal.tsx:234
-#~ msgid "Edit {record} record"
-#~ msgstr ""
 
 #: src/components/EditPicture.tsx:168
 msgid "Edit Picture"
@@ -150,10 +146,6 @@ msgstr ""
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
 msgstr ""
-
-#: src/locales/index.ts:15
-#~ msgid "English"
-#~ msgstr ""
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -287,7 +279,7 @@ msgstr ""
 msgid "Order summary"
 msgstr ""
 
-#: src/screens/Cart.tsx:212
+#: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr ""
 
@@ -359,11 +351,8 @@ msgid "Something went wrong - try again"
 msgstr ""
 
 #: src/components/DomainSizeModal.tsx:46
-msgid "Storage size"
-msgstr ""
-
 #: src/screens/Cart.tsx:175
-msgid "Storage:"
+msgid "Storage Size"
 msgstr ""
 
 #: src/components/SuccessModal.tsx:20

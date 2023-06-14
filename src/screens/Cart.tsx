@@ -172,7 +172,8 @@ export const Cart = () => {
                     <Text style={tw`mr-1 font-bold`}>{item}.sol</Text>
                     <View style={tw`flex flex-row items-center py-1`}>
                       <Text style={tw`mr-2 text-xs text-blue-grey-600`}>
-                        <Trans>Storage:</Trans>{" "}
+                        <Trans>Storage Size</Trans>
+                        {": "}
                         {(map.get(item) || DEFAULT_SPACE) / 1_000}kB
                       </Text>
                       <TouchableOpacity
