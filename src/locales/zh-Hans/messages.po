@@ -261,6 +261,10 @@ msgstr "语言"
 msgid "My domains"
 msgstr "我的域名"
 
+#: src/components/TransferModal.tsx:79
+msgid "New {domain}.sol owner"
+msgstr ""
+
 #: src/components/EditPicture.tsx:181
 msgid "New picture URL"
 msgstr "新图片网址"

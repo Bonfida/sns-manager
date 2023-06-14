@@ -76,7 +76,7 @@ export const TransferModal = ({
           <Trans>Transfer {domain}.sol</Trans>
         </Text>
         <TextInput
-          placeholder={`New ${domain}.sol owner`}
+          placeholder={t`New ${domain}.sol owner`}
           onChangeText={(text) => setValue(text)}
           value={value}
           style={tw`h-[40px] text-sm pl-2 bg-blue-grey-050 rounded-lg my-5 font-bold`}
