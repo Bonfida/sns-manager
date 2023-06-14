@@ -102,7 +102,7 @@ msgstr "关闭"
 #: src/components/EditPicture.tsx:193
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
-#: src/screens/Cart.tsx:255
+#: src/screens/Cart.tsx:256
 msgid "Confirm"
 msgstr "确认"
 
@@ -130,6 +130,10 @@ msgstr "折扣"
 #: src/screens/Profile.tsx:188
 msgid "Domains"
 msgstr "域名"
+
+#: src/screens/Cart.tsx:188
+msgid "Edit"
+msgstr "编辑"
 
 #: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
@@ -275,7 +279,7 @@ msgstr "未设置"
 msgid "Order summary"
 msgstr "订单摘要"
 
-#: src/screens/Cart.tsx:211
+#: src/screens/Cart.tsx:212
 msgid "Pay with"
 msgstr "支付方式"
 
@@ -346,6 +350,14 @@ msgstr "问题出现了"
 msgid "Something went wrong - try again"
 msgstr "问题出现了，请重试"
 
+#: src/components/DomainSizeModal.tsx:46
+msgid "Storage size"
+msgstr "存储容量"
+
+#: src/screens/Cart.tsx:175
+msgid "Storage:"
+msgstr "存储量"
+
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
 msgstr "成功！"
@@ -362,6 +374,10 @@ msgstr "Telegram"
 #: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
 msgstr "记录必须是有效的钱包地址"
+
+#: src/components/DomainSizeModal.tsx:50
+msgid "The storage size will determine the maximum amount of data you can store on your domain."
+msgstr "储存容量将会决定你的域名上储存的最大数据量"
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
