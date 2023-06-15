@@ -10,6 +10,8 @@ export type Language = {
   messages: Record<string, string>;
 };
 
+// Define a list of supported languages. Update this list to support more languages.
+// Used primarily in the modal to select languages.
 export const LANGUAGES: Language[] = [
   // English
   { locale: "en", label: "English", messages: enMessages },
@@ -27,3 +29,6 @@ export const LANGUAGES: Language[] = [
 export const allTranslations = Object.fromEntries(
   LANGUAGES.map(({ locale, messages }) => [locale, messages])
 );
+
+// export all available locales for lingui.config.js
+export const allLocales = LANGUAGES.map(({ locale }) => locale);
