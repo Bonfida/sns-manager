@@ -28,6 +28,8 @@ import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
 import { useWallet } from "../hooks/useWallet";
+import { useSubdomains } from "../hooks/useSubdomains";
+import { SubdomainRow } from "../components/SubdomainRow";
 
 export const LoadingState = () => {
   return (
@@ -71,17 +73,22 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const socialRecords = useSocialRecords(domain);
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
+  const subdomains = useSubdomains(domain);
   const picRecord = useProfilePic(connection!, domain);
   const { publicKey } = useWallet();
   const navigation = useNavigation<profileScreenProp>();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
+  const isSub = domain?.split(".").length === 2;
+  const hasSubdomain =
+    subdomains.result !== undefined && subdomains.result.length !== 0;
 
   const loading =
     socialRecords.loading ||
     addressRecords.loading ||
     domainInfo.loading ||
-    picRecord.loading;
+    picRecord.loading ||
+    subdomains.loading;
 
   const refresh = async () => {
     await Promise.allSettled([
@@ -89,6 +96,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
       socialRecords.execute(),
       addressRecords.execute(),
       picRecord.execute(),
+      subdomains.execute(),
     ]);
   };
 
@@ -155,14 +163,67 @@ export const DomainView = ({ domain }: { domain: string }) => {
         </View>
 
         <View style={tw`px-4`}>
-          <View style={tw`flex flex-row items-center w-full justify-between`}>
+          {!isSub && (
+            <>
+              <View
+                style={tw`flex flex-row items-center w-full justify-between`}
+              >
+                <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
+                  Subdomains
+                </Text>
+
+                <View style={tw`flex flex-row gap-4`}>
+                  {/* add subdomain button (if owner) */}
+                  {isOwner && (
+                    <TouchableOpacity
+                      onPress={() => {
+                        openModal("CreateSubdomain", { refresh, domain });
+                      }}
+                    >
+                      <FontAwesome name="plus" size={20} color="black" />
+                    </TouchableOpacity>
+                  )}
+                  <TouchableOpacity onPress={refresh}>
+                    <FontAwesome name="refresh" size={20} color="black" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <View style={tw`flex flex-col justify-around flex-wrap`}>
+                {hasSubdomain ? (
+                  <FlatList
+                    style={tw`mb-3`}
+                    data={subdomains.result}
+                    renderItem={({ item }) => (
+                      <SubdomainRow
+                        subdomain={`${item}.${domain}`}
+                        key={item}
+                      />
+                    )}
+                  />
+                ) : (
+                  <Text
+                    style={tw`mt-2 mb-2 text-xl font-semibold text-center text-blue-grey-300`}
+                  >
+                    No subdomains found
+                  </Text>
+                )}
+              </View>
+            </>
+          )}
+
+          <View
+            style={tw`flex flex-row items-center w-full justify-between mt-2`}
+          >
             <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
               Socials
             </Text>
 
-            <TouchableOpacity onPress={refresh}>
-              <FontAwesome name="refresh" size={20} color="black" />
-            </TouchableOpacity>
+            {isSub && (
+              <TouchableOpacity onPress={refresh}>
+                <FontAwesome name="refresh" size={20} color="black" />
+              </TouchableOpacity>
+            )}
           </View>
 
           <View style={tw`flex flex-col justify-around flex-wrap`}>
@@ -199,21 +260,41 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
           {/* Transfer button */}
           {isOwner && (
-            <TouchableOpacity
-              onPress={() =>
-                openModal("Transfer", {
-                  domain,
-                  refresh: async () => {
-                    await domainInfo.execute();
-                  },
-                })
-              }
-              style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
-            >
-              <Text style={tw`text-white font-bold text-xl mr-3`}>
-                Transfer
-              </Text>
-            </TouchableOpacity>
+            <View style={tw`flex flex-col`}>
+              <TouchableOpacity
+                onPress={() =>
+                  openModal("Transfer", {
+                    domain,
+                    refresh: async () => {
+                      await domainInfo.execute();
+                    },
+                  })
+                }
+                style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
+              >
+                <Text style={tw`text-white font-bold text-xl mr-3`}>
+                  Transfer
+                </Text>
+              </TouchableOpacity>
+
+              {isSub && (
+                <TouchableOpacity
+                  onPress={() =>
+                    openModal("Delete", {
+                      domain,
+                      refresh: async () => {
+                        await domainInfo.execute();
+                      },
+                    })
+                  }
+                  style={tw`flex flex-row justify-center items-center w-full bg-red-900 rounded-lg h-[50px] mb-2`}
+                >
+                  <Text style={tw`text-white font-bold text-xl mr-3`}>
+                    Delete
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
           )}
         </View>
       </ScrollView>
