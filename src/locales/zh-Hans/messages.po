@@ -39,7 +39,7 @@ msgstr "<0>2. 个人头像：</0>上传一张照片，让我们看到真实的�
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-msgstr "<0>3. 背包记录：</0>将你的背包账户名连接到你的链上身份 🎒"
+msgstr "<0>3. 背包记录：</0>将你的背包用户名连接到你的链上身份 🎒"
 
 #: src/components/ProgressExplainerModal.tsx:55
 msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
@@ -47,7 +47,7 @@ msgstr "<0>4. 推特记录：</0>连接推特以便快速分享和交流 🐦"
 
 #: src/components/ProgressExplainerModal.tsx:62
 msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-msgstr "<0>5. TG记录：</0>连接TG进行实时社区聊天 📨"
+msgstr "<0>5. Telegram 记录：</0>连接 Telegram 进行实时社区聊天 📨"
 
 #: src/components/ProgressExplainerModal.tsx:69
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
@@ -137,7 +137,7 @@ msgstr "编辑"
 
 #: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
-msgstr "编辑 {0} 记录"
+msgstr "编辑{0}记录"
 
 #: src/components/EditPicture.tsx:168
 msgid "Edit Picture"
@@ -149,7 +149,7 @@ msgstr "电子邮件"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
-msgstr "输入你的 {x} 记录"
+msgstr "输入你的{x}记录"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
@@ -165,7 +165,7 @@ msgstr "输入你的 BNB 地址"
 
 #: src/utils/record/place-holder.tsx:10
 msgid "Enter your Discord username"
-msgstr "输入你的 Discord 账户名"
+msgstr "输入你的 Discord 用户名"
 
 #: src/utils/record/place-holder.tsx:36
 msgid "Enter your Dogecoin address"
@@ -181,7 +181,7 @@ msgstr "输入你的以太坊地址"
 
 #: src/utils/record/place-holder.tsx:14
 msgid "Enter your Github username"
-msgstr "输入你的 Github 账户名"
+msgstr "输入你的 Github 用户名"
 
 #: src/utils/record/place-holder.tsx:34
 msgid "Enter your Injective address"
@@ -193,15 +193,15 @@ msgstr "输入你的 Litecoin 地址"
 
 #: src/utils/record/place-holder.tsx:16
 msgid "Enter your Reddit username"
-msgstr "输入你的 Reddit 账户名"
+msgstr "输入你的 Reddit 用户名"
 
 #: src/utils/record/place-holder.tsx:18
 msgid "Enter your Telegram username"
-msgstr "输入你的TG账户名"
+msgstr "输入你的 Telegram 用户名"
 
 #: src/utils/record/place-holder.tsx:20
 msgid "Enter your Twitter username"
-msgstr "输入你的推特账户名"
+msgstr "输入你的推特用户名"
 
 #: src/utils/record/place-holder.tsx:22
 msgid "Enter your website URL"
@@ -414,4 +414,4 @@ msgstr "网址"
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr "你的 <0>名字</0>。你的 <1>力量</1>。"
+msgstr "你的<0>名字</0>。你的<1>力量</1>。"
