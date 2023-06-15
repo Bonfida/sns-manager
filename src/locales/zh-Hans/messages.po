@@ -19,7 +19,7 @@ msgstr "{domain}.sol 成功设置为喜爱的域名"
 
 #: src/components/TransferModal.tsx:63
 msgid "{domain}.sol successfully transfered!"
-msgstr "成功汇款"
+msgstr "{domain}.sol 汇款成功"
 
 #: src/screens/SearchResult.tsx:48
 msgid "{input}.sol is not a valid domain"
@@ -31,7 +31,7 @@ msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr "<0>1. 喜爱的域名：</0>点击 ❤️ 选择你喜爱的域名"
+msgstr "<0>1. 喜爱的域名：</0>点击 ❤️ 来选择你喜爱的域名"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
@@ -39,7 +39,7 @@ msgstr "<0>2. 个人头像：</0>上传一张照片，让我们看到真实的�
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-msgstr "<0>3. 背包记录：</0>将你的背包用户名连接到你的链上身份 🎒"
+msgstr "<0>3. 背包记录：</0>将你的背包账户名连接到你的链上身份 🎒"
 
 #: src/components/ProgressExplainerModal.tsx:55
 msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
@@ -75,7 +75,7 @@ msgstr "背包"
 
 #: src/components/ProgressExplainerModal.tsx:23
 msgid "Boost Your Profile Journey! 🚀"
-msgstr "提升你的个人资料之旅！🚀"
+msgstr "完善你的个人资料之旅！🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
@@ -153,7 +153,7 @@ msgstr "输入你的 {x} 记录"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
-msgstr "输入你的背包用户名"
+msgstr "输入你的背包帐号名"
 
 #: src/utils/record/place-holder.tsx:28
 msgid "Enter your Bitcoin address"
@@ -165,7 +165,7 @@ msgstr "输入你的 BNB 地址"
 
 #: src/utils/record/place-holder.tsx:10
 msgid "Enter your Discord username"
-msgstr "输入你的 Discord 用户名"
+msgstr "输入你的 Discord 账户名"
 
 #: src/utils/record/place-holder.tsx:36
 msgid "Enter your Dogecoin address"
@@ -181,7 +181,7 @@ msgstr "输入你的以太坊地址"
 
 #: src/utils/record/place-holder.tsx:14
 msgid "Enter your Github username"
-msgstr "输入你的 Github 用户名"
+msgstr "输入你的 Github 账户名"
 
 #: src/utils/record/place-holder.tsx:34
 msgid "Enter your Injective address"
@@ -193,15 +193,15 @@ msgstr "输入你的 Litecoin 地址"
 
 #: src/utils/record/place-holder.tsx:16
 msgid "Enter your Reddit username"
-msgstr "输入你的 Reddit 用户名"
+msgstr "输入你的 Reddit 账户名"
 
 #: src/utils/record/place-holder.tsx:18
 msgid "Enter your Telegram username"
-msgstr "输入你的TG用户名"
+msgstr "输入你的TG账户名"
 
 #: src/utils/record/place-holder.tsx:20
 msgid "Enter your Twitter username"
-msgstr "输入你的推特用户名"
+msgstr "输入你的推特账户名"
 
 #: src/utils/record/place-holder.tsx:22
 msgid "Enter your website URL"
@@ -217,7 +217,7 @@ msgstr "Github"
 
 #: src/components/SuccessCheckoutModal.tsx:36
 msgid "Go to Profile"
-msgstr "前往个人资料"
+msgstr "前往个人账户"
 
 #: src/App.tsx:151
 msgid "Home"
@@ -263,7 +263,7 @@ msgstr "我的域名"
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
-msgstr ""
+msgstr "新的 {domain}.sol 所有者"
 
 #: src/components/EditPicture.tsx:181
 msgid "New picture URL"
@@ -297,11 +297,11 @@ msgstr "积分"
 
 #: src/App.tsx:141
 msgid "Profile"
-msgstr "个人资料"
+msgstr "个人账户"
 
 #: src/screens/Profile.tsx:162
 msgid "Profile completed: {percentage}%"
-msgstr "个人资料完成：{percentage}%"
+msgstr "个人资料完成进度：{percentage}%"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -327,11 +327,11 @@ msgstr "搜索你的 名字.sol"
 
 #: src/components/ProgressExplainerModal.tsx:27
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr "看看上面的进度条！那是你构建一个强大而吸引的个人资料指南。以下是它的运作方式"
+msgstr "看到上方的进度条了吗？这将引导你一步步构建完备且迷人的个人资料。请参考以下的步骤："
 
 #: src/screens/HomeScreen.tsx:66
 msgid "Seize your online identity."
-msgstr "抓住你的在线身份。"
+msgstr "把握你的在线身份。"
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
