@@ -39,6 +39,8 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
+import { DeleteModal } from "./components/DeleteModal";
+import { CreateSubdomainModal } from "./components/CreateSubdomainModal";
 // import xnftjson from "../xnft.json";
 
 const xnftjson = require("../xnft.json");
@@ -53,6 +55,8 @@ const modalConfig = {
   Error: ErrorModal,
   Success: SuccessModal,
   Transfer: TransferModal,
+  Delete: DeleteModal,
+  CreateSubdomain: CreateSubdomainModal,
   WormholeExplainer: WormholeExplainerModal,
   EditPicture: EditPicture,
   ProgressExplainerModal: ProgressExplainerModal,
