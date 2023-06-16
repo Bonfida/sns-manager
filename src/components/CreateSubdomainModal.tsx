@@ -41,13 +41,7 @@ export const CreateSubdomainModal = ({
     try {
       setLoading(true);
 
-      const splitted = value.split(".");
-      let subdomain: string;
-      if (splitted.length > 1) {
-        subdomain = `${splitted[1]}.${domain}`;
-      } else {
-        subdomain = `${value}.${domain}`;
-      }
+      const subdomain = value + "." + domain;
 
       const [, ix] = await createSubdomain(connection, subdomain, publicKey);
       const sig = await sendTx(connection, publicKey, [...ix], signTransaction);
@@ -56,7 +50,7 @@ export const CreateSubdomainModal = ({
       setLoading(false);
       closeModal();
       openModal("Success", {
-        msg: `subdomain ${value}.${domain}.sol successfully created!`,
+        msg: `subdomain ${subdomain}.sol successfully created!`,
       });
       refresh();
     } catch (err) {
