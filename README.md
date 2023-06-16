@@ -28,6 +28,7 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 - [About SNS Manager](#about-sns-manager)
 - [Features](#features)
 - [Contribution](#contribution)
+  - [Hall of fame](#contributors)
 - [License](#license)
 
 <br />
