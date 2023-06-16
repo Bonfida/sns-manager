@@ -7,10 +7,6 @@ export const trimTld = (x: string) => {
 
 export const validate = (x: string): boolean => {
   x = trimTld(x);
-  // Does not support subs for now
-  if (x.includes(".")) {
-    return false;
-  }
   if (x !== x.toLowerCase()) {
     return false;
   }
