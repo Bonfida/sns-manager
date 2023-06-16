@@ -1,38 +1,79 @@
 import { Record } from "@bonfida/spl-name-service";
+import { t } from "@lingui/macro";
 
 export const getPlaceholder = (x: Record) => {
   switch (x) {
     // Socials
     case Record.Backpack:
-      return "Enter your Backpack username";
+      return t`Enter your Backpack username`;
     case Record.Discord:
-      return "Enter your Discord username";
+      return t`Enter your Discord username`;
     case Record.Email:
-      return "Enter your email address";
+      return t`Enter your email address`;
     case Record.Github:
-      return "Enter your Github username";
+      return t`Enter your Github username`;
     case Record.Reddit:
-      return "Enter your Reddit username";
+      return t`Enter your Reddit username`;
     case Record.Telegram:
-      return "Enter your Telegram username";
+      return t`Enter your Telegram username`;
     case Record.Twitter:
-      return "Enter your Twitter username";
+      return t`Enter your Twitter username`;
     case Record.Url:
-      return "Enter your website URL";
+      return t`Enter your website URL`;
 
     // Addresses
     case Record.BSC:
-      return "Enter your BNB address";
+      return t`Enter your BNB address`;
     case Record.BTC:
-      return "Enter your Bitcoin address";
+      return t`Enter your Bitcoin address`;
     case Record.ETH:
-      return "Enter your Ethereum address";
+      return t`Enter your Ethereum address`;
     case Record.LTC:
-      return "Enter your Litecoin address";
+      return t`Enter your Litecoin address`;
     case Record.Injective:
-      return "Enter your Injective address";
+      return t`Enter your Injective address`;
+    case Record.DOGE:
+      return t`Enter your Dogecoin address`;
 
     default:
-      return `Enter your ${x} record`;
+      return t`Enter your ${x} record`;
+  }
+};
+
+// Function to get translated name
+export const getTranslatedName = (record: Record) => {
+  switch (record) {
+    case Record.IPFS:
+      return t`IPFS`;
+    case Record.ARWV:
+      return t`ARWV`;
+    case Record.Email:
+      return t`Email`;
+    case Record.Url:
+      return t`Url`;
+    case Record.Discord:
+      return t`Discord`;
+    case Record.Github:
+      return t`Github`;
+    case Record.Reddit:
+      return t`Reddit`;
+    case Record.Twitter:
+      return t`Twitter`;
+    case Record.Telegram:
+      return t`Telegram`;
+    case Record.Pic:
+      return t`Pic`;
+    case Record.SHDW:
+      return t`SHDW`;
+    case Record.POINT:
+      return t`POINT`;
+    case Record.BSC:
+      return t`BSC`;
+    case Record.Injective:
+      return t`Injective`;
+    case Record.Backpack:
+      return t`Backpack`;
+    default:
+      return record;
   }
 };

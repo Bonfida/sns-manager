@@ -4,6 +4,7 @@ import { Feather } from "@expo/vector-icons";
 import { useRecoilState } from "recoil";
 import { cartState } from "../atoms/cart";
 import { priceFromLength } from "../utils/price/price-from-length";
+import { Trans } from "@lingui/macro";
 
 export const AvailableRow = ({ domain }: { domain: string }) => {
   const [cart, setCart] = useRecoilState(cartState);
@@ -40,7 +41,9 @@ export const AvailableRow = ({ domain }: { domain: string }) => {
       <View
         style={tw`w-full rounded-b-lg h-[20px] bg-cyan-700 flex flex-row justify-center items-center`}
       >
-        <Text style={tw`font-bold text-white`}>Available</Text>
+        <Text style={tw`font-bold text-white`}>
+          <Trans>Available</Trans>
+        </Text>
       </View>
     </View>
   );

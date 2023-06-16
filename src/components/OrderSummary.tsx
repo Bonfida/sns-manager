@@ -9,6 +9,7 @@ import { FIDA_MINT, tokenList } from "../utils/tokens/popular-tokens";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useModal } from "react-native-modalfy";
 import { useStorageMap } from "../hooks/useStorageMap";
+import { Trans, t } from "@lingui/macro";
 
 export const OrderSummary = ({
   mint,
@@ -36,18 +37,20 @@ export const OrderSummary = ({
 
   return (
     <View>
-      <Text style={tw`mb-3 text-xl font-bold`}>Order summary</Text>
+      <Text style={tw`mb-3 text-xl font-bold`}>
+        <Trans>Order summary</Trans>
+      </Text>
       {/* Sub Total */}
       <Row
         value={`${format(total, true)} ${token?.tokenSymbol}`}
-        label="Total"
+        label={t`Total`}
       />
       {/* Total USD */}
-      <Row value={`${format(totalUsd, true)} USD`} label="Total USD" />
+      <Row value={`${format(totalUsd, true)} USD`} label={t`Total USD`} />
       {/* Gas cost */}
       <Row
         value={`◎${rent.loading ? 0 : (rent.result || 0)?.toFixed(3)}`}
-        label="Gas"
+        label={t`Gas`}
       />
 
       {/* Discount */}
@@ -55,7 +58,7 @@ export const OrderSummary = ({
         value={isFida ? "5%" : "0%"}
         label={
           <>
-            Discount
+            <Trans>Discount</Trans>
             <TouchableOpacity
               style={tw`ml-1`}
               onPress={() => openModal("DiscountExplainerModal")}

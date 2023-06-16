@@ -27,6 +27,7 @@ import { Screen } from "../components/Screen";
 import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
+import { Trans } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 import { useSubdomains } from "../hooks/useSubdomains";
 import { SubdomainRow } from "../components/SubdomainRow";
@@ -216,7 +217,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             style={tw`flex flex-row items-center w-full justify-between mt-2`}
           >
             <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-              Socials
+              <Trans>Socials</Trans>
             </Text>
 
             {isSub && (
@@ -242,7 +243,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           </View>
 
           <Text style={tw`text-xl font-bold text-blue-grey-900 mt-4 mb-1`}>
-            Addresses
+            <Trans>Addresses</Trans>
           </Text>
           <FlatList
             style={tw`mb-3`}
@@ -349,7 +350,9 @@ const RenderRecord = ({
               </TouchableOpacity>
             </>
           ) : (
-            <Text style={tw`text-sm font-bold`}>Not set</Text>
+            <Text style={tw`text-sm font-bold`}>
+              <Trans>Not set</Trans>
+            </Text>
           )}
         </View>
       </View>
