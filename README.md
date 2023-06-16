@@ -1,4 +1,5 @@
 <h1 align="center">SNS Manager 🌐</h1>
+
 <br />
 
 <p align="center">
@@ -109,6 +110,14 @@ Big thanks to our dedicated contributors, we are thrilled to recognize their con
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://mj-portfolio-ipfs.vercel.app/"><img src="https://avatars.githubusercontent.com/u/103424726?v=4?s=100" width="100px;" alt="MJ Lee"/><br /><sub><b>MJ Lee</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=mjLabrys" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/2Tako2"><img src="https://avatars.githubusercontent.com/u/54200396?v=4?s=100" width="100px;" alt="Felix"/><br /><sub><b>Felix</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=2Tako2" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
