@@ -21,6 +21,16 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 </center>
 <br />
 
+<div align="center">
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-2)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+</div>
+
 <br />
 <h2 align="center">Table of contents 📝</h2>
 <br />
