@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import tw from "../utils/tailwind";
 import { Screen } from "../components/Screen";
@@ -23,6 +24,8 @@ import { useIsFocused } from "@react-navigation/native";
 import { useProfilePic } from "@bonfida/sns-react";
 import { DomainRow } from "../components/DomainRow";
 import { useWallet } from "../hooks/useWallet";
+import { useSubdomainsFromUser } from "../hooks/useSubdomains";
+import { SubdomainRow } from "../components/SubdomainRow";
 
 export const LoadingState = () => {
   return (
@@ -49,6 +52,10 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const { connected, publicKey, setVisible } = useWallet();
   owner = owner || publicKey?.toBase58();
   const domains = useDomains(owner || publicKey?.toBase58());
+  const subdomains = useSubdomainsFromUser(
+    owner || publicKey?.toBase58() || ""
+  );
+
   const isFocused = useIsFocused();
   const favorite = useFavoriteDomain(owner);
   const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
@@ -68,10 +75,15 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       favorite.execute(),
       progress.execute(),
       picRecord.execute(),
+      subdomains.execute(),
     ]);
   };
 
-  const loading = domains.loading || picRecord.loading || progress.loading;
+  const loading =
+    domains.loading ||
+    picRecord.loading ||
+    progress.loading ||
+    subdomains.loading;
 
   useEffect(() => {
     refresh().then();
@@ -83,7 +95,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     }
   }, [connected]);
 
-  const list = useMemo(() => {
+  const domainsList = useMemo(() => {
     if (favorite.result) {
       return [
         {
@@ -97,7 +109,10 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     }
     return domains.result;
   }, [domains.status, domains.loading, favorite.result?.reverse]);
-  const hasDomain = list !== undefined && list.length !== 0;
+
+  const hasDomain = domainsList !== undefined && domainsList.length !== 0;
+  const hasSubdomain =
+    subdomains.result !== undefined && subdomains.result.length !== 0;
 
   return (
     <Screen style={tw`p-0`}>
@@ -204,7 +219,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           <View style={tw`px-4`}>
             {hasDomain ? (
               <FlatList
-                data={list}
+                data={domainsList}
                 renderItem={({ item }) => (
                   <DomainRow
                     refresh={refresh}
@@ -221,6 +236,33 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
                 style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
               >
                 No domain found
+              </Text>
+            )}
+          </View>
+
+          <View
+            style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
+          >
+            <Text style={tw`text-base font-bold`}>
+              {isOwner ? "My subdomains" : "Subdomains"}
+            </Text>
+          </View>
+
+          <View style={tw`px-4`}>
+            {hasSubdomain ? (
+              <FlatList
+                style={tw`mb-3`}
+                data={subdomains.result}
+                renderItem={({ item }) => (
+                  <SubdomainRow key={item.key} subdomain={item.subdomain} />
+                )}
+                keyExtractor={(item) => item.subdomain}
+              />
+            ) : (
+              <Text
+                style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
+              >
+                No subdomain found
               </Text>
             )}
           </View>
