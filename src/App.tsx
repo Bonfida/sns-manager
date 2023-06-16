@@ -39,7 +39,13 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
-// import xnftjson from "../xnft.json";
+import { t } from "@lingui/macro";
+import { i18n } from "@lingui/core";
+import {
+  LanguageProvider,
+  useLanguageContext,
+} from "./contexts/LanguageContext";
+import { LanguageModal } from "./components/LanguageModal";
 
 const xnftjson = require("../xnft.json");
 
@@ -59,6 +65,7 @@ const modalConfig = {
   SearchModal: SearchModal,
   DiscountExplainerModal: DiscountExplainerModal,
   DomainSizeModal: DomainSizeModal,
+  LanguageModal: LanguageModal,
 };
 
 const stackModal = createModalStack(modalConfig);
@@ -98,6 +105,7 @@ function TabNavigator() {
   useReferrer();
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
+  const { currentLanguage } = useLanguageContext();
 
   useEffect(() => {
     console.table(isMobile, isXnft, isWeb);
@@ -114,6 +122,7 @@ function TabNavigator() {
         header: () => null,
         tabBarActiveTintColor: "#186FAF",
       }}
+      key={currentLanguage} // trigger tab re-render when translation is toggled
     >
       <Tab.Screen
         name="Profile"
@@ -129,7 +138,7 @@ function TabNavigator() {
           },
         })}
         options={{
-          tabBarLabel: "Profile",
+          tabBarLabel: t`Profile`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
@@ -139,7 +148,7 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: "Home",
+          tabBarLabel: t`Home`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
@@ -158,7 +167,7 @@ function TabNavigator() {
         })}
         options={{
           headerShown: false,
-          tabBarLabel: "Search",
+          tabBarLabel: t`Search`,
           tabBarIcon: ({ color, size }) => (
             <Feather name="search" size={size} color={color} />
           ),
@@ -168,7 +177,7 @@ function TabNavigator() {
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: "Cart",
+          tabBarLabel: t`Cart`,
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
@@ -204,9 +213,11 @@ function App() {
     <Wrap>
       <RecoilRoot>
         <NavigationContainer>
-          <ModalProvider stack={stackModal}>
-            <TabNavigator />
-          </ModalProvider>
+          <LanguageProvider i18n={i18n}>
+            <ModalProvider stack={stackModal}>
+              <TabNavigator />
+            </ModalProvider>
+          </LanguageProvider>
         </NavigationContainer>
       </RecoilRoot>
     </Wrap>

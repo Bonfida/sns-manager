@@ -4,6 +4,7 @@ import tw from "../utils/tailwind";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useStorageMap } from "../hooks/useStorageMap";
 import { useEffect } from "react";
+import { Trans } from "@lingui/macro";
 
 const LIST = [
   { label: "1kb", value: 1_000 },
@@ -41,11 +42,15 @@ export const DomainSizeModal = ({
             size={24}
             color="#16a34a"
           />
-          <Text style={tw`ml-2 text-lg font-bold`}>Storage size</Text>
+          <Text style={tw`ml-2 text-lg font-bold`}>
+            <Trans>Storage Size</Trans>
+          </Text>
         </View>
         <Text style={tw`pl-2 mt-2 text-sm`}>
-          The storage size will determine the maximum amount of data you can
-          store on your domain.
+          <Trans>
+            The storage size will determine the maximum amount of data you can
+            store on your domain.
+          </Trans>
         </Text>
 
         <View style={tw`flex flex-row flex-wrap items-center`}>
