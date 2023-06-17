@@ -233,7 +233,9 @@ export const DomainView = ({ domain }: { domain: string }) => {
               style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
             >
               <Text style={tw`text-white font-bold text-xl mr-3`}>
-                <Trans>{isTokenized ? "Unwrap domain" : "Wrap domain"}</Trans>
+                <Trans>
+                  {isTokenized ? "Unwrap NFT" : "Wrap domain into NFT"}
+                </Trans>
               </Text>
             </TouchableOpacity>
           )}
