@@ -77,6 +77,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const navigation = useNavigation<profileScreenProp>();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
+  const isTokenized = domainInfo.result?.isTokenized;
 
   const loading =
     socialRecords.loading ||
@@ -213,6 +214,26 @@ export const DomainView = ({ domain }: { domain: string }) => {
             >
               <Text style={tw`text-white font-bold text-xl mr-3`}>
                 <Trans>Transfer</Trans>
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          {/* wrap/unwrap button */}
+          {isOwner && (
+            <TouchableOpacity
+              onPress={() =>
+                openModal("TokenizeModal", {
+                  domain,
+                  isTokenized,
+                  refresh: async () => {
+                    await domainInfo.execute();
+                  },
+                })
+              }
+              style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
+            >
+              <Text style={tw`text-white font-bold text-xl mr-3`}>
+                <Trans>{isTokenized ? "Unwrap domain" : "Wrap domain"}</Trans>
               </Text>
             </TouchableOpacity>
           )}
