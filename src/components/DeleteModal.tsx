@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -17,18 +11,25 @@ import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
+import { useNavigation } from "@react-navigation/native";
+import { domainViewScreenProp } from "../../types";
+import { trimTld } from "../utils/validate";
 
 export const DeleteModal = ({
   modal: { closeModal, getParam },
 }: {
-  modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
+  modal: {
+    closeModal: (modal?: string) => void;
+    getParam: <T>(a: string, b?: string) => T;
+  };
 }) => {
   const { openModal } = useModal();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
-  const refresh = getParam<() => Promise<void>>("refresh");
+
+  const navigation = useNavigation<domainViewScreenProp>();
 
   const handle = async () => {
     if (!connection || !publicKey || !signTransaction) return;
@@ -44,11 +45,20 @@ export const DeleteModal = ({
       console.log(sig);
 
       setLoading(false);
-      closeModal();
-      openModal("Success", {
-        msg: `subdomain ${domain}.sol successfully deleted!`,
+      openModal(
+        "Success",
+        {
+          msg: `subdomain ${domain}.sol successfully deleted!`,
+        },
+        () => {
+          closeModal("Delete");
+        }
+      );
+
+      const splitted = trimTld(domain).split(".");
+      return navigation.navigate("Domain View", {
+        domain: splitted.length === 2 ? splitted[1] : domain,
       });
-      refresh();
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -71,7 +81,9 @@ export const DeleteModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={closeModal}
+            onPress={() => {
+              closeModal();
+            }}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Cancel</Text>
