@@ -134,9 +134,7 @@ export const TokenizeModal = ({
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
         <Text style={tw`text-xl font-bold`}>
-          <Trans>
-            {isTokenized ? "Unwrap" : "Wrap"} {domain}.sol
-          </Trans>
+          {isTokenized ? t`Unwrap` : `Wrap`} {domain}.sol
         </Text>
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
@@ -145,7 +143,7 @@ export const TokenizeModal = ({
             style={tw`bg-blue-900 mt-2 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>
-              <Trans>{isTokenized ? "Unwrap" : "Wrap"}</Trans>
+              {isTokenized ? t`Unwrap` : t`Wrap`}
             </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>

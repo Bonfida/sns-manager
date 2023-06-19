@@ -27,7 +27,7 @@ import { Screen } from "../components/Screen";
 import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
-import { Trans } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 
 export const LoadingState = () => {
@@ -233,9 +233,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
             >
               <Text style={tw`text-white font-bold text-xl mr-3`}>
-                <Trans>
-                  {isTokenized ? "Unwrap NFT" : "Wrap domain into NFT"}
-                </Trans>
+                {isTokenized ? t`Unwrap NFT` : t`Wrap domain into NFT`}
               </Text>
             </TouchableOpacity>
           )}
