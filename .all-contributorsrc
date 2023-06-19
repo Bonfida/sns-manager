@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "mjLabrys",
+      "name": "MJ Lee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103424726?v=4",
+      "profile": "https://mj-portfolio-ipfs.vercel.app/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "2Tako2",
+      "name": "Felix",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54200396?v=4",
+      "profile": "https://github.com/2Tako2",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "sns-manager",
+  "projectOwner": "Bonfida"
+}

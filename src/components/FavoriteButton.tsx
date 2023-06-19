@@ -10,6 +10,7 @@ import { useState } from "react";
 import { sleep } from "../utils/sleep";
 import { isTokenized } from "@bonfida/name-tokenizer";
 import { unwrap } from "../utils/unwrap";
+import { t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 
 export const FavoriteButton = ({
@@ -47,7 +48,7 @@ export const FavoriteButton = ({
       console.log(sig);
 
       openModal("Success", {
-        msg: `${domain}.sol successfully set as favorite domain name`,
+        msg: t`${domain}.sol successfully set as favorite domain name`,
       });
       setLoading(false);
       await sleep(500);
@@ -55,7 +56,7 @@ export const FavoriteButton = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 

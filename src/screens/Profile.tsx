@@ -22,6 +22,7 @@ import { useUserProgress } from "../hooks/useUserProgress";
 import { useIsFocused } from "@react-navigation/native";
 import { useProfilePic } from "@bonfida/sns-react";
 import { DomainRow } from "../components/DomainRow";
+import { t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 
 export const LoadingState = () => {
@@ -158,7 +159,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           {showProgress && isOwner && (
             <View style={tw`px-4`}>
               <Text style={tw`mt-4 ml-1 font-bold`}>
-                Profile completed: {percentage}%
+                {t`Profile completed: ${percentage}%`}
               </Text>
               <View
                 style={tw`w-full border-[2px] relative border-black/10 rounded-lg flex flex-row items-center justify-between`}
@@ -184,7 +185,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
             style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
           >
             <Text style={tw`text-base font-bold`}>
-              {isOwner ? "My domains" : "Domains"}
+              {isOwner ? t`My domains` : t`Domains`}
             </Text>
             <TouchableOpacity
               onPress={() =>
@@ -220,7 +221,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
               <Text
                 style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
               >
-                No domain found
+                {t`No domain found`}
               </Text>
             )}
           </View>

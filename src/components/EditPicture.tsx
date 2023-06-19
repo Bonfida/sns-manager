@@ -29,6 +29,7 @@ import { WrapModal } from "./WrapModal";
 import { isTokenized } from "@bonfida/name-tokenizer";
 import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
+import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 import { removePinFromIPFS, uploadToIPFS } from "../utils/ipfs";
 
@@ -62,7 +63,7 @@ export const EditPicture = ({
         new URL(pic);
       } catch (err) {
         setLoading(false);
-        return openModal("Error", { msg: "Invalid URL" });
+        return openModal("Error", { msg: t`Invalid URL` });
       }
 
       // Set as fav
@@ -158,7 +159,7 @@ export const EditPicture = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 
@@ -166,7 +167,7 @@ export const EditPicture = ({
     try {
       let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
-        openModal("Error", { msg: "Permission to access camera roll is required" });
+        openModal("Error", { msg: t`Permission to access camera roll is required` });
         return;
       }
 
@@ -201,7 +202,7 @@ export const EditPicture = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     } finally {
       setLoading(false);
     }
@@ -210,7 +211,9 @@ export const EditPicture = ({
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>Edit Picture</Text>
+        <Text style={tw`text-xl font-bold`}>
+          <Trans>Edit Picture</Trans>
+        </Text>
         <View style={tw`flex items-center justify-center my-2`}>
           <Image
             style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
@@ -221,9 +224,9 @@ export const EditPicture = ({
             }
           />
         </View>
-        <View style={tw`flex flex-col  my-5`}>
+        <View style={tw`flex flex-col my-5`}>
           <TextInput
-            placeholder={`New picture URL`}
+            placeholder={t`New picture URL`}
             onChangeText={(text) => setPic(text)}
             value={pic}
             style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md font-bold`}
@@ -243,7 +246,9 @@ export const EditPicture = ({
             onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Confirm</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Confirm</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
           <TouchableOpacity
@@ -251,7 +256,9 @@ export const EditPicture = ({
             onPress={closeModal}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Cancel</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Cancel</Trans>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
