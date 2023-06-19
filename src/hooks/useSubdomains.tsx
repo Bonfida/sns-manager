@@ -41,6 +41,8 @@ export const useSubdomains = (domain: string) => {
     const { pubkey: key } = getDomainKeySync(domain);
 
     const subdomains = await findSubdomains(connection, key);
+    subdomains.sort((a, b) => a.localeCompare(b));
+
     return subdomains;
   };
 
@@ -110,6 +112,8 @@ export const useSubdomainsFromUser = (owner: string) => {
         userSubdomainsResult.push(...e.value);
       }
     });
+
+    userSubdomainsResult.sort((a, b) => a.subdomain.localeCompare(b.subdomain));
 
     return userSubdomainsResult;
   };
