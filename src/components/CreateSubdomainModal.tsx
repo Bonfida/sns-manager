@@ -13,6 +13,7 @@ import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
+import { validate } from "../utils/validate";
 
 export const CreateSubdomainModal = ({
   modal: { closeModal, getParam },
@@ -36,6 +37,13 @@ export const CreateSubdomainModal = ({
       setLoading(true);
 
       const subdomain = value + "." + domain;
+
+      if (!validate(subdomain)) {
+        setLoading(false);
+        return openModal("Error", {
+          msg: `${subdomain}.sol is not a valid subdomain`,
+        });
+      }
 
       const [, ix] = await createSubdomain(connection, subdomain, publicKey);
       const sig = await sendTx(connection, publicKey, [...ix], signTransaction);
