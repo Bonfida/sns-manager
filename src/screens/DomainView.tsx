@@ -221,9 +221,21 @@ export const DomainView = ({ domain }: { domain: string }) => {
             </Text>
 
             {isSub && (
-              <TouchableOpacity onPress={refresh}>
-                <FontAwesome name="refresh" size={20} color="black" />
-              </TouchableOpacity>
+              <View style={tw`flex flex-row gap-4`}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Domain View", {
+                      domain: domain.split(".")[1],
+                    })
+                  }
+                >
+                  <FontAwesome name="arrow-left" size={20} color="black" />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={refresh}>
+                  <FontAwesome name="refresh" size={20} color="black" />
+                </TouchableOpacity>
+              </View>
             )}
           </View>
 
