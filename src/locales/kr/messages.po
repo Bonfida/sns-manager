@@ -81,7 +81,7 @@ msgstr "프로필 여정을 향상시키세요! 🚀"
 msgid "BSC"
 msgstr "바이낸스 스마트 체인(BSC)"
 
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:260
 #: src/components/EditRecordModal.tsx:264
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
@@ -91,6 +91,10 @@ msgstr "취소"
 msgid "Cart"
 msgstr "장바구니"
 
+#: src/components/EditPicture.tsx:239
+msgid "Choose a picture"
+msgstr "사진을 선택하세요"
+
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr "모두 지우기"
@@ -99,7 +103,7 @@ msgstr "모두 지우기"
 msgid "Close"
 msgstr "닫기"
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:250
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -139,7 +143,7 @@ msgstr "편집"
 msgid "Edit {0} record"
 msgstr "{0} 기록 수정"
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:215
 msgid "Edit Picture"
 msgstr "사진 편집"
 
@@ -243,7 +247,7 @@ msgstr "유효하지 않은 바이낸스 스마트(BSC) 체인 주소입니다"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
 msgstr "유효하지 않은 URL입니다"
@@ -265,7 +269,7 @@ msgstr "나의 도메인"
 msgid "New {domain}.sol owner"
 msgstr "새로운 {domain}.sol 소유자"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:229
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
@@ -286,6 +290,10 @@ msgstr "주문 내역"
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr "결제 방법"
+
+#: src/components/EditPicture.tsx:170
+msgid "Permission to access photo album is required"
+msgstr "이미지를 업로드하려면 앨범 접근 권한이 필요합니다"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -346,7 +354,8 @@ msgstr "소셜"
 msgid "Something went wrong"
 msgstr "문제가 발생했습니다"
 
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:205
 #: src/components/EditRecordModal.tsx:195
 #: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59

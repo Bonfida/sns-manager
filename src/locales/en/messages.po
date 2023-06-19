@@ -81,7 +81,7 @@ msgstr ""
 msgid "BSC"
 msgstr ""
 
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:260
 #: src/components/EditRecordModal.tsx:264
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
@@ -89,6 +89,10 @@ msgstr ""
 
 #: src/App.tsx:180
 msgid "Cart"
+msgstr ""
+
+#: src/components/EditPicture.tsx:239
+msgid "Choose a picture"
 msgstr ""
 
 #: src/screens/Cart.tsx:159
@@ -99,7 +103,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:250
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -139,7 +143,7 @@ msgstr ""
 msgid "Edit {0} record"
 msgstr ""
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:215
 msgid "Edit Picture"
 msgstr ""
 
@@ -243,7 +247,7 @@ msgstr ""
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr ""
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
 msgstr ""
@@ -265,7 +269,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr ""
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:229
 msgid "New picture URL"
 msgstr ""
 
@@ -285,6 +289,10 @@ msgstr ""
 
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
+msgstr ""
+
+#: src/components/EditPicture.tsx:170
+msgid "Permission to access photo album is required"
 msgstr ""
 
 #: src/utils/record/place-holder.tsx:65
@@ -346,7 +354,8 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:205
 #: src/components/EditRecordModal.tsx:195
 #: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59

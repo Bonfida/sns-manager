@@ -167,7 +167,7 @@ export const EditPicture = ({
     try {
       let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
-        openModal("Error", { msg: t`Permission to access camera roll is required` });
+        openModal("Error", { msg: t`Permission to access photo album is required` });
         return;
       }
 
@@ -236,7 +236,7 @@ export const EditPicture = ({
             onPress={connected ? handlePickImage : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Choose a photo</Text>
+            <Text style={tw`font-bold text-white`}><Trans>Choose a picture</Trans></Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
         </View>

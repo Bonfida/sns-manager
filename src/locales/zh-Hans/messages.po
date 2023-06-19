@@ -81,7 +81,7 @@ msgstr "完善你的个人资料之旅！🚀"
 msgid "BSC"
 msgstr "BSC"
 
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:260
 #: src/components/EditRecordModal.tsx:264
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
@@ -91,6 +91,10 @@ msgstr "取消"
 msgid "Cart"
 msgstr "购物车"
 
+#: src/components/EditPicture.tsx:239
+msgid "Choose a picture"
+msgstr "选择图片"
+
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr "清除所有"
@@ -99,7 +103,7 @@ msgstr "清除所有"
 msgid "Close"
 msgstr "关闭"
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:250
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -139,7 +143,7 @@ msgstr "编辑"
 msgid "Edit {0} record"
 msgstr "编辑{0}记录"
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:215
 msgid "Edit Picture"
 msgstr "编辑图片"
 
@@ -243,7 +247,7 @@ msgstr "BSC 地址无效"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
 msgstr "网址无效"
@@ -265,7 +269,7 @@ msgstr "我的域名"
 msgid "New {domain}.sol owner"
 msgstr "新的 {domain}.sol 所有者"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:229
 msgid "New picture URL"
 msgstr "新图片网址"
 
@@ -286,6 +290,10 @@ msgstr "订单摘要"
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr "支付方式"
+
+#: src/components/EditPicture.tsx:170
+msgid "Permission to access photo album is required"
+msgstr "需要相册的访问权限才能上传图片"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -346,7 +354,8 @@ msgstr "社交媒体"
 msgid "Something went wrong"
 msgstr "问题出现了"
 
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:205
 #: src/components/EditRecordModal.tsx:195
 #: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59
