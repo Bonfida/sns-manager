@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import tw from "../utils/tailwind";
 import { useModal } from "react-native-modalfy";
+import * as ImagePicker from 'expo-image-picker';
 import {
   Record,
   getDomainKeySync,
@@ -29,6 +30,7 @@ import { isTokenized } from "@bonfida/name-tokenizer";
 import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
 import { useWallet } from "../hooks/useWallet";
+import { removePinFromIPFS, uploadToIPFS } from "../utils/ipfs";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -160,6 +162,51 @@ export const EditPicture = ({
     }
   };
 
+  const handlePickImage = async () => {
+    try {
+      let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (permissionResult.granted === false) {
+        openModal("Error", { msg: "Permission to access camera roll is required" });
+        return;
+      }
+
+      let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.5,
+        exif: false,
+      });
+
+      if (!result.canceled) {
+        setLoading(true);
+        if (pic) {
+          const hash = pic.split("/ipfs/")?.[1] || undefined;
+          await removePinFromIPFS(hash)
+        }
+        const asset = result.assets?.[0]
+        if (!asset) { throw new Error("Failed to get image asset"); }
+        const filename = `${domain}-${+Date.now()}.jpg`;
+        const image = asset.uri.startsWith('data:image') ? asset.uri : asset.base64 || undefined
+        if (!image) { throw new Error("Failed to get image"); }
+
+        const res = await uploadToIPFS(image, filename);
+        if (!res?.hash) {
+          throw new Error("Failed to upload to IPFS");
+        }
+        setPic(res.url);
+        await handle();
+      } else {
+        console.log("cancelled");
+      }
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      openModal("Error", { msg: "Something went wrong - try again" });
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
@@ -174,12 +221,22 @@ export const EditPicture = ({
             }
           />
         </View>
-        <TextInput
-          placeholder={`New picture URL`}
-          onChangeText={(text) => setPic(text)}
-          value={pic}
-          style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md my-5 font-bold`}
-        />
+        <View style={tw`flex flex-col  my-5`}>
+          <TextInput
+            placeholder={`New picture URL`}
+            onChangeText={(text) => setPic(text)}
+            value={pic}
+            style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md font-bold`}
+          />
+          <TouchableOpacity
+            disabled={loading}
+            onPress={connected ? handlePickImage : () => setVisible(true)}
+            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
+          >
+            <Text style={tw`font-bold text-white`}>Choose a photo</Text>
+            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
+          </TouchableOpacity>
+        </View>
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
