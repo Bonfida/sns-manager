@@ -14,6 +14,7 @@ import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "../../types";
 import { trimTld } from "../utils/validate";
+import { Trans, t } from "@lingui/macro";
 
 export const DeleteModal = ({
   modal: { closeModal, getParam },
@@ -48,7 +49,7 @@ export const DeleteModal = ({
       openModal(
         "Success",
         {
-          msg: `subdomain ${domain}.sol successfully deleted!`,
+          msg: t`subdomain ${domain}.sol successfully deleted!`,
         },
         () => {
           closeModal("Delete");
@@ -62,21 +63,25 @@ export const DeleteModal = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      openModal("Error", { msg: t`Something went wrong - try again` });
     }
   };
 
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>Delete {domain}.sol</Text>
+        <Text style={tw`text-xl font-bold`}>
+          <Trans>Delete {domain}.sol</Trans>
+        </Text>
         <View style={tw`flex flex-col items-center mt-2`}>
           <TouchableOpacity
             disabled={loading}
             onPress={connected ? handle : () => setVisible(true)}
             style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Delete</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Delete</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
           <TouchableOpacity
@@ -86,7 +91,9 @@ export const DeleteModal = ({
             }}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}>Cancel</Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Cancel</Trans>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

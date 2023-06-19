@@ -23,7 +23,7 @@ import { useUserProgress } from "../hooks/useUserProgress";
 import { useIsFocused } from "@react-navigation/native";
 import { useProfilePic } from "@bonfida/sns-react";
 import { DomainRow } from "../components/DomainRow";
-import { t } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 import { useSubdomainsFromUser } from "../hooks/useSubdomains";
 import { SubdomainRow } from "../components/SubdomainRow";
@@ -245,7 +245,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
             style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
           >
             <Text style={tw`text-base font-bold`}>
-              {isOwner ? "My subdomains" : "Subdomains"}
+              {isOwner ? t`My subdomains` : t`Subdomains`}
             </Text>
           </View>
 
@@ -263,7 +263,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
               <Text
                 style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
               >
-                No subdomain found
+                <Trans>No subdomain found</Trans>
               </Text>
             )}
           </View>

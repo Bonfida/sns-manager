@@ -170,7 +170,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 style={tw`flex flex-row items-center w-full justify-between`}
               >
                 <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-                  Subdomains
+                  <Trans>Subdomains</Trans>
                 </Text>
 
                 <View style={tw`flex flex-row gap-4`}>
@@ -206,7 +206,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   <Text
                     style={tw`mt-2 mb-2 text-xl font-semibold text-center text-blue-grey-300`}
                   >
-                    No subdomains found
+                    <Trans>No subdomains found</Trans>
                   </Text>
                 )}
               </View>
@@ -286,7 +286,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
               >
                 <Text style={tw`text-white font-bold text-xl mr-3`}>
-                  Transfer
+                  <Trans>Transfer</Trans>
                 </Text>
               </TouchableOpacity>
 
@@ -303,7 +303,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   style={tw`flex flex-row justify-center items-center w-full bg-red-400 rounded-lg h-[50px] mb-2`}
                 >
                   <Text style={tw`text-white font-bold text-xl mr-3`}>
-                    Delete
+                    <Trans>Delete</Trans>
                   </Text>
                 </TouchableOpacity>
               )}
