@@ -29,7 +29,10 @@ import { checkAccountExists } from "../utils/account";
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
 }: {
-  modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
+  modal: {
+    closeModal: (modal?: string) => void;
+    getParam: <T>(a: string, b?: string) => T;
+  };
 }) => {
   const { openModal } = useModal();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
@@ -116,12 +119,17 @@ export const TokenizeModal = ({
       await connection.confirmTransaction(sig, "processed");
       console.log(sig);
       setLoading(false);
-      closeModal();
-      openModal("Success", {
-        msg: t`${domain}.sol successfully ${
-          isTokenized ? "unwrapped" : "wrapped"
-        }!`,
-      });
+      openModal(
+        "Success",
+        {
+          msg: t`${domain}.sol successfully ${
+            isTokenized ? "unwrapped" : "wrapped"
+          }!`,
+        },
+        () => {
+          closeModal("TokenizeModal");
+        }
+      );
       refresh();
     } catch (err) {
       console.error(err);
@@ -149,7 +157,7 @@ export const TokenizeModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={closeModal}
+            onPress={() => closeModal()}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>
