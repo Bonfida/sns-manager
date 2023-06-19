@@ -1,4 +1,5 @@
 <h1 align="center">SNS Manager 🌐</h1>
+
 <br />
 
 <p align="center">
@@ -21,6 +22,16 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 </center>
 <br />
 
+<div align="center">
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-2)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+</div>
+
 <br />
 <h2 align="center">Table of contents 📝</h2>
 <br />
@@ -40,15 +51,15 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 <h2 align="center">Rodmap 🗺️</h2>
 <br />
 
-| Feature             | Description                                                       | In progress | Completed | Bounty |
-| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ |
-| UI/UX Redesign      | New UI/UX design for the app                                      | ❌          | ❌        | ✅     |
-| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |
-| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |
-| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |
-| Chinese translation | Translate the app in Chinese                                      | ✅          | ❌        | ✅     |
-| Korean translation  | Translate the app in Korean                                       | ✅          | ❌        | ✅     |
-| Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |
+| Feature             | Description                                                       | In progress | Completed | Bounty | Contributor                             |
+| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ | --------------------------------------- |
+| UI/UX Redesign      | New UI/UX design for the app                                      | ❌          | ❌        | ✅     |                                         |
+| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |                                         |
+| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |                                         |
+| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |                                         |
+| Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |                                         |
+| Chinese translation | Translate the app in Chinese                                      | ❌          | ✅        | ✅     | [2Tako2](https://github.com/2Tako2)     |
+| Korean translation  | Translate the app in Korean                                       | ❌          | ✅        | ✅     | [mjLabrys](https://github.com/mjLabrys) |
 
 <br />
 <h2 align="center">Development and Build Commands 💻</h2>
@@ -89,6 +100,31 @@ Discover new domains, see their records, and learn more about their owners. Mayb
 <br />
 
 We love our community and we embrace contributions. If you're an open-source enthusiast, a Solana aficionado, or someone who loves building cool stuff, come join us! Check out our [contribution guidelines](CONTRIBUTING.md) and become a part of the SNS Manager journey.
+
+<br />
+<h3 align="center">The Hall of Fame ❤️</h2>
+<br />
+
+Big thanks to our dedicated contributors, we are thrilled to recognize their contributions:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://mj-portfolio-ipfs.vercel.app/"><img src="https://avatars.githubusercontent.com/u/103424726?v=4?s=100" width="100px;" alt="MJ Lee"/><br /><sub><b>MJ Lee</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=mjLabrys" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/2Tako2"><img src="https://avatars.githubusercontent.com/u/54200396?v=4?s=100" width="100px;" alt="Felix"/><br /><sub><b>Felix</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=2Tako2" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+Interested in contributing? Check out our contribution guidelines and join us in propelling this project forward.
 
 <br />
 <h2 align="center">License 📄</h2>

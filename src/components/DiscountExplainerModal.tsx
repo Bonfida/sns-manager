@@ -2,6 +2,7 @@ import { WrapModal } from "./WrapModal";
 import { View, Text } from "react-native";
 import tw from "../utils/tailwind";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Trans } from "@lingui/macro";
 
 export const DiscountExplainerModal = ({
   modal: { closeModal, getParam },
@@ -17,11 +18,15 @@ export const DiscountExplainerModal = ({
             size={24}
             color="#16a34a"
           />
-          <Text style={tw`ml-2 text-lg font-bold`}>Registration discount</Text>
+          <Text style={tw`ml-2 text-lg font-bold`}>
+            <Trans>Registration discount</Trans>
+          </Text>
         </View>
         <Text style={tw`pl-2 mt-2 text-sm`}>
-          If you register your domains using FIDA, you are eligible for a 5%
-          discount!
+          <Trans>
+            If you register your domains using FIDA, you are eligible for a 5%
+            discount!
+          </Trans>
         </Text>
       </View>
     </WrapModal>
