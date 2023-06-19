@@ -288,7 +288,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       },
                     })
                   }
-                  style={tw`flex flex-row justify-center items-center w-full bg-red-900 rounded-lg h-[50px] mb-2`}
+                  style={tw`flex flex-row justify-center items-center w-full bg-red-400 rounded-lg h-[50px] mb-2`}
                 >
                   <Text style={tw`text-white font-bold text-xl mr-3`}>
                     Delete
