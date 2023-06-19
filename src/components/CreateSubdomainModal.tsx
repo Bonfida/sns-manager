@@ -6,17 +6,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useState } from "react";
-import {
-  getDomainKeySync,
-  NAME_PROGRAM_ID,
-  resolve,
-  transferInstruction,
-  ROOT_DOMAIN_ACCOUNT,
-  deleteInstruction,
-  createSubdomain,
-} from "@bonfida/spl-name-service";
+import { createSubdomain } from "@bonfida/spl-name-service";
 import tw from "../utils/tailwind";
-import { PublicKey } from "@solana/web3.js";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
@@ -26,7 +17,10 @@ import { useWallet } from "../hooks/useWallet";
 export const CreateSubdomainModal = ({
   modal: { closeModal, getParam },
 }: {
-  modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
+  modal: {
+    closeModal: (modal?: string) => void;
+    getParam: <T>(a: string, b?: string) => T;
+  };
 }) => {
   const { openModal } = useModal();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
@@ -48,10 +42,17 @@ export const CreateSubdomainModal = ({
       console.log(sig);
 
       setLoading(false);
-      closeModal();
-      openModal("Success", {
-        msg: `subdomain ${subdomain}.sol successfully created!`,
-      });
+
+      openModal(
+        "SuccessSubdomainModal",
+        {
+          msg: `Subdomain ${subdomain}.sol successfully created!`,
+          subdomain,
+        },
+        () => {
+          closeModal("CreateSubdomain");
+        }
+      );
       refresh();
     } catch (err) {
       console.error(err);
@@ -85,7 +86,9 @@ export const CreateSubdomainModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={closeModal}
+            onPress={() => {
+              closeModal();
+            }}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>Cancel</Text>
