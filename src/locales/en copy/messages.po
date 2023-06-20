@@ -89,47 +89,47 @@ msgstr "Annuler"
 
 #: src/App.tsx:180
 msgid "Cart"
-msgstr ""
+msgstr "Panier"
 
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
-msgstr ""
+msgstr "Tout effacer"
 
 #: src/components/SuccessModal.tsx:31
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: src/components/EditPicture.tsx:193
 #: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #: src/components/SuccessCheckoutModal.tsx:22
 msgid "Congrats!"
-msgstr ""
+msgstr "Bravo!"
 
 #: src/components/SocialRecord.tsx:73
 msgid "Copied!"
-msgstr ""
+msgstr "Copié!"
 
 #: src/components/EditRecordModal.tsx:254
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
-msgstr ""
+msgstr "Discord"
 
 #: src/components/OrderSummary.tsx:61
 msgid "Discount"
-msgstr ""
+msgstr "Rabais"
 
 #: src/screens/Cart.tsx:148
 #: src/screens/Profile.tsx:188
 msgid "Domains"
-msgstr ""
+msgstr "Domaines"
 
 #: src/screens/Cart.tsx:189
 msgid "Edit"
@@ -137,214 +137,214 @@ msgstr ""
 
 #: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
-msgstr ""
+msgstr "Modifier {0} enregistrement(s)"
 
 #: src/components/EditPicture.tsx:168
 msgid "Edit Picture"
-msgstr ""
+msgstr "Modifier Image"
 
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
-msgstr ""
+msgstr "Entrer vos {x} enregisrements"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
-msgstr ""
+msgstr "Entrer votre pseudo Backpack"
 
 #: src/utils/record/place-holder.tsx:28
 msgid "Enter your Bitcoin address"
-msgstr ""
+msgstr "Entrer votre adresse Bitcoin"
 
 #: src/utils/record/place-holder.tsx:26
 msgid "Enter your BNB address"
-msgstr ""
+msgstr "Entrer votre adresse  BNB"
 
 #: src/utils/record/place-holder.tsx:10
 msgid "Enter your Discord username"
-msgstr ""
+msgstr "Entrer votre pseudo Discord"
 
 #: src/utils/record/place-holder.tsx:36
 msgid "Enter your Dogecoin address"
-msgstr ""
+msgstr "Entrer votre adresse Dogecoin"
 
 #: src/utils/record/place-holder.tsx:12
 msgid "Enter your email address"
-msgstr ""
+msgstr "Entrer votre adresse email"
 
 #: src/utils/record/place-holder.tsx:30
 msgid "Enter your Ethereum address"
-msgstr ""
+msgstr "Entrer votre adresse Ethereum"
 
 #: src/utils/record/place-holder.tsx:14
 msgid "Enter your Github username"
-msgstr ""
+msgstr "Entrer votre pseudo Github"
 
 #: src/utils/record/place-holder.tsx:34
 msgid "Enter your Injective address"
-msgstr ""
+msgstr "Entrer votre adresse Injective"
 
 #: src/utils/record/place-holder.tsx:32
 msgid "Enter your Litecoin address"
-msgstr ""
+msgstr "Entrer votre adresse Litecoin"
 
 #: src/utils/record/place-holder.tsx:16
 msgid "Enter your Reddit username"
-msgstr ""
+msgstr "Entrer votre pseudo Reddit"
 
 #: src/utils/record/place-holder.tsx:18
 msgid "Enter your Telegram username"
-msgstr ""
+msgstr "Entrer votre pseudo Telegram"
 
 #: src/utils/record/place-holder.tsx:20
 msgid "Enter your Twitter username"
-msgstr ""
+msgstr "Entrer votre pseudo Twitter"
 
 #: src/utils/record/place-holder.tsx:22
 msgid "Enter your website URL"
-msgstr ""
+msgstr "Entrer l'adresse de votre site"
 
 #: src/components/OrderSummary.tsx:53
 msgid "Gas"
-msgstr ""
+msgstr "Gas"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
-msgstr ""
+msgstr "Github"
 
 #: src/components/SuccessCheckoutModal.tsx:36
 msgid "Go to Profile"
-msgstr ""
+msgstr "Aller au Profile"
 
 #: src/App.tsx:151
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #: src/components/DiscountExplainerModal.tsx:26
 msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
-msgstr ""
+msgstr "Si vous enregistrez vos domaines en FIDA, vous avez droit à une remise de 5 % !"
 
 #: src/utils/record/place-holder.tsx:73
 msgid "Injective"
-msgstr ""
+msgstr "Injective"
 
 #: src/components/EditRecordModal.tsx:77
 msgid "Invalid Arweave record"
-msgstr ""
+msgstr "Enregistrement Arweave invalide"
 
 #: src/components/EditRecordModal.tsx:83
 msgid "Invalid BSC address"
-msgstr ""
+msgstr "Enregistrement BSC invalide"
 
 #: src/components/EditRecordModal.tsx:71
 msgid "Invalid IPFS record - Must start with ipfs://"
-msgstr ""
+msgstr "Enregistrement IPFS invalide - Devrait commencer par ipfs://"
 
 #: src/components/EditPicture.tsx:64
 #: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
-msgstr ""
+msgstr "Invalide URL"
 
 #: src/utils/record/place-holder.tsx:47
 msgid "IPFS"
-msgstr ""
+msgstr "IPFS"
 
 #: src/components/LanguageModal.tsx:22
 #: src/screens/HomeScreen.tsx:105
 msgid "Language"
-msgstr ""
+msgstr "Langage"
 
 #: src/screens/Profile.tsx:188
 msgid "My domains"
-msgstr ""
+msgstr "Mes domaines"
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
-msgstr ""
+msgstr "Nouveau proprietaire de {domain}.sol"
 
 #: src/components/EditPicture.tsx:181
 msgid "New picture URL"
-msgstr ""
+msgstr "Nouvelle URL de l'image"
 
 #: src/components/SearchModal.tsx:75
 #: src/screens/Profile.tsx:224
 msgid "No domain found"
-msgstr ""
+msgstr "Aucun domaine trouvé"
 
 #: src/components/SocialRecord.tsx:80
 #: src/screens/DomainView.tsx:273
 msgid "Not set"
-msgstr ""
+msgstr "Pas configuré"
 
 #: src/components/OrderSummary.tsx:41
 msgid "Order summary"
-msgstr ""
+msgstr "Résumé de commande"
 
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
-msgstr ""
+msgstr "Payer avec"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
-msgstr ""
+msgstr "Image"
 
 #: src/utils/record/place-holder.tsx:69
 msgid "POINT"
-msgstr ""
+msgstr "POINT"
 
 #: src/App.tsx:141
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 #: src/screens/Profile.tsx:162
 msgid "Profile completed: {percentage}%"
-msgstr ""
+msgstr "Profile complété: {percentage}%"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
-msgstr ""
+msgstr "Reddit"
 
 #: src/components/DiscountExplainerModal.tsx:22
 msgid "Registration discount"
-msgstr ""
+msgstr "Enregitrement en rabais"
 
 #: src/App.tsx:170
 #: src/screens/HomeScreen.tsx:92
 msgid "Search"
-msgstr ""
+msgstr "Chercher"
 
 #: src/components/SearchModal.tsx:51
 msgid "Search domains"
-msgstr ""
+msgstr "Chercher des domaines"
 
 #: src/screens/HomeScreen.tsx:78
 #: src/screens/SearchResult.tsx:69
 msgid "Search for your name.sol"
-msgstr ""
+msgstr "Chercher pour votre nom.sol"
 
 #: src/components/ProgressExplainerModal.tsx:27
 msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr ""
+msgstr "Vous voyez cette barre de progression cool en haut ? C'est votre guide personnel pour créer un profil solide et attirant. Voici comment cela fonctionne:"
 
 #: src/screens/HomeScreen.tsx:66
 msgid "Seize your online identity."
-msgstr ""
+msgstr "Saisissez votre identité en ligne."
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
-msgstr ""
+msgstr "SHDW"
 
 #: src/screens/DomainView.tsx:161
 msgid "Socials"
-msgstr ""
+msgstr "Réseaux"
 
 #: src/components/ErrorModal.tsx:12
 #: src/components/ErrorModal.tsx:20
 msgid "Something went wrong"
-msgstr ""
+msgstr "Quelque chose s'est mal passé"
 
 #: src/components/EditPicture.tsx:160
 #: src/components/EditRecordModal.tsx:195
@@ -352,66 +352,66 @@ msgstr ""
 #: src/components/FavoriteButton.tsx:59
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
-msgstr ""
+msgstr "Quelque chose s'est mal passé - Essayez de nouveau"
 
 #: src/components/DomainSizeModal.tsx:46
 #: src/screens/Cart.tsx:175
 msgid "Storage Size"
-msgstr ""
+msgstr "Taille de stockage"
 
 #: src/components/SuccessModal.tsx:20
 msgid "Success!"
-msgstr ""
+msgstr "Réussite!"
 
 #: src/components/UnavailableRow.tsx:19
 msgid "Taken"
-msgstr ""
+msgstr "Pris"
 
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
-msgstr ""
+msgstr "Telegram"
 
 #: src/components/EditRecordModal.tsx:147
 #: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
-msgstr ""
+msgstr "L'enregistrement doit être une addresse valide"
 
 #: src/components/DomainSizeModal.tsx:50
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
-msgstr ""
+msgstr "La taille de stockage déterminera la quantité maximale de données que vous pouvez stocker sur votre domaine."
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
-msgstr ""
+msgstr "Ce domaine à déjà été acheté"
 
 #: src/components/WormholeExplainerModal.tsx:13
 msgid "This domain has been bridged via Wormhole and is available on BNB"
-msgstr ""
+msgstr "Ce domaine a été transféré via Wormhole et est disponible sur BNB"
 
 #: src/components/OrderSummary.tsx:46
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: src/components/OrderSummary.tsx:49
 msgid "Total USD"
-msgstr ""
+msgstr "Total USD"
 
 #: src/screens/DomainView.tsx:215
 msgid "Transfer"
-msgstr ""
+msgstr "Transferer"
 
 #: src/components/TransferModal.tsx:76
 msgid "Transfer {domain}.sol"
-msgstr ""
+msgstr "Transferer {domain}.sol"
 
 #: src/utils/record/place-holder.tsx:61
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr ""
+msgstr "Ton <0>Name</0>. Ton <1>Power</1>."
