@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2023-06-14 17:06+1000\n"
+"POT-Creation-Date: 2023-05-29 20:08+1000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: en\n"
+"Language: kr\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -15,77 +15,77 @@ msgstr ""
 
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
-msgstr ""
+msgstr "{domain].sol a bien été ajouté en tant que favoris"
 
 #: src/components/TransferModal.tsx:63
 msgid "{domain}.sol successfully transfered!"
-msgstr ""
+msgstr "{domain}.sol a bien été transféré"
 
 #: src/screens/SearchResult.tsx:48
 msgid "{input}.sol is not a valid domain"
-msgstr ""
+msgstr "{input}.sol n'est pas un domaine valide"
 
 #: src/screens/HomeScreen.tsx:41
 msgid "{search}.sol is not a valid domain"
-msgstr ""
+msgstr "{search}.sol n'est pas un domaine valide"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr ""
+msgstr "<0>1. Domaine favoris:</0> Choisissez votre domaine favoris en cliquant sur le ❤️ à côté de cela"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
-msgstr ""
+msgstr "<0>2. Image de Profile: Ajoute une image pour nous montrer le vrai toi</0>"
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-msgstr ""
+msgstr "<0>3. Enregistrer Backpack:</0> Connectez votre Backpack username pour votre identité on-chain 🎒"
 
 #: src/components/ProgressExplainerModal.tsx:55
 msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
-msgstr ""
+msgstr "<0>4. Enregistrer Twitter:</0> Connectez Twitter pour rapidement partager sur le réseau 🐦"
 
 #: src/components/ProgressExplainerModal.tsx:62
 msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-msgstr ""
+msgstr "<0>5. Enregistrer Telegram:</0> Connectez Telegram pour des discussions communautaires en temps réel 📨"
 
 #: src/components/ProgressExplainerModal.tsx:69
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
-msgstr ""
+msgstr "<0>6. Enregistrer Discord:</0> Connectez Discord pour laisser les conversations filer 🎮"
 
 #: src/screens/DomainView.tsx:185
 msgid "Addresses"
-msgstr ""
+msgstr "Adresses"
 
 #: src/components/SuccessCheckoutModal.tsx:26
 msgid "All your domains have been purchased"
-msgstr ""
+msgstr "Tous vos domaines ont été achetés"
 
 #: src/utils/record/place-holder.tsx:49
 msgid "ARWV"
-msgstr ""
+msgstr "ARWV"
 
 #: src/components/AvailableRow.tsx:45
 msgid "Available"
-msgstr ""
+msgstr "Disponible"
 
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
-msgstr ""
+msgstr "Backpack"
 
 #: src/components/ProgressExplainerModal.tsx:23
 msgid "Boost Your Profile Journey! 🚀"
-msgstr ""
+msgstr "Boostez votre parcours de profil ! 🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
-msgstr ""
+msgstr "BSC"
 
 #: src/components/EditPicture.tsx:203
 #: src/components/EditRecordModal.tsx:264
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: src/App.tsx:180
 msgid "Cart"
