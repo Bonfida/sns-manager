@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/TokenizeModal.tsx:125
+msgid "{domain}.sol successfully {0}!"
+msgstr ""
+
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "{domain}.sol 成功设置为喜爱的域名"
@@ -28,10 +32,6 @@ msgstr "{input}.sol 不是有效的域名"
 #: src/screens/HomeScreen.tsx:41
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol 不是有效的域名"
-
-#: src/components/CreateSubdomainModal.tsx:45
-msgid "{subdomain}.sol is not a valid subdomain"
-msgstr ""
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
@@ -57,7 +57,7 @@ msgstr "<0>5. Telegram 记录：</0>连接 Telegram 进行实时社区聊天 �
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
 msgstr "<0>6. Discord 记录：</0>连接 Discord，保持对话畅通 🎮"
 
-#: src/screens/DomainView.tsx:258
+#: src/screens/DomainView.tsx:186
 msgid "Addresses"
 msgstr "地址"
 
@@ -85,15 +85,14 @@ msgstr "完善你的个人资料之旅！🚀"
 msgid "BSC"
 msgstr "BSC"
 
-#: src/components/CreateSubdomainModal.tsx:108
-#: src/components/DeleteModal.tsx:95
 #: src/components/EditPicture.tsx:203
-#: src/components/EditRecordModal.tsx:266
+#: src/components/EditRecordModal.tsx:264
+#: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "取消"
 
-#: src/App.tsx:186
+#: src/App.tsx:182
 msgid "Cart"
 msgstr "购物车"
 
@@ -102,12 +101,11 @@ msgid "Clear all"
 msgstr "清除所有"
 
 #: src/components/SuccessModal.tsx:31
-#: src/components/SuccessSubdomainModal.tsx:47
 msgid "Close"
 msgstr "关闭"
 
 #: src/components/EditPicture.tsx:193
-#: src/components/EditRecordModal.tsx:246
+#: src/components/EditRecordModal.tsx:244
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
 msgid "Confirm"
@@ -121,23 +119,9 @@ msgstr "恭喜!"
 msgid "Copied!"
 msgstr "已复制!"
 
-#: src/components/CreateSubdomainModal.tsx:96
-msgid "Create"
-msgstr ""
-
-#: src/components/CreateSubdomainModal.tsx:77
-msgid "Create a subdomain"
-msgstr ""
-
-#: src/components/DeleteModal.tsx:83
-#: src/components/EditRecordModal.tsx:256
-#: src/screens/DomainView.tsx:306
+#: src/components/EditRecordModal.tsx:254
 msgid "Delete"
 msgstr "删除"
-
-#: src/components/DeleteModal.tsx:74
-msgid "Delete {domain}.sol"
-msgstr ""
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -148,7 +132,7 @@ msgid "Discount"
 msgstr "折扣"
 
 #: src/screens/Cart.tsx:148
-#: src/screens/Profile.tsx:203
+#: src/screens/Profile.tsx:188
 msgid "Domains"
 msgstr "域名"
 
@@ -156,7 +140,7 @@ msgstr "域名"
 msgid "Edit"
 msgstr "编辑"
 
-#: src/components/EditRecordModal.tsx:231
+#: src/components/EditRecordModal.tsx:229
 msgid "Edit {0} record"
 msgstr "编辑{0}记录"
 
@@ -167,10 +151,6 @@ msgstr "编辑图片"
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
 msgstr "电子邮件"
-
-#: src/components/CreateSubdomainModal.tsx:81
-msgid "Enter subdomain"
-msgstr ""
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -244,7 +224,7 @@ msgstr "Github"
 msgid "Go to Profile"
 msgstr "前往个人账户"
 
-#: src/App.tsx:157
+#: src/App.tsx:153
 msgid "Home"
 msgstr "主页"
 
@@ -256,20 +236,20 @@ msgstr "使用 FIDA 注册域名可以享受 5% 的折扣!"
 msgid "Injective"
 msgstr "Injective"
 
-#: src/components/EditRecordModal.tsx:79
+#: src/components/EditRecordModal.tsx:77
 msgid "Invalid Arweave record"
 msgstr "Arweave 记录无效"
 
-#: src/components/EditRecordModal.tsx:85
+#: src/components/EditRecordModal.tsx:83
 msgid "Invalid BSC address"
 msgstr "BSC 地址无效"
 
-#: src/components/EditRecordModal.tsx:73
+#: src/components/EditRecordModal.tsx:71
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
 
 #: src/components/EditPicture.tsx:64
-#: src/components/EditRecordModal.tsx:67
+#: src/components/EditRecordModal.tsx:65
 msgid "Invalid URL"
 msgstr "网址无效"
 
@@ -282,13 +262,9 @@ msgstr "IPFS"
 msgid "Language"
 msgstr "语言"
 
-#: src/screens/Profile.tsx:203
+#: src/screens/Profile.tsx:188
 msgid "My domains"
 msgstr "我的域名"
-
-#: src/screens/Profile.tsx:248
-msgid "My subdomains"
-msgstr ""
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
@@ -299,20 +275,12 @@ msgid "New picture URL"
 msgstr "新图片网址"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile.tsx:239
+#: src/screens/Profile.tsx:224
 msgid "No domain found"
 msgstr "未找到域名"
 
-#: src/screens/Profile.tsx:266
-msgid "No subdomain found"
-msgstr ""
-
-#: src/screens/DomainView.tsx:209
-msgid "No subdomains found"
-msgstr ""
-
 #: src/components/SocialRecord.tsx:80
-#: src/screens/DomainView.tsx:366
+#: src/screens/DomainView.tsx:294
 msgid "Not set"
 msgstr "未设置"
 
@@ -332,11 +300,11 @@ msgstr "图片"
 msgid "POINT"
 msgstr "积分"
 
-#: src/App.tsx:147
+#: src/App.tsx:143
 msgid "Profile"
 msgstr "个人账户"
 
-#: src/screens/Profile.tsx:177
+#: src/screens/Profile.tsx:162
 msgid "Profile completed: {percentage}%"
 msgstr "个人资料完成进度：{percentage}%"
 
@@ -348,7 +316,7 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "注册折扣"
 
-#: src/App.tsx:176
+#: src/App.tsx:172
 #: src/screens/HomeScreen.tsx:92
 msgid "Search"
 msgstr "搜索"
@@ -374,7 +342,7 @@ msgstr "把握你的在线身份。"
 msgid "SHDW"
 msgstr "SHDW"
 
-#: src/screens/DomainView.tsx:220
+#: src/screens/DomainView.tsx:162
 msgid "Socials"
 msgstr "社交媒体"
 
@@ -383,12 +351,11 @@ msgstr "社交媒体"
 msgid "Something went wrong"
 msgstr "问题出现了"
 
-#: src/components/CreateSubdomainModal.tsx:69
-#: src/components/DeleteModal.tsx:66
 #: src/components/EditPicture.tsx:160
-#: src/components/EditRecordModal.tsx:197
-#: src/components/EditRecordModal.tsx:223
+#: src/components/EditRecordModal.tsx:195
+#: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59
+#: src/components/TokenizeModal.tsx:137
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "问题出现了，请重试"
@@ -398,21 +365,7 @@ msgstr "问题出现了，请重试"
 msgid "Storage Size"
 msgstr "存储容量"
 
-#: src/components/DeleteModal.tsx:52
-msgid "subdomain {domain}.sol successfully deleted!"
-msgstr ""
-
-#: src/components/CreateSubdomainModal.tsx:58
-msgid "Subdomain {subdomain}.sol successfully created!"
-msgstr ""
-
-#: src/screens/DomainView.tsx:173
-#: src/screens/Profile.tsx:248
-msgid "Subdomains"
-msgstr ""
-
 #: src/components/SuccessModal.tsx:20
-#: src/components/SuccessSubdomainModal.tsx:25
 msgid "Success!"
 msgstr "成功！"
 
@@ -424,8 +377,8 @@ msgstr "已被使用"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/EditRecordModal.tsx:149
-#: src/components/EditRecordModal.tsx:156
+#: src/components/EditRecordModal.tsx:147
+#: src/components/EditRecordModal.tsx:154
 msgid "The record must be a valid wallet address"
 msgstr "记录必须是有效的钱包地址"
 
@@ -449,7 +402,7 @@ msgstr "总计"
 msgid "Total USD"
 msgstr "总计美元"
 
-#: src/screens/DomainView.tsx:289
+#: src/screens/DomainView.tsx:216
 msgid "Transfer"
 msgstr "转移"
 
@@ -461,12 +414,25 @@ msgstr "转移 {domain}.sol"
 msgid "Twitter"
 msgstr "Twitter"
 
+#: src/components/TokenizeModal.tsx:145
+#: src/components/TokenizeModal.tsx:154
+msgid "Unwrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Unwrap NFT"
+msgstr ""
+
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
 msgstr "网址"
 
-#: src/components/SuccessSubdomainModal.tsx:39
-msgid "View subdomain"
+#: src/components/TokenizeModal.tsx:154
+msgid "Wrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Wrap domain into NFT"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:60

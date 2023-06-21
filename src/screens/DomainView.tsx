@@ -27,7 +27,7 @@ import { Screen } from "../components/Screen";
 import { abbreviate } from "../utils/abbreviate";
 import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
-import { Trans } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 import { useSubdomains } from "../hooks/useSubdomains";
 import { SubdomainRow } from "../components/SubdomainRow";
@@ -80,9 +80,11 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const navigation = useNavigation<profileScreenProp>();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
+
   const isSub = domain?.split(".").length === 2;
   const hasSubdomain =
     subdomains.result !== undefined && subdomains.result.length !== 0;
+  const isTokenized = domainInfo.result?.isTokenized;
 
   const loading =
     socialRecords.loading ||
@@ -308,6 +310,26 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 </TouchableOpacity>
               )}
             </View>
+          )}
+
+          {/* wrap/unwrap button */}
+          {isOwner && (
+            <TouchableOpacity
+              onPress={() =>
+                openModal("TokenizeModal", {
+                  domain,
+                  isTokenized,
+                  refresh: async () => {
+                    await domainInfo.execute();
+                  },
+                })
+              }
+              style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
+            >
+              <Text style={tw`text-white font-bold text-xl mr-3`}>
+                {isTokenized ? t`Unwrap NFT` : t`Wrap domain into NFT`}
+              </Text>
+            </TouchableOpacity>
           )}
         </View>
       </ScrollView>
