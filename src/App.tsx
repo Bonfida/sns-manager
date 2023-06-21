@@ -46,6 +46,7 @@ import {
   useLanguageContext,
 } from "./contexts/LanguageContext";
 import { LanguageModal } from "./components/LanguageModal";
+import { TokenizeModal } from "./components/TokenizeModal";
 
 const xnftjson = require("../xnft.json");
 
@@ -66,6 +67,7 @@ const modalConfig = {
   DiscountExplainerModal: DiscountExplainerModal,
   DomainSizeModal: DomainSizeModal,
   LanguageModal: LanguageModal,
+  TokenizeModal: TokenizeModal,
 };
 
 const stackModal = createModalStack(modalConfig);
