@@ -39,6 +39,9 @@ import { useWallet } from "./hooks/useWallet";
 import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
+import { DeleteModal } from "./components/DeleteModal";
+import { CreateSubdomainModal } from "./components/CreateSubdomainModal";
+import { SuccessSubdomainModal } from "./components/SuccessSubdomainModal";
 import { t } from "@lingui/macro";
 import { i18n } from "@lingui/core";
 import {
@@ -60,6 +63,9 @@ const modalConfig = {
   Error: ErrorModal,
   Success: SuccessModal,
   Transfer: TransferModal,
+  Delete: DeleteModal,
+  CreateSubdomain: CreateSubdomainModal,
+  SuccessSubdomainModal: SuccessSubdomainModal,
   WormholeExplainer: WormholeExplainerModal,
   EditPicture: EditPicture,
   ProgressExplainerModal: ProgressExplainerModal,

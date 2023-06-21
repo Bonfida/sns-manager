@@ -18,7 +18,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import tw from "../utils/tailwind";
-import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import { TransactionInstruction } from "@solana/web3.js";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Buffer } from "buffer";
@@ -33,6 +33,7 @@ import {
 import { sendTx } from "../utils/send-tx";
 import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
+import { ROOT_DOMAIN } from "@bonfida/name-offers";
 
 export const EditRecordModal = ({
   modal: { closeModal, getParam },
@@ -55,7 +56,8 @@ export const EditRecordModal = ({
     try {
       setLoading(true);
       const ixs: TransactionInstruction[] = [];
-      const { pubkey, parent } = getDomainKeySync(record + "." + domain, true);
+      let { pubkey, isSub } = getDomainKeySync(record + "." + domain, true);
+      const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
 
       if (record === Record.Url) {
         try {
