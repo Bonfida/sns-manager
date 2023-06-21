@@ -5,10 +5,13 @@ export const trimTld = (x: string) => {
   return x;
 };
 
+export const countOccurences = (x: string, char: string): number => {
+  return x.split(char).length - 1;
+};
+
 export const validate = (x: string): boolean => {
   x = trimTld(x);
-  // Does not support subs for now
-  if (x.includes(".")) {
+  if (countOccurences(x, ".") > 1) {
     return false;
   }
   if (x !== x.toLowerCase()) {

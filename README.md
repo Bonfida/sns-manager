@@ -25,9 +25,7 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 <div align="center">
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-2)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 </div>
@@ -53,13 +51,13 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 
 | Feature             | Description                                                       | In progress | Completed | Bounty | Contributor                             |
 | ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ | --------------------------------------- |
-| UI/UX Redesign      | New UI/UX design for the app                                      | ❌          | ❌        | ✅     |                                         |
-| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ❌        | ✅     |                                         |
-| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ❌        | ✅     |                                         |
-| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ❌        | ❌     |                                         |
+| UI/UX Redesign      | New UI/UX design for the app                                      | ✅          | ❌        | ✅     |                                         |
+| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ✅          | ❌        | ✅     |                                         |
 | Turkish translation | Translate the app in Turkish                                      | ❌          | ❌        | ✅     |                                         |
 | Chinese translation | Translate the app in Chinese                                      | ❌          | ✅        | ✅     | [2Tako2](https://github.com/2Tako2)     |
 | Korean translation  | Translate the app in Korean                                       | ❌          | ✅        | ✅     | [mjLabrys](https://github.com/mjLabrys) |
+| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ✅        | ❌     | [W](https://github.com/wosleyv)         |
+| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ✅        | ✅     | [W](https://github.com/wosleyv)         |
 
 <br />
 <h2 align="center">Development and Build Commands 💻</h2>
@@ -115,6 +113,7 @@ Big thanks to our dedicated contributors, we are thrilled to recognize their con
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://mj-portfolio-ipfs.vercel.app/"><img src="https://avatars.githubusercontent.com/u/103424726?v=4?s=100" width="100px;" alt="MJ Lee"/><br /><sub><b>MJ Lee</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=mjLabrys" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/2Tako2"><img src="https://avatars.githubusercontent.com/u/54200396?v=4?s=100" width="100px;" alt="Felix"/><br /><sub><b>Felix</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=2Tako2" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wosleyv"><img src="https://avatars.githubusercontent.com/u/51493181?v=4?s=100" width="100px;" alt="W"/><br /><sub><b>W</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=wosleyv" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

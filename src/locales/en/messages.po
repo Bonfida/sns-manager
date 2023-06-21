@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/TokenizeModal.tsx:125
+msgid "{domain}.sol successfully {0}!"
+msgstr ""
+
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr ""
@@ -53,7 +57,7 @@ msgstr ""
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
 msgstr ""
 
-#: src/screens/DomainView.tsx:185
+#: src/screens/DomainView.tsx:186
 msgid "Addresses"
 msgstr ""
 
@@ -83,11 +87,12 @@ msgstr ""
 
 #: src/components/EditPicture.tsx:203
 #: src/components/EditRecordModal.tsx:264
+#: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:180
+#: src/App.tsx:182
 msgid "Cart"
 msgstr ""
 
@@ -219,7 +224,7 @@ msgstr ""
 msgid "Go to Profile"
 msgstr ""
 
-#: src/App.tsx:151
+#: src/App.tsx:153
 msgid "Home"
 msgstr ""
 
@@ -275,7 +280,7 @@ msgid "No domain found"
 msgstr ""
 
 #: src/components/SocialRecord.tsx:80
-#: src/screens/DomainView.tsx:273
+#: src/screens/DomainView.tsx:294
 msgid "Not set"
 msgstr ""
 
@@ -295,7 +300,7 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:141
+#: src/App.tsx:143
 msgid "Profile"
 msgstr ""
 
@@ -311,7 +316,7 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/App.tsx:170
+#: src/App.tsx:172
 #: src/screens/HomeScreen.tsx:92
 msgid "Search"
 msgstr ""
@@ -337,7 +342,7 @@ msgstr ""
 msgid "SHDW"
 msgstr ""
 
-#: src/screens/DomainView.tsx:161
+#: src/screens/DomainView.tsx:162
 msgid "Socials"
 msgstr ""
 
@@ -350,6 +355,7 @@ msgstr ""
 #: src/components/EditRecordModal.tsx:195
 #: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59
+#: src/components/TokenizeModal.tsx:137
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr ""
@@ -396,7 +402,7 @@ msgstr ""
 msgid "Total USD"
 msgstr ""
 
-#: src/screens/DomainView.tsx:215
+#: src/screens/DomainView.tsx:216
 msgid "Transfer"
 msgstr ""
 
@@ -408,8 +414,25 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
+#: src/components/TokenizeModal.tsx:145
+#: src/components/TokenizeModal.tsx:154
+msgid "Unwrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Unwrap NFT"
+msgstr ""
+
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
+msgstr ""
+
+#: src/components/TokenizeModal.tsx:154
+msgid "Wrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Wrap domain into NFT"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:60
