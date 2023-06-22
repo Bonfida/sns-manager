@@ -45,13 +45,12 @@ export const SocialRecordCard = ({
   isOwner,
 }: {
   domain: string;
-  currentValue?: NameRegistryState;
+  currentValue?: string;
   record: SocialRecord;
   refresh: () => Promise<void>;
   isOwner?: boolean;
 }) => {
   const { openModal } = useModal();
-  const des = currentValue?.data?.toString("ascii");
 
   return (
     <View
@@ -66,14 +65,14 @@ export const SocialRecordCard = ({
           <Text style={tw`font-bold text-blue-900 capitalize`}>
             {getTranslatedName(record)}
           </Text>
-          {des ? (
+          {currentValue ? (
             <TouchableOpacity
               onPress={() => {
-                Clipboard.setString(des);
+                Clipboard.setString(currentValue);
                 openModal("Success", { msg: t`Copied!` });
               }}
             >
-              <Text style={tw`text-sm font-bold`}>{des}</Text>
+              <Text style={tw`text-sm font-bold`}>{currentValue}</Text>
             </TouchableOpacity>
           ) : (
             <Text style={tw`text-sm font-bold text-blue-grey-400`}>
@@ -90,7 +89,7 @@ export const SocialRecordCard = ({
             onPress={() =>
               openModal("EditRecordModal", {
                 record,
-                currentValue: des,
+                currentValue: currentValue,
                 domain,
                 refresh,
               })

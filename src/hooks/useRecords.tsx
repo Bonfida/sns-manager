@@ -48,7 +48,11 @@ export const ADDRESS_RECORDS: AddressRecord[] = [
 
 export const useRecords = (domain: string | undefined, records: Record[]) => {
   const connection = useSolanaConnection();
-  const res = snsHooks.useRecords(connection!, domain || "", records);
+  const res = snsHooks.useDeserializedRecords(
+    connection!,
+    domain || "",
+    records
+  );
   const { result, ...rest } = res;
 
   return {
@@ -69,6 +73,6 @@ export const useAddressRecords = (domain: string) => {
 
 export const usePicRecord = (domain: string | undefined) => {
   const { result, loading, execute } = useRecords(domain, [Record.Pic]);
-  const des = result ? result[0].value?.data?.toString("utf-8") : undefined;
+  const des = result ? result[0] : undefined;
   return { pic: des, loading, execute };
 };
