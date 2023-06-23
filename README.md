@@ -25,7 +25,7 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 <div align="center">
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 </div>
@@ -114,6 +114,7 @@ Big thanks to our dedicated contributors, we are thrilled to recognize their con
       <td align="center" valign="top" width="14.28%"><a href="https://mj-portfolio-ipfs.vercel.app/"><img src="https://avatars.githubusercontent.com/u/103424726?v=4?s=100" width="100px;" alt="MJ Lee"/><br /><sub><b>MJ Lee</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=mjLabrys" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/2Tako2"><img src="https://avatars.githubusercontent.com/u/54200396?v=4?s=100" width="100px;" alt="Felix"/><br /><sub><b>Felix</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=2Tako2" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/wosleyv"><img src="https://avatars.githubusercontent.com/u/51493181?v=4?s=100" width="100px;" alt="W"/><br /><sub><b>W</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=wosleyv" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/sanjaysargam/"><img src="https://avatars.githubusercontent.com/u/65113071?v=4?s=100" width="100px;" alt="Sanjay Sargam"/><br /><sub><b>Sanjay Sargam</b></sub></a><br /><a href="https://github.com/Bonfida/sns-manager/commits?author=SanjaySargam" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
