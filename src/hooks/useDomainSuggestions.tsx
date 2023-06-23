@@ -4,7 +4,7 @@ import { generateRandom } from "../utils/suggestions";
 import { getDomainsResult } from "./useSearch";
 import { useSolanaConnection } from "./xnft-hooks";
 
-const URL = "https://sns-api.bonfida.com/v2/suggestion";
+const URL = "https://sns-api.bonfida.com/v2/suggestion/search";
 
 export const useDomainSuggestions = (domain: string) => {
   const connection = useSolanaConnection();
