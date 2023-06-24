@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import tw from "../utils/tailwind";
 import { useModal } from "react-native-modalfy";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import {
   Record,
   getDomainKeySync,
@@ -31,7 +31,7 @@ import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
 import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
-import { removePinFromIPFS, uploadToIPFS } from "../utils/ipfs";
+import { uploadToIPFS } from "../utils/ipfs";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -165,9 +165,12 @@ export const EditPicture = ({
 
   const handlePickImage = async () => {
     try {
-      let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      let permissionResult =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
-        openModal("Error", { msg: t`Permission to access photo album is required` });
+        openModal("Error", {
+          msg: t`Permission to access photo album is required`,
+        });
         return;
       }
 
@@ -180,17 +183,19 @@ export const EditPicture = ({
 
       if (!result.canceled) {
         setLoading(true);
-        if (pic) {
-          const hash = pic.split("/ipfs/")?.[1] || undefined;
-          await removePinFromIPFS(hash)
+        const asset = result.assets?.[0];
+        if (!asset) {
+          throw new Error("Failed to get image asset");
         }
-        const asset = result.assets?.[0]
-        if (!asset) { throw new Error("Failed to get image asset"); }
         const filename = `${domain}-${+Date.now()}.jpg`;
-        const image = asset.uri.startsWith('data:image') ? asset.uri : asset.base64 || undefined
-        if (!image) { throw new Error("Failed to get image"); }
+        const image = asset.uri.startsWith("data:image")
+          ? asset.uri
+          : asset.base64 || undefined;
+        if (!image) {
+          throw new Error("Failed to get image");
+        }
 
-        const res = await uploadToIPFS(image, filename);
+        const res = await uploadToIPFS(image);
         if (!res?.hash) {
           throw new Error("Failed to upload to IPFS");
         }
@@ -206,7 +211,7 @@ export const EditPicture = ({
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <WrapModal closeModal={closeModal}>
@@ -236,7 +241,9 @@ export const EditPicture = ({
             onPress={connected ? handlePickImage : () => setVisible(true)}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
-            <Text style={tw`font-bold text-white`}><Trans>Choose a picture</Trans></Text>
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Choose a picture</Trans>
+            </Text>
             {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
           </TouchableOpacity>
         </View>

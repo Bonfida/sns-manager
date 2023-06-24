@@ -1,42 +1,22 @@
 import axios from "axios";
- import { Buffer } from 'buffer'
-
-const INFURA_IPFS_URL_ENDPOINT = "https://<DEDICATED_GATEWAY_SUBDOMAIN>.infura-ipfs.io/ipfs/"
-const INFURA_IPFS_API_KEY = "<INFURA_API_KEY>"
-const INFURA_IPFS_API_SECRET = "<INFURA_API_KEY_SECRET>"
-const INFURA_IPFS_AUTH_TOKEN = `BASIC ${Buffer.from(`${INFURA_IPFS_API_KEY}:${INFURA_IPFS_API_SECRET}`).toString("base64")}`
-const INFURA_IPFS_API_ENDPOINT = "https://ipfs.infura.io:5001"
+import { Buffer } from "buffer";
 
 export interface Response {
-  Hash: string;
-  Name: string;
-  Size: string;
+  hash: string;
 }
 
-export const uploadToIPFS = async (image: string, filename: string = '') => {
+export const uploadToIPFS = async (image: string) => {
   if (!image) return;
-  const formData = new FormData();
-  const blob = await fetch(image).then(res => res.blob())
-  formData.append("file", blob, filename);
+  const blob = await (await fetch(image)).arrayBuffer();
 
   const { data }: { data: Response } = await axios.post(
-    `${INFURA_IPFS_API_ENDPOINT}/api/v0/add`,
-    formData,
-    {headers: {Authorization: INFURA_IPFS_AUTH_TOKEN}}
+    "https://ipfs-proxy.bonfida.com/v2/ipfs/add",
+    Buffer.from(blob),
+    { headers: { "Content-Type": "application/octet-stream" } }
   );
 
-  return {hash: data.Hash, url: `${INFURA_IPFS_URL_ENDPOINT}${data.Hash}`}
+  return {
+    hash: data.hash,
+    url: `https://cloudflare-ipfs.com/ipfs/${data.hash}`,
+  };
 };
-
-export const removePinFromIPFS = async (hash: string | undefined) => {
-  if(!hash) return;
-  try {
-    await axios.post(
-      `${INFURA_IPFS_API_ENDPOINT}/api/v0/pin/rm?arg=${hash}`,
-      {},
-      {headers: {Authorization: INFURA_IPFS_AUTH_TOKEN}}
-    );
-  } catch {
-    console.log("Failed to remove pin from IPFS", hash)
-  }
-}
