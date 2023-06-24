@@ -22,6 +22,7 @@ import {
 } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import { getMediaLibraryPermissionsAsync, launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 import { removeZeroRight } from "../utils/record/zero";
 import { sendTx } from "../utils/send-tx";
 import { WrapModal } from "./WrapModal";
@@ -45,6 +46,7 @@ export const EditPicture = ({
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
   const { publicKey, signTransaction, setVisible, connected } = useWallet();
+  const [isDisplayedPictureURL, setIsDisplayedPictureURL] = useState(true);
 
   const handle = async () => {
     if (!pic) return;
@@ -157,7 +159,29 @@ export const EditPicture = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      openModal('Error', { msg: t`Something went wrong - try again` });
+    }
+  };
+
+  const uploadProfilePicture = async () => {
+    const { status } = await getMediaLibraryPermissionsAsync();
+
+    if (status !== 'granted') {
+      return alert(
+        "Please grant camera roll permissions inside your system's settings"
+      );
+    } else {
+      const image = await launchImageLibraryAsync({
+        mediaTypes: MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!image.canceled) {
+        setPic(image.assets![0].uri);
+        setIsDisplayedPictureURL(false);
+      }
     }
   };
 
@@ -173,16 +197,28 @@ export const EditPicture = ({
             source={
               pic || currentPic
                 ? { uri: pic || currentPic }
-                : require("../../assets/default-pic.png")
+                : require('../../assets/default-pic.png')
             }
           />
         </View>
-        <TextInput
-          placeholder={t`New picture URL`}
-          onChangeText={(text) => setPic(text)}
-          value={pic}
-          style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md my-5 font-bold`}
-        />
+        <View style={tw`flex items-center justify-center my-2`}>
+          <TouchableOpacity
+            style={tw`bg-blue-500 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
+            onPress={() => uploadProfilePicture()}
+          >
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Upload profile picture</Trans>
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {isDisplayedPictureURL && (
+          <TextInput
+            placeholder={t`New picture URL`}
+            onChangeText={(text) => setPic(text)}
+            value={pic}
+            style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md my-5 font-bold`}
+          />
+        )}
         <View style={tw`flex flex-col items-center`}>
           <TouchableOpacity
             disabled={loading}
