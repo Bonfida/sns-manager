@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/TokenizeModal.tsx:125
+msgid "{domain}.sol successfully {0}!"
+msgstr ""
+
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "{domain}.sol이 즐겨찾기 도메인 이름으로 설정되었습니다."
@@ -53,7 +57,7 @@ msgstr "<0>5. 텔레그램 기록:</0> 실시간 커뮤니티 채팅을 위해 �
 msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
 msgstr "<0>6. 디스코드 기록:</0> 디스코드를 연동하고 순조로운 대화를 즐기세요 🎮"
 
-#: src/screens/DomainView.tsx:185
+#: src/screens/DomainView.tsx:186
 msgid "Addresses"
 msgstr "주소들"
 
@@ -83,11 +87,12 @@ msgstr "바이낸스 스마트 체인(BSC)"
 
 #: src/components/EditPicture.tsx:260
 #: src/components/EditRecordModal.tsx:264
+#: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:180
+#: src/App.tsx:182
 msgid "Cart"
 msgstr "장바구니"
 
@@ -223,7 +228,7 @@ msgstr "깃허브"
 msgid "Go to Profile"
 msgstr "프로필로 가기"
 
-#: src/App.tsx:151
+#: src/App.tsx:153
 msgid "Home"
 msgstr "홈"
 
@@ -279,7 +284,7 @@ msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
 #: src/components/SocialRecord.tsx:80
-#: src/screens/DomainView.tsx:273
+#: src/screens/DomainView.tsx:294
 msgid "Not set"
 msgstr "설정되지 않음"
 
@@ -303,7 +308,7 @@ msgstr "사진"
 msgid "POINT"
 msgstr "포인트"
 
-#: src/App.tsx:141
+#: src/App.tsx:143
 msgid "Profile"
 msgstr "프로필"
 
@@ -319,7 +324,7 @@ msgstr "레딧"
 msgid "Registration discount"
 msgstr "등록 할인"
 
-#: src/App.tsx:170
+#: src/App.tsx:172
 #: src/screens/HomeScreen.tsx:92
 msgid "Search"
 msgstr "검색"
@@ -345,7 +350,7 @@ msgstr "당신의 온라인 신원을 확보하세요."
 msgid "SHDW"
 msgstr "섀도우 드라이브"
 
-#: src/screens/DomainView.tsx:161
+#: src/screens/DomainView.tsx:162
 msgid "Socials"
 msgstr "소셜"
 
@@ -359,6 +364,7 @@ msgstr "문제가 발생했습니다"
 #: src/components/EditRecordModal.tsx:195
 #: src/components/EditRecordModal.tsx:221
 #: src/components/FavoriteButton.tsx:59
+#: src/components/TokenizeModal.tsx:137
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "문제가 발생했습니다 - 다시 시도하세요"
@@ -405,7 +411,7 @@ msgstr "합계"
 msgid "Total USD"
 msgstr "USD 합계"
 
-#: src/screens/DomainView.tsx:215
+#: src/screens/DomainView.tsx:216
 msgid "Transfer"
 msgstr "전송"
 
@@ -417,9 +423,26 @@ msgstr "{domain}.sol 전송"
 msgid "Twitter"
 msgstr "트위터"
 
+#: src/components/TokenizeModal.tsx:145
+#: src/components/TokenizeModal.tsx:154
+msgid "Unwrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Unwrap NFT"
+msgstr ""
+
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
 msgstr "URL"
+
+#: src/components/TokenizeModal.tsx:154
+msgid "Wrap"
+msgstr ""
+
+#: src/screens/DomainView.tsx:236
+msgid "Wrap domain into NFT"
+msgstr ""
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."

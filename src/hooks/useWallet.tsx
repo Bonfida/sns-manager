@@ -15,6 +15,10 @@ function signTransaction<T extends Tx>(transaction: T): Promise<T> {
   return window.xnft.solana.signTransaction(transaction);
 }
 
+function signMessage(message: Uint8Array): Promise<Uint8Array> {
+  return window.xnft.solana.signMessage(message);
+}
+
 export const useWalletXnft = () => {
   const publicKey = usePublicKeys().get("solana");
   const didLaunch = useDidLaunch();
@@ -27,6 +31,7 @@ export const useWalletXnft = () => {
       signAllTransactions,
       setVisible: (x: boolean) => console.log("No need for setVisible"),
       visible: false,
+      signMessage,
     };
   }, [didLaunch, publicKey]);
 

@@ -24,6 +24,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "wosleyv",
+      "name": "W",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51493181?v=4",
+      "profile": "https://github.com/wosleyv",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "SanjaySargam",
+      "name": "Sanjay Sargam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65113071?v=4",
+      "profile": "https://www.linkedin.com/in/sanjaysargam/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

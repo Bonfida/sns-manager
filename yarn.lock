@@ -1362,49 +1362,37 @@
     bs58 "4.0.1"
     buffer "^6.0.3"
 
-"@bonfida/sns-react@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@bonfida/sns-react/-/sns-react-1.0.2.tgz"
-  integrity sha512-ipt7xJf9hba4kHYhGl39LCTd0yiqzmYgscZkPLvEtlzdwd7kp31CexCZVB0lM/hBlD3vYkEVQVQlqr02NOPjuA==
+"@bonfida/sns-react@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@bonfida/sns-react/-/sns-react-1.1.0.tgz#b3a979a7ba6be71ab46b656fdf0d3f3cfe430173"
+  integrity sha512-axBNsXL//HXa9Iwj7JpoQ9VHHlU0m/6kB/uwZ2V3LD048h0UwJAoiL4ZJ7S92gcn1ZCUHu+KmDFBQksnzqZviA==
   dependencies:
-    "@bonfida/spl-name-service" "^0.2.9"
+    "@bonfida/spl-name-service" "^1.0.1"
     "@solana/web3.js" "^1.73.3"
     react-async-hook "^4.0.0"
 
-"@bonfida/spl-name-service@0.2.11":
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/@bonfida/spl-name-service/-/spl-name-service-0.2.11.tgz#2104a2e7ef38dd3377ac332c6227cdc83d8029d5"
-  integrity sha512-ik6qsV8Y6WxChkWDof7U0rtHJW4tsUjabUxUA7TtTukfwvkg7UVFkTxtdspIyE1nNwc99RU3n1rcX/F9PckS3A==
+"@bonfida/spl-name-service@1.0.1", "@bonfida/spl-name-service@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@bonfida/spl-name-service/-/spl-name-service-1.0.1.tgz#0b4fa75c207b8b8b1ae1e6ade31daaa54c77f889"
+  integrity sha512-097egg7ErQadywGY5Mhvhg0haihz8EBhXgnMPesFRU+p7H2HVwgu+Kq8YSLbcNPbLIL1oaHAgL4FdOmNGxOnmQ==
   dependencies:
     "@bonfida/name-tokenizer" "0.0.9"
     "@ethersproject/sha2" "^5.7.0"
     "@pythnetwork/client" "2.17.0"
     "@solana/buffer-layout" "^4.0.1"
     "@solana/spl-token" "0.3.7 "
+    bech32-buffer "^0.2.1"
     bn.js "^5.2.1"
     borsh "^0.7.0"
     buffer "^6.0.3"
+    ipaddr.js "^2.1.0"
+    punycode "^2.3.0"
     tweetnacl "^1.0.3"
 
 "@bonfida/spl-name-service@^0.2.7", "@bonfida/spl-name-service@^0.2.8":
   version "0.2.8"
   resolved "https://registry.npmjs.org/@bonfida/spl-name-service/-/spl-name-service-0.2.8.tgz"
   integrity sha512-OP5ylBIJerNMqDG/TrMG2jwHs3yOpLeS/hRAAk9XbFKESiP0BcFh22sTq2tVU/tarOoCMTlAqiAnvFz/bFsK7Q==
-  dependencies:
-    "@bonfida/name-tokenizer" "0.0.9"
-    "@ethersproject/sha2" "^5.7.0"
-    "@pythnetwork/client" "2.17.0"
-    "@solana/buffer-layout" "^4.0.1"
-    "@solana/spl-token" "0.3.7 "
-    bn.js "^5.2.1"
-    borsh "^0.7.0"
-    buffer "^6.0.3"
-    tweetnacl "^1.0.3"
-
-"@bonfida/spl-name-service@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.npmjs.org/@bonfida/spl-name-service/-/spl-name-service-0.2.9.tgz"
-  integrity sha512-dwCFW8lwAcdxs/iQp6wMLqivaBKDADBNT7y3SokrGgWp/uikTqkp/3WhDRBt6d7NpZPBvmRXH8+U/IU2tPK/gg==
   dependencies:
     "@bonfida/name-tokenizer" "0.0.9"
     "@ethersproject/sha2" "^5.7.0"
@@ -4637,6 +4625,11 @@ batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   integrity sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==
+
+bech32-buffer@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/bech32-buffer/-/bech32-buffer-0.2.1.tgz#8106f2f51bcb2ba1d9fb7718905c3042c5be2fcd"
+  integrity sha512-fCG1TyZuCN48Sdw97p/IR39fvqpFlWDVpG7qnuU1Uc3+Xtc/0uqAp8U7bMW/bGuVF5CcNVIXwxQsWwUr6un6FQ==
 
 bech32@1.1.4:
   version "1.1.4"
@@ -8389,6 +8382,11 @@ ipaddr.js@^2.0.1:
   resolved "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-2.0.1.tgz"
   integrity sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng==
 
+ipaddr.js@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-2.1.0.tgz#2119bc447ff8c257753b196fc5f1ce08a4cdf39f"
+  integrity sha512-LlbxQ7xKzfBusov6UMi4MFpEg0m+mAm9xyNGEduwXMEDuf4WfzB/RZwMVYEd7IKGvh4IUkEXYxtAVu9T3OelJQ==
+
 is-accessor-descriptor@^0.1.6:
   version "0.1.6"
   resolved "https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz"
@@ -11458,7 +11456,7 @@ punycode@^1.4.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-1.4.1.tgz"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
 
-punycode@^2.1.0:
+punycode@^2.1.0, punycode@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==

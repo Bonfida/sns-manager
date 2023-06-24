@@ -13,6 +13,11 @@ export const LanguageModal = ({
 }) => {
   const { setLanguage, currentLanguage } = useLanguageContext();
 
+  const handleLanguageSelection = (locale: string) => {
+    setLanguage(locale);
+    closeModal();
+  };
+
   return (
     <WrapModal closeModal={closeModal}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
@@ -31,7 +36,7 @@ export const LanguageModal = ({
               >
                 <TouchableOpacity
                   style={tw`flex flex-row items-center`}
-                  onPress={() => setLanguage(e.locale)}
+                  onPress={() => handleLanguageSelection(e.locale)}
                 >
                   <View
                     style={
