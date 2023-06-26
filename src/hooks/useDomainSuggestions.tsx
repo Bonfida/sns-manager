@@ -9,6 +9,7 @@ const URL = "https://sns-api.bonfida.com/v2/suggestion/search";
 export const useDomainSuggestions = (domain: string) => {
   const connection = useSolanaConnection();
   const fn = async () => {
+    if (!domain || domain === "") return;
     const { data }: { data: string[] } = await axios.get(`${URL}/${domain}`);
     const splitted = domain.split(".");
     const isSub = splitted.length === 2;

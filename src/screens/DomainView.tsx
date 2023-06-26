@@ -156,7 +156,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <TouchableOpacity
                 onPress={() => {
                   Clipboard.setString(domainInfo.result?.owner!);
-                  openModal("Success", { msg: "Copied!" });
+                  openModal("Success", { msg: t`Copied!` });
                 }}
               >
                 <Feather name="copy" size={12} color="black" />
@@ -375,7 +375,7 @@ const RenderRecord = ({
             <>
               <TouchableOpacity
                 onPress={() => {
-                  openModal("Success", { msg: "Copied!" });
+                  openModal("Success", { msg: t`Copied!` });
                   Clipboard.setString(value);
                 }}
               >
