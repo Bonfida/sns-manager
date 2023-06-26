@@ -424,7 +424,7 @@ msgstr "Sous-domaine {domain}.sol supprimé avec succès !"
 
 #: src/components/CreateSubdomainModal.tsx:58
 msgid "Subdomain {subdomain}.sol successfully created!"
-msgstr "Sous-domaine {domain}.sol créé avec succès !"
+msgstr "Sous-domaine {subdomain}.sol créé avec succès !"
 
 #: src/screens/DomainView.tsx:175
 #: src/screens/Profile.tsx:248

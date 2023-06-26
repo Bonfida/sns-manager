@@ -13,7 +13,7 @@ import {
   useAddressRecords,
   useSocialRecords,
 } from "../hooks/useRecords";
-import { NameRegistryState, Record } from "@bonfida/spl-name-service";
+import { Record } from "@bonfida/spl-name-service";
 import { Feather } from "@expo/vector-icons";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import SkeletonContent from "react-native-skeleton-content";
@@ -313,7 +313,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           )}
 
           {/* wrap/unwrap button */}
-          {isOwner && (
+          {isOwner && !isSub && (
             <TouchableOpacity
               onPress={() =>
                 openModal("TokenizeModal", {
