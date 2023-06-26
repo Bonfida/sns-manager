@@ -81,7 +81,7 @@ export const CreateSubdomainModal = ({
             placeholder={t`Enter subdomain`}
             onChangeText={(text) => setValue(text)}
             value={value}
-            style={tw`h-[40px] pl-2 bg-blue-grey-050 rounded-lg my-5`}
+            style={tw`h-[40px] pl-2 flex-1 bg-blue-grey-050 rounded-lg my-5`}
           />
 
           <Text style={tw`font-bold text-md`}>.{domain}.sol</Text>

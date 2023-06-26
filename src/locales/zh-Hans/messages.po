@@ -35,7 +35,7 @@ msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/CreateSubdomainModal.tsx:45
 msgid "{subdomain}.sol is not a valid subdomain"
-msgstr "{subdomain}.sol 不是有效的子域名"
+msgstr ""
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
@@ -91,7 +91,7 @@ msgstr "BSC"
 
 #: src/components/CreateSubdomainModal.tsx:108
 #: src/components/DeleteModal.tsx:95
-#: src/components/EditPicture.tsx:267
+#: src/components/EditPicture.tsx:203
 #: src/components/EditRecordModal.tsx:295
 #: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
@@ -102,10 +102,6 @@ msgstr "取消"
 msgid "Cart"
 msgstr "购物车"
 
-#: src/components/EditPicture.tsx:245
-msgid "Choose a picture"
-msgstr "选择图片"
-
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr "清除所有"
@@ -115,7 +111,7 @@ msgstr "清除所有"
 msgid "Close"
 msgstr "关闭"
 
-#: src/components/EditPicture.tsx:257
+#: src/components/EditPicture.tsx:193
 #: src/components/EditRecordModal.tsx:275
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -127,16 +123,19 @@ msgid "Congrats!"
 msgstr "恭喜!"
 
 #: src/components/SocialRecord.tsx:72
+#: src/screens/DomainView.tsx:159
+#: src/screens/DomainView.tsx:378
+#: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr "已复制!"
 
 #: src/components/CreateSubdomainModal.tsx:96
 msgid "Create"
-msgstr "创造"
+msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:77
 msgid "Create a subdomain"
-msgstr "创造子域名"
+msgstr ""
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
@@ -146,7 +145,7 @@ msgstr "删除"
 
 #: src/components/DeleteModal.tsx:74
 msgid "Delete {domain}.sol"
-msgstr "删除 {domain}.sol"
+msgstr ""
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -169,7 +168,7 @@ msgstr "编辑"
 msgid "Edit {0} record"
 msgstr "编辑{0}记录"
 
-#: src/components/EditPicture.tsx:220
+#: src/components/EditPicture.tsx:168
 msgid "Edit Picture"
 msgstr "编辑图片"
 
@@ -179,7 +178,7 @@ msgstr "电子邮件"
 
 #: src/components/CreateSubdomainModal.tsx:81
 msgid "Enter subdomain"
-msgstr "输入新子域名"
+msgstr ""
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -277,7 +276,7 @@ msgstr "BSC 地址无效"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
 
-#: src/components/EditPicture.tsx:66
+#: src/components/EditPicture.tsx:64
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid URL"
 msgstr "网址无效"
@@ -297,13 +296,13 @@ msgstr "我的域名"
 
 #: src/screens/Profile.tsx:248
 msgid "My subdomains"
-msgstr "我的子域名"
+msgstr ""
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
 msgstr "新的 {domain}.sol 所有者"
 
-#: src/components/EditPicture.tsx:234
+#: src/components/EditPicture.tsx:181
 msgid "New picture URL"
 msgstr "新图片网址"
 
@@ -314,11 +313,11 @@ msgstr "未找到域名"
 
 #: src/screens/Profile.tsx:266
 msgid "No subdomain found"
-msgstr "未找到子域名"
+msgstr ""
 
 #: src/screens/DomainView.tsx:211
 msgid "No subdomains found"
-msgstr "未找到子域名"
+msgstr ""
 
 #: src/components/SocialRecord.tsx:79
 #: src/screens/DomainView.tsx:387
@@ -332,10 +331,6 @@ msgstr "订单摘要"
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr "支付方式"
-
-#: src/components/EditPicture.tsx:172
-msgid "Permission to access photo album is required"
-msgstr "需要相册的访问权限才能上传图片"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -398,8 +393,7 @@ msgstr "问题出现了"
 
 #: src/components/CreateSubdomainModal.tsx:69
 #: src/components/DeleteModal.tsx:66
-#: src/components/EditPicture.tsx:162
-#: src/components/EditPicture.tsx:210
+#: src/components/EditPicture.tsx:160
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
@@ -415,16 +409,16 @@ msgstr "存储容量"
 
 #: src/components/DeleteModal.tsx:52
 msgid "subdomain {domain}.sol successfully deleted!"
-msgstr "{subdomain}.sol 子域名成功删除"
+msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:58
 msgid "Subdomain {subdomain}.sol successfully created!"
-msgstr "{subdomain}.sol 子域名成功创造"
+msgstr ""
 
 #: src/screens/DomainView.tsx:175
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
-msgstr "子域名"
+msgstr ""
 
 #: src/components/SuccessModal.tsx:20
 #: src/components/SuccessSubdomainModal.tsx:25
@@ -439,8 +433,8 @@ msgstr "已被使用"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/EditRecordModal.tsx:147
-#: src/components/EditRecordModal.tsx:154
+#: src/components/EditRecordModal.tsx:149
+#: src/components/EditRecordModal.tsx:156
 #~ msgid "The record must be a valid wallet address"
 #~ msgstr "记录必须是有效的钱包地址"
 
@@ -491,7 +485,7 @@ msgstr "网址"
 
 #: src/components/SuccessSubdomainModal.tsx:39
 msgid "View subdomain"
-msgstr "查看子域名"
+msgstr ""
 
 #: src/components/TokenizeModal.tsx:154
 msgid "Wrap"
