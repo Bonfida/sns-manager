@@ -355,14 +355,13 @@ const RenderRecord = ({
   refresh,
 }: {
   record: Record;
-  value: NameRegistryState | undefined;
+  value: string | undefined;
   isOwner?: boolean;
   domain: string;
   refresh: () => Promise<void>;
 }) => {
   const { openModal } = useModal();
-  const { des, display } = format(value?.data, record);
-  const worm = !!des && record === Record.BSC;
+  const worm = value && record === Record.BSC;
 
   return (
     <View
@@ -372,15 +371,15 @@ const RenderRecord = ({
         {/* Record title & content */}
         <View style={tw`flex flex-col items-start justify-start`}>
           <Text style={tw`font-bold text-blue-900 capitalize`}>{record}</Text>
-          {!!des ? (
+          {!!value ? (
             <>
               <TouchableOpacity
                 onPress={() => {
                   openModal("Success", { msg: "Copied!" });
-                  Clipboard.setString(des);
+                  Clipboard.setString(value);
                 }}
               >
-                <Text style={tw`text-sm font-bold`}>{display}</Text>
+                <Text style={tw`text-sm font-bold`}>{value}</Text>
               </TouchableOpacity>
             </>
           ) : (
@@ -409,7 +408,7 @@ const RenderRecord = ({
             onPress={() =>
               openModal("EditRecordModal", {
                 record,
-                currentValue: des,
+                currentValue: value,
                 domain,
                 refresh,
               })

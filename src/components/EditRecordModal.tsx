@@ -8,6 +8,8 @@ import {
   updateInstruction,
   Numberu32,
   deleteInstruction,
+  serializeRecord,
+  serializeSolRecord,
 } from "@bonfida/spl-name-service";
 import { useState } from "react";
 import {
@@ -24,7 +26,6 @@ import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Buffer } from "buffer";
 import { useModal } from "react-native-modalfy";
 import { sleep } from "../utils/sleep";
-import { removeZeroRight } from "../utils/record/zero";
 import { WrapModal } from "./WrapModal";
 import {
   getPlaceholder,
@@ -34,6 +35,7 @@ import { sendTx } from "../utils/send-tx";
 import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 import { ROOT_DOMAIN } from "@bonfida/name-offers";
+import { PublicKey } from "@solana/web3.js";
 
 export const EditRecordModal = ({
   modal: { closeModal, getParam },
@@ -46,17 +48,22 @@ export const EditRecordModal = ({
   const currentContent = getParam<string | undefined>("currentValue");
   const refresh = getParam<() => Promise<void>>("refresh");
   const connection = useSolanaConnection();
-  const { publicKey, signTransaction, setVisible, connected } = useWallet();
+  const { publicKey, signTransaction, setVisible, connected, signMessage } =
+    useWallet();
   const { openModal } = useModal();
 
   const [value, setValue] = useState(currentContent ? currentContent : "");
 
   const handleUpdate = async () => {
-    if (!connection || !publicKey || !signTransaction) return;
+    if (!connection || !publicKey || !signTransaction || !signMessage) return;
     try {
       setLoading(true);
       const ixs: TransactionInstruction[] = [];
-      let { pubkey, isSub } = getDomainKeySync(record + "." + domain, true);
+      const sub = Buffer.from([1]).toString() + record;
+      let { pubkey: recordKey, isSub } = getDomainKeySync(
+        record + "." + domain,
+        true
+      );
       const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
 
       if (record === Record.Url) {
@@ -87,16 +94,36 @@ export const EditRecordModal = ({
       }
 
       // Check if exists
-      const info = await connection.getAccountInfo(pubkey);
-      if (!info?.data) {
-        const space = 2_000;
+      let ser: Buffer;
+      if (record === Record.SOL) {
+        const toSign = Buffer.concat([
+          new PublicKey(value).toBuffer(),
+          recordKey.toBuffer(),
+        ]);
+
+        const encodedMessage = new TextEncoder().encode(toSign.toString("hex"));
+        const signed = await signMessage(encodedMessage);
+        ser = serializeSolRecord(
+          new PublicKey(value),
+          recordKey,
+          publicKey,
+          signed
+        );
+      } else {
+        ser = serializeRecord(value, record as Record);
+      }
+      const space = ser.length;
+      console.log("Space", space);
+      const currentAccount = await connection.getAccountInfo(recordKey);
+
+      if (!currentAccount?.data) {
         const lamports = await connection.getMinimumBalanceForRentExemption(
           space + NameRegistryState.HEADER_LEN
         );
         const ix = await createNameRegistry(
           connection,
-          Buffer.from([1]).toString() + record,
-          space, // Hardcode space to 2kB
+          sub,
+          space,
           publicKey,
           publicKey,
           lamports,
@@ -105,17 +132,16 @@ export const EditRecordModal = ({
         );
         ixs.push(ix);
       } else {
-        // Zero the data stored
         const { registry } = await NameRegistryState.retrieve(
           connection,
-          pubkey
+          recordKey
         );
 
         if (!registry.owner.equals(publicKey)) {
           // Record was created before domain was transfered
           const ix = transferInstruction(
             NAME_PROGRAM_ID,
-            pubkey,
+            recordKey,
             publicKey,
             registry.owner,
             undefined,
@@ -125,48 +151,51 @@ export const EditRecordModal = ({
           ixs.push(ix);
         }
 
-        if (registry.data) {
-          const trimmed = removeZeroRight(registry.data);
-          const zero = Buffer.alloc(trimmed.length);
-          const ix = updateInstruction(
+        // The size changed: delete + create to resize
+        if (
+          currentAccount.data.length - NameRegistryState.HEADER_LEN !==
+          space
+        ) {
+          console.log("Resizing...");
+          const ixClose = deleteInstruction(
             NAME_PROGRAM_ID,
-            pubkey,
-            new Numberu32(0),
-            zero,
+            recordKey,
+            publicKey,
             publicKey
+          );
+          const sig = await sendTx(
+            connection,
+            publicKey,
+            [ixClose],
+            signTransaction
+          );
+          console.log(sig);
+
+          const lamports = await connection.getMinimumBalanceForRentExemption(
+            space + NameRegistryState.HEADER_LEN
+          );
+          const ix = await createNameRegistry(
+            connection,
+            sub,
+            space,
+            publicKey,
+            publicKey,
+            lamports,
+            undefined,
+            parent
           );
           ixs.push(ix);
         }
       }
 
-      let data: Buffer;
-      if (!value) {
-        data = Buffer.alloc(0);
-      } else if ([Record.ETH, Record.BSC].includes(record as Record)) {
-        if (!value.startsWith("0x")) {
-          setLoading(false);
-          return openModal("Error", {
-            msg: t`The record must be a valid wallet address`,
-          });
-        }
-        data = Buffer.from(value.slice(2), "hex");
-        if (data.length !== 20) {
-          setLoading(false);
-          return openModal("Error", {
-            msg: t`The record must be a valid wallet address`,
-          });
-        }
-      } else {
-        data = Buffer.from(value, "utf-8");
-      }
-
       const ix = updateInstruction(
         NAME_PROGRAM_ID,
-        pubkey,
+        recordKey,
         new Numberu32(0),
-        data,
+        ser,
         publicKey
       );
+
       ixs.push(ix);
 
       // Handle bridge cases
@@ -177,7 +206,7 @@ export const EditRecordModal = ({
           domain,
           publicKey,
           1_000,
-          pubkey
+          recordKey
         );
         ixs.push(...ix);
       }

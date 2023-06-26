@@ -20,12 +20,14 @@ import { isPubkey } from "../utils/publickey";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { profileScreenProp } from "../../types";
 import { t } from "@lingui/macro";
+import { useDomainSuggestions } from "../hooks/useDomainSuggestions";
 
 export const SearchResult = ({ domain }: { domain: string }) => {
   const { openModal, currentModal } = useModal();
   const [search, setSearch] = useState(domain || "");
   const [input, setInput] = useState(domain || "");
   const results = useSearch(search);
+  const suggestions = useDomainSuggestions(search);
   const navigation = useNavigation<profileScreenProp>();
   const isFocused = useIsFocused();
 
@@ -92,7 +94,7 @@ export const SearchResult = ({ domain }: { domain: string }) => {
           </TouchableOpacity>
         </View>
         <View style={tw`mt-3`}>
-          {results.loading ? (
+          {results.loading && suggestions.loading ? (
             <SkeletonContent isLoading>
               <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
               <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
@@ -101,9 +103,24 @@ export const SearchResult = ({ domain }: { domain: string }) => {
               <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
               <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
             </SkeletonContent>
+          ) : !results.loading && results.result && suggestions.loading ? (
+            <>
+              <RenderRow
+                domain={results.result[0].domain}
+                available={results.result[0].available}
+              />
+              <SkeletonContent isLoading>
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
+              </SkeletonContent>
+            </>
           ) : (
             <FlatList
-              data={results.result}
+              data={results.result?.concat(suggestions.result || [])}
               renderItem={({ item }) => (
                 <RenderRow domain={item.domain} available={item.available} />
               )}
