@@ -91,7 +91,7 @@ msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:108
 #: src/components/DeleteModal.tsx:95
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
 #: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
@@ -100,6 +100,10 @@ msgstr ""
 
 #: src/App.tsx:188
 msgid "Cart"
+msgstr ""
+
+#: src/components/EditPicture.tsx:245
+msgid "Choose a picture"
 msgstr ""
 
 #: src/screens/Cart.tsx:159
@@ -111,7 +115,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:257
 #: src/components/EditRecordModal.tsx:275
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -168,7 +172,7 @@ msgstr ""
 msgid "Edit {0} record"
 msgstr ""
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:220
 msgid "Edit Picture"
 msgstr ""
 
@@ -276,7 +280,7 @@ msgstr ""
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr ""
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid URL"
 msgstr ""
@@ -302,7 +306,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr ""
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:234
 msgid "New picture URL"
 msgstr ""
 
@@ -330,6 +334,10 @@ msgstr ""
 
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
+msgstr ""
+
+#: src/components/EditPicture.tsx:172
+msgid "Permission to access photo album is required"
 msgstr ""
 
 #: src/utils/record/place-holder.tsx:65
@@ -393,7 +401,8 @@ msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:69
 #: src/components/DeleteModal.tsx:66
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:210
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59

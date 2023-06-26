@@ -91,7 +91,7 @@ msgstr "바이낸스 스마트 체인(BSC)"
 
 #: src/components/CreateSubdomainModal.tsx:108
 #: src/components/DeleteModal.tsx:95
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
 #: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
@@ -102,6 +102,10 @@ msgstr "취소"
 msgid "Cart"
 msgstr "장바구니"
 
+#: src/components/EditPicture.tsx:245
+msgid "Choose a picture"
+msgstr ""
+
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr "모두 지우기"
@@ -111,7 +115,7 @@ msgstr "모두 지우기"
 msgid "Close"
 msgstr "닫기"
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:257
 #: src/components/EditRecordModal.tsx:275
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -168,7 +172,7 @@ msgstr "편집"
 msgid "Edit {0} record"
 msgstr "{0} 기록 수정"
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:220
 msgid "Edit Picture"
 msgstr "사진 편집"
 
@@ -276,7 +280,7 @@ msgstr "유효하지 않은 바이낸스 스마트(BSC) 체인 주소입니다"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid URL"
 msgstr "유효하지 않은 URL입니다"
@@ -302,7 +306,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "새로운 {domain}.sol 소유자"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:234
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
@@ -331,6 +335,10 @@ msgstr "주문 내역"
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr "결제 방법"
+
+#: src/components/EditPicture.tsx:172
+msgid "Permission to access photo album is required"
+msgstr ""
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -393,7 +401,8 @@ msgstr "문제가 발생했습니다"
 
 #: src/components/CreateSubdomainModal.tsx:69
 #: src/components/DeleteModal.tsx:66
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:210
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59

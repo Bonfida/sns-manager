@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-20 23:22+0800\n"
-"PO-Revision-Date: 2023-06-23 13:50+0000\n"
+"PO-Revision-Date: 2023-06-26 02:19+0000\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -93,7 +93,7 @@ msgstr "BSC"
 
 #: src/components/CreateSubdomainModal.tsx:108
 #: src/components/DeleteModal.tsx:95
-#: src/components/EditPicture.tsx:203
+#: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
 #: src/components/TokenizeModal.tsx:164
 #: src/components/TransferModal.tsx:101
@@ -104,6 +104,10 @@ msgstr "Annuler"
 msgid "Cart"
 msgstr "Panier"
 
+#: src/components/EditPicture.tsx:245
+msgid "Choose a picture"
+msgstr "Choisissez une photo"
+
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
 msgstr "Vider le panier"
@@ -113,7 +117,7 @@ msgstr "Vider le panier"
 msgid "Close"
 msgstr "Fermer"
 
-#: src/components/EditPicture.tsx:193
+#: src/components/EditPicture.tsx:257
 #: src/components/EditRecordModal.tsx:275
 #: src/components/TransferModal.tsx:91
 #: src/screens/Cart.tsx:257
@@ -170,7 +174,7 @@ msgstr "Modifier"
 msgid "Edit {0} record"
 msgstr "Modifier l'enregistrement {0}"
 
-#: src/components/EditPicture.tsx:168
+#: src/components/EditPicture.tsx:220
 msgid "Edit Picture"
 msgstr "Modifier l'image"
 
@@ -278,7 +282,7 @@ msgstr "Adresse BSC invalide"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "Enregistrement IPFS invalide - Doit commencer par ipfs://"
 
-#: src/components/EditPicture.tsx:64
+#: src/components/EditPicture.tsx:66
 #: src/components/EditRecordModal.tsx:74
 msgid "Invalid URL"
 msgstr "URL invalide"
@@ -304,7 +308,7 @@ msgstr "Mes sous-domaines"
 msgid "New {domain}.sol owner"
 msgstr "Nouveau propriétaire de {domain}.sol"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:234
 msgid "New picture URL"
 msgstr "Nouvelle URL de l'image"
 
@@ -333,6 +337,10 @@ msgstr "Résumé de la commande"
 #: src/screens/Cart.tsx:213
 msgid "Pay with"
 msgstr "Payer avec"
+
+#: src/components/EditPicture.tsx:172
+msgid "Permission to access photo album is required"
+msgstr "L'autorisation d'accéder à l'album photo est requise"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -395,7 +403,8 @@ msgstr "Une erreur s'est produite"
 
 #: src/components/CreateSubdomainModal.tsx:69
 #: src/components/DeleteModal.tsx:66
-#: src/components/EditPicture.tsx:160
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:210
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
@@ -434,11 +443,6 @@ msgstr "Pris"
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
 msgstr "Telegram"
-
-#: src/components/EditRecordModal.tsx:149
-#: src/components/EditRecordModal.tsx:156
-#~ msgid "The record must be a valid wallet address"
-#~ msgstr "L'enregistrement doit être une adresse de portefeuille valide"
 
 #: src/components/DomainSizeModal.tsx:50
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
