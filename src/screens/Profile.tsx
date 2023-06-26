@@ -162,7 +162,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
                 <TouchableOpacity
                   onPress={() => {
                     Clipboard.setString(owner as string);
-                    openModal("Success", { msg: "Copied!" });
+                    openModal("Success", { msg: t`Copied!` });
                   }}
                 >
                   <Feather name="copy" size={12} color="black" />
