@@ -23,11 +23,11 @@ import { Trans, t } from "@lingui/macro";
 import { useWallet } from "../hooks/useWallet";
 
 export const TransferModal = ({
-  modal: { closeModal, getParam },
+  modal: { getParam },
 }: {
-  modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
+  modal: { getParam: <T>(a: string, b?: string) => T };
 }) => {
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
@@ -59,9 +59,9 @@ export const TransferModal = ({
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
       setLoading(false);
-      closeModal();
       openModal("Success", { msg: t`${domain}.sol successfully transfered!` });
       refresh();
+      closeModal("Transfer");
     } catch (err) {
       console.error(err);
       setLoading(false);
