@@ -1,4 +1,4 @@
-import { NameRegistryState, Record } from "@bonfida/spl-name-service";
+import { Record } from "@bonfida/spl-name-service";
 import { SocialRecord } from "../hooks/useRecords";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
@@ -43,12 +43,14 @@ export const SocialRecordCard = ({
   record,
   refresh,
   isOwner,
+  isTokenized,
 }: {
   domain: string;
   currentValue?: string;
   record: SocialRecord;
   refresh: () => Promise<void>;
   isOwner?: boolean;
+  isTokenized?: boolean;
 }) => {
   const { openModal } = useModal();
 
@@ -83,7 +85,7 @@ export const SocialRecordCard = ({
       </View>
 
       {/* Edit button (if owner) */}
-      {isOwner && (
+      {isOwner && !isTokenized && (
         <View>
           <TouchableOpacity
             onPress={() =>

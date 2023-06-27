@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import tw from "../utils/tailwind";
 import {
-  EVM_RECORDS,
   SocialRecord,
   useAddressRecords,
   useSocialRecords,
@@ -251,6 +250,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   isOwner={isOwner}
                   refresh={refresh}
                   key={`record-${e.record}`}
+                  isTokenized={isTokenized}
                 />
               );
             })}
@@ -337,16 +337,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
   );
 };
 
-const format = (data: Buffer | undefined, record: Record) => {
-  if (!data) return { des: undefined, display: undefined };
-  if (EVM_RECORDS.includes(record)) {
-    const des = data?.toString("hex");
-    return { des: "0x" + des, display: abbreviate("0x" + des, 20) };
-  }
-  const des = data?.toString("ascii");
-  return { des, display: des };
-};
-
 const RenderRecord = ({
   record,
   value,
@@ -403,7 +393,7 @@ const RenderRecord = ({
             />
           </TouchableOpacity>
         )}
-        {isOwner && (
+        {isOwner && !isTokenized && (
           <TouchableOpacity
             onPress={() =>
               openModal("EditRecordModal", {
