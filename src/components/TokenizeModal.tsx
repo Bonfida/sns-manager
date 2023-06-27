@@ -18,6 +18,7 @@ import {
   METADATA_SIGNER,
   MINT_PREFIX,
   NAME_TOKENIZER_ID,
+  createMint,
 } from "@bonfida/name-tokenizer";
 import {
   createAssociatedTokenAccountInstruction,
@@ -25,6 +26,7 @@ import {
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { checkAccountExists } from "../utils/account";
+import { sendTx } from "../utils/send-tx";
 
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
@@ -57,9 +59,7 @@ export const TokenizeModal = ({
 
       const ata = await getAssociatedTokenAddress(mintKey, publicKey);
 
-      let metadataSignature: Buffer | undefined;
-      let metadataBlockhash: string | undefined;
-
+      // Unwrapping
       if (isTokenized) {
         console.log("Domain is tokenized, unwraping...");
         const ix = await unwrap(connection, domain, publicKey);
@@ -71,18 +71,19 @@ export const TokenizeModal = ({
         );
 
         ixs.push(closeAtaIx);
+        const sig = await sendTx(connection, publicKey, ixs, signTransaction);
+        await connection.confirmTransaction(sig, "processed");
       } else {
+        // Wrapping
         console.log("Domain isn't tokenized, wrapping...");
-        const {
-          instructions,
-          metadataSignature: signature,
-          blockhash,
-        } = await wrap(domain, publicKey);
-        metadataSignature = signature;
-        metadataBlockhash = blockhash;
+        // Check if mint exists and create if needed
+        if (!(await checkAccountExists(connection, mintKey))) {
+          console.log("creating mint");
+          const mintIx = await createMint(pubkey, publicKey, NAME_TOKENIZER_ID);
+          ixs.push(...mintIx);
+        }
 
-        ixs.push(...instructions);
-
+        // Check if destination ATA exists and create if needed
         if (!(await checkAccountExists(connection, ata))) {
           console.log("creating ata");
           const ix = createAssociatedTokenAccountInstruction(
@@ -91,33 +92,33 @@ export const TokenizeModal = ({
             publicKey,
             mintKey
           );
-          let tx = new Transaction().add(ix);
-          tx.feePayer = publicKey;
-          tx.recentBlockhash = (
-            await connection.getLatestBlockhash()
-          ).blockhash;
+          ixs.push(ix);
+        }
 
-          tx = await signTransaction(tx);
-          const sig = await connection.sendRawTransaction(tx.serialize());
-          await connection.confirmTransaction(sig, "processed");
+        if (ixs.length !== 0) {
+          const sig = await sendTx(connection, publicKey, ixs, signTransaction);
           console.log(sig);
         }
+
+        // Get tokenization ixs + signature + blockhash
+        const {
+          instructions,
+          metadataSignature: signature,
+          blockhash,
+        } = await wrap(domain, publicKey);
+
+        // Build and send tx
+        let tx = new Transaction().add(...instructions);
+        tx.feePayer = publicKey;
+        tx.recentBlockhash = blockhash;
+        tx.addSignature(METADATA_SIGNER, signature);
+
+        tx = await signTransaction(tx);
+        const sig = await connection.sendRawTransaction(tx.serialize());
+        await connection.confirmTransaction(sig, "processed");
+        console.log(sig);
       }
 
-      let tx = new Transaction().add(...ixs);
-      tx.feePayer = publicKey;
-
-      if (metadataSignature) {
-        tx.recentBlockhash = metadataBlockhash;
-        tx.addSignature(METADATA_SIGNER, metadataSignature);
-      } else {
-        tx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
-      }
-
-      tx = await signTransaction(tx);
-      const sig = await connection.sendRawTransaction(tx.serialize());
-      await connection.confirmTransaction(sig, "processed");
-      console.log(sig);
       setLoading(false);
       openModal(
         "Success",
