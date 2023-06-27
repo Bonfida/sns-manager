@@ -1,21 +1,23 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-01 20:16+1000\n"
+"PO-Revision-Date: 2023-06-26 05:55+0000\n"
+"Last-Translator: \n"
+"Language-Team: Simplified Chinese\n"
+"Language: zh-Hans\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: @lingui/cli\n"
-"Language: zh-Hans\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+"X-Loco-Source-Locale: zh_HK\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Parser: loco_parse_po"\n"
 
 #: src/components/TokenizeModal.tsx:125
 msgid "{domain}.sol successfully {0}!"
-msgstr ""
+msgstr "{domain}.sol 操作成功 {0}!"
 
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
@@ -35,7 +37,7 @@ msgstr "{search}.sol 不是有效的域名"
 
 #: src/components/CreateSubdomainModal.tsx:45
 msgid "{subdomain}.sol is not a valid subdomain"
-msgstr ""
+msgstr "{subdomain}.sol 不是可用的子域名"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
@@ -104,7 +106,7 @@ msgstr "购物车"
 
 #: src/components/EditPicture.tsx:245
 msgid "Choose a picture"
-msgstr ""
+msgstr "选择图片"
 
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
@@ -135,11 +137,11 @@ msgstr "已复制!"
 
 #: src/components/CreateSubdomainModal.tsx:96
 msgid "Create"
-msgstr ""
+msgstr "创建"
 
 #: src/components/CreateSubdomainModal.tsx:77
 msgid "Create a subdomain"
-msgstr ""
+msgstr "创建子域名"
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
@@ -149,7 +151,7 @@ msgstr "删除"
 
 #: src/components/DeleteModal.tsx:74
 msgid "Delete {domain}.sol"
-msgstr ""
+msgstr "删除 {domain}.sol"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -182,7 +184,7 @@ msgstr "电子邮件"
 
 #: src/components/CreateSubdomainModal.tsx:81
 msgid "Enter subdomain"
-msgstr ""
+msgstr "进入子域名"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -300,7 +302,7 @@ msgstr "我的域名"
 
 #: src/screens/Profile.tsx:248
 msgid "My subdomains"
-msgstr ""
+msgstr "我的子域名"
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
@@ -317,11 +319,11 @@ msgstr "未找到域名"
 
 #: src/screens/Profile.tsx:266
 msgid "No subdomain found"
-msgstr ""
+msgstr "未找到子域名"
 
 #: src/screens/DomainView.tsx:211
 msgid "No subdomains found"
-msgstr ""
+msgstr "未找到子域名"
 
 #: src/components/SocialRecord.tsx:79
 #: src/screens/DomainView.tsx:387
@@ -338,7 +340,7 @@ msgstr "支付方式"
 
 #: src/components/EditPicture.tsx:172
 msgid "Permission to access photo album is required"
-msgstr ""
+msgstr "请求获取相册权限"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -384,7 +386,7 @@ msgstr "看到上方的进度条了吗？这将引导你一步步构建完备且
 
 #: src/screens/HomeScreen.tsx:66
 msgid "Seize your online identity."
-msgstr "把握你的在线身份。"
+msgstr "掌控您的网络身份。"
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
@@ -418,16 +420,16 @@ msgstr "存储容量"
 
 #: src/components/DeleteModal.tsx:52
 msgid "subdomain {domain}.sol successfully deleted!"
-msgstr ""
+msgstr "子域名 {domain}.sol 删除成功!"
 
 #: src/components/CreateSubdomainModal.tsx:58
 msgid "Subdomain {subdomain}.sol successfully created!"
-msgstr ""
+msgstr "子域名 {subdomain}.sol 创建成功!"
 
 #: src/screens/DomainView.tsx:175
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
-msgstr ""
+msgstr "子域名"
 
 #: src/components/SuccessModal.tsx:20
 #: src/components/SuccessSubdomainModal.tsx:25
@@ -442,14 +444,9 @@ msgstr "已被使用"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/EditRecordModal.tsx:149
-#: src/components/EditRecordModal.tsx:156
-#~ msgid "The record must be a valid wallet address"
-#~ msgstr "记录必须是有效的钱包地址"
-
 #: src/components/DomainSizeModal.tsx:50
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
-msgstr "储存容量将会决定你的域名上储存的最大数据量"
+msgstr "存储容量将会决定你的域名上储存的最大数据量"
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
@@ -482,11 +479,11 @@ msgstr "Twitter"
 #: src/components/TokenizeModal.tsx:145
 #: src/components/TokenizeModal.tsx:154
 msgid "Unwrap"
-msgstr ""
+msgstr "解除封装"
 
 #: src/screens/DomainView.tsx:330
 msgid "Unwrap NFT"
-msgstr ""
+msgstr "将NFT解除封装"
 
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
@@ -494,15 +491,15 @@ msgstr "网址"
 
 #: src/components/SuccessSubdomainModal.tsx:39
 msgid "View subdomain"
-msgstr ""
+msgstr "浏览子域名"
 
 #: src/components/TokenizeModal.tsx:154
 msgid "Wrap"
-msgstr ""
+msgstr "封装"
 
 #: src/screens/DomainView.tsx:330
 msgid "Wrap domain into NFT"
-msgstr ""
+msgstr "将域名封装为NFT"
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."

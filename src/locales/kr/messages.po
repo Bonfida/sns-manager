@@ -1,21 +1,23 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 20:08+1000\n"
+"PO-Revision-Date: 2023-06-26 20:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: Kanuri\n"
+"Language: kr\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: @lingui/cli\n"
-"Language: kr\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Plural-Forms: \n"
+"X-Loco-Source-Locale: es_AR\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Parser: loco_parse_po"\n"
 
 #: src/components/TokenizeModal.tsx:125
 msgid "{domain}.sol successfully {0}!"
-msgstr ""
+msgstr "{domain}.sol 성공적으로 {0}!"
 
 #: src/components/FavoriteButton.tsx:51
 msgid "{domain}.sol successfully set as favorite domain name"
@@ -35,7 +37,7 @@ msgstr "{search}.sol은(는) 유효한 도메인이 아닙니다."
 
 #: src/components/CreateSubdomainModal.tsx:45
 msgid "{subdomain}.sol is not a valid subdomain"
-msgstr ""
+msgstr "{subdomain}.sol은(는) 유효한 서브도메인이 아닙니다"
 
 #: src/components/ProgressExplainerModal.tsx:34
 msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
@@ -104,7 +106,7 @@ msgstr "장바구니"
 
 #: src/components/EditPicture.tsx:245
 msgid "Choose a picture"
-msgstr ""
+msgstr "사진을 선택하세요"
 
 #: src/screens/Cart.tsx:159
 msgid "Clear all"
@@ -135,11 +137,11 @@ msgstr "복사 완료!"
 
 #: src/components/CreateSubdomainModal.tsx:96
 msgid "Create"
-msgstr ""
+msgstr "만들기"
 
 #: src/components/CreateSubdomainModal.tsx:77
 msgid "Create a subdomain"
-msgstr ""
+msgstr "서브도메인 만들기"
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
@@ -149,7 +151,7 @@ msgstr "삭제"
 
 #: src/components/DeleteModal.tsx:74
 msgid "Delete {domain}.sol"
-msgstr ""
+msgstr "{domain}.sol 삭제하기"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -182,7 +184,7 @@ msgstr "이메일"
 
 #: src/components/CreateSubdomainModal.tsx:81
 msgid "Enter subdomain"
-msgstr ""
+msgstr "서브도메인을 입력하세요"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -300,7 +302,7 @@ msgstr "나의 도메인"
 
 #: src/screens/Profile.tsx:248
 msgid "My subdomains"
-msgstr ""
+msgstr "나의 서브도메인"
 
 #: src/components/TransferModal.tsx:79
 msgid "New {domain}.sol owner"
@@ -318,10 +320,14 @@ msgstr "도메인을 찾을 수 없습니다"
 #: src/screens/Profile.tsx:266
 msgid "No subdomain found"
 msgstr ""
+"\n"
+"서브도메인을 찾을 수 없습니다"
 
 #: src/screens/DomainView.tsx:211
 msgid "No subdomains found"
 msgstr ""
+"\n"
+"서브도메인을 찾을 수 없습니다"
 
 #: src/components/SocialRecord.tsx:79
 #: src/screens/DomainView.tsx:387
@@ -338,7 +344,7 @@ msgstr "결제 방법"
 
 #: src/components/EditPicture.tsx:172
 msgid "Permission to access photo album is required"
-msgstr ""
+msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 
 #: src/utils/record/place-holder.tsx:65
 msgid "Pic"
@@ -418,16 +424,16 @@ msgstr "저장 용량"
 
 #: src/components/DeleteModal.tsx:52
 msgid "subdomain {domain}.sol successfully deleted!"
-msgstr ""
+msgstr "서브도메인 {domain}.sol이(가) 성공적으로 삭제되었습니다!"
 
 #: src/components/CreateSubdomainModal.tsx:58
 msgid "Subdomain {subdomain}.sol successfully created!"
-msgstr ""
+msgstr "서브도메인 {subdomain}.sol이(가) 성공적으로 생성되었습니다"
 
 #: src/screens/DomainView.tsx:175
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
-msgstr ""
+msgstr "서브도메인"
 
 #: src/components/SuccessModal.tsx:20
 #: src/components/SuccessSubdomainModal.tsx:25
@@ -441,11 +447,6 @@ msgstr "등록된 도메인"
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
 msgstr "텔레그램"
-
-#: src/components/EditRecordModal.tsx:149
-#: src/components/EditRecordModal.tsx:156
-#~ msgid "The record must be a valid wallet address"
-#~ msgstr "기록은 유효한 지갑 주소여야 합니다"
 
 #: src/components/DomainSizeModal.tsx:50
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
@@ -482,11 +483,11 @@ msgstr "트위터"
 #: src/components/TokenizeModal.tsx:145
 #: src/components/TokenizeModal.tsx:154
 msgid "Unwrap"
-msgstr ""
+msgstr "언랩하기 (Unwrap)"
 
 #: src/screens/DomainView.tsx:330
 msgid "Unwrap NFT"
-msgstr ""
+msgstr "NFT 언랩하기"
 
 #: src/utils/record/place-holder.tsx:53
 msgid "Url"
@@ -494,15 +495,15 @@ msgstr "URL"
 
 #: src/components/SuccessSubdomainModal.tsx:39
 msgid "View subdomain"
-msgstr ""
+msgstr "서브도메인 보기"
 
 #: src/components/TokenizeModal.tsx:154
 msgid "Wrap"
-msgstr ""
+msgstr "랩하기 (Wrap)"
 
 #: src/screens/DomainView.tsx:330
 msgid "Wrap domain into NFT"
-msgstr ""
+msgstr "도메인을 NFT로 랩하기"
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."
