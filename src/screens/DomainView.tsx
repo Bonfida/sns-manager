@@ -176,8 +176,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 </Text>
 
                 <View style={tw`flex flex-row gap-4`}>
-                  {/* add subdomain button (if owner) */}
-                  {isOwner && (
+                  {/* add subdomain button (if owner & not tokenized) */}
+                  {isOwner && !isTokenized && (
                     <TouchableOpacity
                       onPress={() => {
                         openModal("CreateSubdomain", { refresh, domain });
@@ -274,7 +274,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           />
 
           {/* Transfer button */}
-          {isOwner && (
+          {isOwner && !isSub && !isTokenized && (
             <View style={tw`flex flex-col`}>
               <TouchableOpacity
                 onPress={() =>

@@ -13,7 +13,7 @@ export const SuccessModal = ({
 
   return (
     <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
+      <View style={tw`bg-white rounded-lg px-4 py-10 max-w-[350px] w-full`}>
         <View style={tw`flex flex-row items-center`}>
           <Feather name="check-circle" size={24} color="#16a34a" />
           <Text style={tw`ml-2 text-lg font-bold`}>
