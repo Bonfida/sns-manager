@@ -268,6 +268,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 record={item.record}
                 value={item.value}
                 domain={domain}
+                isTokenized={isTokenized}
                 refresh={refresh}
               />
             )}
@@ -343,12 +344,14 @@ const RenderRecord = ({
   isOwner,
   domain,
   refresh,
+  isTokenized,
 }: {
   record: Record;
   value: string | undefined;
   isOwner?: boolean;
   domain: string;
   refresh: () => Promise<void>;
+  isTokenized?: boolean;
 }) => {
   const { openModal } = useModal();
   const worm = value && record === Record.BSC;
