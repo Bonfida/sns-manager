@@ -70,7 +70,7 @@ export const TransferModal = ({
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
+    <WrapModal closeModal={() => closeModal("Transfer")}>
       <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
         <Text style={tw`text-xl font-bold`}>
           <Trans>Transfer {domain}.sol</Trans>
@@ -94,7 +94,7 @@ export const TransferModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             disabled={loading}
-            onPress={closeModal}
+            onPress={() => closeModal("Transfer")}
             style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >
             <Text style={tw`font-bold text-white`}>
