@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/TokenizeModal.tsx:125
+#: src/components/TokenizeModal.tsx:126
 msgid "{domain}.sol successfully {0}!"
 msgstr ""
 
@@ -21,7 +21,7 @@ msgstr ""
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr ""
 
-#: src/components/TransferModal.tsx:63
+#: src/components/TransferModal.tsx:62
 msgid "{domain}.sol successfully transfered!"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 #: src/components/DeleteModal.tsx:95
 #: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
-#: src/components/TokenizeModal.tsx:164
+#: src/components/TokenizeModal.tsx:165
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr ""
@@ -126,9 +126,9 @@ msgstr ""
 msgid "Congrats!"
 msgstr ""
 
-#: src/components/SocialRecord.tsx:72
-#: src/screens/DomainView.tsx:159
-#: src/screens/DomainView.tsx:378
+#: src/components/SocialRecord.tsx:74
+#: src/screens/DomainView.tsx:158
+#: src/screens/DomainView.tsx:371
 #: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr ""
@@ -143,7 +143,7 @@ msgstr ""
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
-#: src/screens/DomainView.tsx:308
+#: src/screens/DomainView.tsx:309
 msgid "Delete"
 msgstr ""
 
@@ -319,12 +319,12 @@ msgstr ""
 msgid "No subdomain found"
 msgstr ""
 
-#: src/screens/DomainView.tsx:211
+#: src/screens/DomainView.tsx:210
 msgid "No subdomains found"
 msgstr ""
 
-#: src/components/SocialRecord.tsx:79
-#: src/screens/DomainView.tsx:387
+#: src/components/SocialRecord.tsx:81
+#: src/screens/DomainView.tsx:380
 msgid "Not set"
 msgstr ""
 
@@ -390,7 +390,7 @@ msgstr ""
 msgid "SHDW"
 msgstr ""
 
-#: src/screens/DomainView.tsx:222
+#: src/screens/DomainView.tsx:221
 msgid "Socials"
 msgstr ""
 
@@ -406,7 +406,7 @@ msgstr ""
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
-#: src/components/TokenizeModal.tsx:137
+#: src/components/TokenizeModal.tsx:138
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr ""
@@ -424,7 +424,7 @@ msgstr ""
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr ""
 
-#: src/screens/DomainView.tsx:175
+#: src/screens/DomainView.tsx:174
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
 msgstr ""
@@ -467,7 +467,7 @@ msgstr ""
 msgid "Total USD"
 msgstr ""
 
-#: src/screens/DomainView.tsx:291
+#: src/screens/DomainView.tsx:292
 msgid "Transfer"
 msgstr ""
 
@@ -479,12 +479,12 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: src/components/TokenizeModal.tsx:145
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:146
+#: src/components/TokenizeModal.tsx:155
 msgid "Unwrap"
 msgstr ""
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Unwrap NFT"
 msgstr ""
 
@@ -496,11 +496,11 @@ msgstr ""
 msgid "View subdomain"
 msgstr ""
 
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:155
 msgid "Wrap"
 msgstr ""
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Wrap domain into NFT"
 msgstr ""
 

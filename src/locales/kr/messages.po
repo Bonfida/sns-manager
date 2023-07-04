@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Parser: loco_parse_po"\n"
 
-#: src/components/TokenizeModal.tsx:125
+#: src/components/TokenizeModal.tsx:126
 msgid "{domain}.sol successfully {0}!"
 msgstr "{domain}.sol 성공적으로 {0}!"
 
@@ -23,7 +23,7 @@ msgstr "{domain}.sol 성공적으로 {0}!"
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "{domain}.sol이 즐겨찾기 도메인 이름으로 설정되었습니다."
 
-#: src/components/TransferModal.tsx:63
+#: src/components/TransferModal.tsx:62
 msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol이 성공적으로 전송되었습니다!"
 
@@ -95,7 +95,7 @@ msgstr "바이낸스 스마트 체인(BSC)"
 #: src/components/DeleteModal.tsx:95
 #: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
-#: src/components/TokenizeModal.tsx:164
+#: src/components/TokenizeModal.tsx:165
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "취소"
@@ -128,9 +128,9 @@ msgstr "확인"
 msgid "Congrats!"
 msgstr "축하합니다!"
 
-#: src/components/SocialRecord.tsx:72
-#: src/screens/DomainView.tsx:159
-#: src/screens/DomainView.tsx:378
+#: src/components/SocialRecord.tsx:74
+#: src/screens/DomainView.tsx:158
+#: src/screens/DomainView.tsx:371
 #: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr "복사 완료!"
@@ -145,7 +145,7 @@ msgstr "서브도메인 만들기"
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
-#: src/screens/DomainView.tsx:308
+#: src/screens/DomainView.tsx:309
 msgid "Delete"
 msgstr "삭제"
 
@@ -323,14 +323,14 @@ msgstr ""
 "\n"
 "서브도메인을 찾을 수 없습니다"
 
-#: src/screens/DomainView.tsx:211
+#: src/screens/DomainView.tsx:210
 msgid "No subdomains found"
 msgstr ""
 "\n"
 "서브도메인을 찾을 수 없습니다"
 
-#: src/components/SocialRecord.tsx:79
-#: src/screens/DomainView.tsx:387
+#: src/components/SocialRecord.tsx:81
+#: src/screens/DomainView.tsx:380
 msgid "Not set"
 msgstr "설정되지 않음"
 
@@ -396,7 +396,7 @@ msgstr "당신의 온라인 신원을 확보하세요."
 msgid "SHDW"
 msgstr "섀도우 드라이브"
 
-#: src/screens/DomainView.tsx:222
+#: src/screens/DomainView.tsx:221
 msgid "Socials"
 msgstr "소셜"
 
@@ -412,7 +412,7 @@ msgstr "문제가 발생했습니다"
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
-#: src/components/TokenizeModal.tsx:137
+#: src/components/TokenizeModal.tsx:138
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "문제가 발생했습니다 - 다시 시도하세요"
@@ -430,7 +430,7 @@ msgstr "서브도메인 {domain}.sol이(가) 성공적으로 삭제되었습니�
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "서브도메인 {subdomain}.sol이(가) 성공적으로 생성되었습니다"
 
-#: src/screens/DomainView.tsx:175
+#: src/screens/DomainView.tsx:174
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
 msgstr "서브도메인"
@@ -468,7 +468,7 @@ msgstr "합계"
 msgid "Total USD"
 msgstr "USD 합계"
 
-#: src/screens/DomainView.tsx:291
+#: src/screens/DomainView.tsx:292
 msgid "Transfer"
 msgstr "전송"
 
@@ -480,12 +480,12 @@ msgstr "{domain}.sol 전송"
 msgid "Twitter"
 msgstr "트위터"
 
-#: src/components/TokenizeModal.tsx:145
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:146
+#: src/components/TokenizeModal.tsx:155
 msgid "Unwrap"
 msgstr "언랩하기 (Unwrap)"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Unwrap NFT"
 msgstr "NFT 언랩하기"
 
@@ -497,11 +497,11 @@ msgstr "URL"
 msgid "View subdomain"
 msgstr "서브도메인 보기"
 
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:155
 msgid "Wrap"
 msgstr "랩하기 (Wrap)"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Wrap domain into NFT"
 msgstr "도메인을 NFT로 랩하기"
 

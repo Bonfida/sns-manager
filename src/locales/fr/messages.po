@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Parser: loco_parse_po"\n"
 
-#: src/components/TokenizeModal.tsx:125
+#: src/components/TokenizeModal.tsx:126
 msgid "{domain}.sol successfully {0}!"
 msgstr "{domain}.sol créé avec succès !"
 
@@ -23,7 +23,7 @@ msgstr "{domain}.sol créé avec succès !"
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "Domaine favori défini avec succès."
 
-#: src/components/TransferModal.tsx:63
+#: src/components/TransferModal.tsx:62
 msgid "{domain}.sol successfully transfered!"
 msgstr "Transfert réussi !"
 
@@ -95,7 +95,7 @@ msgstr "BSC"
 #: src/components/DeleteModal.tsx:95
 #: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
-#: src/components/TokenizeModal.tsx:164
+#: src/components/TokenizeModal.tsx:165
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "Annuler"
@@ -128,9 +128,9 @@ msgstr "Confirmer"
 msgid "Congrats!"
 msgstr "Félicitations !"
 
-#: src/components/SocialRecord.tsx:72
-#: src/screens/DomainView.tsx:159
-#: src/screens/DomainView.tsx:378
+#: src/components/SocialRecord.tsx:74
+#: src/screens/DomainView.tsx:158
+#: src/screens/DomainView.tsx:371
 #: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr "Copié !"
@@ -145,7 +145,7 @@ msgstr "Créer un sous-domaine"
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
-#: src/screens/DomainView.tsx:308
+#: src/screens/DomainView.tsx:309
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -321,12 +321,12 @@ msgstr "Aucun domaine trouvé"
 msgid "No subdomain found"
 msgstr "Aucun sous-domaine trouvé"
 
-#: src/screens/DomainView.tsx:211
+#: src/screens/DomainView.tsx:210
 msgid "No subdomains found"
 msgstr "Aucun sous-domaine trouvé"
 
-#: src/components/SocialRecord.tsx:79
-#: src/screens/DomainView.tsx:387
+#: src/components/SocialRecord.tsx:81
+#: src/screens/DomainView.tsx:380
 msgid "Not set"
 msgstr "Non défini"
 
@@ -392,7 +392,7 @@ msgstr "Saisissez votre identité numérique."
 msgid "SHDW"
 msgstr "SHDW"
 
-#: src/screens/DomainView.tsx:222
+#: src/screens/DomainView.tsx:221
 msgid "Socials"
 msgstr "Réseaux sociaux"
 
@@ -408,7 +408,7 @@ msgstr "Une erreur s'est produite"
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
-#: src/components/TokenizeModal.tsx:137
+#: src/components/TokenizeModal.tsx:138
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "Une erreur s'est produite - réessayez"
@@ -426,7 +426,7 @@ msgstr "Sous-domaine {domain}.sol supprimé avec succès !"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "Sous-domaine {subdomain}.sol créé avec succès !"
 
-#: src/screens/DomainView.tsx:175
+#: src/screens/DomainView.tsx:174
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
 msgstr "Sous-domaine(s)"
@@ -464,7 +464,7 @@ msgstr "Total"
 msgid "Total USD"
 msgstr "Total en USD"
 
-#: src/screens/DomainView.tsx:291
+#: src/screens/DomainView.tsx:292
 msgid "Transfer"
 msgstr "Transférer"
 
@@ -476,12 +476,12 @@ msgstr "Transférer {domain}.sol"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/components/TokenizeModal.tsx:145
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:146
+#: src/components/TokenizeModal.tsx:155
 msgid "Unwrap"
 msgstr "Détokenizer"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Unwrap NFT"
 msgstr "Convertir en NFT"
 
@@ -493,11 +493,11 @@ msgstr "URL"
 msgid "View subdomain"
 msgstr "Voir sous-domaine"
 
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:155
 msgid "Wrap"
 msgstr "Convertir"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Wrap domain into NFT"
 msgstr "Convertir le domaine en NFT"
 

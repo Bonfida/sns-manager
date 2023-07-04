@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Parser: loco_parse_po"\n"
 
-#: src/components/TokenizeModal.tsx:125
+#: src/components/TokenizeModal.tsx:126
 msgid "{domain}.sol successfully {0}!"
 msgstr "{domain}.sol 操作成功 {0}!"
 
@@ -23,7 +23,7 @@ msgstr "{domain}.sol 操作成功 {0}!"
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "{domain}.sol 成功设置为喜爱的域名"
 
-#: src/components/TransferModal.tsx:63
+#: src/components/TransferModal.tsx:62
 msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol 汇款成功"
 
@@ -95,7 +95,7 @@ msgstr "BSC"
 #: src/components/DeleteModal.tsx:95
 #: src/components/EditPicture.tsx:267
 #: src/components/EditRecordModal.tsx:295
-#: src/components/TokenizeModal.tsx:164
+#: src/components/TokenizeModal.tsx:165
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "取消"
@@ -128,9 +128,9 @@ msgstr "确认"
 msgid "Congrats!"
 msgstr "恭喜!"
 
-#: src/components/SocialRecord.tsx:72
-#: src/screens/DomainView.tsx:159
-#: src/screens/DomainView.tsx:378
+#: src/components/SocialRecord.tsx:74
+#: src/screens/DomainView.tsx:158
+#: src/screens/DomainView.tsx:371
 #: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr "已复制!"
@@ -145,7 +145,7 @@ msgstr "创建子域名"
 
 #: src/components/DeleteModal.tsx:83
 #: src/components/EditRecordModal.tsx:285
-#: src/screens/DomainView.tsx:308
+#: src/screens/DomainView.tsx:309
 msgid "Delete"
 msgstr "删除"
 
@@ -321,12 +321,12 @@ msgstr "未找到域名"
 msgid "No subdomain found"
 msgstr "未找到子域名"
 
-#: src/screens/DomainView.tsx:211
+#: src/screens/DomainView.tsx:210
 msgid "No subdomains found"
 msgstr "未找到子域名"
 
-#: src/components/SocialRecord.tsx:79
-#: src/screens/DomainView.tsx:387
+#: src/components/SocialRecord.tsx:81
+#: src/screens/DomainView.tsx:380
 msgid "Not set"
 msgstr "未设置"
 
@@ -392,7 +392,7 @@ msgstr "掌控您的网络身份。"
 msgid "SHDW"
 msgstr "SHDW"
 
-#: src/screens/DomainView.tsx:222
+#: src/screens/DomainView.tsx:221
 msgid "Socials"
 msgstr "社交媒体"
 
@@ -408,7 +408,7 @@ msgstr "问题出现了"
 #: src/components/EditRecordModal.tsx:226
 #: src/components/EditRecordModal.tsx:252
 #: src/components/FavoriteButton.tsx:59
-#: src/components/TokenizeModal.tsx:137
+#: src/components/TokenizeModal.tsx:138
 #: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "问题出现了，请重试"
@@ -426,7 +426,7 @@ msgstr "子域名 {domain}.sol 删除成功!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "子域名 {subdomain}.sol 创建成功!"
 
-#: src/screens/DomainView.tsx:175
+#: src/screens/DomainView.tsx:174
 #: src/screens/Profile.tsx:248
 msgid "Subdomains"
 msgstr "子域名"
@@ -464,7 +464,7 @@ msgstr "总计"
 msgid "Total USD"
 msgstr "总计美元"
 
-#: src/screens/DomainView.tsx:291
+#: src/screens/DomainView.tsx:292
 msgid "Transfer"
 msgstr "转移"
 
@@ -476,12 +476,12 @@ msgstr "转移 {domain}.sol"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/components/TokenizeModal.tsx:145
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:146
+#: src/components/TokenizeModal.tsx:155
 msgid "Unwrap"
 msgstr "解除封装"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Unwrap NFT"
 msgstr "将NFT解除封装"
 
@@ -493,11 +493,11 @@ msgstr "网址"
 msgid "View subdomain"
 msgstr "浏览子域名"
 
-#: src/components/TokenizeModal.tsx:154
+#: src/components/TokenizeModal.tsx:155
 msgid "Wrap"
 msgstr "封装"
 
-#: src/screens/DomainView.tsx:330
+#: src/screens/DomainView.tsx:331
 msgid "Wrap domain into NFT"
 msgstr "将域名封装为NFT"
 

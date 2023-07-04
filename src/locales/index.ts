@@ -3,6 +3,7 @@ import { messages as enMessages } from "./en/messages";
 import { messages as krMessages } from "./kr/messages";
 import { messages as zh_HansMessages } from "./zh-Hans/messages";
 import { messages as frMessages } from "./fr/messages";
+import { messages as trMessages } from "./tr/messages";
 
 // Define a type for language with label, locale and messages
 export type Language = {
@@ -25,6 +26,7 @@ export const LANGUAGES: Language[] = [
     messages: zh_HansMessages,
   },
   { locale: "fr", label: "Français", messages: frMessages },
+  { locale: "tr", label: "Türkçe", messages: trMessages },
 ];
 
 // format so we can import directly into lingui's i18n.load()
