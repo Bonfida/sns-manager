@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-14 17:06+1000\n"
-"PO-Revision-Date: 2023-07-04 05:50+0000\n"
+"PO-Revision-Date: 2023-07-04 11:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Loco-Source-Locale: tr_TR\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Parser: loco_parse_po"
+"X-Loco-Parser: loco_parse_po"\n"
 
 #: src/components/TokenizeModal.tsx:126
 msgid "{domain}.sol successfully {0}!"
@@ -40,45 +40,28 @@ msgid "{subdomain}.sol is not a valid subdomain"
 msgstr "{subdomain}.sol geçerli bir subdomain değil"
 
 #: src/components/ProgressExplainerModal.tsx:34
-msgid ""
-"<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ "
-"next to it"
-msgstr ""
-"<0>1. Favori Domain:</0> Domain isminin hemen yanındaki ❤️ simgesine "
-"tıklayarak favori domain isminizi seçin"
+msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
+msgstr "<0>1. Favori Domain:</0> Domain isminin hemen yanındaki ❤️ simgesine tıklayarak favori domain isminizi seçin"
 
 #: src/components/ProgressExplainerModal.tsx:41
 msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
 msgstr "<0>2. Profil Resmi:</0> Gerçek seni görebilmemiz için bir resim ekle"
 
 #: src/components/ProgressExplainerModal.tsx:48
-msgid ""
-"<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain "
-"identity 🎒"
-msgstr ""
-"<0>3. Backpack Kayıtları:</0> Backpack kullanıcı adını zincir üstü "
-"kimliğinizle eşleştirin 🎒"
+msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
+msgstr "<0>3. Backpack Kayıtları:</0> Backpack kullanıcı adını zincir üstü kimliğinizle eşleştirin 🎒"
 
 #: src/components/ProgressExplainerModal.tsx:55
-msgid ""
-"<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
-msgstr ""
-"<0>4. Twitter Kayıtları:</0> Rahatlıkla paylaşmak ve ağ oluşturmak için "
-"Twitter hesabınızı bağlayın"
+msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
+msgstr "<0>4. Twitter Kayıtları:</0> Rahatlıkla paylaşmak ve ağ oluşturmak için Twitter hesabınızı bağlayın"
 
 #: src/components/ProgressExplainerModal.tsx:62
-msgid ""
-"<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-msgstr ""
-"<0>5. Telegram Kayıtları:</0> Gerçek zamanlı topluluk sohbeti için Telegram "
-"hesabınızı bağlayın 📨"
+msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
+msgstr "<0>5. Telegram Kayıtları:</0> Gerçek zamanlı topluluk sohbeti için Telegram hesabınızı bağlayın 📨"
 
 #: src/components/ProgressExplainerModal.tsx:69
-msgid ""
-"<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
-msgstr ""
-"<0>6. Discord Kayıtları:</0> Discord hesabınızı eşleştirin ve tartışmalar "
-"havada uçuşsun 🎮"
+msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
+msgstr "<0>6. Discord Kayıtları:</0> Discord hesabınızı eşleştirin ve tartışmalarda yer alın 🎮"
 
 #: src/screens/DomainView.tsx:260
 msgid "Addresses"
@@ -108,16 +91,18 @@ msgstr "Profil Maceranızı Yükseltin"
 msgid "BSC"
 msgstr "BSC"
 
-#: src/components/CreateSubdomainModal.tsx:108 
-#: src/components/DeleteModal.tsx:95 src/components/EditPicture.tsx:267 
-#: src/components/EditRecordModal.tsx:295 src/components/TokenizeModal.tsx:165 
+#: src/components/CreateSubdomainModal.tsx:108
+#: src/components/DeleteModal.tsx:95
+#: src/components/EditPicture.tsx:267
+#: src/components/EditRecordModal.tsx:295
+#: src/components/TokenizeModal.tsx:165
 #: src/components/TransferModal.tsx:101
 msgid "Cancel"
 msgstr "İptal"
 
 #: src/App.tsx:188
 msgid "Cart"
-msgstr "Renk"
+msgstr "Sepet"
 
 #: src/components/EditPicture.tsx:245
 msgid "Choose a picture"
@@ -127,13 +112,15 @@ msgstr "Bir resim seçin"
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/components/SuccessModal.tsx:31 
+#: src/components/SuccessModal.tsx:31
 #: src/components/SuccessSubdomainModal.tsx:47
 msgid "Close"
 msgstr "Kapat"
 
-#: src/components/EditPicture.tsx:257 src/components/EditRecordModal.tsx:275 
-#: src/components/TransferModal.tsx:91 src/screens/Cart.tsx:257
+#: src/components/EditPicture.tsx:257
+#: src/components/EditRecordModal.tsx:275
+#: src/components/TransferModal.tsx:91
+#: src/screens/Cart.tsx:257
 msgid "Confirm"
 msgstr "Onayla"
 
@@ -141,8 +128,10 @@ msgstr "Onayla"
 msgid "Congrats!"
 msgstr "Tebrikler!"
 
-#: src/components/SocialRecord.tsx:74 src/screens/DomainView.tsx:158 
-#: src/screens/DomainView.tsx:371 src/screens/Profile.tsx:165
+#: src/components/SocialRecord.tsx:74
+#: src/screens/DomainView.tsx:158
+#: src/screens/DomainView.tsx:371
+#: src/screens/Profile.tsx:165
 msgid "Copied!"
 msgstr "Kopyalandı!"
 
@@ -154,7 +143,8 @@ msgstr "Oluştur"
 msgid "Create a subdomain"
 msgstr "Bir subdomain oluştur"
 
-#: src/components/DeleteModal.tsx:83 src/components/EditRecordModal.tsx:285 
+#: src/components/DeleteModal.tsx:83
+#: src/components/EditRecordModal.tsx:285
 #: src/screens/DomainView.tsx:309
 msgid "Delete"
 msgstr "Sil"
@@ -171,7 +161,8 @@ msgstr "Discord"
 msgid "Discount"
 msgstr "İndirim"
 
-#: src/screens/Cart.tsx:148 src/screens/Profile.tsx:203
+#: src/screens/Cart.tsx:148
+#: src/screens/Profile.tsx:203
 msgid "Domains"
 msgstr "Domainler"
 
@@ -257,7 +248,7 @@ msgstr "Websitenize ait URL'yi kaydedin"
 
 #: src/components/OrderSummary.tsx:53
 msgid "Gas"
-msgstr "Gas"
+msgstr "İşlem Ücreti"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
@@ -272,10 +263,8 @@ msgid "Home"
 msgstr "Anasayfa"
 
 #: src/components/DiscountExplainerModal.tsx:26
-msgid ""
-"If you register your domains using FIDA, you are eligible for a 5% discount!"
-msgstr ""
-"Domainlerinizi FIDA kullanarak kaydederseniz 5% indirime sahip olacaksınız!"
+msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
+msgstr "Domainlerinizi FIDA kullanarak kaydederseniz 5% indirime sahip olacaksınız!"
 
 #: src/utils/record/place-holder.tsx:73
 msgid "Injective"
@@ -293,7 +282,8 @@ msgstr "Geçersiz BSC adresi"
 msgid "Invalid IPFS record - Must start with ipfs://"
 msgstr "Geçersiz IPFS kaydı - ipfs:// ile başlamalı"
 
-#: src/components/EditPicture.tsx:66 src/components/EditRecordModal.tsx:74
+#: src/components/EditPicture.tsx:66
+#: src/components/EditRecordModal.tsx:74
 msgid "Invalid URL"
 msgstr "Geçersiz URL"
 
@@ -301,7 +291,8 @@ msgstr "Geçersiz URL"
 msgid "IPFS"
 msgstr "IPFS"
 
-#: src/components/LanguageModal.tsx:27 src/screens/HomeScreen.tsx:105
+#: src/components/LanguageModal.tsx:27
+#: src/screens/HomeScreen.tsx:105
 msgid "Language"
 msgstr "Dil"
 
@@ -321,7 +312,8 @@ msgstr "Yeni {domain}.sol sahibi"
 msgid "New picture URL"
 msgstr "Yeni resim URL'si"
 
-#: src/components/SearchModal.tsx:75 src/screens/Profile.tsx:239
+#: src/components/SearchModal.tsx:75
+#: src/screens/Profile.tsx:239
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -333,7 +325,8 @@ msgstr "Subdomain bulunamadı"
 msgid "No subdomains found"
 msgstr "Hiçbir subdomain bulunamadı"
 
-#: src/components/SocialRecord.tsx:81 src/screens/DomainView.tsx:380
+#: src/components/SocialRecord.tsx:81
+#: src/screens/DomainView.tsx:380
 msgid "Not set"
 msgstr "Henüz belirlenmemiş"
 
@@ -373,7 +366,8 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "Kaydetme indirimi"
 
-#: src/App.tsx:178 src/screens/HomeScreen.tsx:92
+#: src/App.tsx:178
+#: src/screens/HomeScreen.tsx:92
 msgid "Search"
 msgstr "Ara"
 
@@ -381,17 +375,14 @@ msgstr "Ara"
 msgid "Search domains"
 msgstr "Domainleri ara"
 
-#: src/screens/HomeScreen.tsx:78 src/screens/SearchResult.tsx:71
+#: src/screens/HomeScreen.tsx:78
+#: src/screens/SearchResult.tsx:71
 msgid "Search for your name.sol"
 msgstr "Kendi name.sol domaininiz için arayın"
 
 #: src/components/ProgressExplainerModal.tsx:27
-msgid ""
-"See that cool progress bar at the top? That's your personal guide to "
-"building a robust and engaging profile. Here's how it works:"
-msgstr ""
-"Yukarıdaki harika ilerleme kutucuğunuzu fark ettin mi? Bu, çekici ve güçlü "
-"bir profil inşa etmen için sana sunulan bir rehberdir. İşte nasıl çalıştığı:"
+msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
+msgstr "Yukarıdaki harika ilerleme kutucuğunuzu fark ettin mi? Bu, çekici ve güçlü bir profil inşa etmen için sana sunulan bir rehberdir. İşte nasıl çalıştığı:"
 
 #: src/screens/HomeScreen.tsx:66
 msgid "Seize your online identity."
@@ -403,21 +394,27 @@ msgstr "SHDW"
 
 #: src/screens/DomainView.tsx:221
 msgid "Socials"
-msgstr "Sosyaller"
+msgstr "Sosyal Medya Hesapları"
 
-#: src/components/ErrorModal.tsx:12 src/components/ErrorModal.tsx:20
+#: src/components/ErrorModal.tsx:12
+#: src/components/ErrorModal.tsx:20
 msgid "Something went wrong"
 msgstr "Bir şey yanlış gitti"
 
-#: src/components/CreateSubdomainModal.tsx:69 
-#: src/components/DeleteModal.tsx:66 src/components/EditPicture.tsx:162 
-#: src/components/EditPicture.tsx:210 src/components/EditRecordModal.tsx:226 
-#: src/components/EditRecordModal.tsx:252 src/components/FavoriteButton.tsx:59 
-#: src/components/TokenizeModal.tsx:138 src/components/TransferModal.tsx:68
+#: src/components/CreateSubdomainModal.tsx:69
+#: src/components/DeleteModal.tsx:66
+#: src/components/EditPicture.tsx:162
+#: src/components/EditPicture.tsx:210
+#: src/components/EditRecordModal.tsx:226
+#: src/components/EditRecordModal.tsx:252
+#: src/components/FavoriteButton.tsx:59
+#: src/components/TokenizeModal.tsx:138
+#: src/components/TransferModal.tsx:68
 msgid "Something went wrong - try again"
 msgstr "Bir şey yanlış gitti - tekrar deneyin"
 
-#: src/components/DomainSizeModal.tsx:46 src/screens/Cart.tsx:175
+#: src/components/DomainSizeModal.tsx:46
+#: src/screens/Cart.tsx:175
 msgid "Storage Size"
 msgstr "Depo hacmi"
 
@@ -429,11 +426,12 @@ msgstr "{domain}.sol subdomaini başarıyla silindi"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "{domain}.sol subdomaini başarıyla oluşturuldu"
 
-#: src/screens/DomainView.tsx:174 src/screens/Profile.tsx:248
+#: src/screens/DomainView.tsx:174
+#: src/screens/Profile.tsx:248
 msgid "Subdomains"
 msgstr "Subdomainler"
 
-#: src/components/SuccessModal.tsx:20 
+#: src/components/SuccessModal.tsx:20
 #: src/components/SuccessSubdomainModal.tsx:25
 msgid "Success!"
 msgstr "Başarı!"
@@ -446,13 +444,9 @@ msgstr "Alındı"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/EditRecordModal.tsx:149 
-#: src/components/EditRecordModal.tsx:156 src/components/DomainSizeModal.tsx:50
-msgid ""
-"The storage size will determine the maximum amount of data you can store on "
-"your domain."
-msgstr ""
-"Depo hacmi, domaininizde saklayabileceğiniz azami veri miktarını belirler. "
+#: src/components/DomainSizeModal.tsx:50
+msgid "The storage size will determine the maximum amount of data you can store on your domain."
+msgstr "Depo hacmi, domaininizde saklayabileceğiniz azami veri miktarını belirler. "
 
 #: src/components/UnavailableRow.tsx:36
 msgid "This domain has already been purchased"
@@ -460,8 +454,7 @@ msgstr "Bu domain çoktan satın alınmış"
 
 #: src/components/WormholeExplainerModal.tsx:13
 msgid "This domain has been bridged via Wormhole and is available on BNB"
-msgstr ""
-"Bu domain Wormhole aracılığıyla aktarılmış ve BNB ağında kullanılabilir"
+msgstr "Bu domain Wormhole aracılığıyla aktarılmış ve BNB ağında kullanılabilir"
 
 #: src/components/OrderSummary.tsx:46
 msgid "Total"
@@ -483,7 +476,8 @@ msgstr "{domain}.sol'u transfer et"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/components/TokenizeModal.tsx:146 src/components/TokenizeModal.tsx:155
+#: src/components/TokenizeModal.tsx:146
+#: src/components/TokenizeModal.tsx:155
 msgid "Unwrap"
 msgstr "Aç"
 
@@ -509,4 +503,4 @@ msgstr "Domaini NFT'ye sar"
 
 #: src/screens/HomeScreen.tsx:60
 msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr "Senin <0>Name</0>. Senin <1>Power</1>."
+msgstr "Senin <0>İsmin</0>. Senin <1>Gücün</1>."
