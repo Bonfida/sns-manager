@@ -53,7 +53,7 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 | ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ | --------------------------------------- |
 | UI/UX Redesign      | New UI/UX design for the app                                      | ✅          | ❌        | ✅     |                                         |
 | Profile pic upload  | Allow people to upload a picture from device as a profile picture | ✅          | ❌        | ✅     |                                         |
-| Turkish translation | Translate the app in Turkish                                      | ✅          | ✅        | ✅     |                                         |
+| Turkish translation | Translate the app in Turkish                                      | ❌          | ✅        | ✅     | [Eren](https://twitter.com/inside_eren_tr)  |
 | Chinese translation | Translate the app in Chinese                                      | ❌          | ✅        | ✅     | [2Tako2](https://github.com/2Tako2)     |
 | Korean translation  | Translate the app in Korean                                       | ❌          | ✅        | ✅     | [mjLabrys](https://github.com/mjLabrys) |
 | Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ✅        | ❌     | [W](https://github.com/wosleyv)         |
