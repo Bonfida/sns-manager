@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import tw from "../utils/tailwind";
 import { useNavigation } from "@react-navigation/native";
-import { searchResultScreenProp } from "../../types";
+import { searchResultScreenProp } from "@src/types";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { Feather } from "@expo/vector-icons";
 
@@ -32,7 +32,7 @@ export const DomainRow = ({
           onPress={() => {
             callback && callback();
             navigation.navigate("Search", {
-              screen: "Domain View",
+              screen: "domain-view",
               params: { domain },
             });
           }}

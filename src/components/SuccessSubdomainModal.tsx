@@ -4,7 +4,7 @@ import tw from "../utils/tailwind";
 import { WrapModal } from "./WrapModal";
 import { Trans } from "@lingui/macro";
 import { useNavigation } from "@react-navigation/native";
-import { domainViewScreenProp } from "../../types";
+import { domainViewScreenProp } from "@src/types";
 
 export const SuccessSubdomainModal = ({
   modal: { closeModal, getParam },
@@ -31,7 +31,7 @@ export const SuccessSubdomainModal = ({
           <TouchableOpacity
             onPress={() => {
               closeModal();
-              navigation.navigate("Domain View", { domain: subdomain });
+              navigation.navigate("domain-view", { domain: subdomain });
             }}
             style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
           >

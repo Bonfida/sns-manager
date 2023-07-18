@@ -50,12 +50,11 @@ import {
 } from "./contexts/LanguageContext";
 import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
+import { NavigatorTabsParamList } from "@src/types";
 
 const xnftjson = require("../xnft.json");
 
 console.log(`Version: ${xnftjson.version}`);
-
-const Stack = createStackNavigator<RootBottomTabParamList>();
 
 const modalConfig = {
   SuccessCheckout: SuccessCheckoutModal,
@@ -78,36 +77,7 @@ const modalConfig = {
 
 const stackModal = createModalStack(modalConfig);
 
-export type RootBottomTabParamList = {
-  Home: undefined;
-  Profile: { owner?: string };
-  Cart: undefined;
-  "Search Result": { domain: string };
-  "Domain View": { domain: string };
-  Search: { screen: string; params: Object };
-  "Search Profile": { owner: string };
-};
-
-const Tab = createBottomTabNavigator<RootBottomTabParamList>();
-
-const SearchNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={{ header: () => null }}>
-      <Stack.Screen
-        name="Search Result"
-        children={({ route }) => <SearchResult domain={route.params?.domain} />}
-      />
-      <Stack.Screen
-        name="Domain View"
-        children={({ route }) => <DomainView domain={route.params?.domain} />}
-      />
-      <Stack.Screen
-        name="Search Profile"
-        children={({ route }) => <ProfileScreen owner={route.params.owner} />}
-      />
-    </Stack.Navigator>
-  );
-};
+const Tab = createBottomTabNavigator<NavigatorTabsParamList>();
 
 const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
   const style = focused
@@ -178,7 +148,7 @@ function TabNavigator() {
         listeners={({ navigation }) => ({
           tabPress: () => {
             navigation.navigate("Search", {
-              screen: "Search Result",
+              screen: "search-result",
               domain: "",
             });
           },

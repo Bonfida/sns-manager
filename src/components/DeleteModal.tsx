@@ -12,7 +12,7 @@ import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
-import { domainViewScreenProp } from "../../types";
+import { domainViewScreenProp } from "@src/types";
 import { trimTld } from "../utils/validate";
 import { Trans, t } from "@lingui/macro";
 
@@ -57,7 +57,7 @@ export const DeleteModal = ({
       );
 
       const splitted = trimTld(domain).split(".");
-      return navigation.navigate("Domain View", {
+      return navigation.navigate("domain-view", {
         domain: splitted.length === 2 ? splitted[1] : domain,
       });
     } catch (err) {

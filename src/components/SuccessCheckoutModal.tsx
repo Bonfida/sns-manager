@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import tw from "../utils/tailwind";
 import { useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "../../types";
+import { profileScreenProp } from "@src/types";
 import { WrapModal } from "./WrapModal";
 import { Trans } from "@lingui/macro";
 

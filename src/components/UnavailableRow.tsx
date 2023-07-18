@@ -3,7 +3,7 @@ import tw from "../utils/tailwind";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { domainViewScreenProp } from "../../types";
+import { domainViewScreenProp } from "@src/types";
 import { Trans } from "@lingui/macro";
 
 export const UnavailableRow = ({ domain }: { domain: string }) => {
@@ -22,7 +22,7 @@ export const UnavailableRow = ({ domain }: { domain: string }) => {
         </View>
         <View>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Domain View", { domain })}
+            onPress={() => navigation.navigate("domain-view", { domain })}
             style={tw`bg-blue-900 rounded-md p-2`}
           >
             <Feather name="user" size={18} color="white" />

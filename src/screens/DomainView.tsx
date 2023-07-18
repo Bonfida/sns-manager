@@ -18,7 +18,7 @@ import { useSolanaConnection } from "../hooks/xnft-hooks";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "../../types";
+import { profileScreenProp } from "@src/types";
 import { useModal } from "react-native-modalfy";
 import { SocialRecordCard } from "../components/SocialRecord";
 import { FontAwesome } from "@expo/vector-icons";
@@ -143,7 +143,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             <View style={tw`flex flex-row items-center`}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("Search Profile", {
+                  navigation.navigate("search-profile", {
                     owner: domainInfo.result?.owner as string,
                   })
                 }
@@ -225,7 +225,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <View style={tw`flex flex-row gap-4`}>
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("Domain View", {
+                    navigation.navigate("domain-view", {
                       domain: domain.split(".")[1],
                     })
                   }

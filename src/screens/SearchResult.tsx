@@ -18,7 +18,7 @@ import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "../utils/publickey";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "../../types";
+import { profileScreenProp } from "@src/types";
 import { t } from "@lingui/macro";
 import { useDomainSuggestions } from "../hooks/useDomainSuggestions";
 
@@ -42,7 +42,7 @@ export const SearchResult = ({ domain }: { domain: string }) => {
     if (!input) return;
     if (isPubkey(input)) {
       return navigation.navigate("Search", {
-        screen: "Search Profile",
+        screen: "search-profile",
         params: { owner: input },
       });
     }
