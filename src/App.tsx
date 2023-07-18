@@ -109,6 +109,14 @@ const SearchNavigator = () => {
   );
 };
 
+const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
+  const style = focused
+    ? tw`text-sm mt-1 font-bold`
+    : tw`text-sm mt-1 text-content-tertiary`
+
+  return <Text style={style}>{label}</Text>
+}
+
 function TabNavigator() {
   useReferrer();
   const [cart] = useRecoilState(cartState);
@@ -128,7 +136,9 @@ function TabNavigator() {
       initialRouteName="Home"
       screenOptions={{
         header: () => null,
-        tabBarActiveTintColor: "#186FAF",
+        tabBarActiveTintColor: tw.color('content-primary'),
+        tabBarInactiveTintColor: tw.color('content-tertiary'),
+        tabBarStyle: tw`h-[60px] bg-background-primary border-t-0 pt-2 pb-1 px-3`,
       }}
       key={currentLanguage} // trigger tab re-render when translation is toggled
     >
@@ -146,7 +156,7 @@ function TabNavigator() {
           },
         })}
         options={{
-          tabBarLabel: t`Profile`,
+          tabBarLabel: props => TabBarLabel(props, 'Profile'),
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
@@ -156,13 +166,13 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: t`Home`,
+          tabBarLabel: props => TabBarLabel(props, 'Domains'),
           tabBarIcon: ({ color, size }) => (
             <Feather name="home" size={size} color={color} />
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Search"
         component={SearchNavigator}
         listeners={({ navigation }) => ({
@@ -180,12 +190,12 @@ function TabNavigator() {
             <Feather name="search" size={size} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: t`Cart`,
+          tabBarLabel: props => TabBarLabel(props, 'Cart'),
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
