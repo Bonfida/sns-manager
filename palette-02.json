@@ -5,6 +5,7 @@
   "content-primary": "#090A21",
   "content-secondary": "#4C4D5E",
   "content-tertiary": "#8289A3",
+  "content-border": "#ECE9FF",
   "content-active-border": "#DED9FF",
   "content-inactive-border": "#F4F2FF",
   "content-success": "#04929F",
