@@ -33,7 +33,7 @@ export const CustomTextInput = (
           onPress={() => customProps.onChangeText?.('')}
           style={tw`flex flex-col rounded-lg items-center justify-center h-[38px] px-3 bg-white absolute right-[1px] top-[1px]`}
         >
-          <Feather name="x" size={16} color="black" />
+          <Feather name="x" size={16} color={tw.color('brand-primary')} />
         </TouchableOpacity>
       )
     }
