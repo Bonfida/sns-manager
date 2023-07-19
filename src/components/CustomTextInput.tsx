@@ -1,13 +1,13 @@
 import {
-	TextInput,
+  TextInput,
   TextInputProps,
-	Platform,
+  Platform,
 } from "react-native";
 import tw from "@src/utils/tailwind";
 
 export const CustomTextInput = (props: TextInputProps) => {
-	return (
-		<TextInput
+  return (
+    <TextInput
       {...props}
       style={[
         Platform.OS === "web" && { outlineWidth: 0 },
@@ -15,5 +15,5 @@ export const CustomTextInput = (props: TextInputProps) => {
       ]}
       placeholderTextColor="#A3A3A3"
     />
-	)
+  )
 }

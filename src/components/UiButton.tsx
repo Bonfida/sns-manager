@@ -1,6 +1,6 @@
 import {
   Text,
-	TouchableOpacity,
+  TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
 import tw from "@src/utils/tailwind";
@@ -10,8 +10,8 @@ export const UiButton = (
   { content, children, ...props }:
   TouchableOpacityProps & { content?: ReactNode, children?: ReactNode }
 ) => {
-	return (
-		<TouchableOpacity
+  return (
+    <TouchableOpacity
       {...props}
       style={tw`bg-brand-primary py-2 rounded-lg flex items-center justify-center`}
     >
@@ -21,5 +21,5 @@ export const UiButton = (
         </Text>
       )}
     </TouchableOpacity>
-	)
+  )
 }
