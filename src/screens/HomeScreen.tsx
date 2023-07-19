@@ -128,6 +128,7 @@ export function HomeScreen() {
         headerStyle: {
           backgroundColor: tw.color('background-primary'),
           borderBottomWidth: 0,
+          height: 52,
         },
         headerTintColor: tw.color('brand-primary'),
         headerTitleStyle: tw`text-content-primary font-medium`
