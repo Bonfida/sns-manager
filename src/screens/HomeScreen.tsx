@@ -1,31 +1,37 @@
 import {
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
   Image,
-  Platform,
+  TouchableOpacity,
 } from "react-native";
-import tw from "../utils/tailwind";
+import tw from "@src/utils/tailwind";
 import { useState } from "react";
-import { Screen } from "../components/Screen";
+import { Screen } from "@src/components/Screen";
 import { useNavigation } from "@react-navigation/native";
 import { profileScreenProp, searchResultScreenProp, NavigatorTabsParamList } from "@src/types";
-import { trimTld, validate } from "../utils/validate";
+import { trimTld, validate } from "@src/utils/validate";
 import { useModal } from "react-native-modalfy";
-import { isPubkey } from "../utils/publickey";
+import { isPubkey } from "@src/utils/publickey";
 import { Trans, t } from "@lingui/macro";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { SearchResult } from "./SearchResult";
 import { DomainView } from "./DomainView";
 import { ProfileScreen } from "./Profile";
+import { CustomTextInput } from '@src/components/CustomTextInput';
+import { UiButton } from '@src/components/UiButton';
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Stack = createStackNavigator<NavigatorTabsParamList>();
+
+const domainProsTranslations = [
+  t`Unique domain name for your project`,
+  t`Human-readable address`,
+  t`Collect & Exchange directly or as NFTs!`
+]
 
 function HomeRoot() {
   const { openModal } = useModal();
@@ -63,7 +69,7 @@ function HomeRoot() {
             A Humanized ID for the Metaverse
           </Trans>
         </Text>
-        <Text style={tw`px-10 mt-5 text-sm text-center text-content-secondary`}>
+        <Text style={tw`px-2 mt-5 text-sm text-center text-content-secondary`}>
           <Trans>
             Your online identity starts with your{' '}
             <Text style={[
@@ -75,33 +81,35 @@ function HomeRoot() {
           </Trans>
         </Text>
       </View>
-      <View
-        style={tw`flex flex-row h-[71px] justify-center w-full items-center border-[1px] border-black/10 rounded-lg`}
-      >
-        <TextInput
-          style={[
-            Platform.OS === "web" && { outlineWidth: 0 },
-            tw`w-70% bg-white h-full rounded-l-lg pl-5 font-semibold shadow-xl shadow-blue-900`,
-          ]}
+      <View style={tw`w-full h-[40px]`}>
+        <CustomTextInput
           onChangeText={(newText) => setSearch(newText)}
           value={search}
-          placeholder={t({ message: "Search for your name.sol" })}
-          placeholderTextColor="#BCCCDC"
+          placeholder={t`Search for a domain`}
           onKeyPress={(e) => {
             if (e.nativeEvent.key === "Enter") {
               handle();
             }
           }}
         />
-
-        <TouchableOpacity
+      </View>
+      <View style={tw`mt-4 w-[100%]`}>
+        <UiButton
           onPress={handle}
-          style={tw`bg-blue-900 w-[30%] h-[72px] rounded-tr-lg rounded-br-lg flex items-center justify-center`}
-        >
-          <Text style={tw`text-lg font-bold text-white`}>
-            <Trans>Search</Trans>
-          </Text>
-        </TouchableOpacity>
+          content={t`Search your .SOL domain`}
+        />
+      </View>
+
+      <View style={tw`mt-10 grid gap-y-3`}>
+        {domainProsTranslations.map(pros => (
+          <View style={tw`flex items-center justify-center flex-row gap-x-1`}>
+            <Image
+              style={tw`h-[15px] w-[15px]`}
+              source={require("@assets/icons/checkmark.svg")}
+            />
+            <Text style={tw`text-sm text-content-secondary`}>{pros}</Text>
+          </View>
+        ))}
       </View>
     </Screen>
   )
