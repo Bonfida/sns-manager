@@ -81,28 +81,31 @@ function HomeRoot() {
           </Trans>
         </Text>
       </View>
-      <View style={tw`w-full h-[40px]`}>
-        <CustomTextInput
-          onChangeText={(newText) => setSearch(newText)}
-          value={search}
-          placeholder={t`Search for a domain`}
-          onKeyPress={(e) => {
-            if (e.nativeEvent.key === "Enter") {
-              handle();
-            }
-          }}
-        />
-      </View>
+      <CustomTextInput
+        onChangeText={(newText) => setSearch(newText)}
+        value={search}
+        placeholder={t`Search for a domain`}
+        type="search"
+        onKeyPress={(e) => {
+          if (e.nativeEvent.key === "Enter") {
+            handle();
+          }
+        }}
+      />
       <View style={tw`mt-4 w-[100%]`}>
         <UiButton
           onPress={handle}
+          disabled={!search}
           content={t`Search your .SOL domain`}
         />
       </View>
 
-      <View style={tw`mt-10 grid gap-y-3`}>
-        {domainProsTranslations.map(pros => (
-          <View style={tw`flex items-center justify-center flex-row gap-x-1`}>
+      <View style={tw`mt-10 gap-y-3`}>
+        {domainProsTranslations.map((pros, i) => (
+          <View
+            key={i}
+            style={tw`flex items-center justify-center flex-row gap-x-1`}
+          >
             <Image
               style={tw`h-[15px] w-[15px]`}
               source={require("@assets/icons/checkmark.svg")}
@@ -127,7 +130,7 @@ export function HomeScreen() {
           borderBottomWidth: 0,
         },
         headerTintColor: tw.color('brand-primary'),
-        headerTitleStyle: tw`text-content-primary text-medium`
+        headerTitleStyle: tw`text-content-primary font-medium`
       }}
       initialRouteName={"home-root"}
     >
