@@ -15,11 +15,22 @@ export const CustomTextInput = (
     type?: TextInputTypes;
   }
 ) => {
+  const customProps = { ...props }
+
+  if (customProps.onKeyPress &&  customProps.onChangeText && type === 'search') {
+    customProps.onKeyPress = (e) => {
+      if (e.nativeEvent.key === "Escape") {
+        customProps.onChangeText?.('')
+      }
+      props.onKeyPress?.(e)
+    }
+  }
+
   const ClearValueAction = () => {
-    if (props.onChangeText && type === 'search' && props.value) {
+    if (customProps.onChangeText && type === 'search' && customProps.value) {
       return (
         <TouchableOpacity
-          onPress={() => props.onChangeText?.('')}
+          onPress={() => customProps.onChangeText?.('')}
           style={tw`flex flex-col rounded-lg items-center justify-center h-[38px] px-3 bg-white absolute right-[1px] top-[1px]`}
         >
           <Feather name="x" size={16} color="black" />
@@ -32,7 +43,7 @@ export const CustomTextInput = (
   return (
     <View style={tw`w-full h-[40px] relative`}>
       <TextInput
-        {...props}
+        {...customProps}
         style={[
           Platform.OS === "web" && { outlineWidth: 0 },
           tw`bg-white h-full rounded-lg pl-3 text-content-secondary border border-content-border`,
