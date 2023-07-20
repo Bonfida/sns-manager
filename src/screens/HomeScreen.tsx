@@ -149,7 +149,7 @@ export function HomeScreen() {
                 <Ionicons
                   name="language"
                   size={24}
-                  color="black"
+                  color={tw.color('content-secondary')}
                 />
               </TouchableOpacity>
             </View>
