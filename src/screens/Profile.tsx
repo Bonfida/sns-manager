@@ -30,7 +30,7 @@ import { SubdomainRow } from "../components/SubdomainRow";
 
 export const LoadingState = () => {
   return (
-    <View style={tw`flex px-4 py-5 flex-col items-start w-full h-full mt-4`}>
+    <View style={tw`flex px-3 py-5 flex-col items-start w-full h-full mt-4`}>
       <SkeletonContent containerStyle={tw``} isLoading>
         <View style={tw`w-[100px] mb-5 h-[100px] rounded-lg`} />
       </SkeletonContent>
@@ -122,7 +122,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       ) : (
         <ScrollView showsHorizontalScrollIndicator={false}>
           <View
-            style={tw`flex flex-row items-center my-3 py-4 px-4 bg-blue-grey-100/60`}
+            style={tw`flex flex-row items-center my-3 p-3 bg-blue-grey-100/60`}
           >
             <View style={tw`relative w-[100px]`}>
               <Image
