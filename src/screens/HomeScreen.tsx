@@ -20,6 +20,7 @@ import { DomainView } from "./DomainView";
 import { ProfileScreen } from "./Profile";
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { UiButton } from '@src/components/UiButton';
+import { LanguageHeader } from '@src/components/Header';
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -140,20 +141,7 @@ export function HomeScreen() {
         component={HomeRoot}
         options={{
           title: t`Search domain`,
-          header: () => (
-            <View style={tw`absolute top-2 left-2`}>
-              <TouchableOpacity
-                onPress={() => openModal("LanguageModal")}
-                style={tw`flex flex-row items-center p-1`}
-              >
-                <Ionicons
-                  name="language"
-                  size={24}
-                  color={tw.color('content-secondary')}
-                />
-              </TouchableOpacity>
-            </View>
-          ),
+          header: () => <LanguageHeader />,
         }}
       />
       <Stack.Screen

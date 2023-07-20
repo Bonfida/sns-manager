@@ -51,6 +51,7 @@ import {
 import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
+import { LanguageHeader } from '@src/components/Header';
 
 const xnftjson = require("../xnft.json");
 
@@ -130,6 +131,7 @@ function TabNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
+          header: () => <LanguageHeader />,
         }}
       />
       <Tab.Screen
