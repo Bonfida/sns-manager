@@ -77,7 +77,7 @@ export const DomainSearchResultRow = (
               <Feather name="shopping-cart" size={18} color="white" />
             )
           ) : (
-            <Feather name="arrow-right" size={14} color="#ADAEB2" />
+            <Feather name="arrow-right" size={20} color="#ADAEB2" />
           )}
         </TouchableOpacity>
       </View>
