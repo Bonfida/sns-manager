@@ -138,7 +138,7 @@ function TabNavigator() {
         options={{
           tabBarLabel: props => TabBarLabel(props, 'Domains'),
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
+            <Feather name="globe" size={size} color={color} />
           ),
         }}
       />
