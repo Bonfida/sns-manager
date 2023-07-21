@@ -1,17 +1,21 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { useState } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
+import { useModal } from "react-native-modalfy";
+import { AntDesign } from "@expo/vector-icons";
+import { TransactionInstruction } from "@solana/web3.js";
+import { t } from "@lingui/macro";
+
 import { registerFavourite } from "@bonfida/name-offers";
 import { NAME_OFFERS_ID, getDomainKeySync } from "@bonfida/spl-name-service";
-import { TransactionInstruction } from "@solana/web3.js";
-import { sendTx } from "../utils/send-tx";
-import { useModal } from "react-native-modalfy";
-import { useState } from "react";
-import { sleep } from "../utils/sleep";
 import { isTokenized } from "@bonfida/name-tokenizer";
-import { unwrap } from "../utils/unwrap";
-import { t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
+
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+
+import tw from "@src/utils/tailwind";
+import { sendTx } from "@src/utils/send-tx";
+import { sleep } from "@src/utils/sleep";
+import { unwrap } from "@src/utils/unwrap";
 
 export const FavoriteButton = ({
   domain,
@@ -68,9 +72,9 @@ export const FavoriteButton = ({
       {loading ? (
         <ActivityIndicator size={21} />
       ) : isFav ? (
-        <FontAwesome name="heart" size={22} color="#186FAF" />
-      ) : (
-        <FontAwesome name="heart-o" size={22} color="#186FAF" />
+        <AntDesign name="star" size={24} color={tw.color('brand-primary')} />
+        ) : (
+        <AntDesign name="staro" size={24} color={tw.color('content-tertiary')} />
       )}
     </TouchableOpacity>
   );

@@ -1,9 +1,11 @@
 import { Text, View, TouchableOpacity } from "react-native";
-import tw from "../utils/tailwind";
 import { useNavigation } from "@react-navigation/native";
-import { searchResultScreenProp } from "@src/types";
-import { FavoriteButton } from "../components/FavoriteButton";
 import { Feather } from "@expo/vector-icons";
+
+import tw from "@src/utils/tailwind";
+import { abbreviate } from "@src/utils/abbreviate";
+import { searchResultScreenProp } from "@src/types";
+import { FavoriteButton } from "@src/components/FavoriteButton";
 
 export const DomainRow = ({
   domain,
@@ -19,11 +21,14 @@ export const DomainRow = ({
   callback?: () => void;
 }) => {
   const navigation = useNavigation<searchResultScreenProp>();
+
   return (
-    <View
-      style={tw`w-full px-4 h-[50px] bg-white border-[2px] border-black/10 rounded-lg flex items-center justify-between flex-row my-1`}
-    >
-      <Text style={tw`font-bold`}>{domain}.sol</Text>
+    <View style={tw`border-0 rounded-xl my-2 bg-background-secondary flex items-center flex-row py-3 px-4 gap-4`}>
+      {/* TODO: add avatar */}
+      <Text style={tw`mr-auto`}>
+        {abbreviate(`${domain}.sol`, 20, 3)}
+      </Text>
+
       <View style={tw`flex flex-row items-center`}>
         {isOwner && (
           <FavoriteButton domain={domain} isFav={isFav} refresh={refresh} />
@@ -31,18 +36,10 @@ export const DomainRow = ({
         <TouchableOpacity
           onPress={() => {
             callback && callback();
-            navigation.navigate("Search", {
-              screen: "domain-view",
-              params: { domain },
-            });
+            navigation.navigate("domain-view", { domain });
           }}
         >
-          <Feather
-            style={tw`ml-2`}
-            name="chevron-right"
-            size={22}
-            color="rgb(143, 146, 158)"
-          />
+          <Feather style={tw`ml-5`} name="arrow-right" size={20} color="#ADAEB2" />
         </TouchableOpacity>
       </View>
     </View>

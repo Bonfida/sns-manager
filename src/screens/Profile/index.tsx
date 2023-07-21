@@ -83,15 +83,13 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
 
   const domainsList = useMemo(() => {
     if (favorite.result) {
-    return [
-      {
-      key: favorite.result.domain.toBase58(),
-      domain: favorite.result.reverse,
-      },
-    ].concat(
-      domains.result?.filter((e) => e.domain !== favorite.result?.reverse) ||
-      []
-    );
+      return [{
+        key: favorite.result.domain.toBase58(),
+        domain: favorite.result.reverse,
+      }].concat(
+        domains.result?.filter((e) => e.domain !== favorite.result?.reverse) ||
+        []
+      );
     }
     return domains.result;
   }, [domains.status, domains.loading, favorite.result?.reverse]);
