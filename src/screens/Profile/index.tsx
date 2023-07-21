@@ -106,9 +106,9 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     </Screen>
   )
 
-  if (!loading && !hasDomain) return (
+  if (!loading && !hasDomain && isOwner) return (
     <Screen style={tw`p-0`}>
-      <EmptyState />
+      <EmptyState owner={owner} />
     </Screen>
   )
 

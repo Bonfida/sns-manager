@@ -5,10 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 import { searchResultScreenProp } from "@src/types";
 
 import tw from "@src/utils/tailwind";
+import { abbreviate } from "@src/utils/abbreviate";
 
 import { UiButton } from '@src/components/UiButton';
 
-export const EmptyState = () => {
+export const EmptyState = ({ owner }: { owner?: string }) => {
   const navigation = useNavigation<searchResultScreenProp>();
 
   return (
@@ -19,7 +20,7 @@ export const EmptyState = () => {
         </Text>
 
         <Text style={tw`mx-auto bg-background-secondary text-sm text-content-secondary px-2 py-1 border border-content-inactive-border rounded-xl`}>
-          abcdkjdbnkdjbvkjdfbvkdfvbkdf...1234
+          {abbreviate(owner, 30)}
         </Text>
 
         <Text style={tw`text-center text-content-primary text-lg font-bold`}>
