@@ -6,14 +6,14 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { useEffect, useMemo } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import { useModal } from "react-native-modalfy";
 import { useIsFocused } from "@react-navigation/native";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useProfilePic } from "@bonfida/sns-react";
 import { Trans, t } from "@lingui/macro";
-import { Feather } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
+import { Feather, FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
@@ -110,120 +110,143 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     </Screen>
   )
 
-  return (
-    <Screen style={tw`p-0`}>
-      <ScrollView showsHorizontalScrollIndicator={false}>
-        <View
-          style={tw`flex flex-row items-center my-3 p-3 bg-blue-grey-100/60`}
-        >
-          <View style={tw`relative w-[100px]`}>
+  const ProfileBlock = ({ children }: { children?: ReactNode }) => {
+    return (
+      <LinearGradient
+        colors={[tw.color('brand-primary') as string, tw.color('brand-accent') as string]}
+        style={tw`mt-15 p-3 pt-[50px] rounded-[20px] relative`}
+      >
+        <View style={[
+          tw`w-[100px] h-[100px] absolute top-[-60px]`,
+          // for some reason tailwild properties doesn't work with calc
+          { left: 'calc(50% - 50px)' }
+        ]}>
           <Image
-            source={
-            picRecord.result
-              ? picRecord.result
-              : require("@assets/default-pic.png")
-            }
-            style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
+            source={picRecord.result ? picRecord.result : require("@assets/default-pic.png")}
+            style={tw`w-full h-full rounded-full`}
           />
           {isOwner && (
             <TouchableOpacity
-            onPress={() =>
-              openModal("EditPicture", {
-              currentPic: picRecord.result,
-              domain:
-                favorite.result?.reverse ||
-                domains?.result?.[0]?.domain,
-              refresh,
-              setAsFav: !favorite.result?.reverse,
-              })
-            }
-            style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-[-2px] right-[-2px] bg-blue-900`}
+              onPress={() =>
+                openModal("EditPicture", {
+                currentPic: picRecord.result,
+                domain:
+                  favorite.result?.reverse ||
+                  domains?.result?.[0]?.domain,
+                  refresh,
+                  setAsFav: !favorite.result?.reverse,
+                })
+              }
+              style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-0 right-0 bg-brand-accent`}
             >
-            <Feather name="edit-2" size={12} color="white" />
+              <FontAwesome name="camera" size={12} color="white" />
             </TouchableOpacity>
           )}
-          </View>
-          <View style={tw`w-full`}>
-          <Text style={tw`ml-4 text-xl font-bold max-w-[65%]`}>
-            {favorite.result?.reverse || domains?.result?.[0]?.domain}.sol
-          </Text>
-          <View style={tw`flex flex-row items-center`}>
-            <Text style={tw`ml-4 mr-1 text-xs text-blue-grey-800`}>
-            {abbreviate(owner, 18)}
+        </View>
+
+        <View style={tw`w-full flex flex-col items-center`}>
+          <TouchableOpacity
+            onPress={() => {
+              Clipboard.setString(`${favorite.result?.reverse || domains?.result?.[0]?.domain}.sol`);
+              openModal("Success", { msg: t`Copied!` });
+            }}
+            style={tw`flex flex-row items-center justify-center gap-2`}
+          >
+            <Text style={tw`text-lg font-semibold text-white`}>
+              {favorite.result?.reverse || domains?.result?.[0]?.domain}.sol
             </Text>
-            <TouchableOpacity
+
+            <Feather name="copy" size={12} color="white" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
             onPress={() => {
               Clipboard.setString(owner as string);
               openModal("Success", { msg: t`Copied!` });
             }}
-            >
-            <Feather name="copy" size={12} color="black" />
-            </TouchableOpacity>
-          </View>
-          </View>
+            style={tw`flex flex-row items-center justify-center gap-2`}
+          >
+            <Text style={tw`text-xs text-[#D7D9FF]`}>
+              {abbreviate(owner, 10, 5)}
+            </Text>
+            <Feather name="copy" size={9} color="#D7D9FF" />
+          </TouchableOpacity>
         </View>
 
-        {showProgress && isOwner && (
-          <View style={tw`px-4`}>
-          <Text style={tw`mt-4 ml-1 font-bold`}>
-            {t`Profile completed: ${percentage}%`}
-          </Text>
-          <View
-            style={tw`w-full border-[2px] relative border-black/10 rounded-lg flex flex-row items-center justify-between`}
-          >
-            <View
-            style={tw`bg-green-600 bg-opacity-80 h-[30px] rounded-md w-[${percentage}%] top-0 left-0`}
-            />
-            <TouchableOpacity
-            style={tw`mx-2`}
-            onPress={() => openModal("ProgressExplainerModal")}
-            >
-            <MaterialCommunityIcons
-              name="information-outline"
-              size={20}
-              color="black"
-            />
-            </TouchableOpacity>
-          </View>
-          </View>
-        )}
+        <View style={tw`mt-5`}>
+          {children}
+        </View>
+      </LinearGradient>
+    )
+  }
+
+  return (
+    <Screen style={tw`p-0`}>
+      <ScrollView showsHorizontalScrollIndicator={false}>
+        <ProfileBlock>
+          {showProgress && isOwner && (
+            <View style={tw`px-4`}>
+              <Text style={tw`mt-4 ml-1 font-bold`}>
+                {t`Profile completed: ${percentage}%`}
+              </Text>
+              <View
+                style={tw`w-full border-[2px] relative border-black/10 rounded-lg flex flex-row items-center justify-between`}
+              >
+                <View
+                style={tw`bg-green-600 bg-opacity-80 h-[30px] rounded-md w-[${percentage}%] top-0 left-0`}
+                />
+                <TouchableOpacity
+                style={tw`mx-2`}
+                onPress={() => openModal("ProgressExplainerModal")}
+                >
+                <MaterialCommunityIcons
+                  name="information-outline"
+                  size={20}
+                  color="black"
+                />
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </ProfileBlock>
+
 
         <View
           style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
         >
           <Text style={tw`text-base font-bold`}>
-          {isOwner ? t`My domains` : t`Domains`}
+            {isOwner ? t`My domains` : t`Domains`}
           </Text>
           <TouchableOpacity
-          onPress={() =>
-            openModal("SearchModal", {
-            domains: domains.result,
-            favorite: favorite.result?.reverse,
-            isOwner,
-            refresh,
-            })
-          }
-          style={tw`mr-4`}
+            onPress={() =>
+              openModal("SearchModal", {
+                domains: domains.result,
+                favorite: favorite.result?.reverse,
+                isOwner,
+                refresh,
+              })
+            }
+            style={tw`mr-4`}
           >
-          <Feather name="search" size={20} color="grey" />
+            <Feather name="search" size={20} color="grey" />
           </TouchableOpacity>
         </View>
 
         <View style={tw`px-4`}>
           {hasDomain ? (
-          <FlatList
-            data={domainsList}
-            renderItem={({ item }) => (
-            <DomainRow
-              refresh={refresh}
-              isFav={favorite.result?.reverse === item.domain}
-              domain={item.domain}
-              key={item.key}
-              isOwner={isOwner}
+            <FlatList
+              data={domainsList}
+              renderItem={({ item }) => (
+                <DomainRow
+                  refresh={refresh}
+                  isFav={favorite.result?.reverse === item.domain}
+                  domain={item.domain}
+                  key={item.key}
+                  isOwner={isOwner}
+                />
+              )}
+              keyExtractor={(item) => item.domain}
             />
-            )}
-            keyExtractor={(item) => item.domain}
-          />
           ) : (
           <Text
             style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
@@ -237,20 +260,20 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
         >
           <Text style={tw`text-base font-bold`}>
-          {isOwner ? t`My subdomains` : t`Subdomains`}
+            {isOwner ? t`My subdomains` : t`Subdomains`}
           </Text>
         </View>
 
         <View style={tw`px-4`}>
           {hasSubdomain ? (
-          <FlatList
-            style={tw`mb-3`}
-            data={subdomains.result}
-            renderItem={({ item }) => (
-            <SubdomainRow key={item.key} subdomain={item.subdomain} />
-            )}
-            keyExtractor={(item) => item.subdomain}
-          />
+            <FlatList
+              style={tw`mb-3`}
+              data={subdomains.result}
+              renderItem={({ item }) => (
+                <SubdomainRow key={item.key} subdomain={item.subdomain} />
+              )}
+              keyExtractor={(item) => item.subdomain}
+            />
           ) : (
           <Text
             style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}

@@ -21,17 +21,20 @@ import {
   Numberu32,
   NAME_OFFERS_ID,
 } from "@bonfida/spl-name-service";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { PublicKey, TransactionInstruction } from "@solana/web3.js";
-import { removeZeroRight } from "../utils/record/zero";
-import { sendTx } from "../utils/send-tx";
-import { WrapModal } from "./WrapModal";
-import { isTokenized } from "@bonfida/name-tokenizer";
-import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
+import { isTokenized } from "@bonfida/name-tokenizer";
 import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { uploadToIPFS } from "../utils/ipfs";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { removeZeroRight } from "@src/utils/record/zero";
+import { sendTx } from "@src/utils/send-tx";
+import { WrapModal } from "./WrapModal";
+import { unwrap } from "@src/utils/unwrap";
+import { useWallet } from "@src/hooks/useWallet";
+import { uploadToIPFS } from "@src/utils/ipfs";
+import { UiButton } from '@src/components/UiButton';
+import { CustomTextInput } from '@src/components/CustomTextInput';
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -212,61 +215,67 @@ export const EditPicture = ({
       setLoading(false);
     }
   };
-
   return (
     <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
+      <View style={tw`bg-white rounded-lg px-3 pt-4 pb-6 w-[350px]`}>
         <Text style={tw`text-xl font-bold`}>
-          <Trans>Edit Picture</Trans>
+          <Trans>Change profile picture</Trans>
         </Text>
         <View style={tw`flex items-center justify-center my-2`}>
           <Image
-            style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
+            style={tw`w-[100px] border-[3px] rounded-full h-[100px]`}
             source={
               pic || currentPic
                 ? { uri: pic || currentPic }
-                : require("../../assets/default-pic.png")
+                : require("@assets/default-pic.png")
             }
           />
         </View>
-        <View style={tw`flex flex-col my-5`}>
-          <TextInput
+
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handlePickImage : () => setVisible(true)}
+          style={tw`flex flex-row items-center justify-center`}
+        >
+          <Text style={tw`font-bold text-white`}>
+            <Trans>Upload a picture...</Trans>
+          </Text>
+          {loading && <ActivityIndicator style={tw`ml-3`} size={16} color="white" />}
+        </UiButton>
+
+        <View style={tw`flex flex-col mt-4 mb-10`}>
+          <CustomTextInput
+            label={t`Picture URL`}
+            editable={!loading}
             placeholder={t`New picture URL`}
             onChangeText={(text) => setPic(text)}
             value={pic}
-            style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md font-bold`}
           />
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handlePickImage : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Choose a picture</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
         </View>
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Confirm</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
+
+        <View style={tw`flex flex-row items-center gap-4`}>
+          <UiButton
             disabled={loading}
             onPress={closeModal}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
+            outline
+            style={tw`flex flex-1 flex-row items-center justify-center`}
           >
-            <Text style={tw`font-bold text-white`}>
+            <Text style={tw`font-bold text-brand-primary`}>
               <Trans>Cancel</Trans>
             </Text>
-          </TouchableOpacity>
+            {loading && <ActivityIndicator style={tw`ml-3`} size={16} color={tw.color('brand-primary')} />}
+          </UiButton>
+
+          <UiButton
+            disabled={loading}
+            onPress={connected ? handle : () => setVisible(true)}
+            style={tw`flex flex-1 flex-row items-center justify-center`}
+          >
+            <Text style={tw`font-bold text-white`}>
+              <Trans>Save</Trans>
+            </Text>
+            {loading && <ActivityIndicator style={tw`ml-3`} size={16} color="white" />}
+          </UiButton>
         </View>
       </View>
     </WrapModal>

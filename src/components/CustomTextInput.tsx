@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
 import {
   TextInput,
+  Text,
   TextInputProps,
   Platform,
   View,
@@ -11,8 +13,10 @@ import tw from "@src/utils/tailwind";
 type TextInputTypes = 'text' | 'search'
 
 export const CustomTextInput = (
-  { type = 'text', ...props }: TextInputProps & {
+  { type = 'text', label = null, editable = true, ...props }: TextInputProps & {
     type?: TextInputTypes;
+    label?: string | ReactNode;
+    editable?: boolean;
   }
 ) => {
   const customProps = { ...props }
@@ -40,18 +44,37 @@ export const CustomTextInput = (
     return null
   }
 
-  return (
-    <View style={tw`w-full h-[40px] relative`}>
-      <TextInput
-        {...customProps}
-        style={[
-          Platform.OS === "web" && { outlineWidth: 0 },
-          tw`bg-white h-full rounded-lg pl-3 text-content-secondary border border-content-border`,
-        ]}
-        placeholderTextColor="#A3A3A3"
-      />
+  const RenderLabel = () => {
+    if (typeof label === 'string') {
+      return (
+        <Text style={tw`mb-2 text-sm text-content-secondary`}>
+          {label}
+        </Text>
+      )
+    }
+    return <>{label}</> || null
+  }
 
-      <ClearValueAction />
+  return (
+    <View style={[
+      tw`w-full`,
+      !editable && tw`opacity-50`,
+    ]}>
+      <RenderLabel />
+
+      <View style={tw`w-full h-[40px] relative`}>
+        <TextInput
+          {...customProps}
+          editable={editable}
+          style={[
+            Platform.OS === "web" && { outlineWidth: 0 },
+            tw`bg-white h-full rounded-lg pl-3 text-content-secondary border border-content-border`,
+          ]}
+          placeholderTextColor="#A3A3A3"
+        />
+
+        <ClearValueAction />
+      </View>
     </View>
   )
 }
