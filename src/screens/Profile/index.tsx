@@ -188,7 +188,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
             <View>
               <View style={tw`flex flex-row gap-2 items-center mb-2`}>
                 <Text style={tw`text-sm text-white`}>
-                  {t`Profile completed: ${percentage}%`}
+                  {t`Profile completion: ${percentage}%`}
                 </Text>
                 <TouchableOpacity
                   onPress={() => openModal("ProgressExplainerModal")}
@@ -211,11 +211,10 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           )}
         </ProfileBlock>
 
-
         <View
-          style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
+          style={tw`mt-10 mb-2 flex items-center w-full justify-between flex-row`}
         >
-          <Text style={tw`text-base font-bold`}>
+          <Text style={tw`text-lg font-medium`}>
             {isOwner ? t`My domains` : t`Domains`}
           </Text>
           <TouchableOpacity
@@ -233,7 +232,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={tw`px-4`}>
+        <View>
           {hasDomain ? (
             <FlatList
               data={domainsList}
@@ -258,14 +257,14 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
         </View>
 
         <View
-          style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row px-4`}
+          style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row`}
         >
           <Text style={tw`text-base font-bold`}>
             {isOwner ? t`My subdomains` : t`Subdomains`}
           </Text>
         </View>
 
-        <View style={tw`px-4`}>
+        <View>
           {hasSubdomain ? (
             <FlatList
               style={tw`mb-3`}
