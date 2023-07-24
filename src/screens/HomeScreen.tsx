@@ -146,7 +146,7 @@ export function HomeScreen() {
       />
       <Stack.Screen
         name="search-result"
-        children={({ route }) => <SearchResult domain={route.params?.domain} />}
+        children={({ route }) => <SearchResult domain={route.params?.domain} loadPopular={route.params?.loadPopular} />}
         options={{ title: t`Search domain` }}
       />
       <Stack.Screen

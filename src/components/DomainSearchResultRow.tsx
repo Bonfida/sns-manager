@@ -12,12 +12,12 @@ import { priceFromLength } from "@src/utils/price/price-from-length";
 import { cartState } from "@src/atoms/cart";
 
 export const DomainSearchResultRow = (
-  { domain, available = false }:
-  { domain: string; available?: boolean; }
+  { domain, available = false, price }:
+  { domain: string; available?: boolean; price?: number | string }
 ) => {
   const [cart, setCart] = useRecoilState(cartState);
   const inCart = cart.includes(domain);
-  const price = priceFromLength(domain);
+  price = price ?? priceFromLength(domain);
   const navigation = useNavigation<domainViewScreenProp>();
 
   const handle = () => {

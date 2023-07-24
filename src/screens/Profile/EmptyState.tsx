@@ -44,7 +44,8 @@ export const EmptyState = ({ owner }: { owner?: string }) => {
       <View style={tw`mt-10 w-full`}>
         <UiButton
           onPress={() => navigation.navigate('search-result', {
-            domain: 'awesomedomain.sol',
+            domain: '',
+            loadPopular: true,
           })}
           content={t`Secure a domain for yourself`}
         />

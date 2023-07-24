@@ -5,7 +5,7 @@ export type NavigatorTabsParamList = {
   Profile: { owner?: string };
   Cart: undefined;
   "home-root": undefined;
-  "search-result": { domain: string };
+  "search-result": { domain: string, loadPopular?: boolean };
   "domain-view": { domain: string };
   Search: { screen: string; params: Object };
   "search-profile": { owner: string };
