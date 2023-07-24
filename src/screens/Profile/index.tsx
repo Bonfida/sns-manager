@@ -4,19 +4,15 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Image,
 } from "react-native";
-import { ReactNode, useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useModal } from "react-native-modalfy";
 import { useIsFocused } from "@react-navigation/native";
-import Clipboard from "@react-native-clipboard/clipboard";
 import { useProfilePic } from "@bonfida/sns-react";
-import { t } from "@lingui/macro";
-import { LinearGradient } from 'expo-linear-gradient';
-import { Feather, FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Trans, t } from "@lingui/macro";
+import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import tw from "@src/utils/tailwind";
-import { abbreviate } from "@src/utils/abbreviate";
 
 import { useDomains } from "@src/hooks/useDomains";
 import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
@@ -110,6 +106,12 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     return domainsResult.sort((a, b) => a!.domain === favorite.result?.reverse ? -1 : 1);
   }, [domains.status, domains.loading, favorite.result?.reverse, subdomains.status, subdomains.loading]);
 
+  const filteredDomainsList = useMemo(() => {
+    if (!searchQuery) return domainsList;
+
+    return domainsList.filter(item => item.domain.includes(searchQuery));
+  }, [domainsList, searchQuery])
+
   const hasDomain = domainsList !== undefined && domainsList.length !== 0;
 
   if (loading) return (
@@ -165,8 +167,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           <Text style={tw`text-lg font-medium flex-none`}>
             {isOwner ? t`My domains` : t`Domains`}
           </Text>
-          {/* isSearchVisible, toggleSearchBar */}
-          {/* searchQuery, setSearchQuery */}
+
           {isSearchVisible && (
             <CustomTextInput
               value={searchQuery}
@@ -179,17 +180,17 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           {!isSearchVisible && (
             <TouchableOpacity
               onPress={() => toggleSearchBar(true)}
-              style={tw`mr-4`}
+              style={tw`border border-content-border bg-white rounded-lg w-[40px] h-[40px] flex items-center justify-center`}
             >
-              <Feather name="search" size={20} color="grey" />
+              <Octicons name="search" size={20} color={tw.color('brand-primary')} />
             </TouchableOpacity>
           )}
         </View>
 
         <View>
-          {hasDomain ? (
+          {hasDomain && filteredDomainsList.length ? (
             <FlatList
-              data={domainsList}
+              data={filteredDomainsList}
               renderItem={({ item }) => (
                 <DomainRow
                   key={item.domain}
@@ -203,11 +204,26 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
               keyExtractor={(item) => item.domain}
             />
           ) : (
-          <Text
-            style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
-          >
-            {t`No domain found`}
-          </Text>
+            <>
+              <Text
+                style={tw`mt-10 text-lg font-semibold text-center text-content-tertiary`}
+              >
+                {t`No domain found`}
+              </Text>
+
+              {hasDomain && (
+                <View style={tw`flex flex-row justify-center mt-2`}>
+                  <TouchableOpacity
+                    onPress={() => setSearchQuery('')}
+                    style={tw`my-auto p-2`}
+                  >
+                    <Text style={tw`text-base text-brand-primary`}>
+                      <Trans>Clear search</Trans>
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </>
           )}
         </View>
       </ScrollView>
