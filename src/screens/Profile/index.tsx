@@ -27,7 +27,6 @@ import { useSubdomainsFromUser, SubdomainResult } from "@src/hooks/useSubdomains
 
 import { Screen } from "@src/components/Screen";
 import { DomainRow } from "@src/components/DomainRow";
-import { SubdomainRow } from "@src/components/SubdomainRow";
 
 import { LoadingState } from "./LoadingState";
 import { EmptyState } from "./EmptyState";
@@ -251,6 +250,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
               data={domainsList}
               renderItem={({ item }) => (
                 <DomainRow
+                  key={item.domain}
                   refresh={refresh}
                   isFav={favorite.result?.reverse === item.domain}
                   domain={item.domain}

@@ -48,6 +48,7 @@ export const DomainRow = ({
           ]}>
             {subdomains.map(item => (
               <DomainRowRecord
+                key={item.subdomain}
                 {...rest}
                 domain={item.subdomain}
                 isSubdomain

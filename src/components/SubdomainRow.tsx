@@ -2,8 +2,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import tw from "../utils/tailwind";
 import { useNavigation } from "@react-navigation/native";
 import { searchResultScreenProp } from "@src/types";
-import { FavoriteButton } from "../components/FavoriteButton";
-import { Feather, FontAwesome } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 export const SubdomainRow = ({
   subdomain,
@@ -22,10 +21,7 @@ export const SubdomainRow = ({
         <TouchableOpacity
           onPress={() => {
             callback && callback();
-            navigation.navigate("Search", {
-              screen: "domain-view",
-              params: { domain: subdomain },
-            });
+            navigation.navigate("domain-view", { domain: subdomain });
           }}
         >
           <Feather
