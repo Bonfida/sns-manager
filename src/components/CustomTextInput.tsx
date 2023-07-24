@@ -13,7 +13,7 @@ import tw from "@src/utils/tailwind";
 type TextInputTypes = 'text' | 'search'
 
 export const CustomTextInput = (
-  { type = 'text', label = null, editable = true, ...props }: TextInputProps & {
+  { type = 'text', label = null, editable = true, style = {}, ...props }: TextInputProps & {
     type?: TextInputTypes;
     label?: string | ReactNode;
     editable?: boolean;
@@ -58,6 +58,7 @@ export const CustomTextInput = (
   return (
     <View style={[
       tw`w-full`,
+      style,
       !editable && tw`opacity-50`,
     ]}>
       <RenderLabel />

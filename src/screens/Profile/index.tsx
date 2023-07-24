@@ -6,7 +6,7 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { ReactNode, useEffect, useMemo } from "react";
+import { ReactNode, useEffect, useState, useMemo } from "react";
 import { useModal } from "react-native-modalfy";
 import { useIsFocused } from "@react-navigation/native";
 import Clipboard from "@react-native-clipboard/clipboard";
@@ -27,6 +27,8 @@ import { useSubdomainsFromUser, SubdomainResult } from "@src/hooks/useSubdomains
 
 import { Screen } from "@src/components/Screen";
 import { DomainRow } from "@src/components/DomainRow";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { ProfileBlock } from "@src/components/ProfileBlock";
 
 import { LoadingState } from "./LoadingState";
 import { EmptyState } from "./EmptyState";
@@ -41,6 +43,8 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     owner || publicKey?.toBase58() || ""
   );
 
+  const [isSearchVisible, toggleSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const isFocused = useIsFocused();
   const favorite = useFavoriteDomain(owner);
   const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
@@ -107,8 +111,6 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   }, [domains.status, domains.loading, favorite.result?.reverse, subdomains.status, subdomains.loading]);
 
   const hasDomain = domainsList !== undefined && domainsList.length !== 0;
-  const hasSubdomain =
-    subdomains.result !== undefined && subdomains.result.length !== 0;
 
   if (loading) return (
     <Screen style={tw`p-0`}>
@@ -122,80 +124,14 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     </Screen>
   )
 
-  const ProfileBlock = ({ children }: { children?: ReactNode }) => {
-    return (
-      <LinearGradient
-        colors={[tw.color('brand-primary') as string, tw.color('brand-accent') as string]}
-        style={tw`mt-15 p-3 pt-[50px] rounded-[20px] relative`}
-      >
-        <View style={[
-          tw`w-[100px] h-[100px] absolute top-[-60px]`,
-          // for some reason tailwild properties doesn't work with calc
-          { left: 'calc(50% - 50px)' }
-        ]}>
-          <Image
-            source={picRecord.result ? picRecord.result : require("@assets/default-pic.png")}
-            style={tw`w-full h-full rounded-full`}
-          />
-          {isOwner && (
-            <TouchableOpacity
-              onPress={() =>
-                openModal("EditPicture", {
-                currentPic: picRecord.result,
-                domain:
-                  favorite.result?.reverse ||
-                  domains?.result?.[0]?.domain,
-                  refresh,
-                  setAsFav: !favorite.result?.reverse,
-                })
-              }
-              style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-0 right-0 bg-brand-accent`}
-            >
-              <FontAwesome name="camera" size={12} color="white" />
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <View style={tw`w-full flex flex-col items-center`}>
-          <TouchableOpacity
-            onPress={() => {
-              Clipboard.setString(`${favorite.result?.reverse || domains?.result?.[0]?.domain}.sol`);
-              openModal("Success", { msg: t`Copied!` });
-            }}
-            style={tw`flex flex-row items-center justify-center gap-2`}
-          >
-            <Text style={tw`text-lg font-semibold text-white`}>
-              {favorite.result?.reverse || domains?.result?.[0]?.domain}.sol
-            </Text>
-
-            <Feather name="copy" size={12} color="white" />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => {
-              Clipboard.setString(owner as string);
-              openModal("Success", { msg: t`Copied!` });
-            }}
-            style={tw`flex flex-row items-center justify-center gap-2`}
-          >
-            <Text style={tw`text-xs text-[#D7D9FF]`}>
-              {abbreviate(owner, 10, 5)}
-            </Text>
-            <Feather name="copy" size={9} color="#D7D9FF" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={tw`mt-5`}>
-          {children}
-        </View>
-      </LinearGradient>
-    )
-  }
-
   return (
     <Screen style={tw`p-0`}>
       <ScrollView showsHorizontalScrollIndicator={false}>
-        <ProfileBlock>
+        <ProfileBlock
+          owner={owner!}
+          domain={favorite.result?.reverse || domains?.result?.[0]?.domain!}
+          picRecord={picRecord}
+        >
           {showProgress && isOwner && (
             <View>
               <View style={tw`flex flex-row gap-2 items-center mb-2`}>
@@ -224,24 +160,30 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
         </ProfileBlock>
 
         <View
-          style={tw`mt-10 mb-2 flex items-center w-full justify-between flex-row`}
+          style={tw`mt-10 mb-2 flex items-center w-full justify-between flex-row gap-6`}
         >
-          <Text style={tw`text-lg font-medium`}>
+          <Text style={tw`text-lg font-medium flex-none`}>
             {isOwner ? t`My domains` : t`Domains`}
           </Text>
-          <TouchableOpacity
-            onPress={() =>
-              openModal("SearchModal", {
-                domains: domains.result,
-                favorite: favorite.result?.reverse,
-                isOwner,
-                refresh,
-              })
-            }
-            style={tw`mr-4`}
-          >
-            <Feather name="search" size={20} color="grey" />
-          </TouchableOpacity>
+          {/* isSearchVisible, toggleSearchBar */}
+          {/* searchQuery, setSearchQuery */}
+          {isSearchVisible && (
+            <CustomTextInput
+              value={searchQuery}
+              onChangeText={(newText) => setSearchQuery(newText)}
+              placeholder={t`Search for a domain`}
+              type="search"
+              style={tw`flex-1 w-auto`}
+            />
+          )}
+          {!isSearchVisible && (
+            <TouchableOpacity
+              onPress={() => toggleSearchBar(true)}
+              style={tw`mr-4`}
+            >
+              <Feather name="search" size={20} color="grey" />
+            </TouchableOpacity>
+          )}
         </View>
 
         <View>
