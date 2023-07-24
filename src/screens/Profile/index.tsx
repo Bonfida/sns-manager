@@ -11,7 +11,7 @@ import { useModal } from "react-native-modalfy";
 import { useIsFocused } from "@react-navigation/native";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useProfilePic } from "@bonfida/sns-react";
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -23,7 +23,7 @@ import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useUserProgress } from "@src/hooks/useUserProgress";
 import { useWallet } from "@src/hooks/useWallet";
-import { useSubdomainsFromUser } from "@src/hooks/useSubdomains";
+import { useSubdomainsFromUser, SubdomainResult } from "@src/hooks/useSubdomains";
 
 import { Screen } from "@src/components/Screen";
 import { DomainRow } from "@src/components/DomainRow";
@@ -82,17 +82,30 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   }, [connected]);
 
   const domainsList = useMemo(() => {
-    if (favorite.result) {
-      return [{
-        key: favorite.result.domain.toBase58(),
-        domain: favorite.result.reverse,
-      }].concat(
-        domains.result?.filter((e) => e.domain !== favorite.result?.reverse) ||
-        []
-      );
-    }
-    return domains.result;
-  }, [domains.status, domains.loading, favorite.result?.reverse]);
+    if (!domains.result) return [];
+
+    const domainsResult = domains.result.map(item => {
+      const relatedSubdomains: SubdomainResult[] = [];
+
+      // Find subdomains related to domain
+      if (subdomains.result) {
+        relatedSubdomains.push(
+          ...subdomains.result.filter(sub => sub.subdomain.split('.')[1] === item.domain),
+        )
+      }
+
+      return {
+        ...item,
+        // Just a double-check that domain pubkey is correct
+        key: favorite.result?.reverse === item.domain
+          ? favorite.result.domain.toBase58()
+          : item.key,
+        subdomains: relatedSubdomains,
+      }
+    })
+
+    return domainsResult.sort((a, b) => a!.domain === favorite.result?.reverse ? -1 : 1);
+  }, [domains.status, domains.loading, favorite.result?.reverse, subdomains.status, subdomains.loading]);
 
   const hasDomain = domainsList !== undefined && domainsList.length !== 0;
   const hasSubdomain =
@@ -241,7 +254,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
                   refresh={refresh}
                   isFav={favorite.result?.reverse === item.domain}
                   domain={item.domain}
-                  key={item.key}
+                  subdomains={item.subdomains}
                   isOwner={isOwner}
                 />
               )}
@@ -252,33 +265,6 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
             style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
           >
             {t`No domain found`}
-          </Text>
-          )}
-        </View>
-
-        <View
-          style={tw`mt-4 mb-2 flex items-center w-full justify-between flex-row`}
-        >
-          <Text style={tw`text-base font-bold`}>
-            {isOwner ? t`My subdomains` : t`Subdomains`}
-          </Text>
-        </View>
-
-        <View>
-          {hasSubdomain ? (
-            <FlatList
-              style={tw`mb-3`}
-              data={subdomains.result}
-              renderItem={({ item }) => (
-                <SubdomainRow key={item.key} subdomain={item.subdomain} />
-              )}
-              keyExtractor={(item) => item.subdomain}
-            />
-          ) : (
-          <Text
-            style={tw`mt-10 text-2xl font-semibold text-center text-blue-grey-300`}
-          >
-            <Trans>No subdomain found</Trans>
           </Text>
           )}
         </View>
