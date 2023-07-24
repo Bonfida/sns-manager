@@ -185,26 +185,27 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       <ScrollView showsHorizontalScrollIndicator={false}>
         <ProfileBlock>
           {showProgress && isOwner && (
-            <View style={tw`px-4`}>
-              <Text style={tw`mt-4 ml-1 font-bold`}>
-                {t`Profile completed: ${percentage}%`}
-              </Text>
+            <View>
+              <View style={tw`flex flex-row gap-2 items-center mb-2`}>
+                <Text style={tw`text-sm text-white`}>
+                  {t`Profile completed: ${percentage}%`}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => openModal("ProgressExplainerModal")}
+                >
+                  <MaterialCommunityIcons
+                    name="information-outline"
+                    size={20}
+                    color="white"
+                  />
+                </TouchableOpacity>
+              </View>
               <View
-                style={tw`w-full border-[2px] relative border-black/10 rounded-lg flex flex-row items-center justify-between`}
+                style={tw`w-full relative rounded-md flex flex-row items-center justify-between bg-white`}
               >
                 <View
-                style={tw`bg-green-600 bg-opacity-80 h-[30px] rounded-md w-[${percentage}%] top-0 left-0`}
+                  style={tw`bg-content-progress h-[12px] rounded-md w-[${percentage}%] top-0 left-0`}
                 />
-                <TouchableOpacity
-                style={tw`mx-2`}
-                onPress={() => openModal("ProgressExplainerModal")}
-                >
-                <MaterialCommunityIcons
-                  name="information-outline"
-                  size={20}
-                  color="black"
-                />
-                </TouchableOpacity>
               </View>
             </View>
           )}
