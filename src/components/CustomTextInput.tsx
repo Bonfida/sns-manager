@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import {
   TextInput,
   Text,
@@ -44,38 +44,48 @@ export const CustomTextInput = (
     return null
   }
 
-  const RenderLabel = () => {
-    if (typeof label === 'string') {
-      return (
-        <Text style={tw`mb-2 text-sm text-content-secondary`}>
-          {label}
-        </Text>
-      )
-    }
-    return <>{label}</> || null
-  }
-
   return (
     <View style={[
       tw`w-full`,
       style,
       !editable && tw`opacity-50`,
     ]}>
-      <RenderLabel />
+      <RenderLabel label={label} />
 
       <View style={tw`w-full h-[40px] relative`}>
         <TextInput
           {...customProps}
           editable={editable}
           style={[
-            Platform.OS === "web" && { outlineWidth: 0 },
-            tw`bg-white h-full rounded-lg pl-3 text-content-secondary border border-content-border`,
+            Platform.OS === "web" && {
+              outlineWidth: 0,
+              textOverflow: 'ellipsis',
+            },
+            tw`bg-white h-full rounded-lg px-3 text-content-secondary border border-content-border`,
           ]}
           placeholderTextColor="#A3A3A3"
         />
 
         <ClearValueAction />
       </View>
+    </View>
+  )
+}
+
+const RenderLabel = ({ label }: { label: string | ReactNode }) => {
+  if (!label) return null
+
+  if (typeof label === 'string') {
+    return (
+      <Text style={tw`mb-2 text-sm text-content-secondary`}>
+        {label}
+      </Text>
+    )
+  }
+
+  return (
+    <View style={tw`mb-2`}>
+      {label as ReactNode}
     </View>
   )
 }
