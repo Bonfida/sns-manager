@@ -152,11 +152,12 @@ export function HomeScreen() {
       <Stack.Screen
         name="domain-view"
         children={({ route }) => <DomainView domain={route.params?.domain} />}
-        options={{ title: t`Domain` }}
+        options={({ route }) => ({ title: `${route.params?.domain}.sol` })}
       />
       <Stack.Screen
         name="search-profile"
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
+        options={({ route }) => ({ title: route.params.owner })}
       />
     </Stack.Navigator>
   );
