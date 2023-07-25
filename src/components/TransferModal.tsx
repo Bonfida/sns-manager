@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -13,21 +7,29 @@ import {
   transferInstruction,
   ROOT_DOMAIN_ACCOUNT,
 } from "@bonfida/spl-name-service";
-import tw from "../utils/tailwind";
 import { PublicKey } from "@solana/web3.js";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { sendTx } from "../utils/send-tx";
 import { useModal } from "react-native-modalfy";
-import { WrapModal } from "./WrapModal";
-import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
+import { t } from "@lingui/macro";
+
+import tw from "@src/utils/tailwind";
+import { sendTx } from "@src/utils/send-tx";
+
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+
+import { CustomTextInput } from '@src/components/CustomTextInput';
+import { WrapModal } from "@src/components/WrapModal";
+import { UiButton } from "@src/components/UiButton";
 
 export const TransferModal = ({
-  modal: { getParam },
+  modal: { closeModal, getParam },
 }: {
-  modal: { getParam: <T>(a: string, b?: string) => T };
+  modal: {
+    closeModal: () => void;
+    getParam: <T>(a: string, b?: string) => T;
+  };
 }) => {
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
@@ -61,7 +63,7 @@ export const TransferModal = ({
       setLoading(false);
       openModal("Success", { msg: t`${domain}.sol successfully transfered!` });
       refresh();
-      closeModal("Transfer");
+      closeModal();
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -70,38 +72,33 @@ export const TransferModal = ({
   };
 
   return (
-    <WrapModal closeModal={() => closeModal("Transfer")}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Transfer {domain}.sol</Trans>
-        </Text>
-        <TextInput
-          placeholder={t`New ${domain}.sol owner`}
-          onChangeText={(text) => setValue(text)}
-          value={value}
-          style={tw`h-[40px] text-sm pl-2 bg-blue-grey-050 rounded-lg my-5 font-bold`}
+    <WrapModal
+      closeModal={closeModal}
+      title={t`Transfer ${domain}.sol`}
+    >
+      <CustomTextInput
+        placeholder={t`New ${domain}.sol owner`}
+        onChangeText={(text) => setValue(text)}
+        value={value}
+        style={tw`my-5`}
+        editable={!loading}
+      />
+
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={closeModal}
+          outline
+          content={t`Cancel`}
+          loading={loading}
         />
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Confirm</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => closeModal("Transfer")}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Confirm`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );

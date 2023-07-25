@@ -1,8 +1,6 @@
 import { useState } from "react";
 import {
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
   ActivityIndicator,
   Image,
@@ -216,67 +214,54 @@ export const EditPicture = ({
     }
   };
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-3 pt-4 pb-6 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Change profile picture</Trans>
-        </Text>
-        <View style={tw`flex items-center justify-center my-2`}>
-          <Image
-            style={tw`w-[100px] border-[3px] rounded-full h-[100px]`}
-            source={
-              pic || currentPic
-                ? { uri: pic || currentPic }
-                : require("@assets/default-pic.png")
-            }
-          />
-        </View>
+    <WrapModal
+      closeModal={closeModal}
+      title={t`Change profile picture`}
+    >
+      <View style={tw`flex items-center justify-center my-6`}>
+        <Image
+          style={tw`w-[100px] rounded-full h-[100px]`}
+          source={
+            pic || currentPic
+              ? { uri: pic || currentPic }
+              : require("@assets/default-pic.png")
+          }
+        />
+      </View>
+
+      <UiButton
+        disabled={loading}
+        onPress={connected ? handlePickImage : () => setVisible(true)}
+        style={tw`flex flex-row items-center justify-center`}
+        content={t`Upload a picture...`}
+        loading={loading}
+      />
+
+      <View style={tw`flex flex-col mt-4 mb-10`}>
+        <CustomTextInput
+          label={t`Picture URL`}
+          editable={!loading}
+          placeholder={t`New picture URL`}
+          onChangeText={(text) => setPic(text)}
+          value={pic}
+        />
+      </View>
+
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={closeModal}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
 
         <UiButton
           disabled={loading}
-          onPress={connected ? handlePickImage : () => setVisible(true)}
-          style={tw`flex flex-row items-center justify-center`}
-        >
-          <Text style={tw`font-bold text-white`}>
-            <Trans>Upload a picture...</Trans>
-          </Text>
-          {loading && <ActivityIndicator style={tw`ml-3`} size={16} color="white" />}
-        </UiButton>
-
-        <View style={tw`flex flex-col mt-4 mb-10`}>
-          <CustomTextInput
-            label={t`Picture URL`}
-            editable={!loading}
-            placeholder={t`New picture URL`}
-            onChangeText={(text) => setPic(text)}
-            value={pic}
-          />
-        </View>
-
-        <View style={tw`flex flex-row items-center gap-4`}>
-          <UiButton
-            disabled={loading}
-            onPress={closeModal}
-            outline
-            style={tw`flex flex-1 flex-row items-center justify-center`}
-          >
-            <Text style={tw`font-bold text-brand-primary`}>
-              <Trans>Cancel</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} color={tw.color('brand-primary')} />}
-          </UiButton>
-
-          <UiButton
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`flex flex-1 flex-row items-center justify-center`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Save</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} color="white" />}
-          </UiButton>
-        </View>
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Save`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );

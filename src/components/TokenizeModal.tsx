@@ -1,19 +1,13 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useState } from "react";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { useModal } from "react-native-modalfy";
 import { getDomainKeySync } from "@bonfida/spl-name-service";
-import tw from "../utils/tailwind";
 import {
   PublicKey,
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { useModal } from "react-native-modalfy";
-import { WrapModal } from "./WrapModal";
 import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { unwrap } from "../utils/unwrap";
-import { wrap } from "../utils/wrap";
 import {
   METADATA_SIGNER,
   MINT_PREFIX,
@@ -25,8 +19,18 @@ import {
   createCloseAccountInstruction,
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
-import { checkAccountExists } from "../utils/account";
-import { sendTx } from "../utils/send-tx";
+
+import tw from "@src/utils/tailwind";
+import { unwrap } from "@src/utils/unwrap";
+import { wrap } from "@src/utils/wrap";
+import { checkAccountExists } from "@src/utils/account";
+import { sendTx } from "@src/utils/send-tx";
+
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+
+import { WrapModal } from "@src/components/WrapModal";
+import { UiButton } from "@src/components/UiButton";
 
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
@@ -140,32 +144,24 @@ export const TokenizeModal = ({
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          {isTokenized ? t`Unwrap` : `Wrap`} {domain}.sol
-        </Text>
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 mt-2 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              {isTokenized ? t`Unwrap` : t`Wrap`}
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => closeModal()}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+    <WrapModal
+      closeModal={closeModal}
+      title={`${isTokenized ? t`Unwrap` : `Wrap`} ${domain}.sol`}
+    >
+      <View style={tw`flex flex-row items-center gap-4 mt-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          content={t`Cancel`}
+          outline
+          loading={loading}
+        />
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={isTokenized ? t`Unwrap` : t`Wrap`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );
