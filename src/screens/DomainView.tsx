@@ -6,30 +6,35 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import tw from "../utils/tailwind";
+import { Record } from "@bonfida/spl-name-service";
+import { Feather } from "@expo/vector-icons";
+import SkeletonContent from "react-native-skeleton-content";
+import Clipboard from "@react-native-clipboard/clipboard";
+import { useNavigation } from "@react-navigation/native";
+import { useModal } from "react-native-modalfy";
+import { FontAwesome } from "@expo/vector-icons";
+import { useProfilePic } from "@bonfida/sns-react";
+import { Trans, t } from "@lingui/macro";
+
+import tw from "@src/utils/tailwind";
+import { profileScreenProp } from "@src/types";
+import { abbreviate } from "@src/utils/abbreviate";
+
 import {
   SocialRecord,
   useAddressRecords,
   useSocialRecords,
-} from "../hooks/useRecords";
-import { Record } from "@bonfida/spl-name-service";
-import { Feather } from "@expo/vector-icons";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import SkeletonContent from "react-native-skeleton-content";
-import Clipboard from "@react-native-clipboard/clipboard";
-import { useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "@src/types";
-import { useModal } from "react-native-modalfy";
-import { SocialRecordCard } from "../components/SocialRecord";
-import { FontAwesome } from "@expo/vector-icons";
-import { Screen } from "../components/Screen";
-import { abbreviate } from "../utils/abbreviate";
-import { useDomainInfo } from "../hooks/useDomainInfo";
-import { useProfilePic } from "@bonfida/sns-react";
-import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { useSubdomains } from "../hooks/useSubdomains";
-import { SubdomainRow } from "../components/SubdomainRow";
+} from "@src/hooks/useRecords";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useDomainInfo } from "@src/hooks/useDomainInfo";
+import { useWallet } from "@src/hooks/useWallet";
+import { useSubdomains } from "@src/hooks/useSubdomains";
+
+import { SocialRecordCard } from "@src/components/SocialRecord";
+import { Screen } from "@src/components/Screen";
+import { SubdomainRow } from "@src/components/SubdomainRow";
+import { ProfileBlock } from "@src/components/ProfileBlock";
+import { UiButton } from '@src/components/UiButton';
 
 export const LoadingState = () => {
   return (
@@ -80,7 +85,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
-  const isSub = domain?.split(".").length === 2;
+  const isSubdomain = domain?.split(".").length === 2;
   const hasSubdomain =
     subdomains.result !== undefined && subdomains.result.length !== 0;
   const isTokenized = domainInfo.result?.isTokenized;
@@ -109,63 +114,64 @@ export const DomainView = ({ domain }: { domain: string }) => {
   return (
     <Screen style={tw`p-0`}>
       <ScrollView showsHorizontalScrollIndicator={false}>
-        <View
-          style={tw`flex px-4 py-4 flex-row items-center my-5 bg-blue-grey-100/50`}
+        <ProfileBlock
+          owner={domainInfo.result?.owner!}
+          domain={domain}
+          picRecord={picRecord}
         >
-          <View style={tw`relative`}>
-            <Image
-              source={
-                picRecord.result
-                  ? picRecord.result
-                  : require("../../assets/default-pic.png")
-              }
-              style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
-            />
-            {isOwner && (
-              <TouchableOpacity
+          <View style={tw`flex flex-row gap-6`}>
+
+            {/* Transfer button */}
+            {isOwner && !isSubdomain && !isTokenized && (
+              <View style={tw`flex flex-col flex-1`}>
+                <UiButton
+                  onPress={() =>
+                    openModal("Transfer", {
+                      domain,
+                      refresh: domainInfo.execute(),
+                    })
+                  }
+                  small
+                  content={t`Transfer`}
+                  style={tw`flex flex-row justify-center items-center`}
+                />
+
+              </View>
+            )}
+            {isSubdomain && (
+              <UiButton
                 onPress={() =>
-                  openModal("EditPicture", {
-                    currentPic: picRecord.result,
+                  openModal("Delete", {
                     domain,
-                    refresh,
+                    refresh: domainInfo.execute(),
                   })
                 }
-                style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-[-2px] right-[-2px] bg-blue-900`}
-              >
-                <Feather name="edit-2" size={12} color="white" />
-              </TouchableOpacity>
+                small
+                content={t`Delete`}
+                style={tw`bg-content-error border-content-error`}
+              />
+            )}
+
+            {/* wrap/unwrap button */}
+            {isOwner && !isSubdomain && (
+              <UiButton
+                onPress={() =>
+                  openModal("TokenizeModal", {
+                    domain,
+                    isTokenized,
+                    refresh: domainInfo.execute(),
+                  })
+                }
+                small
+                content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
+                style={tw`flex flex-1 flex-row justify-center items-center`}
+              />
             )}
           </View>
-          <View style={tw`w-full`}>
-            <Text style={tw`font-bold text-xl ml-4 max-w-[65%]`}>
-              {domain}.sol
-            </Text>
-            <View style={tw`flex flex-row items-center`}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("search-profile", {
-                    owner: domainInfo.result?.owner as string,
-                  })
-                }
-              >
-                <Text style={tw`text-xs text-blue-grey-800 ml-4 mr-1`}>
-                  {abbreviate(domainInfo.result?.owner, 18)}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  Clipboard.setString(domainInfo.result?.owner!);
-                  openModal("Success", { msg: t`Copied!` });
-                }}
-              >
-                <Feather name="copy" size={12} color="black" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        </ProfileBlock>
 
         <View style={tw`px-4`}>
-          {!isSub && (
+          {!isSubdomain && (
             <>
               <View
                 style={tw`flex flex-row items-center w-full justify-between`}
@@ -221,7 +227,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <Trans>Socials</Trans>
             </Text>
 
-            {isSub && (
+            {isSubdomain && (
               <View style={tw`flex flex-row gap-4`}>
                 <TouchableOpacity
                   onPress={() =>
@@ -273,65 +279,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
               />
             )}
           />
-
-          {/* Transfer button */}
-          {isOwner && !isSub && !isTokenized && (
-            <View style={tw`flex flex-col`}>
-              <TouchableOpacity
-                onPress={() =>
-                  openModal("Transfer", {
-                    domain,
-                    refresh: async () => {
-                      await domainInfo.execute();
-                    },
-                  })
-                }
-                style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
-              >
-                <Text style={tw`text-white font-bold text-xl mr-3`}>
-                  <Trans>Transfer</Trans>
-                </Text>
-              </TouchableOpacity>
-
-              {isSub && (
-                <TouchableOpacity
-                  onPress={() =>
-                    openModal("Delete", {
-                      domain,
-                      refresh: async () => {
-                        await domainInfo.execute();
-                      },
-                    })
-                  }
-                  style={tw`flex flex-row justify-center items-center w-full bg-red-400 rounded-lg h-[50px] mb-2`}
-                >
-                  <Text style={tw`text-white font-bold text-xl mr-3`}>
-                    <Trans>Delete</Trans>
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          )}
-
-          {/* wrap/unwrap button */}
-          {isOwner && !isSub && (
-            <TouchableOpacity
-              onPress={() =>
-                openModal("TokenizeModal", {
-                  domain,
-                  isTokenized,
-                  refresh: async () => {
-                    await domainInfo.execute();
-                  },
-                })
-              }
-              style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
-            >
-              <Text style={tw`text-white font-bold text-xl mr-3`}>
-                {isTokenized ? t`Unwrap NFT` : t`Wrap domain into NFT`}
-              </Text>
-            </TouchableOpacity>
-          )}
         </View>
       </ScrollView>
     </Screen>
@@ -392,7 +339,7 @@ const RenderRecord = ({
           >
             <Image
               style={tw`h-[15px] w-[15px]`}
-              source={require("../../assets/wormhole.svg")}
+              source={require("@assets/wormhole.svg")}
             />
           </TouchableOpacity>
         )}
