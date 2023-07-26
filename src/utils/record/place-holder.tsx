@@ -50,7 +50,7 @@ export const getTranslatedName = (record: Record) => {
     case Record.Email:
       return t`Email`;
     case Record.Url:
-      return t`Url`;
+      return t`Website`;
     case Record.Discord:
       return t`Discord`;
     case Record.Github:

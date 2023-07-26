@@ -1,14 +1,16 @@
 import { Record } from "@bonfida/spl-name-service";
 import { SocialRecord } from "@src/hooks/useRecords";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Feather,
+  AntDesign,
+  FontAwesome5,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { Text, View, TouchableOpacity } from "react-native";
 import tw from "@src/utils/tailwind";
 import { useModal } from "react-native-modalfy";
 import Clipboard from "@react-native-clipboard/clipboard";
-import { Feather } from "@expo/vector-icons";
 import { Trans, t } from "@lingui/macro";
 import { getTranslatedName } from "../utils/record/place-holder";
 
@@ -21,7 +23,7 @@ export const getIcon = (record: SocialRecord) => {
     case Record.Discord:
       return <FontAwesome5 name="discord" {...defaultIconAttrs} />;
     case Record.Email:
-      return <Entypo name="email" {...defaultIconAttrs} />;
+      return <MaterialIcons name="email" {...defaultIconAttrs} />;
     case Record.Github:
       return <AntDesign name="github" {...defaultIconAttrs} />;
     case Record.Reddit:
@@ -34,7 +36,7 @@ export const getIcon = (record: SocialRecord) => {
       return <MaterialCommunityIcons name="web" {...defaultIconAttrs} />;
     case Record.Backpack:
       return (
-        <MaterialCommunityIcons name="bag-personal" {...defaultIconAttrs} />
+        <MaterialIcons name="backpack" {...defaultIconAttrs} />
       );
     default:
       return null;

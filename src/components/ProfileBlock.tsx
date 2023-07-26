@@ -89,9 +89,11 @@ export const ProfileBlock = ({ owner, domain, children, picRecord }: ProfileBloc
         </TouchableOpacity>
       </View>
 
-      <View style={tw`mt-5`}>
-        {children}
-      </View>
+      {children && (
+        <View style={tw`mt-3`}>
+          {children}
+        </View>
+      )}
     </LinearGradient>
   )
 }

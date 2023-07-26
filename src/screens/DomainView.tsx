@@ -7,13 +7,21 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import {
+  Feather,
+  AntDesign,
+  FontAwesome5,
+  MaterialIcons,
+  FontAwesome,
+  EvilIcons,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { Record as SNSRecord } from "@bonfida/spl-name-service";
-import { Feather } from "@expo/vector-icons";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useNavigation } from "@react-navigation/native";
 import { useModal } from "react-native-modalfy";
-import { FontAwesome, EvilIcons, MaterialIcons } from "@expo/vector-icons";
 import { useProfilePic } from "@bonfida/sns-react";
 import { Trans, t } from "@lingui/macro";
 
@@ -25,7 +33,6 @@ import {
   AddressRecord,
   SocialRecord,
   SOCIAL_RECORDS,
-  ADDRESS_RECORDS,
   useAddressRecords,
   useSocialRecords,
 } from "@src/hooks/useRecords";
@@ -34,9 +41,8 @@ import { useDomainInfo } from "@src/hooks/useDomainInfo";
 import { useWallet } from "@src/hooks/useWallet";
 import { useSubdomains } from "@src/hooks/useSubdomains";
 
-import { getIcon, SocialRecordCard } from "@src/components/SocialRecord";
+import { SocialRecordCard } from "@src/components/SocialRecord";
 import { Screen } from "@src/components/Screen";
-import { SubdomainRow } from "@src/components/SubdomainRow";
 import { ProfileBlock } from "@src/components/ProfileBlock";
 import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from "@src/components/CustomTextInput";
@@ -77,6 +83,35 @@ export const LoadingState = () => {
   );
 };
 
+const getIcon = (record: SocialRecord) => {
+  const defaultIconAttrs = {
+    size: 20,
+    color: tw.color('content-secondary'),
+  }
+  switch (record) {
+    case SNSRecord.Discord:
+      return <FontAwesome5 name="discord" {...defaultIconAttrs} />;
+    case SNSRecord.Email:
+      return <MaterialIcons name="email" {...defaultIconAttrs} />;
+    case SNSRecord.Github:
+      return <AntDesign name="github" {...defaultIconAttrs} />;
+    case SNSRecord.Reddit:
+      return <FontAwesome5 name="reddit" {...defaultIconAttrs} />;
+    case SNSRecord.Telegram:
+      return <FontAwesome5 name="telegram" {...defaultIconAttrs} />;
+    case SNSRecord.Twitter:
+      return <FontAwesome5 name="twitter" {...defaultIconAttrs} />;
+    case SNSRecord.Url:
+      return <MaterialCommunityIcons name="web" {...defaultIconAttrs} />;
+    case SNSRecord.Backpack:
+      return (
+        <MaterialIcons name="backpack" {...defaultIconAttrs} />
+      );
+    default:
+      return null;
+  }
+};
+
 type FormKeys = AddressRecord | SocialRecord;
 type FormValue = string | undefined;
 // using Map to store correct order of fields
@@ -109,7 +144,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
     subdomains.result !== undefined && subdomains.result.length !== 0;
   const isTokenized = domainInfo.result?.isTokenized;
 
-  const [isEditable, toggleEditMode] = useState(false)
+  const [isEditing, toggleEditMode] = useState(false)
 
   const loading =
     socialRecords.loading ||
@@ -205,7 +240,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         </ProfileBlock>
 
         <View>
-          <View style={tw`my-6 flex flex-row justify-between items-center`}>
+          <View style={tw`mt-6 mb-2 flex flex-row justify-between items-center`}>
             <View style={tw`flex flex-row gap-2`}>
               <TouchableOpacity
                 onPress={() => {}}
@@ -246,13 +281,18 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
             {isOwner ? (
               <UiButton
-                content={t`Edit`}
+                content={isEditing ? t`Revert` : t`Edit`}
                 small
                 style={tw`flex-initial`}
-                textAdditionalStyles={tw`text-sm`}
-                onPress={() => toggleEditMode(!isEditable)}
+                outline={isEditing}
+                textAdditionalStyles={tw`text-sm font-medium`}
+                onPress={() => toggleEditMode(!isEditing)}
               >
-                <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+                {isEditing ? (
+                  <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
+                ) : (
+                  <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+                )}
               </UiButton>
             ) : (
               <TouchableOpacity onPress={refresh}>
@@ -281,30 +321,32 @@ export const DomainView = ({ domain }: { domain: string }) => {
             )}
           </View>
 
-          <View style={tw`flex flex-col gap-4`}>
-            {[...formState.keys()].map(key => (
+          <FlatList
+            data={[...formState.keys()]}
+            renderItem={({ item }) => (
               <CustomTextInput
-                key={key}
-                value={formState.get(key)}
+                key={item}
+                value={formState.get(item)}
                 placeholder={t`Not set`}
-                editable={isEditable}
+                editable={isEditing}
+                style={tw`mt-4`}
                 label={
-                  <View style={tw`flex flex-row gap-1`}>
-                    {/* Why TS marks "includes" as a definition, but not conditional check? */}
-                    {SOCIAL_RECORDS.includes(key as any) && getIcon(key as any)}
+                  <View style={tw`flex flex-row items-center gap-1`}>
+                    {/* TS is kinda stupid here so "any" helps us */}
+                    {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
 
                     <Text style={tw`text-content-secondary text-sm leading-6`}>
-                      {getTranslatedName(key)}
+                      {getTranslatedName(item)}
                     </Text>
                   </View>
                 }
                 onChangeText={(text) => dispatchFormChange({
-                  type: key,
+                  type: item,
                   value: text,
                 })}
               />
-            ))}
-          </View>
+            )}
+          />
 
           <View style={tw`flex flex-col justify-around flex-wrap`}>
             {socialRecords?.result?.map((e) => {
