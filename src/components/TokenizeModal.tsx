@@ -19,6 +19,7 @@ import {
   createCloseAccountInstruction,
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
+import { A as HTMLLink } from '@expo/html-elements';
 
 import tw from "@src/utils/tailwind";
 import { unwrap } from "@src/utils/unwrap";
@@ -146,20 +147,57 @@ export const TokenizeModal = ({
   return (
     <WrapModal
       closeModal={closeModal}
-      title={`${isTokenized ? t`Unwrap` : `Wrap`} ${domain}.sol`}
+      title={isTokenized ? t`Unwrap your domain from NFT` : t`Wrap your domain into an NFT`}
     >
-      <View style={tw`flex flex-row items-center gap-4 mt-4`}>
-        <UiButton
-          disabled={loading}
-          onPress={() => closeModal()}
-          content={t`Cancel`}
-          outline
-          loading={loading}
-        />
+      {!isTokenized && (
+        <>
+          <Text style={tw`mt-6 text-sm text-black`}>
+            <Trans>
+              Domain name tokenization (wrapping), involves converting a domain name
+              into an NFT. To reveal the original domain name, the token can be
+              redeemed (unwrapped).
+            </Trans>
+
+          </Text>
+          <Text style={tw`mt-6 text-sm text-black`}>
+            <Trans>
+              What to consider:
+            </Trans>
+          </Text>
+          <View style={tw`mt-6 pl-1 text-sm text-black flex flex-col gap-2`}>
+            <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+              <Trans>
+                <Text>1.</Text>
+                <Text>Transferring funds can sometimes be a bit complex, and it may vary depending on the wallet you are using.</Text>
+              </Trans>
+            </Text>
+            <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+              <Trans>
+                <Text>2.</Text>
+                <Text>You cannot edit the content of your domain or add subdomains.</Text>
+              </Trans>
+            </Text>
+            <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+              <Trans>
+                <Text>3.</Text>
+                <Text>You cannot transfer your domain.</Text>
+              </Trans>
+            </Text>
+          </View>
+
+          <HTMLLink
+            style={tw`mt-6 text-center text-sm text-brand-primary`}
+            href="https://docs.bonfida.org/collection/naming-service/how-to-create-a-solana-domain-name/selling-a-domain-name/nft-domain-resell"
+          >
+            <Trans>Learn more in our docs</Trans>
+          </HTMLLink>
+        </>
+      )}
+      <View style={tw`mt-6`}>
         <UiButton
           disabled={loading}
           onPress={connected ? handle : () => setVisible(true)}
-          content={isTokenized ? t`Unwrap` : t`Wrap`}
+          content={isTokenized ? t`Unwrap domain` : t`Wrap domain`}
           loading={loading}
         />
       </View>

@@ -1,3 +1,4 @@
+import { useReducer, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -6,22 +7,25 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { Record } from "@bonfida/spl-name-service";
+import { Record as SNSRecord } from "@bonfida/spl-name-service";
 import { Feather } from "@expo/vector-icons";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useNavigation } from "@react-navigation/native";
 import { useModal } from "react-native-modalfy";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, EvilIcons, MaterialIcons } from "@expo/vector-icons";
 import { useProfilePic } from "@bonfida/sns-react";
 import { Trans, t } from "@lingui/macro";
 
 import tw from "@src/utils/tailwind";
+import { getTranslatedName } from "@src/utils/record/place-holder";
 import { profileScreenProp } from "@src/types";
-import { abbreviate } from "@src/utils/abbreviate";
 
 import {
+  AddressRecord,
   SocialRecord,
+  SOCIAL_RECORDS,
+  ADDRESS_RECORDS,
   useAddressRecords,
   useSocialRecords,
 } from "@src/hooks/useRecords";
@@ -30,11 +34,12 @@ import { useDomainInfo } from "@src/hooks/useDomainInfo";
 import { useWallet } from "@src/hooks/useWallet";
 import { useSubdomains } from "@src/hooks/useSubdomains";
 
-import { SocialRecordCard } from "@src/components/SocialRecord";
+import { getIcon, SocialRecordCard } from "@src/components/SocialRecord";
 import { Screen } from "@src/components/Screen";
 import { SubdomainRow } from "@src/components/SubdomainRow";
 import { ProfileBlock } from "@src/components/ProfileBlock";
 import { UiButton } from '@src/components/UiButton';
+import { CustomTextInput } from "@src/components/CustomTextInput";
 
 export const LoadingState = () => {
   return (
@@ -72,6 +77,20 @@ export const LoadingState = () => {
   );
 };
 
+type FormKeys = AddressRecord | SocialRecord;
+type FormValue = string | undefined;
+// using Map to store correct order of fields
+type FormState = Map<FormKeys, FormValue>;
+type FormAction = { type: FormKeys; value: FormValue } | { type: 'init'; value: FormState }
+
+const formReducer = (state: FormState, action: FormAction) => {
+  if (action.type === 'init') {
+    return action.value;
+  }
+  state.set(action.type, action.value)
+  return state;
+}
+
 export const DomainView = ({ domain }: { domain: string }) => {
   const { openModal } = useModal();
   const connection = useSolanaConnection();
@@ -90,6 +109,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
     subdomains.result !== undefined && subdomains.result.length !== 0;
   const isTokenized = domainInfo.result?.isTokenized;
 
+  const [isEditable, toggleEditMode] = useState(false)
+
   const loading =
     socialRecords.loading ||
     addressRecords.loading ||
@@ -106,6 +127,20 @@ export const DomainView = ({ domain }: { domain: string }) => {
       subdomains.execute(),
     ]);
   };
+
+  const [formState, dispatchFormChange] = useReducer(formReducer, new Map());
+
+  useEffect(() => {
+    if (addressRecords.result && socialRecords.result) {
+      dispatchFormChange({
+        type: 'init',
+        value: [...socialRecords.result, ...addressRecords.result].reduce((acc, v) => {
+            acc.set(v.record, v.value);
+            return acc;
+          }, new Map()),
+        })
+    }
+  }, [addressRecords.loading, socialRecords.loading])
 
   if (loading) {
     return <LoadingState />;
@@ -133,7 +168,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   }
                   small
                   content={t`Transfer`}
-                  style={tw`flex flex-row justify-center items-center`}
                 />
 
               </View>
@@ -170,63 +204,64 @@ export const DomainView = ({ domain }: { domain: string }) => {
           </View>
         </ProfileBlock>
 
-        <View style={tw`px-4`}>
-          {!isSubdomain && (
-            <>
-              <View
-                style={tw`flex flex-row items-center w-full justify-between`}
+        <View>
+          <View style={tw`my-6 flex flex-row justify-between items-center`}>
+            <View style={tw`flex flex-row gap-2`}>
+              <TouchableOpacity
+                onPress={() => {}}
+                style={[
+                  tw`rounded-xl px-2 py-1`,
+                  tw`bg-background-secondary`
+                ]}
               >
-                <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-                  <Trans>Subdomains</Trans>
+                <Text style={tw`text-sm text-brand-primary`}>
+                  {t`Socials`}
                 </Text>
-
-                <View style={tw`flex flex-row gap-4`}>
-                  {/* add subdomain button (if owner & not tokenized) */}
-                  {isOwner && !isTokenized && (
-                    <TouchableOpacity
-                      onPress={() => {
-                        openModal("CreateSubdomain", { refresh, domain });
-                      }}
-                    >
-                      <FontAwesome name="plus" size={20} color="black" />
-                    </TouchableOpacity>
-                  )}
-                  <TouchableOpacity onPress={refresh}>
-                    <FontAwesome name="refresh" size={20} color="black" />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <View style={tw`flex flex-col justify-around flex-wrap`}>
-                {hasSubdomain ? (
-                  <FlatList
-                    style={tw`mb-3`}
-                    data={subdomains.result}
-                    renderItem={({ item }) => (
-                      <SubdomainRow
-                        subdomain={`${item}.${domain}`}
-                        key={item}
-                      />
-                    )}
-                  />
-                ) : (
-                  <Text
-                    style={tw`mt-2 mb-2 text-xl font-semibold text-center text-blue-grey-300`}
-                  >
-                    <Trans>No subdomains found</Trans>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {}}
+                style={[
+                  tw`rounded-xl px-2 py-1`,
+                  tw`bg-background-secondary`
+                ]}
+              >
+                <Text style={tw`text-sm text-brand-primary`}>
+                  {t`Addresses`}
+                </Text>
+              </TouchableOpacity>
+              {!isSubdomain && (
+                <TouchableOpacity
+                  onPress={() => {}}
+                  style={[
+                    tw`rounded-xl px-2 py-1`,
+                    tw`bg-background-secondary`
+                  ]}
+                >
+                  <Text style={tw`text-sm text-brand-primary`}>
+                    {t`Subdomains`}
                   </Text>
-                )}
-              </View>
-            </>
-          )}
+                </TouchableOpacity>
+              )}
+            </View>
 
-          <View
-            style={tw`flex flex-row items-center w-full justify-between mt-2`}
-          >
-            <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-              <Trans>Socials</Trans>
-            </Text>
+            {isOwner ? (
+              <UiButton
+                content={t`Edit`}
+                small
+                style={tw`flex-initial`}
+                textAdditionalStyles={tw`text-sm`}
+                onPress={() => toggleEditMode(!isEditable)}
+              >
+                <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+              </UiButton>
+            ) : (
+              <TouchableOpacity onPress={refresh}>
+                <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
+              </TouchableOpacity>
+            )}
+          </View>
 
+          <View style={tw`flex flex-row items-center w-full justify-between mt-2`}>
             {isSubdomain && (
               <View style={tw`flex flex-row gap-4`}>
                 <TouchableOpacity
@@ -244,6 +279,31 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 </TouchableOpacity>
               </View>
             )}
+          </View>
+
+          <View style={tw`flex flex-col gap-4`}>
+            {[...formState.keys()].map(key => (
+              <CustomTextInput
+                key={key}
+                value={formState.get(key)}
+                placeholder={t`Not set`}
+                editable={isEditable}
+                label={
+                  <View style={tw`flex flex-row gap-1`}>
+                    {/* Why TS marks "includes" as a definition, but not conditional check? */}
+                    {SOCIAL_RECORDS.includes(key as any) && getIcon(key as any)}
+
+                    <Text style={tw`text-content-secondary text-sm leading-6`}>
+                      {getTranslatedName(key)}
+                    </Text>
+                  </View>
+                }
+                onChangeText={(text) => dispatchFormChange({
+                  type: key,
+                  value: text,
+                })}
+              />
+            ))}
           </View>
 
           <View style={tw`flex flex-col justify-around flex-wrap`}>
@@ -265,6 +325,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           <Text style={tw`text-xl font-bold text-blue-grey-900 mt-4 mb-1`}>
             <Trans>Addresses</Trans>
           </Text>
+
           <FlatList
             style={tw`mb-3`}
             data={addressRecords.result}
@@ -293,7 +354,7 @@ const RenderRecord = ({
   refresh,
   isTokenized,
 }: {
-  record: Record;
+  record: SNSRecord;
   value: string | undefined;
   isOwner?: boolean;
   domain: string;
@@ -301,7 +362,7 @@ const RenderRecord = ({
   isTokenized?: boolean;
 }) => {
   const { openModal } = useModal();
-  const worm = value && record === Record.BSC;
+  const worm = value && record === SNSRecord.BSC;
 
   return (
     <View

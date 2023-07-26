@@ -1,11 +1,11 @@
 import { Record } from "@bonfida/spl-name-service";
-import { SocialRecord } from "../hooks/useRecords";
+import { SocialRecord } from "@src/hooks/useRecords";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text, View, TouchableOpacity } from "react-native";
-import tw from "../utils/tailwind";
+import tw from "@src/utils/tailwind";
 import { useModal } from "react-native-modalfy";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { Feather } from "@expo/vector-icons";
@@ -13,27 +13,31 @@ import { Trans, t } from "@lingui/macro";
 import { getTranslatedName } from "../utils/record/place-holder";
 
 export const getIcon = (record: SocialRecord) => {
+  const defaultIconAttrs = {
+    size: 20,
+    color: tw.color('content-secondary'),
+  }
   switch (record) {
     case Record.Discord:
-      return <FontAwesome5 name="discord" size={22} color="black" />;
+      return <FontAwesome5 name="discord" {...defaultIconAttrs} />;
     case Record.Email:
-      return <Entypo name="email" size={22} color="black" />;
+      return <Entypo name="email" {...defaultIconAttrs} />;
     case Record.Github:
-      return <AntDesign name="github" size={22} color="black" />;
+      return <AntDesign name="github" {...defaultIconAttrs} />;
     case Record.Reddit:
-      return <FontAwesome5 name="reddit" size={22} color="black" />;
+      return <FontAwesome5 name="reddit" {...defaultIconAttrs} />;
     case Record.Telegram:
-      return <FontAwesome5 name="telegram" size={22} color="black" />;
+      return <FontAwesome5 name="telegram" {...defaultIconAttrs} />;
     case Record.Twitter:
-      return <FontAwesome5 name="twitter" size={22} color="black" />;
+      return <FontAwesome5 name="twitter" {...defaultIconAttrs} />;
     case Record.Url:
-      return <MaterialCommunityIcons name="web" size={22} color="black" />;
+      return <MaterialCommunityIcons name="web" {...defaultIconAttrs} />;
     case Record.Backpack:
       return (
-        <MaterialCommunityIcons name="bag-personal" size={22} color="black" />
+        <MaterialCommunityIcons name="bag-personal" {...defaultIconAttrs} />
       );
     default:
-      throw new Error("Unreachable!");
+      return null;
   }
 };
 
