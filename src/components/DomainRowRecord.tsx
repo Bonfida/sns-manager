@@ -16,18 +16,18 @@ import { FavoriteButton } from "@src/components/FavoriteButton";
 
 export interface DomainRowRecordProps {
   domain: string;
-  isFav: boolean;
-  refresh: () => Promise<void>;
-  isOwner: boolean;
+  isFav?: boolean;
+  refresh?: () => Promise<void>;
+  isOwner?: boolean;
   callback?: () => void;
   isSubdomain?: boolean;
 }
 
 export const DomainRowRecord = ({
   domain,
-  isFav,
+  isFav = false,
   refresh,
-  isOwner,
+  isOwner = false,
   callback,
   isSubdomain = false,
 }: DomainRowRecordProps) => {
@@ -68,7 +68,7 @@ export const DomainRowRecord = ({
       </Text>
 
       <View style={tw`flex flex-row items-center`}>
-        {isOwner && !isSubdomain && (
+        {isOwner && !isSubdomain && refresh && (
           <FavoriteButton domain={domain} isFav={isFav} refresh={refresh} />
         )}
         <TouchableOpacity

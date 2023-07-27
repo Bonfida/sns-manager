@@ -16,6 +16,9 @@ import { useWallet } from "../hooks/useWallet";
 import { validate } from "../utils/validate";
 import { Trans, t } from "@lingui/macro";
 
+import { CustomTextInput } from '@src/components/CustomTextInput';
+import { UiButton } from '@src/components/UiButton';
+
 export const CreateSubdomainModal = ({
   modal: { closeModal, getParam },
 }: {
@@ -71,44 +74,36 @@ export const CreateSubdomainModal = ({
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Create a subdomain</Trans>
-        </Text>
-        <View style={tw`flex flex-row items-center gap-2`}>
-          <TextInput
-            placeholder={t`Enter subdomain`}
-            onChangeText={(text) => setValue(text)}
-            value={value}
-            style={tw`h-[40px] pl-2 flex-1 bg-blue-grey-050 rounded-lg my-5`}
-          />
+    <WrapModal
+      closeModal={closeModal}
+      title={t`Create a subdomain`}
+    >
+      <View style={tw`flex flex-row items-center gap-2 my-5`}>
+        <CustomTextInput
+          placeholder={t`Enter subdomain`}
+          onChangeText={(text) => setValue(text)}
+          value={value}
+          editable={!loading}
+          style={tw`w-auto`}
+        />
 
-          <Text style={tw`font-bold text-md`}>.{domain}.sol</Text>
-        </View>
-        <View style={tw`flex flex-col items-center mt-2`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Create</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => {
-              closeModal();
-            }}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={tw`font-bold text-md`}>.{domain}.sol</Text>
+      </View>
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
+
+        <UiButton
+          disabled={loading || !value}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Create`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );

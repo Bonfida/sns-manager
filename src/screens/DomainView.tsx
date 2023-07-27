@@ -16,6 +16,7 @@ import {
   EvilIcons,
   Ionicons,
   MaterialCommunityIcons,
+  Entypo,
 } from "@expo/vector-icons";
 import { Record as SNSRecord } from "@bonfida/spl-name-service";
 import SkeletonContent from "react-native-skeleton-content";
@@ -41,8 +42,8 @@ import { useDomainInfo } from "@src/hooks/useDomainInfo";
 import { useWallet } from "@src/hooks/useWallet";
 import { useSubdomains } from "@src/hooks/useSubdomains";
 
-import { SocialRecordCard } from "@src/components/SocialRecord";
 import { Screen } from "@src/components/Screen";
+import { DomainRowRecord, DomainRowRecordProps } from "@src/components/DomainRowRecord";
 import { ProfileBlock } from "@src/components/ProfileBlock";
 import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from "@src/components/CustomTextInput";
@@ -347,120 +348,46 @@ export const DomainView = ({ domain }: { domain: string }) => {
               />
             )}
           />
-
-          <View style={tw`flex flex-col justify-around flex-wrap`}>
-            {socialRecords?.result?.map((e) => {
-              return (
-                <SocialRecordCard
-                  domain={domain}
-                  currentValue={e.value}
-                  record={e.record as SocialRecord}
-                  isOwner={isOwner}
-                  refresh={refresh}
-                  key={`record-${e.record}`}
-                  isTokenized={isTokenized}
-                />
-              );
-            })}
-          </View>
-
-          <Text style={tw`text-xl font-bold text-blue-grey-900 mt-4 mb-1`}>
-            <Trans>Addresses</Trans>
-          </Text>
-
-          <FlatList
-            style={tw`mb-3`}
-            data={addressRecords.result}
-            renderItem={({ item }) => (
-              <RenderRecord
-                isOwner={isOwner}
-                record={item.record}
-                value={item.value}
-                domain={domain}
-                isTokenized={isTokenized}
-                refresh={refresh}
-              />
-            )}
-          />
         </View>
+
+        {!isSubdomain && (
+          <View style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}>
+            <View style={tw`mb-4 flex flex-row justify-end`}>
+              <TouchableOpacity
+                onPress={() => openModal("CreateSubdomain", { refresh, domain })}
+              >
+                <Text style={tw`text-brand-primary text-base flex flex-row gap-2 justify-end`}>
+                  <Trans>Add subdomain</Trans>
+
+                  <Entypo name="plus" size={20} color="brand-primary" />
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            {hasSubdomain ? (
+              <FlatList
+                data={subdomains.result}
+                renderItem={({ item }) => (
+                  <DomainRowRecord
+                    key={`${item}.${domain}`}
+                    domain={`${item}.${domain}`}
+                    isSubdomain
+                  />
+                )}
+              />
+            ) : (
+              <Text
+                style={tw`text-sm text-content-secondary`}
+              >
+                <Trans>
+                  You don’t have any subdomains yet. You can create as many as you
+                  want to use your profiles for different purposes.
+                </Trans>
+              </Text>
+            )}
+          </View>
+        )}
       </ScrollView>
     </Screen>
-  );
-};
-
-const RenderRecord = ({
-  record,
-  value,
-  isOwner,
-  domain,
-  refresh,
-  isTokenized,
-}: {
-  record: SNSRecord;
-  value: string | undefined;
-  isOwner?: boolean;
-  domain: string;
-  refresh: () => Promise<void>;
-  isTokenized?: boolean;
-}) => {
-  const { openModal } = useModal();
-  const worm = value && record === SNSRecord.BSC;
-
-  return (
-    <View
-      style={tw`border-b-[1px] flex flex-row items-center justify-between px-4 py-2 w-full h-[60px] border-black/20`}
-    >
-      <View style={tw`flex flex-row items-center`}>
-        {/* Record title & content */}
-        <View style={tw`flex flex-col items-start justify-start`}>
-          <Text style={tw`font-bold text-blue-900 capitalize`}>{record}</Text>
-          {!!value ? (
-            <>
-              <TouchableOpacity
-                onPress={() => {
-                  openModal("Success", { msg: t`Copied!` });
-                  Clipboard.setString(value);
-                }}
-              >
-                <Text style={tw`text-sm font-bold`}>{value}</Text>
-              </TouchableOpacity>
-            </>
-          ) : (
-            <Text style={tw`text-sm font-bold`}>
-              <Trans>Not set</Trans>
-            </Text>
-          )}
-        </View>
-      </View>
-
-      {/* Edit button (if owner) */}
-      <View style={tw`flex flex-row items-center`}>
-        {worm && (
-          <TouchableOpacity
-            style={tw`mr-2`}
-            onPress={() => openModal("WormholeExplainer")}
-          >
-            <Image
-              style={tw`h-[15px] w-[15px]`}
-              source={require("@assets/wormhole.svg")}
-            />
-          </TouchableOpacity>
-        )}
-        {isOwner && !isTokenized && (
-          <TouchableOpacity
-            onPress={() =>
-              openModal("EditRecordModal", {
-                record,
-                currentValue: value,
-                domain,
-                refresh,
-              })
-            }
-          >
-            <Feather name="edit-3" size={16} color="black" />
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
   );
 };
