@@ -45,11 +45,7 @@ export const CustomTextInput = (
   }
 
   return (
-    <View style={[
-      tw`w-full`,
-      style,
-      !editable && tw`opacity-50`,
-    ]}>
+    <View style={[tw`w-full`, style]}>
       <RenderLabel label={label} />
 
       <View style={tw`w-full h-[40px] relative`}>
@@ -62,6 +58,7 @@ export const CustomTextInput = (
               textOverflow: 'ellipsis',
             },
             tw`bg-white h-full rounded-lg px-3 text-content-secondary border border-content-border`,
+            !editable && tw`bg-background-primary`,
           ]}
           placeholderTextColor="#A3A3A3"
         />
