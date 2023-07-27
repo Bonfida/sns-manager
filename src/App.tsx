@@ -108,6 +108,9 @@ function TabNavigator() {
         tabBarActiveTintColor: tw.color('content-primary'),
         tabBarInactiveTintColor: tw.color('content-tertiary'),
         tabBarStyle: tw`h-[60px] bg-background-primary border-t-0 pt-2 pb-1 px-3`,
+        tabBarIconStyle: {
+          aspectRatio: '1/1',
+        },
       }}
       key={currentLanguage} // trigger tab re-render when translation is toggled
     >
