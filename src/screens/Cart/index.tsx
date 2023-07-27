@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ActivityIndicator,
   ScrollView,
 } from "react-native";
 import { useState } from "react";
@@ -20,7 +19,9 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
+import { useNavigation } from "@react-navigation/native";
 
+import { profileScreenProp } from "@src/types";
 import { cartState } from "@src/atoms/cart";
 import { referrerState } from "@src/atoms/referrer";
 
@@ -70,6 +71,8 @@ export const Cart = () => {
   const { openModal } = useModal();
   const [map, actions] = useStorageMap();
   const [currentStep, setStep] = useState<CurrentStep>(1)
+
+  const navigation = useNavigation<profileScreenProp>();
 
   const discountMul = mint === FIDA_MINT ? 0.95 : 1;
   const totalUsd = cart.reduce(
@@ -190,6 +193,7 @@ export const Cart = () => {
                   contentContainerStyle={tw`flex flex-col gap-2`}
                   renderItem={({ item }) => (
                     <View
+                      key={item}
                       style={tw`flex flex-row justify-between items-center bg-background-secondary py-3 px-4 rounded-xl`}
                     >
                       <View style={tw`flex flex-col`}>
@@ -253,46 +257,81 @@ export const Cart = () => {
           ) : <></>}
 
           {currentStep === 2 ? (
-            <View>
+            <>
               <Text style={tw`mt-4 mb-2 text-xl font-bold`}>
                 <Trans>Pay with</Trans>
               </Text>
-              <View style={tw`flex flex-row flex-wrap items-center`}>
+              <View style={tw`flex flex-row flex-wrap items-center gap-4`}>
                 {tokenList.map((e) => {
                   const selected = e.mintAddress === mint;
+
                   return (
                     <TouchableOpacity
                       onPress={() => setMint(e.mintAddress)}
                       style={[
-                        tw`border-[2px] border-black/10 rounded-lg mt-3 px-5 py-2 ml-2`,
-                        selected && { borderColor: "#0A558C", borderWidth: 2 },
+                        tw`border-2 border-[#D0C8FF] rounded-lg py-2 w-[70px] flex items-center justify-center relative`,
+                        selected && tw`border-brand-primary bg-brand-primary bg-opacity-15`
                       ]}
                       key={e.mintAddress}
                     >
-                      <Image
-                        style={tw`h-[25px] w-[25px]`}
-                        source={{ uri: e.icon }}
-                        resizeMode="contain"
-                      />
+                      <Text style={tw`text-xs text-content-primary flex items-center flex-row gap-1`}>
+                        <Image
+                          style={tw`h-[14px] w-[14px] rounded-full`}
+                          source={{ uri: tokenIconBySymbol(e.tokenSymbol) }}
+                          resizeMode="contain"
+                        />
+                        {e.tokenSymbol}
+                      </Text>
+                      {e.mintAddress === FIDA_MINT && (
+                        <Text style={tw`px-1 text-white text-xs bg-content-success absolute top-[-6px] right-[-6px] rounded`}>
+                          5%
+                        </Text>
+                      )}
                     </TouchableOpacity>
                   );
                 })}
               </View>
-              <View style={tw`mt-4`}>
+              <View style={tw`mt-auto`}>
                 <OrderSummary
                   mint={mint}
-                  setMint={setMint}
                   total={total}
                   totalUsd={totalUsd}
                 />
               </View>
-            </View>
+              <View>
+                <UiButton
+                  onPress={connected ? handle : () => setVisible(true)}
+                  disabled={loading || cart.length === 0}
+                  content={t`Confirm and pay`}
+                />
+              </View>
+            </>
           ) : <></>}
 
           {currentStep === 3 ? (
-            <Text>
-              Congrats on purchasing new domains!
-            </Text>
+            <>
+              <View style={tw`flex flex-row justify-center`}>
+                <Image
+                  source={require("@assets/icons/celebrate.svg")}
+                  style={tw`w-[120px] h-[120px] opacity-60`}
+                />
+              </View>
+              <Text style={tw`text-center text-lg font-bold text-content-primary mt-10`}>
+                <Trans>Congrats on purchasing new domains!</Trans>
+              </Text>
+              <Text style={tw`text-center text-sm font-medium text-content-secondary mt-6`}>
+                <Trans>
+                  You can enjoy the full benefits of owning a domain now. Get
+                  started by filling in the profiles attached to the domains.
+                </Trans>
+              </Text>
+              <View style={tw`mt-auto`}>
+                <UiButton
+                  onPress={() => navigation.navigate("Profile", {})}
+                  content={t`Get started with my profiles`}
+                />
+              </View>
+            </>
           ) : (<></>)}
         </View>
       </Screen>
@@ -318,9 +357,13 @@ const RenderStepsNumbers = (
       style,
     ]}>
       {steps.map((item, index) => (
-        <>
+        <View
+          key={item.label}
+          style={tw`flex flex-row gap-2 items-center justify-between`}
+        >
           <TouchableOpacity
             onPress={() => setStep(item.value)}
+            disabled={currentStep <= item.value}
             style={tw`flex flex-row items-center gap-2`}
           >
             <View
@@ -340,8 +383,8 @@ const RenderStepsNumbers = (
             </View>
             <Text style={tw`text-[11px]`}>{item.label}</Text>
           </TouchableOpacity>
-          {index !== steps.length - 1 ? <View style={tw`border-b border-brand-primary w-4`}></View> : null}
-        </>
+          {index !== steps.length - 1 ? <View style={tw`border-b border-brand-primary w-4`} /> : null}
+        </View>
       ))}
     </View>
   )

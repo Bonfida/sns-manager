@@ -37,8 +37,8 @@ export const DomainSearchResultRow = (
         </Text>
       </View>
       {!available && (
-        <View style={tw`rounded-[100px] border border-[#0F7420] px-3 bg-[#0F7420] bg-opacity-10`}>
-          <Text style={tw`font-semibold text-xs leading-6 text-[#0F7420]`}>
+        <View style={tw`rounded-[100px] border border-content-success px-3 bg-content-success bg-opacity-10`}>
+          <Text style={tw`font-semibold text-xs leading-6 text-content-success`}>
             <Trans>
               Purchased
             </Trans>
