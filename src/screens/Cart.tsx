@@ -1,6 +1,4 @@
 import { useRecoilState } from "recoil";
-import { cartState } from "../atoms/cart";
-import { Screen } from "../components/Screen";
 import {
   FlatList,
   Image,
@@ -10,14 +8,12 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import tw from "../utils/tailwind";
-import { FIDA_MINT, tokenList } from "../utils/tokens/popular-tokens";
-import { priceFromLength } from "../utils/price/price-from-length";
-import { usePyth } from "../hooks/usePyth";
+import { useModal } from "react-native-modalfy";
+import { Trans, t } from "@lingui/macro";
 import { Feather } from "@expo/vector-icons";
 import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import {
   Connection,
@@ -25,15 +21,26 @@ import {
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { wrapSol } from "../utils/tokens/wrap-sol";
-import { unwrapSol } from "../utils/tokens/unwrap-sol";
-import { chunkIx } from "../utils/tx/chunk-tx";
-import { useModal } from "react-native-modalfy";
-import { OrderSummary } from "../components/OrderSummary";
-import { Trans } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { referrerState } from "../atoms/referrer";
-import { useStorageMap } from "../hooks/useStorageMap";
+
+import { searchResultScreenProp } from "@src/types";
+import { cartState } from "@src/atoms/cart";
+import { referrerState } from "@src/atoms/referrer";
+
+import tw from "@src/utils/tailwind";
+import { FIDA_MINT, tokenList } from "@src/utils/tokens/popular-tokens";
+import { priceFromLength } from "@src/utils/price/price-from-length";
+import { wrapSol } from "@src/utils/tokens/wrap-sol";
+import { unwrapSol } from "@src/utils/tokens/unwrap-sol";
+import { chunkIx } from "@src/utils/tx/chunk-tx";
+
+import { useWallet } from "@src/hooks/useWallet";
+import { usePyth } from "@src/hooks/usePyth";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useStorageMap } from "@src/hooks/useStorageMap";
+
+import { OrderSummary } from "@src/components/OrderSummary";
+import { Screen } from "@src/components/Screen";
+import { UiButton } from "@src/components/UiButton";
 
 const checkEnoughFunds = async (
   connection: Connection,
@@ -50,6 +57,7 @@ const checkEnoughFunds = async (
 const DEFAULT_SPACE = 1_000;
 
 export const Cart = () => {
+  const navigation = useNavigation<searchResultScreenProp>();
   const [referrer] = useRecoilState(referrerState);
   const connection = useSolanaConnection();
   const { publicKey, signAllTransactions, connected, setVisible } = useWallet();
@@ -139,6 +147,30 @@ export const Cart = () => {
       openModal("Error", { msg: "Something went wrong - try again" });
     }
   };
+
+  if (!cart.length) {
+    return (
+      <Screen>
+        <View style={tw`mt-20`}>
+          <Text style={tw`font-bold text-lg text-center mb-6 text-content-primary`}>
+            {t`Nothing in your cart yet`}
+          </Text>
+          <Text style={tw`font-medium text-sm text-center text-content-secondary`}>
+            {t`Discover the domain that represents you!`}
+          </Text>
+
+          <UiButton
+            onPress={() => navigation.navigate('search-result', {
+              domain: '',
+              loadPopular: true,
+            })}
+            content={t`Secure a domain for yourself`}
+            style={tw`mt-10`}
+          />
+        </View>
+      </Screen>
+    )
+  }
 
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>

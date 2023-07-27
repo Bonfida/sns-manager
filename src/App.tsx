@@ -173,11 +173,18 @@ function TabNavigator() {
               <Feather name="shopping-cart" size={size} color={color} />
               {cart.length !== 0 ? (
                 <Text
-                  style={tw`absolute -top-1 text-white -right-2 bg-red-400 rounded-full font-bold h-[15px] text-center text-xs w-[16px]`}
+                  style={tw`absolute -top-1 text-white -right-2 bg-brand-primary rounded-full font-bold h-[15px] text-center text-xs w-[16px]`}
                 >
                   {cart.length}
                 </Text>
               ) : null}
+            </View>
+          ),
+          header: () => (
+            <View style={tw`bg-background-primary py-4 px-3`}>
+              <Text style={tw`font-semibold text-lg text-content-primary`}>
+                {t`Cart`}
+              </Text>
             </View>
           ),
         }}
