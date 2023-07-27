@@ -214,19 +214,17 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
             {/* Transfer button */}
             {isOwner && !isSubdomain && !isTokenized && (
-              <View style={tw`flex flex-col flex-1`}>
-                <UiButton
-                  onPress={() =>
-                    openModal("Transfer", {
-                      domain,
-                      refresh: domainInfo.execute(),
-                    })
-                  }
-                  small
-                  content={t`Transfer`}
-                />
-
-              </View>
+              <UiButton
+                onPress={() =>
+                  openModal("Transfer", {
+                    domain,
+                    refresh: domainInfo.execute(),
+                  })
+                }
+                small
+                content={t`Transfer`}
+                style={tw`basis-1/2`}
+              />
             )}
             {isOwner && (
               <>
@@ -240,8 +238,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       })
                     }
                     small
+                    danger
                     content={t`Delete`}
-                    style={tw`bg-content-error border-content-error`}
                   />
                 ) : (
                   // wrap/unwrap button
@@ -256,7 +254,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                     }
                     small
                     content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
-                    style={tw`flex flex-1 flex-row justify-center items-center`}
+                    style={tw`basis-1/2`}
                   />
                 )}
               </>
@@ -328,26 +326,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
             )}
           </View>
 
-          <View style={tw`flex flex-row items-center w-full justify-between mt-2`}>
-            {isSubdomain && (
-              <View style={tw`flex flex-row gap-4`}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("domain-view", {
-                      domain: domain.split(".")[1],
-                    })
-                  }
-                >
-                  <FontAwesome name="arrow-left" size={20} color="black" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={refresh}>
-                  <FontAwesome name="refresh" size={20} color="black" />
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-
           <FlatList
             data={[...formState.keys()]}
             renderItem={({ item }) => (
@@ -395,6 +373,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             {hasSubdomain ? (
               <FlatList
                 data={subdomains.result}
+                contentContainerStyle={tw`flex flex-col gap-3`}
                 renderItem={({ item }) => (
                   <DomainRowRecord
                     key={`${item}.${domain}`}

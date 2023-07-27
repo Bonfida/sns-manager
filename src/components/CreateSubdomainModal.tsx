@@ -87,7 +87,7 @@ export const CreateSubdomainModal = ({
           style={tw`w-auto`}
         />
 
-        <Text style={tw`font-bold text-md`}>.{domain}.sol</Text>
+        <Text style={tw`font-bold text-base`}>.{domain}.sol</Text>
       </View>
       <View style={tw`flex flex-row items-center gap-4`}>
         <UiButton

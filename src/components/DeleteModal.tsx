@@ -14,7 +14,9 @@ import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "@src/types";
 import { trimTld } from "../utils/validate";
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/macro";
+
+import { UiButton } from "@src/components/UiButton";
 
 export const DeleteModal = ({
   modal: { closeModal, getParam },
@@ -68,34 +70,23 @@ export const DeleteModal = ({
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Delete {domain}.sol</Trans>
-        </Text>
-        <View style={tw`flex flex-col items-center mt-2`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Delete</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => {
-              closeModal();
-            }}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+    <WrapModal closeModal={closeModal} title={t`Delete ${domain}.sol`}>
+      <View style={tw`flex flex-row items-center gap-4 mt-10`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
+
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Delete`}
+          danger
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );
