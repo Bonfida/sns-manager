@@ -1,5 +1,5 @@
-import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
-import tw from "../utils/tailwind";
+import { View, StyleProp, ViewStyle } from "react-native";
+import tw from "@src/utils/tailwind";
 
 type Props = {
   style?: StyleProp<ViewStyle>;

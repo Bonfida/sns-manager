@@ -34,9 +34,10 @@ export const DomainSizeModal = ({
   }, []);
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <View style={tw`flex flex-row items-center`}>
+    <WrapModal
+      closeModal={closeModal}
+      title={
+        <>
           <MaterialCommunityIcons
             name="content-save"
             size={24}
@@ -45,31 +46,32 @@ export const DomainSizeModal = ({
           <Text style={tw`ml-2 text-lg font-bold`}>
             <Trans>Storage Size</Trans>
           </Text>
-        </View>
-        <Text style={tw`pl-2 mt-2 text-sm`}>
-          <Trans>
-            The storage size will determine the maximum amount of data you can
-            store on your domain.
-          </Trans>
-        </Text>
+        </>
+      }
+    >
+      <Text style={tw`mt-2 text-sm`}>
+        <Trans>
+          The storage size will determine the maximum amount of data you can
+          store on your domain.
+        </Trans>
+      </Text>
 
-        <View style={tw`flex flex-row flex-wrap items-center`}>
-          {LIST.map((e) => {
-            const selected = e.value === map.get(domain);
-            return (
-              <TouchableOpacity
-                onPress={() => actions.set(domain, e.value)}
-                style={[
-                  tw`border-[2px] border-black/10 rounded-lg mt-3 px-5 py-2 ml-2`,
-                  selected && { borderColor: "#0A558C", borderWidth: 2 },
-                ]}
-                key={e.label}
-              >
-                <Text>{e.label}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+      <View style={tw`flex flex-row flex-wrap items-center gap-3 mt-3`}>
+        {LIST.map((e) => {
+          const selected = e.value === map.get(domain);
+          return (
+            <TouchableOpacity
+              onPress={() => actions.set(domain, e.value)}
+              style={[
+                tw`border-[2px] border-black/10 rounded-lg px-5 py-2`,
+                selected && { borderColor: tw.color('brand-primary'), borderWidth: 2 },
+              ]}
+              key={e.label}
+            >
+              <Text>{e.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </WrapModal>
   );
