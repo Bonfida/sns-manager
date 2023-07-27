@@ -41,7 +41,7 @@ export const UiButton = (
         </>
       ) : (
         <Text style={[
-          tw`font-semibold flex flex-row align-center`,
+          tw`font-semibold flex flex-row items-center`,
           small && tw`text-base`,
           !small && tw`text-lg leading-6`,
           outline && tw`text-brand-primary`,
