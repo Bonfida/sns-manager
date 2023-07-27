@@ -19,7 +19,7 @@ export const WrapModal = ({
   containerStyle,
   title,
 }: {
-  title?: string;
+  title?: ReactNode;
   closeModal: () => void;
   children: ReactNode;
   blurStyle?: StyleProp<ViewStyle>;
@@ -41,7 +41,7 @@ export const WrapModal = ({
         <TouchableWithoutFeedback>
           <View style={tw`bg-white rounded-lg px-3 py-4 w-[350px] relative`}>
             <View style={tw`flex flex-row items-center justify-between`}>
-              <Text style={tw`text-lg font-medium text-content-primary`}>
+              <Text style={tw`text-lg font-medium text-content-primary flex flex-row gap-2 items-center`}>
                 {title}
               </Text>
 

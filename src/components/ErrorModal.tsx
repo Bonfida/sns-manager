@@ -12,16 +12,18 @@ export const ErrorModal = ({
   const message = getParam<string>("msg", t`Something went wrong`);
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <View style={tw`flex flex-row items-center`}>
+    <WrapModal
+      closeModal={closeModal}
+      title={
+        <>
           <MaterialIcons name="error-outline" size={24} color="#dc2626" />
-          <Text style={tw`ml-2 text-lg font-bold`}>
+          <Text style={tw`text-lg font-bold`}>
             <Trans>Something went wrong</Trans>
           </Text>
-        </View>
-        <Text style={tw`pl-2 mt-2 text-sm`}>{message}</Text>
-      </View>
+        </>
+      }
+    >
+      <Text style={tw`pl-2 mt-2 text-sm`}>{message}</Text>
     </WrapModal>
   );
 };
