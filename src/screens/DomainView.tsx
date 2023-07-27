@@ -188,7 +188,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         {isTokenized && (
           <TouchableOpacity
             onPress={() => openModal("TokenizeModal", {
-              refresh: domainInfo.execute(),
+              refresh: () => domainInfo.execute(),
               domain,
               isTokenized,
               isOwner,
@@ -218,7 +218,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 onPress={() =>
                   openModal("Transfer", {
                     domain,
-                    refresh: domainInfo.execute(),
+                    refresh: () => domainInfo.execute(),
                   })
                 }
                 small
@@ -234,7 +234,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                     onPress={() =>
                       openModal("Delete", {
                         domain,
-                        refresh: domainInfo.execute(),
+                        refresh: () => domainInfo.execute(),
                       })
                     }
                     small
@@ -248,7 +248,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       openModal("TokenizeModal", {
                         domain,
                         isTokenized,
-                        refresh: domainInfo.execute(),
+                        refresh: () => domainInfo.execute(),
                         isOwner,
                       })
                     }

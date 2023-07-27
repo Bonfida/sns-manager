@@ -94,7 +94,7 @@ export const TransferModal = ({
         />
 
         <UiButton
-          disabled={loading}
+          disabled={loading || !value}
           onPress={connected ? handle : () => setVisible(true)}
           content={t`Confirm`}
           loading={loading}
