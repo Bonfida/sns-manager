@@ -3,21 +3,19 @@ global.Buffer = global.Buffer || require("buffer").Buffer;
 
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { ActivityIndicator, View } from "react-native";
+import { TouchableOpacity, ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator, BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
 import { Feather } from "@expo/vector-icons";
-import { SearchResult } from "./screens/SearchResult";
 import { cartState } from "./atoms/cart";
 import { Text } from "react-native";
 import tw from "./utils/tailwind";
+import { Trans } from "@lingui/macro";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
-import { createStackNavigator } from "@react-navigation/stack";
-import { DomainView } from "./screens/DomainView";
 import { SuccessCheckoutModal } from "./components/SuccessCheckoutModal";
 import { EditRecordModal } from "./components/EditRecordModal";
 import { ErrorModal } from "./components/ErrorModal";
@@ -144,25 +142,6 @@ function TabNavigator() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Search"
-        component={SearchNavigator}
-        listeners={({ navigation }) => ({
-          tabPress: () => {
-            navigation.navigate("Search", {
-              screen: "search-result",
-              domain: "",
-            });
-          },
-        })}
-        options={{
-          headerShown: false,
-          tabBarLabel: t`Search`,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="search" size={size} color={color} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name="Cart"
         component={Cart}

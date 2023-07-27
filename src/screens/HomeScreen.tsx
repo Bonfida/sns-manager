@@ -2,7 +2,6 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
 } from "react-native";
 import tw from "@src/utils/tailwind";
 import { useState } from "react";
@@ -14,15 +13,12 @@ import { useModal } from "react-native-modalfy";
 import { isPubkey } from "@src/utils/publickey";
 import { Trans, t } from "@lingui/macro";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
 import { SearchResult } from "./SearchResult";
 import { DomainView } from "./DomainView";
 import { ProfileScreen } from "./Profile";
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { UiButton } from '@src/components/UiButton';
 import { LanguageHeader } from '@src/components/Header';
-
-require("@solana/wallet-adapter-react-ui/styles.css");
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -61,9 +57,7 @@ function HomeRoot() {
   };
 
   return (
-    <Screen
-      style={tw`flex flex-col items-center justify-center relative`}
-    >
+    <Screen style={tw`flex flex-col items-center justify-center relative`}>
       <View style={tw`mb-10`}>
         <Text style={tw`text-3xl font-bold text-center text-blue-grey-900`}>
           <Trans>
@@ -120,8 +114,6 @@ function HomeRoot() {
 }
 
 export function HomeScreen() {
-  const { openModal } = useModal();
-
   return (
     <Stack.Navigator
       screenOptions={{
