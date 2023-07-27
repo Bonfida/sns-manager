@@ -47,7 +47,7 @@ export const WrapModal = ({
 
               <TouchableOpacity
                 style={tw`flex flex-row items-center w-[24px] h-[24px]`}
-                onPress={closeModal}
+                onPress={() => closeModal()}
               >
                 <Ionicons name="close-outline" size={24} color={tw.color('content-secondary')} />
               </TouchableOpacity>

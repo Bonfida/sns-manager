@@ -185,6 +185,26 @@ export const DomainView = ({ domain }: { domain: string }) => {
   return (
     <Screen style={tw`p-0`}>
       <ScrollView showsHorizontalScrollIndicator={false}>
+        {isTokenized && (
+          <TouchableOpacity
+            onPress={() => openModal("TokenizeModal", {
+              refresh: domainInfo.execute(),
+              domain,
+              isTokenized,
+              isOwner,
+            })}
+            style={tw`py-1 px-3 mb-3 rounded-lg border border-brand-primary bg-brand-primary bg-opacity-10 flex flex-row justify-between items-center`}
+          >
+            <Text style={tw`text-brand-primary text-sm font-medium flex flex-row gap-2`}>
+              <MaterialCommunityIcons name="diamond-stone" size={24} color={tw.color('brand-primary')} />
+
+              <Trans>This domain is wrapped in an NFT</Trans>
+            </Text>
+
+            <MaterialCommunityIcons name="information-outline" size={24} color={tw.color('brand-primary')} />
+          </TouchableOpacity>
+        )}
+
         <ProfileBlock
           owner={domainInfo.result?.owner!}
           domain={domain}
@@ -208,34 +228,38 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
               </View>
             )}
-            {isSubdomain && (
-              <UiButton
-                onPress={() =>
-                  openModal("Delete", {
-                    domain,
-                    refresh: domainInfo.execute(),
-                  })
-                }
-                small
-                content={t`Delete`}
-                style={tw`bg-content-error border-content-error`}
-              />
-            )}
-
-            {/* wrap/unwrap button */}
-            {isOwner && !isSubdomain && (
-              <UiButton
-                onPress={() =>
-                  openModal("TokenizeModal", {
-                    domain,
-                    isTokenized,
-                    refresh: domainInfo.execute(),
-                  })
-                }
-                small
-                content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
-                style={tw`flex flex-1 flex-row justify-center items-center`}
-              />
+            {isOwner && (
+              <>
+                {isSubdomain ? (
+                  // delete subdomain button
+                  <UiButton
+                    onPress={() =>
+                      openModal("Delete", {
+                        domain,
+                        refresh: domainInfo.execute(),
+                      })
+                    }
+                    small
+                    content={t`Delete`}
+                    style={tw`bg-content-error border-content-error`}
+                  />
+                ) : (
+                  // wrap/unwrap button
+                  <UiButton
+                    onPress={() =>
+                      openModal("TokenizeModal", {
+                        domain,
+                        isTokenized,
+                        refresh: domainInfo.execute(),
+                        isOwner,
+                      })
+                    }
+                    small
+                    content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
+                    style={tw`flex flex-1 flex-row justify-center items-center`}
+                  />
+                )}
+              </>
             )}
           </View>
         </ProfileBlock>
@@ -280,25 +304,27 @@ export const DomainView = ({ domain }: { domain: string }) => {
               )}
             </View>
 
-            {isOwner ? (
-              <UiButton
-                content={isEditing ? t`Revert` : t`Edit`}
-                small
-                style={tw`flex-initial`}
-                outline={isEditing}
-                textAdditionalStyles={tw`text-sm font-medium`}
-                onPress={() => toggleEditMode(!isEditing)}
-              >
-                {isEditing ? (
-                  <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
-                ) : (
-                  <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
-                )}
-              </UiButton>
-            ) : (
-              <TouchableOpacity onPress={refresh}>
-                <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
-              </TouchableOpacity>
+            {!isTokenized && (
+              <>{isOwner ? (
+                <UiButton
+                  content={isEditing ? t`Revert` : t`Edit`}
+                  small
+                  style={tw`flex-initial`}
+                  outline={isEditing}
+                  textAdditionalStyles={tw`text-sm font-medium`}
+                  onPress={() => toggleEditMode(!isEditing)}
+                >
+                  {isEditing ? (
+                    <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
+                  ) : (
+                    <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+                  )}
+                </UiButton>
+              ) : (
+                <TouchableOpacity onPress={refresh}>
+                  <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
+                </TouchableOpacity>
+              )}</>
             )}
           </View>
 
@@ -352,17 +378,19 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
         {!isSubdomain && (
           <View style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}>
-            <View style={tw`mb-4 flex flex-row justify-end`}>
-              <TouchableOpacity
-                onPress={() => openModal("CreateSubdomain", { refresh, domain })}
-              >
-                <Text style={tw`text-brand-primary text-base flex flex-row gap-2 justify-end`}>
-                  <Trans>Add subdomain</Trans>
+            {isOwner && (
+              <View style={tw`mb-4 flex flex-row justify-end`}>
+                <TouchableOpacity
+                  onPress={() => openModal("CreateSubdomain", { refresh, domain })}
+                >
+                  <Text style={tw`text-brand-primary text-base flex flex-row gap-2 justify-end`}>
+                    <Trans>Add subdomain</Trans>
 
-                  <Entypo name="plus" size={20} color="brand-primary" />
-                </Text>
-              </TouchableOpacity>
-            </View>
+                    <Entypo name="plus" size={20} color="brand-primary" />
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
 
             {hasSubdomain ? (
               <FlatList

@@ -250,7 +250,7 @@ export const EditPicture = ({
       <View style={tw`flex flex-row items-center gap-4`}>
         <UiButton
           disabled={loading}
-          onPress={closeModal}
+          onPress={() => closeModal()}
           outline
           content={t`Cancel`}
           loading={loading}
