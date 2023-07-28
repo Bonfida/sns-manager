@@ -205,45 +205,19 @@ export const DomainView = ({ domain }: { domain: string }) => {
     setFormLoading(false);
   }
 
-  const handleUpdate = async ({ record, value }: { record: SNSRecord; value: string; }) => {
-    if (!connection || !publicKey || !signTransaction || !signMessage) return;
-    try {
-      console.log('Updating record:', record)
-      setFormLoading(true);
-      const ixs: TransactionInstruction[] = [];
+  const handleUpdate = async (fields: { record: SNSRecord; value: string; }[]) => {
+    if (!connection || !publicKey || !signTransaction || !signMessage) return [];
+
+    const ixs: TransactionInstruction[] = [];
+
+    for (const field of fields) {
+      const { record, value } = field
       const sub = Buffer.from([1]).toString() + record;
       let { pubkey: recordKey, isSub } = getDomainKeySync(
         record + "." + domain,
         true
       );
       const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
-
-      if (record === SNSRecord.Url) {
-        try {
-          new URL(value);
-        } catch (err) {
-          setFormLoading(false);
-          return openModal("Error", { msg: t`Invalid URL` });
-        }
-      } else if (record === SNSRecord.IPFS) {
-        if (!value.startsWith("ipfs://")) {
-          setFormLoading(false);
-          return openModal("Error", {
-            msg: t`Invalid IPFS record - Must start with ipfs://`,
-          });
-        }
-      } else if (record === SNSRecord.ARWV) {
-        if (!value.startsWith("arw://")) {
-          setFormLoading(false);
-          return openModal("Error", { msg: t`Invalid Arweave record` });
-        }
-      } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(record)) {
-        const buffer = Buffer.from(value.slice(2), "hex");
-        if (!value.startsWith("0x") || buffer.length !== 20) {
-          setFormLoading(false);
-          return openModal("Error", { msg: t`Invalid BSC address` });
-        }
-      }
 
       // Check if exists
       let ser: Buffer;
@@ -361,37 +335,79 @@ export const DomainView = ({ domain }: { domain: string }) => {
         );
         ixs.push(...ix);
       }
-
-      const sig = await sendTx(connection, publicKey, ixs, signTransaction);
-      console.log(sig);
-
-      await sleep(400);
-
-      resetForm();
-      refresh();
-    } catch (err) {
-      console.error(err);
-      setFormLoading(false);
-      await refresh();
-      openModal("Error", { msg: t`Something went wrong - try again` });
     }
+
+    return ixs
   };
 
-  const handleDelete = async ({ record }: { record: SNSRecord }) => {
-    if (!connection || !publicKey || !signTransaction) return;
-    try {
-      console.log('Deleting record:', record)
-      setFormLoading(true);
+  const handleDelete = (records: SNSRecord[]) => {
+    if (!publicKey) return [];
+
+    const ixs: TransactionInstruction[] = [];
+
+    for (const record of records) {
       const { pubkey } = getDomainKeySync(record + "." + domain, true);
-      console.log('pubkey', pubkey)
+
       const ix = deleteInstruction(
         NAME_PROGRAM_ID,
         pubkey,
         publicKey,
         publicKey
       );
-      const sig = await sendTx(connection, publicKey, [ix], signTransaction);
-      console.log('sig', sig);
+
+      ixs.push(ix)
+    }
+
+    return ixs
+  };
+
+  const saveForm = async () => {
+    if (!isFormDirty) return;
+    if (!connection || !publicKey || !signTransaction || !signMessage) return;
+
+    try {
+      const fieldsToUpdate: { record: SNSRecord; value: string; }[] = []
+      const fieldsToDelete: SNSRecord[] = []
+
+      for (const key of formState.keys()) {
+        const stateValue: string = formState.get(key) as string
+        const prevStateValue: string = previousFormState.get(key)
+
+        if (stateValue !== prevStateValue) {
+          // if new value is not nullish, it means it's a set or update action,
+          // so we need to validate the value
+          if (stateValue) {
+            if (key === SNSRecord.Url) {
+              try {
+                new URL(stateValue);
+              } catch (err) {
+                setFormLoading(false);
+                return openModal("Error", { msg: t`Invalid URL` });
+              }
+            } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(key)) {
+              const buffer = Buffer.from(stateValue.slice(2), "hex");
+              if (!stateValue.startsWith("0x") || buffer.length !== 20) {
+                setFormLoading(false);
+                return openModal("Error", { msg: t`Invalid ${key} address` });
+              }
+            }
+          }
+
+          stateValue === ''
+            ? fieldsToDelete.push(key)
+            : fieldsToUpdate.push({ record: key, value: stateValue })
+        }
+      }
+
+      const deleteInstructions = handleDelete(fieldsToDelete)
+      const updateInstructions = await handleUpdate(fieldsToUpdate)
+
+      if (!deleteInstructions.length && !updateInstructions.length) {
+        resetForm();
+        return;
+      }
+
+      await sendTx(connection, publicKey, [...deleteInstructions, ...updateInstructions], signTransaction);
 
       await sleep(400);
 
@@ -401,21 +417,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
       console.error(err);
       setFormLoading(false);
       openModal("Error", { msg: t`Something went wrong - try again` });
-    }
-  };
-
-  const saveForm = () => {
-    if (!isFormDirty) return
-    console.log('check what fields are changed')
-    for (const key of formState.keys()) {
-      const stateValue: string = formState.get(key) as string
-      const prevStateValue: string = previousFormState.get(key)
-
-      if (stateValue !== prevStateValue) {
-        stateValue === ''
-          ? handleDelete({ record: key })
-          : handleUpdate({ record: key, value: stateValue })
-      }
     }
   }
 
