@@ -17,7 +17,6 @@ import { Trans } from "@lingui/macro";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
 import { SuccessCheckoutModal } from "./components/SuccessCheckoutModal";
-import { EditRecordModal } from "./components/EditRecordModal";
 import { ErrorModal } from "./components/ErrorModal";
 import { SuccessModal } from "./components/SuccessModal";
 import { TransferModal } from "./components/TransferModal";
@@ -57,7 +56,6 @@ console.log(`Version: ${xnftjson.version}`);
 
 const modalConfig = {
   SuccessCheckout: SuccessCheckoutModal,
-  EditRecordModal,
   Error: ErrorModal,
   Success: SuccessModal,
   Transfer: TransferModal,

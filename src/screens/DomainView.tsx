@@ -15,12 +15,27 @@ import {
   MaterialCommunityIcons,
   Entypo,
 } from "@expo/vector-icons";
-import { Record as SNSRecord } from "@bonfida/spl-name-service";
+import {
+  Record as SNSRecord,
+  getDomainKeySync,
+  NameRegistryState,
+  transferInstruction,
+  NAME_PROGRAM_ID,
+  createNameRegistry,
+  updateInstruction,
+  Numberu32,
+  deleteInstruction,
+  serializeRecord,
+  serializeSolRecord,
+} from "@bonfida/spl-name-service";
+import { ROOT_DOMAIN } from "@bonfida/name-offers";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useNavigation } from "@react-navigation/native";
 import { useModal } from "react-native-modalfy";
 import { useProfilePic } from "@bonfida/sns-react";
+import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Trans, t } from "@lingui/macro";
 
 import tw from "@src/utils/tailwind";
@@ -30,6 +45,7 @@ import { profileScreenProp } from "@src/types";
 import {
   AddressRecord,
   SocialRecord,
+  ADDRESS_RECORDS,
   SOCIAL_RECORDS,
   useAddressRecords,
   useSocialRecords,
@@ -44,6 +60,9 @@ import { DomainRowRecord, DomainRowRecordProps } from "@src/components/DomainRow
 import { ProfileBlock } from "@src/components/ProfileBlock";
 import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from "@src/components/CustomTextInput";
+
+import { sendTx } from "@src/utils/send-tx";
+import { sleep } from "@src/utils/sleep";
 
 export const LoadingState = () => {
   return (
@@ -111,17 +130,19 @@ const getIcon = (record: SocialRecord) => {
 };
 
 type FormKeys = AddressRecord | SocialRecord;
-type FormValue = string | undefined;
+type FormValue = string;
 // using Map to store correct order of fields
 type FormState = Map<FormKeys, FormValue>;
-type FormAction = { type: FormKeys; value: FormValue } | { type: 'init'; value: FormState }
+type FormAction = { type: FormKeys; value: FormValue } | { type: 'bulk'; value: FormState }
 
 const formReducer = (state: FormState, action: FormAction) => {
-  if (action.type === 'init') {
+  if (action.type === 'bulk') {
     return action.value;
   }
-  state.set(action.type, action.value)
-  return state;
+
+  const newState = new Map(state);
+  newState.set(action.type, action.value)
+  return newState;
 }
 
 export const DomainView = ({ domain }: { domain: string }) => {
@@ -142,8 +163,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
     subdomains.result !== undefined && subdomains.result.length !== 0;
   const isTokenized = domainInfo.result?.isTokenized;
 
-  const [isEditing, toggleEditMode] = useState(false)
-
   const loading =
     socialRecords.loading ||
     addressRecords.loading ||
@@ -161,19 +180,261 @@ export const DomainView = ({ domain }: { domain: string }) => {
     ]);
   };
 
+  const { signTransaction, setVisible, connected, signMessage } = useWallet();
+  const [isEditing, toggleEditMode] = useState(false);
   const [formState, dispatchFormChange] = useReducer(formReducer, new Map());
+  // We store form dirtiness to disable/enable "Save" button
+  const [isFormDirty, setFormDirty] = useState(false);
+  const [previousFormState, setPreviousFormState] = useState<any>(null);
+  const [isLoading, setFormLoading] = useState(false);
+
+  const discardChanges = () => {
+    if (isFormDirty) {
+      dispatchFormChange({
+        type: 'bulk',
+        value: new Map(previousFormState),
+      })
+    }
+    toggleEditMode(false)
+  }
+
+  const resetForm = () => {
+    setFormDirty(false);
+    toggleEditMode(false);
+    setPreviousFormState(null);
+    setFormLoading(false);
+  }
+
+  const handleUpdate = async ({ record, value }: { record: SNSRecord; value: string; }) => {
+    if (!connection || !publicKey || !signTransaction || !signMessage) return;
+    try {
+      console.log('Updating record:', record)
+      setFormLoading(true);
+      const ixs: TransactionInstruction[] = [];
+      const sub = Buffer.from([1]).toString() + record;
+      let { pubkey: recordKey, isSub } = getDomainKeySync(
+        record + "." + domain,
+        true
+      );
+      const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
+
+      if (record === SNSRecord.Url) {
+        try {
+          new URL(value);
+        } catch (err) {
+          setFormLoading(false);
+          return openModal("Error", { msg: t`Invalid URL` });
+        }
+      } else if (record === SNSRecord.IPFS) {
+        if (!value.startsWith("ipfs://")) {
+          setFormLoading(false);
+          return openModal("Error", {
+            msg: t`Invalid IPFS record - Must start with ipfs://`,
+          });
+        }
+      } else if (record === SNSRecord.ARWV) {
+        if (!value.startsWith("arw://")) {
+          setFormLoading(false);
+          return openModal("Error", { msg: t`Invalid Arweave record` });
+        }
+      } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(record)) {
+        const buffer = Buffer.from(value.slice(2), "hex");
+        if (!value.startsWith("0x") || buffer.length !== 20) {
+          setFormLoading(false);
+          return openModal("Error", { msg: t`Invalid BSC address` });
+        }
+      }
+
+      // Check if exists
+      let ser: Buffer;
+      if (record === SNSRecord.SOL) {
+        const toSign = Buffer.concat([
+          new PublicKey(value).toBuffer(),
+          recordKey.toBuffer(),
+        ]);
+
+        const encodedMessage = new TextEncoder().encode(toSign.toString("hex"));
+        const signed = await signMessage(encodedMessage);
+        ser = serializeSolRecord(
+          new PublicKey(value),
+          recordKey,
+          publicKey,
+          signed
+        );
+      } else {
+        ser = serializeRecord(value, record);
+      }
+      const space = ser.length;
+      const currentAccount = await connection.getAccountInfo(recordKey);
+
+      if (!currentAccount?.data) {
+        const lamports = await connection.getMinimumBalanceForRentExemption(
+          space + NameRegistryState.HEADER_LEN
+        );
+        const ix = await createNameRegistry(
+          connection,
+          sub,
+          space,
+          publicKey,
+          publicKey,
+          lamports,
+          undefined,
+          parent
+        );
+        ixs.push(ix);
+      } else {
+        const { registry } = await NameRegistryState.retrieve(
+          connection,
+          recordKey
+        );
+
+        if (!registry.owner.equals(publicKey)) {
+          // Record was created before domain was transfered
+          const ix = transferInstruction(
+            NAME_PROGRAM_ID,
+            recordKey,
+            publicKey,
+            registry.owner,
+            undefined,
+            parent,
+            publicKey
+          );
+          ixs.push(ix);
+        }
+
+        // The size changed: delete + create to resize
+        if (
+          currentAccount.data.length - NameRegistryState.HEADER_LEN !==
+          space
+        ) {
+          console.log("Resizing...");
+          const ixClose = deleteInstruction(
+            NAME_PROGRAM_ID,
+            recordKey,
+            publicKey,
+            publicKey
+          );
+          const sig = await sendTx(
+            connection,
+            publicKey,
+            [ixClose],
+            signTransaction
+          );
+          console.log(sig);
+
+          const lamports = await connection.getMinimumBalanceForRentExemption(
+            space + NameRegistryState.HEADER_LEN
+          );
+          const ix = await createNameRegistry(
+            connection,
+            sub,
+            space,
+            publicKey,
+            publicKey,
+            lamports,
+            undefined,
+            parent
+          );
+          ixs.push(ix);
+        }
+      }
+
+      const ix = updateInstruction(
+        NAME_PROGRAM_ID,
+        recordKey,
+        new Numberu32(0),
+        ser,
+        publicKey
+      );
+
+      ixs.push(ix);
+
+      // Handle bridge cases
+      if (record === SNSRecord.BSC) {
+        const ix = await post(
+          ChainId.BSC,
+          Network.Mainnet,
+          domain,
+          publicKey,
+          1_000,
+          recordKey
+        );
+        ixs.push(...ix);
+      }
+
+      const sig = await sendTx(connection, publicKey, ixs, signTransaction);
+      console.log(sig);
+
+      await sleep(400);
+
+      resetForm();
+      refresh();
+    } catch (err) {
+      console.error(err);
+      setFormLoading(false);
+      await refresh();
+      openModal("Error", { msg: t`Something went wrong - try again` });
+    }
+  };
+
+  const handleDelete = async ({ record }: { record: SNSRecord }) => {
+    if (!connection || !publicKey || !signTransaction) return;
+    try {
+      console.log('Deleting record:', record)
+      setFormLoading(true);
+      const { pubkey } = getDomainKeySync(record + "." + domain, true);
+      console.log('pubkey', pubkey)
+      const ix = deleteInstruction(
+        NAME_PROGRAM_ID,
+        pubkey,
+        publicKey,
+        publicKey
+      );
+      const sig = await sendTx(connection, publicKey, [ix], signTransaction);
+      console.log('sig', sig);
+
+      await sleep(400);
+
+      resetForm();
+      refresh();
+    } catch (err) {
+      console.error(err);
+      setFormLoading(false);
+      openModal("Error", { msg: t`Something went wrong - try again` });
+    }
+  };
+
+  const saveForm = () => {
+    if (!isFormDirty) return
+    console.log('check what fields are changed')
+    for (const key of formState.keys()) {
+      const stateValue: string = formState.get(key) as string
+      const prevStateValue: string = previousFormState.get(key)
+
+      if (stateValue !== prevStateValue) {
+        stateValue === ''
+          ? handleDelete({ record: key })
+          : handleUpdate({ record: key, value: stateValue })
+      }
+    }
+  }
 
   useEffect(() => {
     if (addressRecords.result && socialRecords.result) {
       dispatchFormChange({
-        type: 'init',
+        type: 'bulk',
         value: [...socialRecords.result, ...addressRecords.result].reduce((acc, v) => {
-            acc.set(v.record, v.value);
-            return acc;
-          }, new Map()),
-        })
+          acc.set(v.record, v.value || '');
+          return acc;
+        }, new Map())
+      })
     }
   }, [addressRecords.loading, socialRecords.loading])
+
+  useEffect(() => {
+    setPreviousFormState(isEditing ? formState : null);
+    if (!isEditing) setFormDirty(false)
+  }, [isEditing])
 
   if (loading) {
     return <LoadingState />;
@@ -306,8 +567,11 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   small
                   style={tw`flex-initial`}
                   outline={isEditing}
+                  disabled={isLoading}
                   textAdditionalStyles={tw`text-sm font-medium`}
-                  onPress={() => toggleEditMode(!isEditing)}
+                  onPress={() => {
+                    isEditing ? discardChanges() : toggleEditMode(true)
+                  }}
                 >
                   {isEditing ? (
                     <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
@@ -338,7 +602,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 <CustomTextInput
                   value={formState.get(item)}
                   placeholder={t`Not set`}
-                  editable={isEditing}
+                  editable={isEditing && !isLoading}
                   style={tw`mt-4`}
                   label={
                     <View style={tw`flex flex-row items-center gap-1`}>
@@ -350,14 +614,34 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       </Text>
                     </View>
                   }
-                  onChangeText={(text) => dispatchFormChange({
-                    type: item,
-                    value: text,
-                  })}
+                  onChangeText={(text) => {
+                    setFormDirty(true)
+                    dispatchFormChange({
+                      type: item,
+                      value: text,
+                    })
+                  }}
                 />
               </TouchableOpacity>
             )}
           />
+
+          {!isTokenized && isOwner && (
+            <View style={tw`mt-10`}>
+              <UiButton
+                disabled={isEditing && !isFormDirty}
+                onPress={() => {
+                  isEditing ? saveForm() : toggleEditMode(true)
+                }}
+                loading={isLoading}
+                content={isEditing ? isFormDirty ? t`Save` : t`No changes to save` : t`Edit`}
+              >
+                {!isEditing && (
+                  <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+                )}
+              </UiButton>
+            </View>
+          )}
         </View>
 
         {!isSubdomain && (
