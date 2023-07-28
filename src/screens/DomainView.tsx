@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 import {
   AntDesign,
@@ -205,7 +206,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
     setFormLoading(false);
   }
 
-  const handleUpdate = async (fields: { record: SNSRecord; value: string; }[]) => {
+  const prepareUpdateInstructions = async (fields: { record: SNSRecord; value: string; }[]) => {
     if (!connection || !publicKey || !signTransaction || !signMessage) return [];
 
     const ixs: TransactionInstruction[] = [];
@@ -340,7 +341,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
     return ixs
   };
 
-  const handleDelete = (records: SNSRecord[]) => {
+  const prepareDeleteInstructions = (records: SNSRecord[]) => {
     if (!publicKey) return [];
 
     const ixs: TransactionInstruction[] = [];
@@ -399,8 +400,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
         }
       }
 
-      const deleteInstructions = handleDelete(fieldsToDelete)
-      const updateInstructions = await handleUpdate(fieldsToUpdate)
+      const deleteInstructions = prepareDeleteInstructions(fieldsToDelete)
+      const updateInstructions = await prepareUpdateInstructions(fieldsToUpdate)
 
       if (!deleteInstructions.length && !updateInstructions.length) {
         resetForm();
@@ -443,7 +444,11 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
   return (
     <Screen style={tw`p-0`}>
-      <ScrollView showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        stickyHeaderIndices={[2]}
+        invertStickyHeaders={true}
+      >
         {isTokenized && (
           <TouchableOpacity
             onPress={() => openModal("TokenizeModal", {
@@ -464,186 +469,194 @@ export const DomainView = ({ domain }: { domain: string }) => {
           </TouchableOpacity>
         )}
 
-        <ProfileBlock
-          owner={domainInfo.result?.owner!}
-          domain={domain}
-          picRecord={picRecord}
-        >
-          <View style={tw`flex flex-row gap-6`}>
+        <View style={tw`mb-6`}>
+          <ProfileBlock
+            owner={domainInfo.result?.owner!}
+            domain={domain}
+            picRecord={picRecord}
+          >
+            <View style={tw`flex flex-row gap-6`}>
 
-            {/* Transfer button */}
-            {isOwner && !isSubdomain && !isTokenized && (
-              <UiButton
-                onPress={() =>
-                  openModal("Transfer", {
-                    domain,
-                    refresh: () => domainInfo.execute(),
-                  })
-                }
-                small
-                content={t`Transfer`}
-                style={tw`basis-1/2`}
-              />
-            )}
-            {isOwner && (
-              <>
-                {isSubdomain ? (
-                  // delete subdomain button
-                  <UiButton
-                    onPress={() =>
-                      openModal("Delete", {
-                        domain,
-                        refresh: () => domainInfo.execute(),
-                      })
-                    }
-                    small
-                    danger
-                    content={t`Delete`}
-                  />
-                ) : (
-                  // wrap/unwrap button
-                  <UiButton
-                    onPress={() =>
-                      openModal("TokenizeModal", {
-                        domain,
-                        isTokenized,
-                        refresh: () => domainInfo.execute(),
-                        isOwner,
-                      })
-                    }
-                    small
-                    content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
-                    style={tw`basis-1/2`}
-                  />
-                )}
-              </>
-            )}
-          </View>
-        </ProfileBlock>
-
-        <View>
-          <View style={tw`mt-6 mb-2 flex flex-row justify-between items-center`}>
-            <View style={tw`flex flex-row gap-2`}>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={[
-                  tw`rounded-xl px-2 py-1`,
-                  tw`bg-background-secondary`
-                ]}
-              >
-                <Text style={tw`text-sm text-brand-primary`}>
-                  {t`Socials`}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={[
-                  tw`rounded-xl px-2 py-1`,
-                  tw`bg-background-secondary`
-                ]}
-              >
-                <Text style={tw`text-sm text-brand-primary`}>
-                  {t`Addresses`}
-                </Text>
-              </TouchableOpacity>
-              {!isSubdomain && (
-                <TouchableOpacity
-                  onPress={() => {}}
-                  style={[
-                    tw`rounded-xl px-2 py-1`,
-                    tw`bg-background-secondary`
-                  ]}
-                >
-                  <Text style={tw`text-sm text-brand-primary`}>
-                    {t`Subdomains`}
-                  </Text>
-                </TouchableOpacity>
+              {/* Transfer button */}
+              {isOwner && !isSubdomain && !isTokenized && (
+                <UiButton
+                  onPress={() =>
+                    openModal("Transfer", {
+                      domain,
+                      refresh: () => domainInfo.execute(),
+                    })
+                  }
+                  small
+                  content={t`Transfer`}
+                  style={tw`basis-1/2`}
+                />
+              )}
+              {isOwner && (
+                <>
+                  {isSubdomain ? (
+                    // delete subdomain button
+                    <UiButton
+                      onPress={() =>
+                        openModal("Delete", {
+                          domain,
+                          refresh: () => domainInfo.execute(),
+                        })
+                      }
+                      small
+                      danger
+                      content={t`Delete`}
+                    />
+                  ) : (
+                    // wrap/unwrap button
+                    <UiButton
+                      onPress={() =>
+                        openModal("TokenizeModal", {
+                          domain,
+                          isTokenized,
+                          refresh: () => domainInfo.execute(),
+                          isOwner,
+                        })
+                      }
+                      small
+                      content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
+                      style={tw`basis-1/2`}
+                    />
+                  )}
+                </>
               )}
             </View>
+          </ProfileBlock>
+        </View>
 
-            {!isTokenized && (
-              <>{isOwner ? (
-                <UiButton
-                  content={isEditing ? t`Revert` : t`Edit`}
-                  small
-                  style={tw`flex-initial`}
-                  outline={isEditing}
-                  disabled={isLoading}
-                  textAdditionalStyles={tw`text-sm font-medium`}
-                  onPress={() => {
-                    isEditing ? discardChanges() : toggleEditMode(true)
-                  }}
-                >
-                  {isEditing ? (
-                    <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
-                  ) : (
-                    <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
-                  )}
-                </UiButton>
-              ) : (
-                <TouchableOpacity onPress={refresh}>
-                  <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
-                </TouchableOpacity>
-              )}</>
+        {/* This bars are sticky using stickyHeaderIndices */}
+        <View style={tw`pb-2 flex flex-row justify-between items-center bg-background-primary`}>
+          <View style={tw`flex flex-row gap-2`}>
+            <TouchableOpacity
+              onPress={() => {}}
+              style={[
+                tw`rounded-xl px-2 py-1`,
+                tw`bg-background-secondary`
+              ]}
+            >
+              <Text style={tw`text-sm text-brand-primary`}>
+                {t`Socials`}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {}}
+              style={[
+                tw`rounded-xl px-2 py-1`,
+                tw`bg-background-secondary`
+              ]}
+            >
+              <Text style={tw`text-sm text-brand-primary`}>
+                {t`Addresses`}
+              </Text>
+            </TouchableOpacity>
+            {!isSubdomain && (
+              <TouchableOpacity
+                onPress={() => {}}
+                style={[
+                  tw`rounded-xl px-2 py-1`,
+                  tw`bg-background-secondary`
+                ]}
+              >
+                <Text style={tw`text-sm text-brand-primary`}>
+                  {t`Subdomains`}
+                </Text>
+              </TouchableOpacity>
             )}
           </View>
 
-          <FlatList
-            data={[...formState.keys()]}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                key={item}
-                onPress={() => {
-                  if (isEditing || !formState.get(item)) return
-                  Clipboard.setString(String(formState.get(item)));
-                  openModal("Success", { msg: t`Copied!` });
-                }}
-                activeOpacity={1}
-              >
-                <CustomTextInput
-                  value={formState.get(item)}
-                  placeholder={t`Not set`}
-                  editable={isEditing && !isLoading}
-                  style={tw`mt-4`}
-                  label={
-                    <View style={tw`flex flex-row items-center gap-1`}>
-                      {/* TS is kinda stupid here so "any" is required */}
-                      {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
-
-                      <Text style={tw`text-content-secondary text-sm leading-6`}>
-                        {getTranslatedName(item)}
-                      </Text>
-                    </View>
-                  }
-                  onChangeText={(text) => {
-                    setFormDirty(true)
-                    dispatchFormChange({
-                      type: item,
-                      value: text,
-                    })
-                  }}
-                />
-              </TouchableOpacity>
-            )}
-          />
-
-          {!isTokenized && isOwner && (
-            <View style={tw`mt-10`}>
+          {!isTokenized && (
+            <>{isOwner ? (
               <UiButton
-                disabled={isEditing && !isFormDirty}
+                content={isEditing ? t`Revert` : t`Edit`}
+                small
+                style={tw`flex-initial`}
+                outline={isEditing}
+                disabled={isLoading}
+                textAdditionalStyles={tw`text-sm font-medium`}
                 onPress={() => {
-                  isEditing ? saveForm() : toggleEditMode(true)
+                  isEditing ? discardChanges() : toggleEditMode(true)
                 }}
-                loading={isLoading}
-                content={isEditing ? isFormDirty ? t`Save` : t`No changes to save` : t`Edit`}
               >
-                {!isEditing && (
+                {isEditing ? (
+                  <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
+                ) : (
                   <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
                 )}
               </UiButton>
-            </View>
+            ) : (
+              <TouchableOpacity onPress={refresh}>
+                <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
+              </TouchableOpacity>
+            )}</>
           )}
         </View>
+
+        <FlatList
+          data={[...formState.keys()]}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              key={item}
+              onPress={() => {
+                if (isEditing || !formState.get(item)) return
+                Clipboard.setString(String(formState.get(item)));
+                openModal("Success", { msg: t`Copied!` });
+              }}
+              activeOpacity={1}
+            >
+              <CustomTextInput
+                value={formState.get(item)}
+                placeholder={t`Not set`}
+                editable={isEditing && !isLoading}
+                style={tw`mt-4`}
+                label={
+                  <View style={tw`flex flex-row items-center gap-1`}>
+                    {/* TS is kinda stupid here so "any" is required */}
+                    {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
+
+                    <Text style={tw`text-content-secondary text-sm leading-6`}>
+                      {getTranslatedName(item)}
+                    </Text>
+                  </View>
+                }
+                onChangeText={(text) => {
+                  setFormDirty(true)
+                  dispatchFormChange({
+                    type: item,
+                    value: text,
+                  })
+                }}
+              />
+            </TouchableOpacity>
+          )}
+        />
+
+        {!isTokenized && isOwner && (
+          <View style={[
+            tw`mt-10 bg-background-primary`,
+            // TODO: realize how to implement that on mobile
+            Platform.OS === "web" && isEditing && {
+              position: 'sticky',
+              bottom: '0px',
+            },
+          ]}>
+            <UiButton
+              disabled={isEditing && !isFormDirty}
+              onPress={() => {
+                isEditing ? saveForm() : toggleEditMode(true)
+              }}
+              loading={isLoading}
+              content={isEditing ? isFormDirty ? t`Save` : t`No changes to save` : t`Edit`}
+            >
+              {!isEditing && (
+                <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+              )}
+            </UiButton>
+          </View>
+        )}
 
         {!isSubdomain && (
           <View style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}>
