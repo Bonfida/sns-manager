@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useState } from "react";
+import { useReducer, useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
@@ -180,6 +180,14 @@ export const DomainView = ({ domain }: { domain: string }) => {
       subdomains.execute(),
     ]);
   };
+
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const [UISectionsCoordinates, setCoordinates] = useState<Record<'socials' | 'addresses' | 'subdomains', number>>({
+    socials: 0,
+    addresses: 0,
+    subdomains: 0,
+  });
+  const [currentScrollPosition, setScrollPosition] = useState(0);
 
   const { signTransaction, setVisible, connected, signMessage } = useWallet();
   const [isEditing, toggleEditMode] = useState(false);
@@ -448,6 +456,11 @@ export const DomainView = ({ domain }: { domain: string }) => {
         showsHorizontalScrollIndicator={false}
         stickyHeaderIndices={[2]}
         invertStickyHeaders={true}
+        ref={scrollViewRef}
+        scrollEventThrottle={300}
+        onScroll={(event) => {
+          setScrollPosition(event.nativeEvent.contentOffset.y)
+        }}
       >
         {isTokenized && (
           <TouchableOpacity
@@ -532,10 +545,19 @@ export const DomainView = ({ domain }: { domain: string }) => {
         <View style={tw`pb-2 flex flex-row justify-between items-center bg-background-primary`}>
           <View style={tw`flex flex-row gap-2`}>
             <TouchableOpacity
-              onPress={() => {}}
+              onPress={() => {
+                scrollViewRef.current?.scrollTo({
+                  // -24 so there will be some space between header and field
+                  y: UISectionsCoordinates.socials - 35,
+                  animated: true
+                })
+              }}
               style={[
                 tw`rounded-xl px-2 py-1`,
-                tw`bg-background-secondary`
+                (
+                  currentScrollPosition <= (UISectionsCoordinates.addresses - 35)
+                  && tw`bg-background-secondary`
+                ),
               ]}
             >
               <Text style={tw`text-sm text-brand-primary`}>
@@ -543,10 +565,20 @@ export const DomainView = ({ domain }: { domain: string }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => {}}
+              onPress={() => {
+                scrollViewRef.current?.scrollTo({
+                  // -24 so there will be some space between header and field
+                  y: UISectionsCoordinates.addresses - 24,
+                  animated: true
+                })
+              }}
               style={[
                 tw`rounded-xl px-2 py-1`,
-                tw`bg-background-secondary`
+                (
+                  currentScrollPosition > (UISectionsCoordinates.addresses - 35)
+                  && (currentScrollPosition < UISectionsCoordinates.subdomains - 35)
+                  && tw`bg-background-secondary`
+                ),
               ]}
             >
               <Text style={tw`text-sm text-brand-primary`}>
@@ -555,10 +587,18 @@ export const DomainView = ({ domain }: { domain: string }) => {
             </TouchableOpacity>
             {!isSubdomain && (
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={() => {
+                  scrollViewRef.current?.scrollTo({
+                    y: UISectionsCoordinates.subdomains,
+                    animated: true
+                  })
+                }}
                 style={[
                   tw`rounded-xl px-2 py-1`,
-                  tw`bg-background-secondary`
+                  (
+                    currentScrollPosition >= UISectionsCoordinates.subdomains - 24
+                    && tw`bg-background-secondary`
+                  ),
                 ]}
               >
                 <Text style={tw`text-sm text-brand-primary`}>
@@ -595,44 +635,55 @@ export const DomainView = ({ domain }: { domain: string }) => {
           )}
         </View>
 
-        <FlatList
-          data={[...formState.keys()]}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              key={item}
-              onPress={() => {
-                if (isEditing || !formState.get(item)) return
-                Clipboard.setString(String(formState.get(item)));
-                openModal("Success", { msg: t`Copied!` });
-              }}
-              activeOpacity={1}
-            >
-              <CustomTextInput
-                value={formState.get(item)}
-                placeholder={t`Not set`}
-                editable={isEditing && !isLoading}
-                style={tw`mt-4`}
-                label={
-                  <View style={tw`flex flex-row items-center gap-1`}>
-                    {/* TS is kinda stupid here so "any" is required */}
-                    {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
+        {[...formState.keys()].map(item => (
+          <TouchableOpacity
+            key={item}
+            onPress={() => {
+              if (isEditing || !formState.get(item)) return
+              Clipboard.setString(String(formState.get(item)));
+              openModal("Success", { msg: t`Copied!` });
+            }}
+            onLayout={(event) => {
+              if (item === SNSRecord.Backpack) {
+                setCoordinates((prevState) => ({
+                  ...prevState,
+                  socials: event.nativeEvent.layout.y,
+                }))
+              }
+              if (item === SNSRecord.BSC) {
+                setCoordinates((prevState) => ({
+                  ...prevState,
+                  addresses: event.nativeEvent.layout.y,
+                }))
+              }
+            }}
+            activeOpacity={1}
+          >
+            <CustomTextInput
+              value={formState.get(item)}
+              placeholder={t`Not set`}
+              editable={isEditing && !isLoading}
+              style={tw`mt-4`}
+              label={
+                <View style={tw`flex flex-row items-center gap-1`}>
+                  {/* TS is kinda stupid here so "any" is required */}
+                  {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
 
-                    <Text style={tw`text-content-secondary text-sm leading-6`}>
-                      {getTranslatedName(item)}
-                    </Text>
-                  </View>
-                }
-                onChangeText={(text) => {
-                  setFormDirty(true)
-                  dispatchFormChange({
-                    type: item,
-                    value: text,
-                  })
-                }}
-              />
-            </TouchableOpacity>
-          )}
-        />
+                  <Text style={tw`text-content-secondary text-sm leading-6`}>
+                    {getTranslatedName(item)}
+                  </Text>
+                </View>
+              }
+              onChangeText={(text) => {
+                setFormDirty(true)
+                dispatchFormChange({
+                  type: item,
+                  value: text,
+                })
+              }}
+            />
+          </TouchableOpacity>
+        ))}
 
         {!isTokenized && isOwner && (
           <View style={[
@@ -659,7 +710,15 @@ export const DomainView = ({ domain }: { domain: string }) => {
         )}
 
         {!isSubdomain && (
-          <View style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}>
+          <View
+            style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}
+            onLayout={(event) => {
+              setCoordinates((prevState) => ({
+                ...prevState,
+                subdomains: event.nativeEvent.layout.y,
+              }))
+            }}
+          >
             {isOwner && (
               <View style={tw`mb-4 flex flex-row justify-end`}>
                 <TouchableOpacity
