@@ -2,17 +2,14 @@ import { useReducer, useEffect, useState } from "react";
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import {
-  Feather,
   AntDesign,
   FontAwesome5,
   MaterialIcons,
-  FontAwesome,
   EvilIcons,
   Ionicons,
   MaterialCommunityIcons,
@@ -329,27 +326,36 @@ export const DomainView = ({ domain }: { domain: string }) => {
           <FlatList
             data={[...formState.keys()]}
             renderItem={({ item }) => (
-              <CustomTextInput
+              <TouchableOpacity
                 key={item}
-                value={formState.get(item)}
-                placeholder={t`Not set`}
-                editable={isEditing}
-                style={tw`mt-4`}
-                label={
-                  <View style={tw`flex flex-row items-center gap-1`}>
-                    {/* TS is kinda stupid here so "any" helps us */}
-                    {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
+                onPress={() => {
+                  if (isEditing || !formState.get(item)) return
+                  Clipboard.setString(String(formState.get(item)));
+                  openModal("Success", { msg: t`Copied!` });
+                }}
+                activeOpacity={1}
+              >
+                <CustomTextInput
+                  value={formState.get(item)}
+                  placeholder={t`Not set`}
+                  editable={isEditing}
+                  style={tw`mt-4`}
+                  label={
+                    <View style={tw`flex flex-row items-center gap-1`}>
+                      {/* TS is kinda stupid here so "any" is required */}
+                      {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
 
-                    <Text style={tw`text-content-secondary text-sm leading-6`}>
-                      {getTranslatedName(item)}
-                    </Text>
-                  </View>
-                }
-                onChangeText={(text) => dispatchFormChange({
-                  type: item,
-                  value: text,
-                })}
-              />
+                      <Text style={tw`text-content-secondary text-sm leading-6`}>
+                        {getTranslatedName(item)}
+                      </Text>
+                    </View>
+                  }
+                  onChangeText={(text) => dispatchFormChange({
+                    type: item,
+                    value: text,
+                  })}
+                />
+              </TouchableOpacity>
             )}
           />
         </View>
