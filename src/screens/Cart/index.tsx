@@ -20,11 +20,9 @@ import {
   TransactionInstruction,
 } from "@solana/web3.js";
 import { useNavigation } from "@react-navigation/native";
-
 import { profileScreenProp } from "@src/types";
 import { cartState } from "@src/atoms/cart";
 import { referrerState } from "@src/atoms/referrer";
-
 import tw from "@src/utils/tailwind";
 import { FIDA_MINT, tokenList } from "@src/utils/tokens/popular-tokens";
 import { priceFromLength } from "@src/utils/price/price-from-length";
@@ -32,16 +30,13 @@ import { wrapSol } from "@src/utils/tokens/wrap-sol";
 import { unwrapSol } from "@src/utils/tokens/unwrap-sol";
 import { chunkIx } from "@src/utils/tx/chunk-tx";
 import { tokenIconBySymbol } from "@src/utils/tokens/popular-tokens";
-
 import { useWallet } from "@src/hooks/useWallet";
 import { usePyth } from "@src/hooks/usePyth";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useStorageMap } from "@src/hooks/useStorageMap";
-
 import { OrderSummary } from "@src/components/OrderSummary";
 import { Screen } from "@src/components/Screen";
 import { UiButton } from "@src/components/UiButton";
-
 import { EmptyState } from "./EmptyState";
 
 const checkEnoughFunds = async (
@@ -50,15 +45,20 @@ const checkEnoughFunds = async (
   mint: PublicKey,
   total: number
 ) => {
-  const ata = getAssociatedTokenAddressSync(mint, publicKey);
-  const balances = await connection.getTokenAccountBalance(ata);
-  if (!balances.value.uiAmount) return false;
-  return balances.value.uiAmount > total;
+  try {
+    const ata = getAssociatedTokenAddressSync(mint, publicKey);
+    const balances = await connection.getTokenAccountBalance(ata);
+    if (!balances.value.uiAmount) return false;
+    return balances.value.uiAmount > total;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
 };
 
 const DEFAULT_SPACE = 1_000;
 
-type CurrentStep = 1 | 2 | 3
+type CurrentStep = 1 | 2 | 3;
 
 export const Cart = () => {
   const [referrer] = useRecoilState(referrerState);
@@ -70,7 +70,7 @@ export const Cart = () => {
   const [mint, setMint] = useState(tokenList[0].mintAddress);
   const { openModal } = useModal();
   const [map, actions] = useStorageMap();
-  const [currentStep, setStep] = useState<CurrentStep>(1)
+  const [currentStep, setStep] = useState<CurrentStep>(1);
 
   const navigation = useNavigation<profileScreenProp>();
 
@@ -154,7 +154,7 @@ export const Cart = () => {
     }
   };
 
-  if (!cart.length) return <EmptyState />
+  if (!cart.length) return <EmptyState />;
 
   return (
     <ScrollView
@@ -168,10 +168,7 @@ export const Cart = () => {
           style={tw`h-[24px]`}
         />
 
-        <View style={[
-          tw`pt-6`,
-          { height: 'calc(100% - 24px)' }
-        ]}>
+        <View style={[tw`pt-6`, { height: "calc(100% - 24px)" }]}>
           {currentStep === 1 ? (
             <>
               {cart.length > 1 && (
@@ -194,7 +191,7 @@ export const Cart = () => {
                   renderItem={({ item }) => (
                     <View
                       key={item}
-                      style={tw`flex flex-row justify-between items-center bg-background-secondary py-3 px-4 rounded-xl`}
+                      style={tw`flex flex-row items-center justify-between px-4 py-3 bg-background-secondary rounded-xl`}
                     >
                       <View style={tw`flex flex-col`}>
                         <Text style={tw`font-semibold`}>{item}.sol</Text>
@@ -206,27 +203,38 @@ export const Cart = () => {
                             {(map.get(item) || DEFAULT_SPACE) / 1_000}kB
                           </Text>
 
-                          <TouchableOpacity onPress={() =>
+                          <TouchableOpacity
+                            onPress={() =>
                               openModal("DomainSizeModal", {
                                 set: actions.set,
                                 map,
                                 domain: item,
                               })
-                            }>
-                            <Text style={tw`text-sm text-brand-primary flex flex-row items-center`}>
+                            }
+                          >
+                            <Text
+                              style={tw`flex flex-row items-center text-sm text-brand-primary`}
+                            >
                               <Trans>Edit</Trans>
 
-                              <MaterialIcons name="edit" size={14} color={tw.color('brand-primary')} style={tw`ml-1`} />
+                              <MaterialIcons
+                                name="edit"
+                                size={14}
+                                color={tw.color("brand-primary")}
+                                style={tw`ml-1`}
+                              />
                             </Text>
                           </TouchableOpacity>
                         </View>
                       </View>
 
                       <View style={tw`flex flex-row items-center gap-6`}>
-                        <Text style={tw`text-sm font-medium text-content-primary flex items-center flex-row gap-1`}>
+                        <Text
+                          style={tw`flex flex-row items-center gap-1 text-sm font-medium text-content-primary`}
+                        >
                           <Image
                             style={tw`h-[16px] w-[16px]`}
-                            source={{ uri: tokenIconBySymbol('USDC') }}
+                            source={{ uri: tokenIconBySymbol("USDC") }}
                             resizeMode="contain"
                           />
                           {priceFromLength(item)}
@@ -235,26 +243,29 @@ export const Cart = () => {
                           onPress={() =>
                             setCart((prev) => prev.filter((e) => e !== item))
                           }
-                          style={tw`w-8 h-8 rounded-md border border-brand-primary flex items-center justify-center`}
+                          style={tw`flex items-center justify-center w-8 h-8 border rounded-md border-brand-primary`}
                         >
-                          <Feather name="trash" size={20} color={tw.color('brand-primary')} />
+                          <Feather
+                            name="trash"
+                            size={20}
+                            color={tw.color("brand-primary")}
+                          />
                         </TouchableOpacity>
                       </View>
                     </View>
                   )}
                 />
               </ScrollView>
-              <Text style={tw`text-xs text-content-secondary my-2`}>
+              <Text style={tw`my-2 text-xs text-content-secondary`}>
                 {t`Discounts may be applied in the next step`}
               </Text>
               <View>
-                <UiButton
-                  onPress={() => setStep(2)}
-                  content={t`Continue`}
-                />
+                <UiButton onPress={() => setStep(2)} content={t`Continue`} />
               </View>
             </>
-          ) : <></>}
+          ) : (
+            <></>
+          )}
 
           {currentStep === 2 ? (
             <>
@@ -270,11 +281,14 @@ export const Cart = () => {
                       onPress={() => setMint(e.mintAddress)}
                       style={[
                         tw`border-2 border-[#D0C8FF] rounded-lg py-2 w-[70px] flex items-center justify-center relative`,
-                        selected && tw`border-brand-primary bg-brand-primary bg-opacity-15`
+                        selected &&
+                          tw`border-brand-primary bg-brand-primary bg-opacity-15`,
                       ]}
                       key={e.mintAddress}
                     >
-                      <Text style={tw`text-xs text-content-primary flex items-center flex-row gap-1`}>
+                      <Text
+                        style={tw`flex flex-row items-center gap-1 text-xs text-content-primary`}
+                      >
                         <Image
                           style={tw`h-[14px] w-[14px] rounded-full`}
                           source={{ uri: tokenIconBySymbol(e.tokenSymbol) }}
@@ -283,7 +297,9 @@ export const Cart = () => {
                         {e.tokenSymbol}
                       </Text>
                       {e.mintAddress === FIDA_MINT && (
-                        <Text style={tw`px-1 text-white text-xs bg-content-success absolute top-[-6px] right-[-6px] rounded`}>
+                        <Text
+                          style={tw`px-1 text-white text-xs bg-content-success absolute top-[-6px] right-[-6px] rounded`}
+                        >
                           5%
                         </Text>
                       )}
@@ -292,11 +308,7 @@ export const Cart = () => {
                 })}
               </View>
               <View style={tw`mt-auto`}>
-                <OrderSummary
-                  mint={mint}
-                  total={total}
-                  totalUsd={totalUsd}
-                />
+                <OrderSummary mint={mint} total={total} totalUsd={totalUsd} />
               </View>
               <View>
                 <UiButton
@@ -306,7 +318,9 @@ export const Cart = () => {
                 />
               </View>
             </>
-          ) : <></>}
+          ) : (
+            <></>
+          )}
 
           {currentStep === 3 ? (
             <>
@@ -316,10 +330,14 @@ export const Cart = () => {
                   style={tw`w-[120px] h-[120px] opacity-60`}
                 />
               </View>
-              <Text style={tw`text-center text-lg font-bold text-content-primary mt-10`}>
+              <Text
+                style={tw`mt-10 text-lg font-bold text-center text-content-primary`}
+              >
                 <Trans>Congrats on purchasing new domains!</Trans>
               </Text>
-              <Text style={tw`text-center text-sm font-medium text-content-secondary mt-6`}>
+              <Text
+                style={tw`mt-6 text-sm font-medium text-center text-content-secondary`}
+              >
                 <Trans>
                   You can enjoy the full benefits of owning a domain now. Get
                   started by filling in the profiles attached to the domains.
@@ -332,34 +350,35 @@ export const Cart = () => {
                 />
               </View>
             </>
-          ) : (<></>)}
+          ) : (
+            <></>
+          )}
         </View>
       </Screen>
     </ScrollView>
   );
 };
 
-const RenderStepsNumbers = (
-  { currentStep, setStep, style }: {
-    currentStep: CurrentStep;
-    style: object;
-    setStep: (step: CurrentStep) => void;
-  }
-) => {
-  const steps: { value: CurrentStep; label: string; }[] = [
+const RenderStepsNumbers = ({
+  currentStep,
+  setStep,
+  style,
+}: {
+  currentStep: CurrentStep;
+  style: object;
+  setStep: (step: CurrentStep) => void;
+}) => {
+  const steps: { value: CurrentStep; label: string }[] = [
     { value: 1, label: t`Your domains` },
     { value: 2, label: t`Payment` },
     { value: 3, label: t`Confirmation` },
-  ]
+  ];
   return (
-    <View style={[
-      tw`flex flex-row gap-2 items-center justify-between`,
-      style,
-    ]}>
+    <View style={[tw`flex flex-row items-center justify-between gap-2`, style]}>
       {steps.map((item, index) => (
         <View
           key={item.label}
-          style={tw`flex flex-row gap-2 items-center justify-between`}
+          style={tw`flex flex-row items-center justify-between gap-2`}
         >
           <TouchableOpacity
             onPress={() => setStep(item.value)}
@@ -368,24 +387,30 @@ const RenderStepsNumbers = (
           >
             <View
               style={[
-                tw`rounded-full border border-brand-primary text-brand-primary w-6 h-6 flex items-center justify-center`,
-                currentStep >= item.value && tw`bg-brand-primary`
+                tw`flex items-center justify-center w-6 h-6 border rounded-full border-brand-primary text-brand-primary`,
+                currentStep >= item.value && tw`bg-brand-primary`,
               ]}
             >
-              <Text style={[
-                tw`text-[11px]`,
-                currentStep >= item.value && tw`text-white`
-              ]}>
+              <Text
+                style={[
+                  tw`text-[11px]`,
+                  currentStep >= item.value && tw`text-white`,
+                ]}
+              >
                 {currentStep > item.value ? (
                   <Feather name="check" size={14} color="white" />
-                ) : item.value}
+                ) : (
+                  item.value
+                )}
               </Text>
             </View>
             <Text style={tw`text-[11px]`}>{item.label}</Text>
           </TouchableOpacity>
-          {index !== steps.length - 1 ? <View style={tw`border-b border-brand-primary w-4`} /> : null}
+          {index !== steps.length - 1 ? (
+            <View style={tw`w-4 border-b border-brand-primary`} />
+          ) : null}
         </View>
       ))}
     </View>
-  )
-}
+  );
+};
