@@ -15,6 +15,7 @@ import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
 import {
   Connection,
+  LAMPORTS_PER_SOL,
   PublicKey,
   Transaction,
   TransactionInstruction,
@@ -39,21 +40,31 @@ import { Screen } from "@src/components/Screen";
 import { UiButton } from "@src/components/UiButton";
 import { EmptyState } from "./EmptyState";
 
+const getTokenAccountBalance = async (
+  connection: Connection,
+  key: PublicKey
+): Promise<number> => {
+  try {
+    const balances = await connection.getTokenAccountBalance(key);
+    return balances?.value?.uiAmount || 0;
+  } catch (err) {
+    return 0;
+  }
+};
+
 const checkEnoughFunds = async (
   connection: Connection,
   publicKey: PublicKey,
   mint: PublicKey,
   total: number
 ) => {
-  try {
-    const ata = getAssociatedTokenAddressSync(mint, publicKey);
-    const balances = await connection.getTokenAccountBalance(ata);
-    if (!balances.value.uiAmount) return false;
-    return balances.value.uiAmount > total;
-  } catch (err) {
-    console.error(err);
-    return false;
+  const ata = getAssociatedTokenAddressSync(mint, publicKey);
+  const balances = await getTokenAccountBalance(connection, ata);
+  if (mint.equals(NATIVE_MINT)) {
+    const sol = (await connection.getBalance(publicKey)) / LAMPORTS_PER_SOL;
+    return sol + balances > total;
   }
+  return balances > total;
 };
 
 const DEFAULT_SPACE = 1_000;
