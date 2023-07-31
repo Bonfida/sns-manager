@@ -59,42 +59,7 @@ import { CustomTextInput } from "@src/components/CustomTextInput";
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
 import { useHandleError } from "@src/hooks/useHandleError";
-
-export const LoadingState = () => {
-  return (
-    <View style={tw`px-4`}>
-      <View style={tw`flex flex-row items-center mt-5`}>
-        <SkeletonContent containerStyle={tw`mr-4`} isLoading>
-          <View style={tw`w-[100px] h-[100px] rounded-lg`} />
-        </SkeletonContent>
-        <View>
-          <View style={tw`flex flex-col`}>
-            <SkeletonContent isLoading>
-              <View style={tw`w-[160px] h-[20px]`} />
-            </SkeletonContent>
-            <SkeletonContent containerStyle={tw``} isLoading>
-              <View style={tw`w-[130px] mt-2 h-[10px]`} />
-            </SkeletonContent>
-          </View>
-        </View>
-      </View>
-
-      <SkeletonContent containerStyle={tw`mt-10 ml-3`} isLoading>
-        <View style={tw`h-[30px] w-[150px]`} />
-      </SkeletonContent>
-
-      <FlatList
-        style={tw`border-[1px] border-black/10 px-4 mt-2 rounded-lg py-3`}
-        data={[0, 0, 0, 0, 0]}
-        renderItem={({ item }) => (
-          <SkeletonContent containerStyle={tw`my-1`} isLoading>
-            <View style={tw`h-[30px] w-[200px]`} />
-          </SkeletonContent>
-        )}
-      />
-    </View>
-  );
-};
+import { LoadingState } from "@src/screens/Profile/LoadingState";
 
 const getIcon = (record: SocialRecord) => {
   const defaultIconAttrs = {
@@ -444,7 +409,11 @@ export const DomainView = ({ domain }: { domain: string }) => {
   }, [isEditing])
 
   if (loading) {
-    return <LoadingState />;
+    return (
+      <Screen style={tw`p-0`}>
+        <LoadingState />
+      </Screen>
+    )
   }
 
   return (
