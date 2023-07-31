@@ -157,7 +157,7 @@ export const Cart = () => {
 
       setCart([]);
       setLoading(false);
-      openModal("SuccessCheckout");
+      setStep(3);
     } catch (err) {
       console.error(err);
       setLoading(false);

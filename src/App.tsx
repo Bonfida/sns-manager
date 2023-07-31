@@ -13,10 +13,8 @@ import { Feather } from "@expo/vector-icons";
 import { cartState } from "./atoms/cart";
 import { Text } from "react-native";
 import tw from "./utils/tailwind";
-import { Trans } from "@lingui/macro";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
-import { SuccessCheckoutModal } from "./components/SuccessCheckoutModal";
 import { ErrorModal } from "./components/ErrorModal";
 import { SuccessModal } from "./components/SuccessModal";
 import { TransferModal } from "./components/TransferModal";
@@ -55,7 +53,6 @@ const xnftjson = require("../xnft.json");
 console.log(`Version: ${xnftjson.version}`);
 
 const modalConfig = {
-  SuccessCheckout: SuccessCheckoutModal,
   Error: ErrorModal,
   Success: SuccessModal,
   Transfer: TransferModal,
