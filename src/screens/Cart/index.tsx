@@ -387,40 +387,42 @@ const RenderStepsNumbers = ({
   return (
     <View style={[tw`flex flex-row items-center justify-between gap-2`, style]}>
       {steps.map((item, index) => (
-        <View
-          key={item.label}
-          style={tw`flex flex-row items-center justify-between gap-2`}
-        >
-          <TouchableOpacity
-            onPress={() => setStep(item.value)}
-            disabled={currentStep <= item.value}
-            style={tw`flex flex-row items-center gap-2`}
+        <>
+          <View
+            key={item.label}
+            style={tw`flex flex-row items-center justify-between gap-2`}
           >
-            <View
-              style={[
-                tw`flex items-center justify-center w-6 h-6 border rounded-full border-brand-primary text-brand-primary`,
-                currentStep >= item.value && tw`bg-brand-primary`,
-              ]}
+            <TouchableOpacity
+              onPress={() => setStep(item.value)}
+              disabled={currentStep <= item.value || currentStep === 3}
+              style={tw`flex flex-row items-center gap-2`}
             >
-              <Text
+              <View
                 style={[
-                  tw`text-[11px]`,
-                  currentStep >= item.value && tw`text-white`,
+                  tw`flex items-center justify-center w-6 h-6 border rounded-full border-brand-primary text-brand-primary`,
+                  currentStep >= item.value && tw`bg-brand-primary`,
                 ]}
               >
-                {currentStep > item.value ? (
-                  <Feather name="check" size={14} color="white" />
-                ) : (
-                  item.value
-                )}
-              </Text>
-            </View>
-            <Text style={tw`text-[11px]`}>{item.label}</Text>
-          </TouchableOpacity>
+                <Text
+                  style={[
+                    tw`text-[11px]`,
+                    currentStep >= item.value && tw`text-white`,
+                  ]}
+                >
+                  {currentStep > item.value ? (
+                    <Feather name="check" size={14} color="white" />
+                  ) : (
+                    item.value
+                  )}
+                </Text>
+              </View>
+              <Text style={tw`text-[11px]`}>{item.label}</Text>
+            </TouchableOpacity>
+          </View>
           {index !== steps.length - 1 ? (
-            <View style={tw`w-4 border-b border-brand-primary`} />
+            <View style={tw`flex-1 border-b border-brand-primary`} />
           ) : null}
-        </View>
+        </>
       ))}
     </View>
   );
