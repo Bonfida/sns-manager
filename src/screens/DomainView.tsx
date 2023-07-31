@@ -746,10 +746,16 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <Text
                 style={tw`text-sm text-content-secondary`}
               >
-                <Trans>
-                  You don’t have any subdomains yet. You can create as many as you
-                  want to use your profiles for different purposes.
-                </Trans>
+                {isOwner ? (
+                  <Trans>
+                    You don’t have any subdomains yet. You can create as many as you
+                    want to use your profiles for different purposes.
+                  </Trans>
+                ) : (
+                  <Trans>
+                    There are no subdomains.
+                  </Trans>
+                )}
               </Text>
             )}
           </View>
