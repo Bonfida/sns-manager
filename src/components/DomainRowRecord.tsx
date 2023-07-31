@@ -10,7 +10,6 @@ import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 import { generateColor } from "@src/utils/generate-color";
-import { SubdomainResult } from "@src/hooks/useSubdomains";
 import { searchResultScreenProp } from "@src/types";
 import { FavoriteButton } from "@src/components/FavoriteButton";
 

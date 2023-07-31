@@ -9,8 +9,8 @@ import {
   NavigatorTabsParamList,
 } from "@src/types";
 import { trimTld, validate } from "@src/utils/validate";
-import { useModal } from "react-native-modalfy";
 import { isPubkey } from "@src/utils/publickey";
+import { abbreviate } from "@src/utils/abbreviate";
 import { Trans, t } from "@lingui/macro";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchResult } from "./SearchResult";
@@ -161,7 +161,7 @@ export function HomeScreen() {
       <Stack.Screen
         name="search-profile"
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
-        options={({ route }) => ({ title: route.params.owner })}
+        options={({ route }) => ({ title: abbreviate(route.params.owner, 25)})}
       />
     </Stack.Navigator>
   );

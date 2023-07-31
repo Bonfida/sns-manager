@@ -42,7 +42,7 @@ export const SearchResult = ({ domain, loadPopular = false }: { domain: string; 
     if (!input) return;
     togglePopularDomains(false);
     if (isPubkey(input)) {
-      return navigation.navigate("Search", {
+      return navigation.navigate("Home", {
         screen: "search-profile",
         params: { owner: input },
       });
