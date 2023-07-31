@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { View, Image } from "react-native";
 import tw from "@src/utils/tailwind";
-import { useModal } from "react-native-modalfy";
 import * as ImagePicker from "expo-image-picker";
 import {
   Record,
@@ -28,6 +27,7 @@ import { useWallet } from "@src/hooks/useWallet";
 import { uploadToIPFS } from "@src/utils/ipfs";
 import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from '@src/components/CustomTextInput';
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -42,6 +42,7 @@ export const EditPicture = ({
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const { publicKey, signTransaction, setVisible, connected } = useWallet();
 
   const handle = async () => {
@@ -154,9 +155,8 @@ export const EditPicture = ({
       await refresh();
       closeModal();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
@@ -200,9 +200,7 @@ export const EditPicture = ({
         console.log("cancelled");
       }
     } catch (err) {
-      console.error(err);
-      setLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` });
+      handleError(err);
     } finally {
       setLoading(false);
     }

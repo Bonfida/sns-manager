@@ -29,6 +29,7 @@ import { useWallet } from "@src/hooks/useWallet";
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
@@ -41,6 +42,7 @@ export const TokenizeModal = ({
   const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const isTokenized = getParam<string>("isTokenized");
@@ -132,9 +134,8 @@ export const TokenizeModal = ({
       closeModal("TokenizeModal");
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 

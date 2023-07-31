@@ -58,6 +58,7 @@ import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from "@src/components/CustomTextInput";
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const LoadingState = () => {
   return (
@@ -144,6 +145,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const { openModal } = useModal();
   const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const socialRecords = useSocialRecords(domain);
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
@@ -419,9 +421,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
       resetForm();
       refresh();
     } catch (err) {
-      console.error(err);
       setFormLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` });
+      handleError(err);
     }
   }
 

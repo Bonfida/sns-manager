@@ -13,6 +13,7 @@ import tw from "@src/utils/tailwind";
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
 import { unwrap } from "@src/utils/unwrap";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const FavoriteButton = ({
   domain,
@@ -26,6 +27,7 @@ export const FavoriteButton = ({
   const [loading, setLoading] = useState(false);
   const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
 
   const handle = async () => {
@@ -56,12 +58,8 @@ export const FavoriteButton = ({
       await sleep(500);
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({
-        status: 'error',
-        message: t`Something went wrong - try again`,
-      })
+      handleError(err);
     }
   };
 

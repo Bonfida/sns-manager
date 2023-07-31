@@ -13,7 +13,6 @@ import { Trans, t } from "@lingui/macro";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
-import { WalletError } from "@solana/wallet-adapter-base";
 import {
   Connection,
   LAMPORTS_PER_SOL,
@@ -33,6 +32,7 @@ import { unwrapSol } from "@src/utils/tokens/unwrap-sol";
 import { chunkIx } from "@src/utils/tx/chunk-tx";
 import { tokenIconBySymbol } from "@src/utils/tokens/popular-tokens";
 import { useWallet } from "@src/hooks/useWallet";
+import { useHandleError } from "@src/hooks/useHandleError";
 import { usePyth } from "@src/hooks/usePyth";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useStorageMap } from "@src/hooks/useStorageMap";
@@ -85,6 +85,7 @@ export const Cart = () => {
   const { setStatus } = useStatusModalContext();
   const [map, actions] = useStorageMap();
   const [currentStep, setStep] = useState<CurrentStep>(1);
+  const { handleError } = useHandleError();
 
   const navigation = useNavigation<profileScreenProp>();
 
@@ -162,13 +163,8 @@ export const Cart = () => {
       setLoading(false);
       setStep(3);
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      if (err instanceof WalletError) {
-        setStatus({ status: "error", message: err.error.message });
-      } else {
-        setStatus({ status: "error", message: "Something went wrong - try again" });
-      }
+      handleError(err);
     }
   };
 

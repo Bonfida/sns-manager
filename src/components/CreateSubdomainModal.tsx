@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import { createSubdomain } from "@bonfida/spl-name-service";
 import tw from "../utils/tailwind";
@@ -14,9 +8,9 @@ import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { validate } from "../utils/validate";
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
-
+import { useHandleError } from "@src/hooks/useHandleError";
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { UiButton } from '@src/components/UiButton';
 
@@ -33,6 +27,7 @@ export const CreateSubdomainModal = ({
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
@@ -71,12 +66,8 @@ export const CreateSubdomainModal = ({
       );
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({
-        status: 'error',
-        message: t`Something went wrong - try again`,
-      })
+      handleError(err);
     }
   };
 

@@ -17,6 +17,7 @@ import { useWallet } from "@src/hooks/useWallet";
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const TransferModal = ({
   modal: { closeModal, getParam },
@@ -29,6 +30,7 @@ export const TransferModal = ({
   const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
@@ -62,9 +64,8 @@ export const TransferModal = ({
       refresh();
       closeModal();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` })
+      handleError(err);
     }
   };
 

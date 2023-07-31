@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -12,6 +12,7 @@ import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "@src/types";
+import { useHandleError } from "@src/hooks/useHandleError";
 import { trimTld } from "../utils/validate";
 import { t } from "@lingui/macro";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
@@ -28,6 +29,7 @@ export const DeleteModal = ({
   const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
 
@@ -54,9 +56,8 @@ export const DeleteModal = ({
         domain: splitted.length === 2 ? splitted[1] : domain,
       });
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      setStatus({ status: 'error', message: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
