@@ -8,24 +8,22 @@ import SkeletonContent from "react-native-skeleton-content";
 import { useModal } from "react-native-modalfy";
 import { t } from "@lingui/macro";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-
 import { profileScreenProp } from "@src/types";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { trimTld, validate } from "@src/utils/validate";
 import { isPubkey } from "@src/utils/publickey";
-
 import { useSearch } from "@src/hooks/useSearch";
 import { useDomainSuggestions } from "@src/hooks/useDomainSuggestions";
 import { useTopDomainsSales } from "@src/hooks/useTopDomainsSales";
-
 import { Screen } from "@src/components/Screen";
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { UiButton } from '@src/components/UiButton';
 import { DomainSearchResultRow } from '@src/components/DomainSearchResultRow';
 
 export const SearchResult = ({ domain, loadPopular = false }: { domain: string; loadPopular?: boolean; }) => {
-  const { openModal, currentModal } = useModal();
+  const { currentModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [search, setSearch] = useState(domain || "");
   const [input, setInput] = useState(domain || "");
   const results = useSearch(search);
@@ -50,7 +48,7 @@ export const SearchResult = ({ domain, loadPopular = false }: { domain: string; 
       });
     }
     if (!validate(input)) {
-      return openModal("Error", { msg: t`${input}.sol is not a valid domain` });
+      return setStatus({ status: 'error', message: t`${input}.sol is not a valid domain` })
     }
     setSearch(trimTld(input));
   };

@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
-import { useModal } from "react-native-modalfy";
 import { AntDesign } from "@expo/vector-icons";
 import { TransactionInstruction } from "@solana/web3.js";
 import { t } from "@lingui/macro";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { registerFavourite } from "@bonfida/name-offers";
 import { NAME_OFFERS_ID, getDomainKeySync } from "@bonfida/spl-name-service";
 import { isTokenized } from "@bonfida/name-tokenizer";
-
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useWallet } from "@src/hooks/useWallet";
-
 import tw from "@src/utils/tailwind";
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
@@ -27,7 +24,7 @@ export const FavoriteButton = ({
   refresh: () => void;
 }) => {
   const [loading, setLoading] = useState(false);
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
 
@@ -51,16 +48,20 @@ export const FavoriteButton = ({
       const sig = await sendTx(connection, publicKey, ixs, signTransaction);
       console.log(sig);
 
-      openModal("Success", {
-        msg: t`${domain}.sol successfully set as favorite domain name`,
-      });
+      setStatus({
+        status: 'success',
+        message: t`${domain}.sol successfully set as favorite domain name`,
+      })
       setLoading(false);
       await sleep(500);
       refresh();
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({
+        status: 'error',
+        message: t`Something went wrong - try again`,
+      })
     }
   };
 

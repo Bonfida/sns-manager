@@ -15,8 +15,6 @@ import { Text } from "react-native";
 import tw from "./utils/tailwind";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
-import { ErrorModal } from "./components/ErrorModal";
-import { SuccessModal } from "./components/SuccessModal";
 import { TransferModal } from "./components/TransferModal";
 import { WormholeExplainerModal } from "./components/WormholeExplainerModal";
 import { EditPicture } from "./components/EditPicture";
@@ -43,6 +41,7 @@ import {
   LanguageProvider,
   useLanguageContext,
 } from "./contexts/LanguageContext";
+import { StatusModalProvider } from "@src/contexts/StatusModalContext";
 import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
@@ -53,8 +52,6 @@ const xnftjson = require("../xnft.json");
 console.log(`Version: ${xnftjson.version}`);
 
 const modalConfig = {
-  Error: ErrorModal,
-  Success: SuccessModal,
   Transfer: TransferModal,
   Delete: DeleteModal,
   CreateSubdomain: CreateSubdomainModal,
@@ -188,9 +185,11 @@ function App() {
       <RecoilRoot>
         <NavigationContainer>
           <LanguageProvider i18n={i18n}>
-            <ModalProvider stack={stackModal}>
-              <TabNavigator />
-            </ModalProvider>
+            <StatusModalProvider>
+              <ModalProvider stack={stackModal}>
+                <TabNavigator />
+              </ModalProvider>
+            </StatusModalProvider>
           </LanguageProvider>
         </NavigationContainer>
       </RecoilRoot>

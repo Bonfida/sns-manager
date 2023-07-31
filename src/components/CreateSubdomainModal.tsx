@@ -15,6 +15,7 @@ import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { validate } from "../utils/validate";
 import { Trans, t } from "@lingui/macro";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { UiButton } from '@src/components/UiButton';
@@ -28,6 +29,7 @@ export const CreateSubdomainModal = ({
   };
 }) => {
   const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
@@ -44,9 +46,11 @@ export const CreateSubdomainModal = ({
 
       if (!validate(subdomain)) {
         setLoading(false);
-        return openModal("Error", {
-          msg: t`${subdomain}.sol is not a valid subdomain`,
-        });
+        setStatus({
+          status: 'error',
+          message: t`${subdomain}.sol is not a valid subdomain`,
+        })
+        return;
       }
 
       const [, ix] = await createSubdomain(connection, subdomain, publicKey);
@@ -69,7 +73,10 @@ export const CreateSubdomainModal = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({
+        status: 'error',
+        message: t`Something went wrong - try again`,
+      })
     }
   };
 

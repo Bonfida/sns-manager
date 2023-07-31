@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { useModal } from "react-native-modalfy";
+import { View, Text } from "react-native";
 import { getDomainKeySync } from "@bonfida/spl-name-service";
 import {
   PublicKey,
@@ -20,18 +19,16 @@ import {
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { A as HTMLLink } from '@expo/html-elements';
-
 import tw from "@src/utils/tailwind";
 import { unwrap } from "@src/utils/unwrap";
 import { wrap } from "@src/utils/wrap";
 import { checkAccountExists } from "@src/utils/account";
 import { sendTx } from "@src/utils/send-tx";
-
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useWallet } from "@src/hooks/useWallet";
-
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
@@ -41,7 +38,7 @@ export const TokenizeModal = ({
     getParam: <T>(a: string, b?: string) => T;
   };
 }) => {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [loading, setLoading] = useState(false);
@@ -126,22 +123,18 @@ export const TokenizeModal = ({
       }
 
       setLoading(false);
-      openModal(
-        "Success",
-        {
-          msg: t`${domain}.sol successfully ${
-            isTokenized ? "unwrapped" : "wrapped"
-          }!`,
-        },
-        () => {
-          closeModal("TokenizeModal");
-        }
-      );
+      setStatus({
+        status: 'success',
+        message: t`${domain}.sol successfully ${
+          isTokenized ? "unwrapped" : "wrapped"
+        }!`
+      });
+      closeModal("TokenizeModal");
       refresh();
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` });
     }
   };
 

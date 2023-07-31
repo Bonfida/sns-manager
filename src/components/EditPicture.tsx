@@ -1,11 +1,6 @@
 import { useState } from "react";
-import {
-  Text,
-  View,
-  ActivityIndicator,
-  Image,
-} from "react-native";
-import tw from "../utils/tailwind";
+import { View, Image } from "react-native";
+import tw from "@src/utils/tailwind";
 import { useModal } from "react-native-modalfy";
 import * as ImagePicker from "expo-image-picker";
 import {
@@ -21,9 +16,9 @@ import {
 } from "@bonfida/spl-name-service";
 import { registerFavourite } from "@bonfida/name-offers";
 import { isTokenized } from "@bonfida/name-tokenizer";
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/macro";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { removeZeroRight } from "@src/utils/record/zero";
 import { sendTx } from "@src/utils/send-tx";
@@ -43,7 +38,7 @@ export const EditPicture = ({
   const domain = getParam<string>("domain");
   const setAsFav = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
@@ -64,7 +59,8 @@ export const EditPicture = ({
         new URL(pic);
       } catch (err) {
         setLoading(false);
-        return openModal("Error", { msg: t`Invalid URL` });
+        setStatus({ status: 'error', message: t`Invalid URL` });
+        return;
       }
 
       // Set as fav
@@ -160,7 +156,7 @@ export const EditPicture = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` });
     }
   };
 
@@ -169,9 +165,7 @@ export const EditPicture = ({
       let permissionResult =
         await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
-        openModal("Error", {
-          msg: t`Permission to access photo album is required`,
-        });
+        setStatus({ status: 'error', message: t`Permission to access photo album is required` });
         return;
       }
 
@@ -208,7 +202,7 @@ export const EditPicture = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` });
     } finally {
       setLoading(false);
     }

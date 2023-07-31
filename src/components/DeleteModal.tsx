@@ -8,14 +8,13 @@ import {
 import tw from "../utils/tailwind";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { sendTx } from "../utils/send-tx";
-import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "@src/types";
 import { trimTld } from "../utils/validate";
 import { t } from "@lingui/macro";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { UiButton } from "@src/components/UiButton";
 
 export const DeleteModal = ({
@@ -26,7 +25,7 @@ export const DeleteModal = ({
     getParam: <T>(a: string, b?: string) => T;
   };
 }) => {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [loading, setLoading] = useState(false);
@@ -48,16 +47,8 @@ export const DeleteModal = ({
       console.log(sig);
 
       setLoading(false);
-      openModal(
-        "Success",
-        {
-          msg: t`subdomain ${domain}.sol successfully deleted!`,
-        },
-        () => {
-          closeModal("Delete");
-        }
-      );
-
+      setStatus({ status: 'success', message: t`subdomain ${domain}.sol successfully deleted!` });
+      closeModal("Delete");
       const splitted = trimTld(domain).split(".");
       return navigation.navigate("domain-view", {
         domain: splitted.length === 2 ? splitted[1] : domain,
@@ -65,7 +56,7 @@ export const DeleteModal = ({
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` });
     }
   };
 

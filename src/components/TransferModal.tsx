@@ -8,15 +8,12 @@ import {
   ROOT_DOMAIN_ACCOUNT,
 } from "@bonfida/spl-name-service";
 import { PublicKey } from "@solana/web3.js";
-import { useModal } from "react-native-modalfy";
 import { t } from "@lingui/macro";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { sendTx } from "@src/utils/send-tx";
-
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useWallet } from "@src/hooks/useWallet";
-
 import { CustomTextInput } from '@src/components/CustomTextInput';
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
@@ -29,7 +26,7 @@ export const TransferModal = ({
     getParam: <T>(a: string, b?: string) => T;
   };
 }) => {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
@@ -61,13 +58,13 @@ export const TransferModal = ({
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
       setLoading(false);
-      openModal("Success", { msg: t`${domain}.sol successfully transfered!` });
+      setStatus({ status: 'success', message: t`${domain}.sol successfully transfered!` })
       refresh();
       closeModal();
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` })
     }
   };
 

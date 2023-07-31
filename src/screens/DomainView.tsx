@@ -33,20 +33,16 @@ import { ROOT_DOMAIN } from "@bonfida/name-offers";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
-import { useNavigation } from "@react-navigation/native";
 import { useModal } from "react-native-modalfy";
 import { useProfilePic } from "@bonfida/sns-react";
 import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Trans, t } from "@lingui/macro";
-
 import tw from "@src/utils/tailwind";
 import { getTranslatedName } from "@src/utils/record/place-holder";
-import { profileScreenProp } from "@src/types";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import {
   AddressRecord,
   SocialRecord,
-  ADDRESS_RECORDS,
   SOCIAL_RECORDS,
   useAddressRecords,
   useSocialRecords,
@@ -55,13 +51,11 @@ import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useDomainInfo } from "@src/hooks/useDomainInfo";
 import { useWallet } from "@src/hooks/useWallet";
 import { useSubdomains } from "@src/hooks/useSubdomains";
-
 import { Screen } from "@src/components/Screen";
-import { DomainRowRecord, DomainRowRecordProps } from "@src/components/DomainRowRecord";
+import { DomainRowRecord } from "@src/components/DomainRowRecord";
 import { ProfileBlock } from "@src/components/ProfileBlock";
 import { UiButton } from '@src/components/UiButton';
 import { CustomTextInput } from "@src/components/CustomTextInput";
-
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
 
@@ -148,6 +142,7 @@ const formReducer = (state: FormState, action: FormAction) => {
 
 export const DomainView = ({ domain }: { domain: string }) => {
   const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
   const socialRecords = useSocialRecords(domain);
   const addressRecords = useAddressRecords(domain);
@@ -155,7 +150,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const subdomains = useSubdomains(domain);
   const picRecord = useProfilePic(connection!, domain);
   const { publicKey } = useWallet();
-  const navigation = useNavigation<profileScreenProp>();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
@@ -189,7 +183,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   });
   const [currentScrollPosition, setScrollPosition] = useState(0);
 
-  const { signTransaction, setVisible, connected, signMessage } = useWallet();
+  const { signTransaction, signMessage } = useWallet();
   const [isEditing, toggleEditMode] = useState(false);
   const [formState, dispatchFormChange] = useReducer(formReducer, new Map());
   // We store form dirtiness to disable/enable "Save" button
@@ -391,13 +385,15 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 new URL(stateValue);
               } catch (err) {
                 setFormLoading(false);
-                return openModal("Error", { msg: t`Invalid URL` });
+                setStatus({ status: 'error', message: t`Invalid URL` });
+                return;
               }
             } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(key)) {
               const buffer = Buffer.from(stateValue.slice(2), "hex");
               if (!stateValue.startsWith("0x") || buffer.length !== 20) {
                 setFormLoading(false);
-                return openModal("Error", { msg: t`Invalid ${key} address` });
+                setStatus({ status: 'error', message: t`Invalid ${key} address` });
+                return;
               }
             }
           }
@@ -425,7 +421,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
     } catch (err) {
       console.error(err);
       setFormLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      setStatus({ status: 'error', message: t`Something went wrong - try again` });
     }
   }
 
@@ -641,7 +637,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             onPress={() => {
               if (isEditing || !formState.get(item)) return
               Clipboard.setString(String(formState.get(item)));
-              openModal("Success", { msg: t`Copied!` });
+              setStatus({ status: 'success', message: t`Copied!` });
             }}
             onLayout={(event) => {
               if (item === SNSRecord.Backpack) {

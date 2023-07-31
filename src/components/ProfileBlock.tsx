@@ -11,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import { useProfilePic } from "@bonfida/sns-react";
 import { useModal } from "react-native-modalfy";
-
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 import { useWallet } from "@src/hooks/useWallet";
@@ -26,6 +26,7 @@ interface ProfileBlockProps {
 
 export const ProfileBlock = ({ owner, domain, children, picRecord }: ProfileBlockProps) => {
   const { publicKey } = useWallet();
+  const { setStatus } = useStatusModalContext();
   const isOwner = owner === publicKey?.toBase58();
   const favorite = useFavoriteDomain(owner);
   const { openModal } = useModal();
@@ -64,7 +65,7 @@ export const ProfileBlock = ({ owner, domain, children, picRecord }: ProfileBloc
         <TouchableOpacity
           onPress={() => {
             Clipboard.setString(`${domain}.sol`);
-            openModal("Success", { msg: t`Copied!` });
+            setStatus({ status: 'success', message: t`Copied!` });
           }}
           style={tw`flex flex-row items-center justify-center gap-2`}
         >
@@ -78,7 +79,7 @@ export const ProfileBlock = ({ owner, domain, children, picRecord }: ProfileBloc
         <TouchableOpacity
           onPress={() => {
             Clipboard.setString(owner as string);
-            openModal("Success", { msg: t`Copied!` });
+            setStatus({ status: 'success', message: t`Copied!` });
           }}
           style={tw`flex flex-row items-center justify-center gap-2`}
         >

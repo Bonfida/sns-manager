@@ -19,6 +19,7 @@ import { ProfileScreen } from "./Profile";
 import { CustomTextInput } from "@src/components/CustomTextInput";
 import { UiButton } from "@src/components/UiButton";
 import { LanguageHeader } from "@src/components/Header";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -31,7 +32,7 @@ const domainProsTranslations = [
 ];
 
 function HomeRoot() {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [search, setSearch] = useState("");
   const navigation = useNavigation<
     searchResultScreenProp | profileScreenProp
@@ -46,8 +47,9 @@ function HomeRoot() {
       });
     }
     if (!validate(search)) {
-      return openModal("Error", {
-        msg: t`${search}.sol is not a valid domain`,
+      return setStatus({
+        status: 'error',
+        message: t`${search}.sol is not a valid domain`,
       });
     }
     navigation.navigate("Home", {

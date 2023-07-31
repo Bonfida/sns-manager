@@ -7,12 +7,13 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useModal } from "react-native-modalfy";
 import { Trans, t } from "@lingui/macro";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
+import { WalletError } from "@solana/wallet-adapter-base";
 import {
   Connection,
   LAMPORTS_PER_SOL,
@@ -39,6 +40,7 @@ import { OrderSummary } from "@src/components/OrderSummary";
 import { Screen } from "@src/components/Screen";
 import { UiButton } from "@src/components/UiButton";
 import { EmptyState } from "./EmptyState";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 
 const getTokenAccountBalance = async (
   connection: Connection,
@@ -80,6 +82,7 @@ export const Cart = () => {
   const pyth = usePyth();
   const [mint, setMint] = useState(tokenList[0].mintAddress);
   const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [map, actions] = useStorageMap();
   const [currentStep, setStep] = useState<CurrentStep>(1);
 
@@ -105,7 +108,7 @@ export const Cart = () => {
         total
       ))
     ) {
-      return openModal("Error", { msg: `You do not have enough funds` });
+      return setStatus({ status: "error", message: `You do not have enough funds` });
     }
     try {
       setLoading(true);
@@ -161,7 +164,11 @@ export const Cart = () => {
     } catch (err) {
       console.error(err);
       setLoading(false);
-      openModal("Error", { msg: "Something went wrong - try again" });
+      if (err instanceof WalletError) {
+        setStatus({ status: "error", message: err.error.message });
+      } else {
+        setStatus({ status: "error", message: "Something went wrong - try again" });
+      }
     }
   };
 
@@ -387,11 +394,8 @@ const RenderStepsNumbers = ({
   return (
     <View style={[tw`flex flex-row items-center justify-between gap-2`, style]}>
       {steps.map((item, index) => (
-        <>
-          <View
-            key={item.label}
-            style={tw`flex flex-row items-center justify-between gap-2`}
-          >
+        <Fragment key={item.label}>
+          <View style={tw`flex flex-row items-center justify-between gap-2`}>
             <TouchableOpacity
               onPress={() => setStep(item.value)}
               disabled={currentStep <= item.value || currentStep === 3}
@@ -422,7 +426,7 @@ const RenderStepsNumbers = ({
           {index !== steps.length - 1 ? (
             <View style={tw`flex-1 border-b border-brand-primary`} />
           ) : null}
-        </>
+        </Fragment>
       ))}
     </View>
   );
