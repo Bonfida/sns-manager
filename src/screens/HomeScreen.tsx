@@ -1,13 +1,13 @@
-import {
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { Text, View, Image } from "react-native";
 import tw from "@src/utils/tailwind";
 import { useState } from "react";
 import { Screen } from "@src/components/Screen";
 import { useNavigation } from "@react-navigation/native";
-import { profileScreenProp, searchResultScreenProp, NavigatorTabsParamList } from "@src/types";
+import {
+  profileScreenProp,
+  searchResultScreenProp,
+  NavigatorTabsParamList,
+} from "@src/types";
 import { trimTld, validate } from "@src/utils/validate";
 import { useModal } from "react-native-modalfy";
 import { isPubkey } from "@src/utils/publickey";
@@ -16,19 +16,19 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { SearchResult } from "./SearchResult";
 import { DomainView } from "./DomainView";
 import { ProfileScreen } from "./Profile";
-import { CustomTextInput } from '@src/components/CustomTextInput';
-import { UiButton } from '@src/components/UiButton';
-import { LanguageHeader } from '@src/components/Header';
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { UiButton } from "@src/components/UiButton";
+import { LanguageHeader } from "@src/components/Header";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Stack = createStackNavigator<NavigatorTabsParamList>();
 
 const domainProsTranslations = [
-  t`Unique domain name for your project`,
-  t`Human-readable address`,
-  t`Collect & Exchange directly or as NFTs!`
-]
+  <Trans>Unique domain name for your project</Trans>,
+  <Trans>Human-readable address</Trans>,
+  <Trans>Collect & Exchange directly or as NFTs!</Trans>,
+];
 
 function HomeRoot() {
   const { openModal } = useModal();
@@ -57,20 +57,25 @@ function HomeRoot() {
   };
 
   return (
-    <Screen style={tw`flex flex-col items-center justify-center relative`}>
+    <Screen style={tw`relative flex flex-col items-center justify-center`}>
       <View style={tw`mb-10`}>
         <Text style={tw`text-3xl font-bold text-center text-blue-grey-900`}>
-          <Trans>
-            A Humanized ID for the Metaverse
-          </Trans>
+          <Trans>A Humanized ID for the Metaverse</Trans>
         </Text>
         <Text style={tw`px-2 mt-5 text-sm text-center text-content-secondary`}>
           <Trans>
-            Your online identity starts with your{' '}
-            <Text style={[
-              { backgroundClip: 'text', backgroundImage: `linear-gradient(to right, ${tw.color('brand-primary')}, ${tw.color('brand-accent')})` },
-              tw`text-transparent font-medium`,
-            ]}>
+            Your online identity starts with your{" "}
+            <Text
+              style={[
+                {
+                  backgroundClip: "text",
+                  backgroundImage: `linear-gradient(to right, ${tw.color(
+                    "brand-primary"
+                  )}, ${tw.color("brand-accent")})`,
+                },
+                tw`font-medium text-transparent`,
+              ]}
+            >
               .sol domain
             </Text>
           </Trans>
@@ -99,7 +104,7 @@ function HomeRoot() {
         {domainProsTranslations.map((pros, i) => (
           <View
             key={i}
-            style={tw`flex items-center justify-center flex-row gap-x-1`}
+            style={tw`flex flex-row items-center justify-center gap-x-1`}
           >
             <Image
               style={tw`h-[15px] w-[15px]`}
@@ -110,21 +115,21 @@ function HomeRoot() {
         ))}
       </View>
     </Screen>
-  )
+  );
 }
 
 export function HomeScreen() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleAlign: 'center',
+        headerTitleAlign: "center",
         headerStyle: {
-          backgroundColor: tw.color('background-primary'),
+          backgroundColor: tw.color("background-primary"),
           borderBottomWidth: 0,
           height: 52,
         },
-        headerTintColor: tw.color('brand-primary'),
-        headerTitleStyle: tw`text-content-primary font-medium`
+        headerTintColor: tw.color("brand-primary"),
+        headerTitleStyle: tw`font-medium text-content-primary`,
       }}
       initialRouteName={"home-root"}
     >
@@ -138,7 +143,12 @@ export function HomeScreen() {
       />
       <Stack.Screen
         name="search-result"
-        children={({ route }) => <SearchResult domain={route.params?.domain} loadPopular={route.params?.loadPopular} />}
+        children={({ route }) => (
+          <SearchResult
+            domain={route.params?.domain}
+            loadPopular={route.params?.loadPopular}
+          />
+        )}
         options={{ title: t`Search domain` }}
       />
       <Stack.Screen
