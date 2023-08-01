@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { useProfilePic } from "@bonfida/sns-react";
 import SkeletonContent from "react-native-skeleton-content";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import tw from "@src/utils/tailwind";
@@ -33,17 +33,22 @@ export const DomainRowRecord = ({
   const navigation = useNavigation<searchResultScreenProp>();
   const connection = useSolanaConnection();
   const picRecord = useProfilePic(connection!, domain);
-  const [picPlaceholderColor, setPicPlaceholderColor] = useState(tw.color('brand-accent'))
+  const [picPlaceholderColor, setPicPlaceholderColor] = useState(
+    tw.color("brand-accent"),
+  );
 
   useEffect(() => {
     if (!picRecord.loading && !picRecord.result) {
-      setPicPlaceholderColor(generateColor())
+      setPicPlaceholderColor(generateColor());
     }
-  }, [picRecord.loading])
+  }, [picRecord.loading]);
 
   return (
-    <View style={tw`flex items-center flex-row gap-4`}>
-      <SkeletonContent containerStyle={tw`w-[40px] h-[40px]`} isLoading={picRecord.loading}>
+    <View style={tw`flex flex-row items-center gap-4`}>
+      <SkeletonContent
+        containerStyle={tw`w-[40px] h-[40px]`}
+        isLoading={picRecord.loading}
+      >
         <>
           {picRecord.result && (
             <Image
@@ -53,7 +58,7 @@ export const DomainRowRecord = ({
           )}
           {!picRecord.result && (
             <LinearGradient
-              colors={[picPlaceholderColor!, 'rgba(180, 77, 18, 0)']}
+              colors={[picPlaceholderColor!, "rgba(180, 77, 18, 0)"]}
               style={tw`w-[40px] rounded-full h-[40px]`}
             >
               <View></View>
@@ -76,7 +81,12 @@ export const DomainRowRecord = ({
             navigation.navigate("domain-view", { domain: domain });
           }}
         >
-          <Feather style={tw`ml-5`} name="arrow-right" size={20} color="#ADAEB2" />
+          <Feather
+            style={tw`ml-5`}
+            name="arrow-right"
+            size={20}
+            color="#ADAEB2"
+          />
         </TouchableOpacity>
       </View>
     </View>

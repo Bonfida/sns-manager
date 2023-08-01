@@ -12,9 +12,7 @@ export const ProgressExplainerModal = ({
   return (
     <WrapModal
       closeModal={closeModal}
-      title={
-        <Trans>Boost Your Profile Journey! 🚀</Trans>
-      }
+      title={<Trans>Boost Your Profile Journey! 🚀</Trans>}
     >
       <Text style={tw`my-2`}>
         <Trans>
@@ -46,8 +44,8 @@ export const ProgressExplainerModal = ({
 
       <Text style={tw`my-2`}>
         <Trans>
-          <Text style={tw`font-bold`}>4. Twitter Record:</Text> Connect
-          Twitter for swift sharing and networking 🐦
+          <Text style={tw`font-bold`}>4. Twitter Record:</Text> Connect Twitter
+          for swift sharing and networking 🐦
         </Trans>
       </Text>
 
@@ -60,8 +58,8 @@ export const ProgressExplainerModal = ({
 
       <Text style={tw`my-2`}>
         <Trans>
-          <Text style={tw`font-bold`}>6. Discord Record:</Text> Connect
-          Discord and keep conversations flowing 🎮
+          <Text style={tw`font-bold`}>6. Discord Record:</Text> Connect Discord
+          and keep conversations flowing 🎮
         </Trans>
       </Text>
     </WrapModal>

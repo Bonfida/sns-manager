@@ -1,10 +1,10 @@
 import { useState, useContext, createContext, useEffect } from "react";
 import { View, TouchableOpacity, Text, Animated } from "react-native";
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import tw from "@src/utils/tailwind";
 
 interface StatusEntity {
-  status: 'error' | 'success' | 'loading';
+  status: "error" | "success" | "loading";
   message: string;
 }
 type CurrentStatusType = StatusEntity | null;
@@ -35,7 +35,7 @@ const StatusModalProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (currentStatus && containerWidth) {
-      lineWidth.setValue(containerWidth)
+      lineWidth.setValue(containerWidth);
       animateLine();
     }
   }, [currentStatus, containerWidth]);
@@ -51,58 +51,64 @@ const StatusModalProvider = ({ children }: { children: React.ReactNode }) => {
     if (entity !== null) {
       statusTimer = setTimeout(() => {
         setCurrentStatus(null);
-      }, statusLiveTime)
+      }, statusLiveTime);
     }
-  }
+  };
 
   const closeStatus = () => {
-    lineWidth.setValue(0)
-    setCurrentStatus(null)
-  }
+    lineWidth.setValue(0);
+    setCurrentStatus(null);
+  };
 
   return (
     <StatusModalContext.Provider value={{ currentStatus, setStatus }}>
       {children}
       {currentStatus && (
         <View
-          style={tw`
-            absolute top-3 right-3 left-3
-            bg-background-secondary
-            rounded-lg
-            py-3 px-4
-            flex flex-row items-start gap-2
-            overflow-hidden
-            shadow-lg
-          `}
-          onLayout={(event) => setContainerWidth(event.nativeEvent.layout.width)}
+          style={tw`absolute flex flex-row items-start gap-2 px-4 py-3 overflow-hidden rounded-lg shadow-lg  top-3 right-3 left-3 bg-background-secondary`}
+          onLayout={(event) =>
+            setContainerWidth(event.nativeEvent.layout.width)
+          }
         >
           {/* Indicator */}
           <View style={tw`absolute h-[3px] w-full left-0 top-0 right-0 flex`}>
             <Animated.View
               style={[
                 tw`w-full h-full`,
-                currentStatus.status === 'success' && tw`bg-content-success`,
-                currentStatus.status === 'error' && tw`bg-content-error`,
+                currentStatus.status === "success" && tw`bg-content-success`,
+                currentStatus.status === "error" && tw`bg-content-error`,
                 { width: lineWidth },
               ]}
             />
           </View>
 
-          {currentStatus.status === 'error' && (
-            <MaterialIcons name="error" size={20} color={tw.color('content-error')} />
+          {currentStatus.status === "error" && (
+            <MaterialIcons
+              name="error"
+              size={20}
+              color={tw.color("content-error")}
+            />
           )}
-          {currentStatus.status === 'success' && (
-            <Ionicons name="checkmark-circle" size={20} color={tw.color('content-success')} />
+          {currentStatus.status === "success" && (
+            <Ionicons
+              name="checkmark-circle"
+              size={20}
+              color={tw.color("content-success")}
+            />
           )}
 
-          <Text style={tw`text-content-primary text-base font-medium`}>
+          <Text style={tw`text-base font-medium text-content-primary`}>
             {currentStatus.message}
           </Text>
           <TouchableOpacity
             style={tw`absolute top-1 right-0.5 w-5 h-5`}
             onPress={closeStatus}
           >
-            <Ionicons name="close-outline" size={24} color={tw.color('content-secondary')} />
+            <Ionicons
+              name="close-outline"
+              size={24}
+              color={tw.color("content-secondary")}
+            />
           </TouchableOpacity>
         </View>
       )}
@@ -117,7 +123,6 @@ const useStatusModalContext = (): StatusModalContentType => {
   }
   return ctx;
 };
-
 
 export type { StatusEntity };
 export { StatusModalContext, StatusModalProvider, useStatusModalContext };

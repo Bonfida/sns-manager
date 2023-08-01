@@ -7,6 +7,8 @@ type Props = {
 };
 export function Screen({ style, children }: Props) {
   return (
-    <View style={[style, tw`flex-1 p-3 bg-background-primary`]}>{children}</View>
+    <View style={[style, tw`flex-1 p-3 bg-background-primary`]}>
+      {children}
+    </View>
   );
 }

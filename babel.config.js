@@ -5,18 +5,16 @@ module.exports = function (api) {
     plugins: [
       "transform-inline-environment-variables",
       "macros",
-      ["module-resolver", {
-        "alias": {
-          "@src": "./src/",
-          "@assets": "./assets/",
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@src": "./src/",
+            "@assets": "./assets/",
+          },
+          extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx",
-        ]
-      }],
+      ],
     ],
   };
 };

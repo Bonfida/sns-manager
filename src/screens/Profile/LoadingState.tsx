@@ -5,13 +5,15 @@ import tw from "@src/utils/tailwind";
 
 export const LoadingState = () => {
   return (
-    <View style={tw`flex px-3 py-5 flex-col items-start w-full h-full mt-4`}>
-      <View style={tw`w-full relative mb-20`}>
+    <View style={tw`flex flex-col items-start w-full h-full px-3 py-5 mt-4`}>
+      <View style={tw`relative w-full mb-20`}>
         <SkeletonContent isLoading>
-          <View style={tw`w-[100px] h-[100px] mb-2 rounded-full absolute top-[-25px]`} />
+          <View
+            style={tw`w-[100px] h-[100px] mb-2 rounded-full absolute top-[-25px]`}
+          />
         </SkeletonContent>
         <SkeletonContent isLoading>
-          <View style={tw`h-[140px] w-full rounded-lg`}/>
+          <View style={tw`h-[140px] w-full rounded-lg`} />
         </SkeletonContent>
       </View>
       <View style={tw`w-full`}>

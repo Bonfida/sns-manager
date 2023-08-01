@@ -51,9 +51,9 @@ export const FavoriteButton = ({
       console.log(sig);
 
       setStatus({
-        status: 'success',
+        status: "success",
         message: t`${domain}.sol successfully set as favorite domain name`,
-      })
+      });
       setLoading(false);
       await sleep(500);
       refresh();
@@ -71,9 +71,13 @@ export const FavoriteButton = ({
       {loading ? (
         <ActivityIndicator size={21} />
       ) : isFav ? (
-        <AntDesign name="star" size={24} color={tw.color('brand-primary')} />
-        ) : (
-        <AntDesign name="staro" size={24} color={tw.color('content-tertiary')} />
+        <AntDesign name="star" size={24} color={tw.color("brand-primary")} />
+      ) : (
+        <AntDesign
+          name="staro"
+          size={24}
+          color={tw.color("content-tertiary")}
+        />
       )}
     </TouchableOpacity>
   );

@@ -48,7 +48,7 @@ function HomeRoot() {
     }
     if (!validate(search)) {
       return setStatus({
-        status: 'error',
+        status: "error",
         message: t`${search}.sol is not a valid domain`,
       });
     }
@@ -72,7 +72,7 @@ function HomeRoot() {
                 {
                   backgroundClip: "text",
                   backgroundImage: `linear-gradient(to right, ${tw.color(
-                    "brand-primary"
+                    "brand-primary",
                   )}, ${tw.color("brand-accent")})`,
                 },
                 tw`font-medium text-transparent`,
@@ -161,7 +161,7 @@ export function HomeScreen() {
       <Stack.Screen
         name="search-profile"
         children={({ route }) => <ProfileScreen owner={route.params.owner} />}
-        options={({ route }) => ({ title: abbreviate(route.params.owner, 25)})}
+        options={({ route }) => ({ title: abbreviate(route.params.owner, 25) })}
       />
     </Stack.Navigator>
   );

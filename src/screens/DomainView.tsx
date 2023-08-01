@@ -54,7 +54,7 @@ import { useSubdomains } from "@src/hooks/useSubdomains";
 import { Screen } from "@src/components/Screen";
 import { DomainRowRecord } from "@src/components/DomainRowRecord";
 import { ProfileBlock } from "@src/components/ProfileBlock";
-import { UiButton } from '@src/components/UiButton';
+import { UiButton } from "@src/components/UiButton";
 import { CustomTextInput } from "@src/components/CustomTextInput";
 import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
@@ -64,8 +64,8 @@ import { LoadingState } from "@src/screens/Profile/LoadingState";
 const getIcon = (record: SocialRecord) => {
   const defaultIconAttrs = {
     size: 20,
-    color: tw.color('content-secondary'),
-  }
+    color: tw.color("content-secondary"),
+  };
   switch (record) {
     case SNSRecord.Discord:
       return <FontAwesome5 name="discord" {...defaultIconAttrs} />;
@@ -82,9 +82,7 @@ const getIcon = (record: SocialRecord) => {
     case SNSRecord.Url:
       return <MaterialCommunityIcons name="web" {...defaultIconAttrs} />;
     case SNSRecord.Backpack:
-      return (
-        <MaterialIcons name="backpack" {...defaultIconAttrs} />
-      );
+      return <MaterialIcons name="backpack" {...defaultIconAttrs} />;
     default:
       return null;
   }
@@ -94,17 +92,19 @@ type FormKeys = AddressRecord | SocialRecord;
 type FormValue = string;
 // using Map to store correct order of fields
 type FormState = Map<FormKeys, FormValue>;
-type FormAction = { type: FormKeys; value: FormValue } | { type: 'bulk'; value: FormState }
+type FormAction =
+  | { type: FormKeys; value: FormValue }
+  | { type: "bulk"; value: FormState };
 
 const formReducer = (state: FormState, action: FormAction) => {
-  if (action.type === 'bulk') {
+  if (action.type === "bulk") {
     return action.value;
   }
 
   const newState = new Map(state);
-  newState.set(action.type, action.value)
+  newState.set(action.type, action.value);
   return newState;
-}
+};
 
 export const DomainView = ({ domain }: { domain: string }) => {
   const { openModal } = useModal();
@@ -143,7 +143,9 @@ export const DomainView = ({ domain }: { domain: string }) => {
   };
 
   const scrollViewRef = useRef<ScrollView | null>(null);
-  const [UISectionsCoordinates, setCoordinates] = useState<Record<'socials' | 'addresses' | 'subdomains', number>>({
+  const [UISectionsCoordinates, setCoordinates] = useState<
+    Record<"socials" | "addresses" | "subdomains", number>
+  >({
     socials: 0,
     addresses: 0,
     subdomains: 0,
@@ -161,31 +163,34 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const discardChanges = () => {
     if (isFormDirty) {
       dispatchFormChange({
-        type: 'bulk',
+        type: "bulk",
         value: new Map(previousFormState),
-      })
+      });
     }
-    toggleEditMode(false)
-  }
+    toggleEditMode(false);
+  };
 
   const resetForm = () => {
     setFormDirty(false);
     toggleEditMode(false);
     setPreviousFormState(null);
     setFormLoading(false);
-  }
+  };
 
-  const prepareUpdateInstructions = async (fields: { record: SNSRecord; value: string; }[]) => {
-    if (!connection || !publicKey || !signTransaction || !signMessage) return [];
+  const prepareUpdateInstructions = async (
+    fields: { record: SNSRecord; value: string }[],
+  ) => {
+    if (!connection || !publicKey || !signTransaction || !signMessage)
+      return [];
 
     const ixs: TransactionInstruction[] = [];
 
     for (const field of fields) {
-      const { record, value } = field
+      const { record, value } = field;
       const sub = Buffer.from([1]).toString() + record;
       let { pubkey: recordKey, isSub } = getDomainKeySync(
         record + "." + domain,
-        true
+        true,
       );
       const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
 
@@ -203,7 +208,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           new PublicKey(value),
           recordKey,
           publicKey,
-          signed
+          signed,
         );
       } else {
         ser = serializeRecord(value, record);
@@ -213,7 +218,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
       if (!currentAccount?.data) {
         const lamports = await connection.getMinimumBalanceForRentExemption(
-          space + NameRegistryState.HEADER_LEN
+          space + NameRegistryState.HEADER_LEN,
         );
         const ix = await createNameRegistry(
           connection,
@@ -223,13 +228,13 @@ export const DomainView = ({ domain }: { domain: string }) => {
           publicKey,
           lamports,
           undefined,
-          parent
+          parent,
         );
         ixs.push(ix);
       } else {
         const { registry } = await NameRegistryState.retrieve(
           connection,
-          recordKey
+          recordKey,
         );
 
         if (!registry.owner.equals(publicKey)) {
@@ -241,7 +246,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             registry.owner,
             undefined,
             parent,
-            publicKey
+            publicKey,
           );
           ixs.push(ix);
         }
@@ -256,18 +261,18 @@ export const DomainView = ({ domain }: { domain: string }) => {
             NAME_PROGRAM_ID,
             recordKey,
             publicKey,
-            publicKey
+            publicKey,
           );
           const sig = await sendTx(
             connection,
             publicKey,
             [ixClose],
-            signTransaction
+            signTransaction,
           );
           console.log(sig);
 
           const lamports = await connection.getMinimumBalanceForRentExemption(
-            space + NameRegistryState.HEADER_LEN
+            space + NameRegistryState.HEADER_LEN,
           );
           const ix = await createNameRegistry(
             connection,
@@ -277,7 +282,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             publicKey,
             lamports,
             undefined,
-            parent
+            parent,
           );
           ixs.push(ix);
         }
@@ -288,7 +293,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         recordKey,
         new Numberu32(0),
         ser,
-        publicKey
+        publicKey,
       );
 
       ixs.push(ix);
@@ -301,13 +306,13 @@ export const DomainView = ({ domain }: { domain: string }) => {
           domain,
           publicKey,
           1_000,
-          recordKey
+          recordKey,
         );
         ixs.push(...ix);
       }
     }
 
-    return ixs
+    return ixs;
   };
 
   const prepareDeleteInstructions = (records: SNSRecord[]) => {
@@ -322,13 +327,13 @@ export const DomainView = ({ domain }: { domain: string }) => {
         NAME_PROGRAM_ID,
         pubkey,
         publicKey,
-        publicKey
+        publicKey,
       );
 
-      ixs.push(ix)
+      ixs.push(ix);
     }
 
-    return ixs
+    return ixs;
   };
 
   const saveForm = async () => {
@@ -336,12 +341,12 @@ export const DomainView = ({ domain }: { domain: string }) => {
     if (!connection || !publicKey || !signTransaction || !signMessage) return;
 
     try {
-      const fieldsToUpdate: { record: SNSRecord; value: string; }[] = []
-      const fieldsToDelete: SNSRecord[] = []
+      const fieldsToUpdate: { record: SNSRecord; value: string }[] = [];
+      const fieldsToDelete: SNSRecord[] = [];
 
       for (const key of formState.keys()) {
-        const stateValue: string = formState.get(key) as string
-        const prevStateValue: string = previousFormState.get(key)
+        const stateValue: string = formState.get(key) as string;
+        const prevStateValue: string = previousFormState.get(key);
 
         if (stateValue !== prevStateValue) {
           // if new value is not nullish, it means it's a set or update action,
@@ -352,34 +357,44 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 new URL(stateValue);
               } catch (err) {
                 setFormLoading(false);
-                setStatus({ status: 'error', message: t`Invalid URL` });
+                setStatus({ status: "error", message: t`Invalid URL` });
                 return;
               }
             } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(key)) {
               const buffer = Buffer.from(stateValue.slice(2), "hex");
               if (!stateValue.startsWith("0x") || buffer.length !== 20) {
                 setFormLoading(false);
-                setStatus({ status: 'error', message: t`Invalid ${key} address` });
+                setStatus({
+                  status: "error",
+                  message: t`Invalid ${key} address`,
+                });
                 return;
               }
             }
           }
 
-          stateValue === ''
+          stateValue === ""
             ? fieldsToDelete.push(key)
-            : fieldsToUpdate.push({ record: key, value: stateValue })
+            : fieldsToUpdate.push({ record: key, value: stateValue });
         }
       }
 
-      const deleteInstructions = prepareDeleteInstructions(fieldsToDelete)
-      const updateInstructions = await prepareUpdateInstructions(fieldsToUpdate)
+      const deleteInstructions = prepareDeleteInstructions(fieldsToDelete);
+      const updateInstructions = await prepareUpdateInstructions(
+        fieldsToUpdate,
+      );
 
       if (!deleteInstructions.length && !updateInstructions.length) {
         resetForm();
         return;
       }
 
-      await sendTx(connection, publicKey, [...deleteInstructions, ...updateInstructions], signTransaction);
+      await sendTx(
+        connection,
+        publicKey,
+        [...deleteInstructions, ...updateInstructions],
+        signTransaction,
+      );
 
       await sleep(400);
 
@@ -389,31 +404,34 @@ export const DomainView = ({ domain }: { domain: string }) => {
       setFormLoading(false);
       handleError(err);
     }
-  }
+  };
 
   useEffect(() => {
     if (addressRecords.result && socialRecords.result) {
       dispatchFormChange({
-        type: 'bulk',
-        value: [...socialRecords.result, ...addressRecords.result].reduce((acc, v) => {
-          acc.set(v.record, v.value || '');
-          return acc;
-        }, new Map())
-      })
+        type: "bulk",
+        value: [...socialRecords.result, ...addressRecords.result].reduce(
+          (acc, v) => {
+            acc.set(v.record, v.value || "");
+            return acc;
+          },
+          new Map(),
+        ),
+      });
     }
-  }, [addressRecords.loading, socialRecords.loading])
+  }, [addressRecords.loading, socialRecords.loading]);
 
   useEffect(() => {
     setPreviousFormState(isEditing ? formState : null);
-    if (!isEditing) setFormDirty(false)
-  }, [isEditing])
+    if (!isEditing) setFormDirty(false);
+  }, [isEditing]);
 
   if (loading) {
     return (
       <Screen style={tw`p-0`}>
         <LoadingState />
       </Screen>
-    )
+    );
   }
 
   return (
@@ -425,26 +443,38 @@ export const DomainView = ({ domain }: { domain: string }) => {
         ref={scrollViewRef}
         scrollEventThrottle={300}
         onScroll={(event) => {
-          setScrollPosition(event.nativeEvent.contentOffset.y)
+          setScrollPosition(event.nativeEvent.contentOffset.y);
         }}
       >
         {isTokenized && (
           <TouchableOpacity
-            onPress={() => openModal("TokenizeModal", {
-              refresh: () => domainInfo.execute(),
-              domain,
-              isTokenized,
-              isOwner,
-            })}
-            style={tw`py-1 px-3 mb-3 rounded-lg border border-brand-primary bg-brand-primary bg-opacity-10 flex flex-row justify-between items-center`}
+            onPress={() =>
+              openModal("TokenizeModal", {
+                refresh: () => domainInfo.execute(),
+                domain,
+                isTokenized,
+                isOwner,
+              })
+            }
+            style={tw`flex flex-row items-center justify-between px-3 py-1 mb-3 border rounded-lg border-brand-primary bg-brand-primary bg-opacity-10`}
           >
-            <Text style={tw`text-brand-primary text-sm font-medium flex flex-row gap-2`}>
-              <MaterialCommunityIcons name="diamond-stone" size={24} color={tw.color('brand-primary')} />
+            <Text
+              style={tw`flex flex-row gap-2 text-sm font-medium text-brand-primary`}
+            >
+              <MaterialCommunityIcons
+                name="diamond-stone"
+                size={24}
+                color={tw.color("brand-primary")}
+              />
 
               <Trans>This domain is wrapped in an NFT</Trans>
             </Text>
 
-            <MaterialCommunityIcons name="information-outline" size={24} color={tw.color('brand-primary')} />
+            <MaterialCommunityIcons
+              name="information-outline"
+              size={24}
+              color={tw.color("brand-primary")}
+            />
           </TouchableOpacity>
         )}
 
@@ -455,7 +485,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
             picRecord={picRecord}
           >
             <View style={tw`flex flex-row gap-6`}>
-
               {/* Transfer button */}
               {isOwner && !isSubdomain && !isTokenized && (
                 <UiButton
@@ -508,63 +537,57 @@ export const DomainView = ({ domain }: { domain: string }) => {
         </View>
 
         {/* This bars are sticky using stickyHeaderIndices */}
-        <View style={tw`pb-2 flex flex-row justify-between items-center bg-background-primary`}>
+        <View
+          style={tw`flex flex-row items-center justify-between pb-2 bg-background-primary`}
+        >
           <View style={tw`flex flex-row gap-2`}>
             <TouchableOpacity
               onPress={() => {
                 scrollViewRef.current?.scrollTo({
                   // -24 so there will be some space between header and field
                   y: UISectionsCoordinates.socials - 35,
-                  animated: true
-                })
+                  animated: true,
+                });
               }}
               style={[
-                tw`rounded-xl px-2 py-1`,
-                (
-                  currentScrollPosition <= (UISectionsCoordinates.addresses - 35)
-                  && tw`bg-background-secondary`
-                ),
+                tw`px-2 py-1 rounded-xl`,
+                currentScrollPosition <= UISectionsCoordinates.addresses - 35 &&
+                  tw`bg-background-secondary`,
               ]}
             >
-              <Text style={tw`text-sm text-brand-primary`}>
-                {t`Socials`}
-              </Text>
+              <Text style={tw`text-sm text-brand-primary`}>{t`Socials`}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 scrollViewRef.current?.scrollTo({
                   // -24 so there will be some space between header and field
                   y: UISectionsCoordinates.addresses - 24,
-                  animated: true
-                })
+                  animated: true,
+                });
               }}
               style={[
-                tw`rounded-xl px-2 py-1`,
-                (
-                  currentScrollPosition > (UISectionsCoordinates.addresses - 35)
-                  && (currentScrollPosition < UISectionsCoordinates.subdomains - 35)
-                  && tw`bg-background-secondary`
-                ),
+                tw`px-2 py-1 rounded-xl`,
+                currentScrollPosition > UISectionsCoordinates.addresses - 35 &&
+                  currentScrollPosition <
+                    UISectionsCoordinates.subdomains - 35 &&
+                  tw`bg-background-secondary`,
               ]}
             >
-              <Text style={tw`text-sm text-brand-primary`}>
-                {t`Addresses`}
-              </Text>
+              <Text style={tw`text-sm text-brand-primary`}>{t`Addresses`}</Text>
             </TouchableOpacity>
             {!isSubdomain && (
               <TouchableOpacity
                 onPress={() => {
                   scrollViewRef.current?.scrollTo({
                     y: UISectionsCoordinates.subdomains,
-                    animated: true
-                  })
+                    animated: true,
+                  });
                 }}
                 style={[
-                  tw`rounded-xl px-2 py-1`,
-                  (
-                    currentScrollPosition >= UISectionsCoordinates.subdomains - 24
-                    && tw`bg-background-secondary`
-                  ),
+                  tw`px-2 py-1 rounded-xl`,
+                  currentScrollPosition >=
+                    UISectionsCoordinates.subdomains - 24 &&
+                    tw`bg-background-secondary`,
                 ]}
               >
                 <Text style={tw`text-sm text-brand-primary`}>
@@ -575,52 +598,68 @@ export const DomainView = ({ domain }: { domain: string }) => {
           </View>
 
           {!isTokenized && (
-            <>{isOwner ? (
-              <UiButton
-                content={isEditing ? t`Revert` : t`Edit`}
-                small
-                style={tw`flex-initial`}
-                outline={isEditing}
-                disabled={isLoading}
-                textAdditionalStyles={tw`text-sm font-medium`}
-                onPress={() => {
-                  isEditing ? discardChanges() : toggleEditMode(true)
-                }}
-              >
-                {isEditing ? (
-                  <Ionicons name="close-outline" size={16} color={tw.color('brand-primary')} style={tw`ml-2`} />
-                ) : (
-                  <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
-                )}
-              </UiButton>
-            ) : (
-              <TouchableOpacity onPress={refresh}>
-                <EvilIcons name="refresh" size={24} color={tw.color('content-secondary')} />
-              </TouchableOpacity>
-            )}</>
+            <>
+              {isOwner ? (
+                <UiButton
+                  content={isEditing ? t`Revert` : t`Edit`}
+                  small
+                  style={tw`flex-initial`}
+                  outline={isEditing}
+                  disabled={isLoading}
+                  textAdditionalStyles={tw`text-sm font-medium`}
+                  onPress={() => {
+                    isEditing ? discardChanges() : toggleEditMode(true);
+                  }}
+                >
+                  {isEditing ? (
+                    <Ionicons
+                      name="close-outline"
+                      size={16}
+                      color={tw.color("brand-primary")}
+                      style={tw`ml-2`}
+                    />
+                  ) : (
+                    <MaterialIcons
+                      name="edit"
+                      size={16}
+                      color="white"
+                      style={tw`ml-2`}
+                    />
+                  )}
+                </UiButton>
+              ) : (
+                <TouchableOpacity onPress={refresh}>
+                  <EvilIcons
+                    name="refresh"
+                    size={24}
+                    color={tw.color("content-secondary")}
+                  />
+                </TouchableOpacity>
+              )}
+            </>
           )}
         </View>
 
-        {[...formState.keys()].map(item => (
+        {[...formState.keys()].map((item) => (
           <TouchableOpacity
             key={item}
             onPress={() => {
-              if (isEditing || !formState.get(item)) return
+              if (isEditing || !formState.get(item)) return;
               Clipboard.setString(String(formState.get(item)));
-              setStatus({ status: 'success', message: t`Copied!` });
+              setStatus({ status: "success", message: t`Copied!` });
             }}
             onLayout={(event) => {
               if (item === SNSRecord.Backpack) {
                 setCoordinates((prevState) => ({
                   ...prevState,
                   socials: event.nativeEvent.layout.y,
-                }))
+                }));
               }
               if (item === SNSRecord.BSC) {
                 setCoordinates((prevState) => ({
                   ...prevState,
                   addresses: event.nativeEvent.layout.y,
-                }))
+                }));
               }
             }}
             activeOpacity={1}
@@ -635,41 +674,55 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   {/* TS is kinda stupid here so "any" is required */}
                   {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
 
-                  <Text style={tw`text-content-secondary text-sm leading-6`}>
+                  <Text style={tw`text-sm leading-6 text-content-secondary`}>
                     {getTranslatedName(item)}
                   </Text>
                 </View>
               }
               onChangeText={(text) => {
-                setFormDirty(true)
+                setFormDirty(true);
                 dispatchFormChange({
                   type: item,
                   value: text,
-                })
+                });
               }}
             />
           </TouchableOpacity>
         ))}
 
         {!isTokenized && isOwner && (
-          <View style={[
-            tw`mt-10 bg-background-primary`,
-            // TODO: realize how to implement that on mobile
-            Platform.OS === "web" && isEditing && {
-              position: 'sticky',
-              bottom: '0px',
-            },
-          ]}>
+          <View
+            style={[
+              tw`mt-10 bg-background-primary`,
+              // TODO: realize how to implement that on mobile
+              Platform.OS === "web" &&
+                isEditing && {
+                  position: "sticky",
+                  bottom: "0px",
+                },
+            ]}
+          >
             <UiButton
               disabled={isEditing && !isFormDirty}
               onPress={() => {
-                isEditing ? saveForm() : toggleEditMode(true)
+                isEditing ? saveForm() : toggleEditMode(true);
               }}
               loading={isLoading}
-              content={isEditing ? isFormDirty ? t`Save` : t`No changes to save` : t`Edit`}
+              content={
+                isEditing
+                  ? isFormDirty
+                    ? t`Save`
+                    : t`No changes to save`
+                  : t`Edit`
+              }
             >
               {!isEditing && (
-                <MaterialIcons name="edit" size={16} color="white" style={tw`ml-2`} />
+                <MaterialIcons
+                  name="edit"
+                  size={16}
+                  color="white"
+                  style={tw`ml-2`}
+                />
               )}
             </UiButton>
           </View>
@@ -677,20 +730,24 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
         {!isSubdomain && (
           <View
-            style={tw`flex flex-col justify-around bg-background-secondary rounded-xl mt-10 py-3 px-4`}
+            style={tw`flex flex-col justify-around px-4 py-3 mt-10 bg-background-secondary rounded-xl`}
             onLayout={(event) => {
               setCoordinates((prevState) => ({
                 ...prevState,
                 subdomains: event.nativeEvent.layout.y,
-              }))
+              }));
             }}
           >
             {isOwner && (
-              <View style={tw`mb-4 flex flex-row justify-end`}>
+              <View style={tw`flex flex-row justify-end mb-4`}>
                 <TouchableOpacity
-                  onPress={() => openModal("CreateSubdomain", { refresh, domain })}
+                  onPress={() =>
+                    openModal("CreateSubdomain", { refresh, domain })
+                  }
                 >
-                  <Text style={tw`text-brand-primary text-base flex flex-row gap-2 justify-end`}>
+                  <Text
+                    style={tw`flex flex-row justify-end gap-2 text-base text-brand-primary`}
+                  >
                     <Trans>Add subdomain</Trans>
 
                     <Entypo name="plus" size={20} color="brand-primary" />
@@ -712,18 +769,14 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 )}
               />
             ) : (
-              <Text
-                style={tw`text-sm text-content-secondary`}
-              >
+              <Text style={tw`text-sm text-content-secondary`}>
                 {isOwner ? (
                   <Trans>
-                    You don’t have any subdomains yet. You can create as many as you
-                    want to use your profiles for different purposes.
+                    You don’t have any subdomains yet. You can create as many as
+                    you want to use your profiles for different purposes.
                   </Trans>
                 ) : (
-                  <Trans>
-                    There are no subdomains.
-                  </Trans>
+                  <Trans>There are no subdomains.</Trans>
                 )}
               </Text>
             )}

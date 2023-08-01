@@ -5,13 +5,13 @@ export type NavigatorTabsParamList = {
   Profile: { owner?: string };
   Cart: undefined;
   "home-root": undefined;
-  "search-result": { domain: string, loadPopular?: boolean };
+  "search-result": { domain: string; loadPopular?: boolean };
   "domain-view": { domain: string };
   Search: { screen: string; params: Object };
   "search-profile": { owner: string };
 };
 
-export type HomeBottomTabParams = {}
+export type HomeBottomTabParams = {};
 
 export type searchResultScreenProp = BottomTabNavigationProp<
   NavigatorTabsParamList,

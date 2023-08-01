@@ -64,7 +64,10 @@ export const DomainSizeModal = ({
               onPress={() => actions.set(domain, e.value)}
               style={[
                 tw`border-[2px] border-black/10 rounded-lg px-5 py-2`,
-                selected && { borderColor: tw.color('brand-primary'), borderWidth: 2 },
+                selected && {
+                  borderColor: tw.color("brand-primary"),
+                  borderWidth: 2,
+                },
               ]}
               key={e.label}
             >

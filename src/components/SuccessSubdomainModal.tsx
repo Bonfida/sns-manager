@@ -6,7 +6,7 @@ import { Trans, t } from "@lingui/macro";
 import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "@src/types";
 
-import { UiButton } from '@src/components/UiButton';
+import { UiButton } from "@src/components/UiButton";
 
 export const SuccessSubdomainModal = ({
   modal: { closeModal, getParam },

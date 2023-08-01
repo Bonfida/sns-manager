@@ -1,7 +1,4 @@
-import {
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import tw from "@src/utils/tailwind";
 import { Ionicons } from "@expo/vector-icons";
 import { useModal } from "react-native-modalfy";
@@ -18,9 +15,9 @@ export const LanguageHeader = () => {
         <Ionicons
           name="language"
           size={24}
-          color={tw.color('content-secondary')}
+          color={tw.color("content-secondary")}
         />
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};

@@ -5,7 +5,10 @@ import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { TouchableOpacity, ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator, BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
+import {
+  createBottomTabNavigator,
+  BottomTabBarButtonProps,
+} from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
@@ -45,7 +48,7 @@ import { StatusModalProvider } from "@src/contexts/StatusModalContext";
 import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
-import { LanguageHeader } from '@src/components/Header';
+import { LanguageHeader } from "@src/components/Header";
 
 const xnftjson = require("../xnft.json");
 
@@ -72,11 +75,11 @@ const Tab = createBottomTabNavigator<NavigatorTabsParamList>();
 
 const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
   const style = focused
-    ? tw`text-sm mt-1 font-bold`
-    : tw`text-sm mt-1 text-content-tertiary`
+    ? tw`mt-1 text-sm font-bold`
+    : tw`mt-1 text-sm text-content-tertiary`;
 
-  return <Text style={style}>{label}</Text>
-}
+  return <Text style={style}>{label}</Text>;
+};
 
 function TabNavigator() {
   useReferrer();
@@ -97,11 +100,11 @@ function TabNavigator() {
       initialRouteName="Home"
       screenOptions={{
         header: () => null,
-        tabBarActiveTintColor: tw.color('content-primary'),
-        tabBarInactiveTintColor: tw.color('content-tertiary'),
+        tabBarActiveTintColor: tw.color("content-primary"),
+        tabBarInactiveTintColor: tw.color("content-tertiary"),
         tabBarStyle: tw`h-[60px] bg-background-primary border-t-0 pt-2 pb-1 px-3`,
         tabBarIconStyle: {
-          aspectRatio: '1/1',
+          aspectRatio: "1/1",
         },
       }}
       key={currentLanguage} // trigger tab re-render when translation is toggled
@@ -120,7 +123,7 @@ function TabNavigator() {
           },
         })}
         options={{
-          tabBarLabel: props => TabBarLabel(props, 'Profile'),
+          tabBarLabel: (props) => TabBarLabel(props, "Profile"),
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
@@ -131,7 +134,7 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: props => TabBarLabel(props, 'Domains'),
+          tabBarLabel: (props) => TabBarLabel(props, "Domains"),
           tabBarIcon: ({ color, size }) => (
             <Feather name="globe" size={size} color={color} />
           ),
@@ -141,7 +144,7 @@ function TabNavigator() {
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: props => TabBarLabel(props, 'Cart'),
+          tabBarLabel: (props) => TabBarLabel(props, "Cart"),
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
@@ -155,8 +158,8 @@ function TabNavigator() {
             </View>
           ),
           header: () => (
-            <View style={tw`bg-background-primary py-4 px-3`}>
-              <Text style={tw`font-semibold text-lg text-content-primary`}>
+            <View style={tw`px-3 py-4 bg-background-primary`}>
+              <Text style={tw`text-lg font-semibold text-content-primary`}>
                 {t`Cart`}
               </Text>
             </View>

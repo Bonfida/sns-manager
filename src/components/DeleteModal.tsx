@@ -43,13 +43,16 @@ export const DeleteModal = ({
         NAME_PROGRAM_ID,
         getDomainKeySync(domain).pubkey,
         publicKey,
-        publicKey
+        publicKey,
       );
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
 
       setLoading(false);
-      setStatus({ status: 'success', message: t`subdomain ${domain}.sol successfully deleted!` });
+      setStatus({
+        status: "success",
+        message: t`subdomain ${domain}.sol successfully deleted!`,
+      });
       closeModal("Delete");
       const splitted = trimTld(domain).split(".");
       return navigation.navigate("domain-view", {

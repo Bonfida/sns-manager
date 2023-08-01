@@ -1,8 +1,4 @@
-import {
-  View,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { View, FlatList, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import SkeletonContent from "react-native-skeleton-content";
 import { useModal } from "react-native-modalfy";
@@ -17,11 +13,17 @@ import { useSearch } from "@src/hooks/useSearch";
 import { useDomainSuggestions } from "@src/hooks/useDomainSuggestions";
 import { useTopDomainsSales } from "@src/hooks/useTopDomainsSales";
 import { Screen } from "@src/components/Screen";
-import { CustomTextInput } from '@src/components/CustomTextInput';
-import { UiButton } from '@src/components/UiButton';
-import { DomainSearchResultRow } from '@src/components/DomainSearchResultRow';
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { UiButton } from "@src/components/UiButton";
+import { DomainSearchResultRow } from "@src/components/DomainSearchResultRow";
 
-export const SearchResult = ({ domain, loadPopular = false }: { domain: string; loadPopular?: boolean; }) => {
+export const SearchResult = ({
+  domain,
+  loadPopular = false,
+}: {
+  domain: string;
+  loadPopular?: boolean;
+}) => {
   const { currentModal } = useModal();
   const { setStatus } = useStatusModalContext();
   const [search, setSearch] = useState(domain || "");
@@ -48,7 +50,10 @@ export const SearchResult = ({ domain, loadPopular = false }: { domain: string; 
       });
     }
     if (!validate(input)) {
-      return setStatus({ status: 'error', message: t`${input}.sol is not a valid domain` })
+      return setStatus({
+        status: "error",
+        message: t`${input}.sol is not a valid domain`,
+      });
     }
     setSearch(trimTld(input));
   };
@@ -84,7 +89,11 @@ export const SearchResult = ({ domain, loadPopular = false }: { domain: string; 
                 <FlatList
                   data={topDomainsSales.result}
                   renderItem={({ item }) => (
-                    <DomainSearchResultRow domain={item.domain} price={item.price} available={false} />
+                    <DomainSearchResultRow
+                      domain={item.domain}
+                      price={item.price}
+                      available={false}
+                    />
                   )}
                 />
               )}
@@ -110,7 +119,10 @@ export const SearchResult = ({ domain, loadPopular = false }: { domain: string; 
                 <FlatList
                   data={results.result?.concat(suggestions.result || [])}
                   renderItem={({ item }) => (
-                    <DomainSearchResultRow domain={item.domain} available={item.available} />
+                    <DomainSearchResultRow
+                      domain={item.domain}
+                      available={item.available}
+                    />
                   )}
                 />
               )}
@@ -131,4 +143,4 @@ const RenderSkeleton = () => (
     <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
     <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
   </SkeletonContent>
-)
+);

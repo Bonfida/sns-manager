@@ -11,10 +11,15 @@ import { tokenIconBySymbol } from "@src/utils/tokens/popular-tokens";
 import { priceFromLength } from "@src/utils/price/price-from-length";
 import { cartState } from "@src/atoms/cart";
 
-export const DomainSearchResultRow = (
-  { domain, available = false, price }:
-  { domain: string; available?: boolean; price?: number | string }
-) => {
+export const DomainSearchResultRow = ({
+  domain,
+  available = false,
+  price,
+}: {
+  domain: string;
+  available?: boolean;
+  price?: number | string;
+}) => {
   const [cart, setCart] = useRecoilState(cartState);
   const inCart = cart.includes(domain);
   price = price ?? priceFromLength(domain);
@@ -29,7 +34,9 @@ export const DomainSearchResultRow = (
   };
 
   return (
-    <View style={tw`border-0 rounded-xl my-2 bg-background-secondary flex items-center flex-row py-3 px-4 gap-4`}>
+    <View
+      style={tw`flex flex-row items-center gap-4 px-4 py-3 my-2 border-0 rounded-xl bg-background-secondary`}
+    >
       <View style={tw`mr-auto`}>
         <Text style={tw`text-base text-content-secondary`}>
           {/* TODO: handle long name */}
@@ -37,42 +44,52 @@ export const DomainSearchResultRow = (
         </Text>
       </View>
       {!available && (
-        <View style={tw`rounded-[100px] border border-content-success px-3 bg-content-success bg-opacity-10`}>
-          <Text style={tw`font-semibold text-xs leading-6 text-content-success`}>
-            <Trans>
-              Purchased
-            </Trans>
+        <View
+          style={tw`rounded-[100px] border border-content-success px-3 bg-content-success bg-opacity-10`}
+        >
+          <Text
+            style={tw`text-xs font-semibold leading-6 text-content-success`}
+          >
+            <Trans>Purchased</Trans>
           </Text>
         </View>
       )}
       <View
         style={[
           tw`flex items-center flex-row justify-between min-w-[93px]`,
-          available ? tw`gap-2` : tw`gap-1`
+          available ? tw`gap-2` : tw`gap-1`,
         ]}
       >
-        <View style={tw`flex items-center flex-row gap-1`}>
+        <View style={tw`flex flex-row items-center gap-1`}>
           <Image
             style={tw`h-[16px] w-[16px]`}
-            source={{ uri: tokenIconBySymbol('USDC') }}
+            source={{ uri: tokenIconBySymbol("USDC") }}
             resizeMode="contain"
           />
-          <Text style={tw`font-medium text-content-primary text-sm`}>
+          <Text style={tw`text-sm font-medium text-content-primary`}>
             {/* TODO: locale formatting */}
             {price}
           </Text>
         </View>
         <TouchableOpacity
-          onPress={available ? handle : () => navigation.navigate("domain-view", { domain })}
+          onPress={
+            available
+              ? handle
+              : () => navigation.navigate("domain-view", { domain })
+          }
           style={[
             tw`p-2 h-[32px] w-[32px] flex items-center justify-center`,
-            available && tw`border border-brand-primary rounded-md`,
+            available && tw`border rounded-md border-brand-primary`,
             available && !inCart && tw`bg-brand-primary`,
           ]}
         >
           {available ? (
             inCart ? (
-              <MaterialCommunityIcons name="delete-outline" size={24} color={tw.color('brand-primary')} />
+              <MaterialCommunityIcons
+                name="delete-outline"
+                size={24}
+                color={tw.color("brand-primary")}
+              />
             ) : (
               <Feather name="shopping-cart" size={18} color="white" />
             )

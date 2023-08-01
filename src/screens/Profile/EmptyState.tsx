@@ -7,46 +7,54 @@ import { searchResultScreenProp } from "@src/types";
 import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 
-import { UiButton } from '@src/components/UiButton';
+import { UiButton } from "@src/components/UiButton";
 
 export const EmptyState = ({ owner }: { owner?: string }) => {
   const navigation = useNavigation<searchResultScreenProp>();
 
   return (
-    <View style={tw`flex flex-col items-center justify-center w-full h-full mt-4`}>
+    <View
+      style={tw`flex flex-col items-center justify-center w-full h-full mt-4`}
+    >
       <View style={tw`w-full gap-4`}>
-        <Text style={tw`text-center text-content-primary text-lg font-bold`}>
+        <Text style={tw`text-lg font-bold text-center text-content-primary`}>
           <Trans>Turn this</Trans>
         </Text>
 
-        <Text style={tw`mx-auto bg-background-secondary text-sm text-content-secondary px-2 py-1 border border-content-inactive-border rounded-xl`}>
+        <Text
+          style={tw`px-2 py-1 mx-auto text-sm border bg-background-secondary text-content-secondary border-content-inactive-border rounded-xl`}
+        >
           {abbreviate(owner, 30)}
         </Text>
 
-        <Text style={tw`text-center text-content-primary text-lg font-bold`}>
+        <Text style={tw`text-lg font-bold text-center text-content-primary`}>
           <Trans>Into this</Trans>
         </Text>
 
-        <Text style={tw`mx-auto bg-background-secondary text-sm text-content-secondary px-2 py-1 border border-content-inactive-border rounded-xl`}>
+        <Text
+          style={tw`px-2 py-1 mx-auto text-sm border bg-background-secondary text-content-secondary border-content-inactive-border rounded-xl`}
+        >
           awesomedomain.sol
         </Text>
       </View>
 
-      <View style={tw`mt-10 text-center w-full`}>
+      <View style={tw`w-full mt-10 text-center`}>
         <Text style={tw`text-sm leading-6 text-content-secondary`}>
           <Trans>
-            Get a .sol domain and { '\n' }
+            Get a .sol domain and {"\n"}
             start building your profile
           </Trans>
         </Text>
       </View>
 
-      <View style={tw`mt-10 w-full`}>
+      <View style={tw`w-full mt-10`}>
         <UiButton
-          onPress={() => navigation.navigate('search-result', {
-            domain: '',
-            loadPopular: true,
-          })}
+          onPress={() =>
+            navigation.navigate("search-result", {
+              domain: "",
+              loadPopular: true,
+            })
+          }
           content={t`Secure a domain for yourself`}
         />
       </View>

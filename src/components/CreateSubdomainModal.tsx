@@ -11,8 +11,8 @@ import { validate } from "../utils/validate";
 import { t } from "@lingui/macro";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { useHandleError } from "@src/hooks/useHandleError";
-import { CustomTextInput } from '@src/components/CustomTextInput';
-import { UiButton } from '@src/components/UiButton';
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { UiButton } from "@src/components/UiButton";
 
 export const CreateSubdomainModal = ({
   modal: { closeModal, getParam },
@@ -42,9 +42,9 @@ export const CreateSubdomainModal = ({
       if (!validate(subdomain)) {
         setLoading(false);
         setStatus({
-          status: 'error',
+          status: "error",
           message: t`${subdomain}.sol is not a valid subdomain`,
-        })
+        });
         return;
       }
 
@@ -62,7 +62,7 @@ export const CreateSubdomainModal = ({
         },
         () => {
           closeModal("CreateSubdomain");
-        }
+        },
       );
       refresh();
     } catch (err) {
@@ -72,10 +72,7 @@ export const CreateSubdomainModal = ({
   };
 
   return (
-    <WrapModal
-      closeModal={closeModal}
-      title={t`Create a subdomain`}
-    >
+    <WrapModal closeModal={closeModal} title={t`Create a subdomain`}>
       <View style={tw`flex flex-row items-center gap-2 my-5`}>
         <CustomTextInput
           placeholder={t`Enter subdomain`}
@@ -85,7 +82,7 @@ export const CreateSubdomainModal = ({
           style={tw`w-auto`}
         />
 
-        <Text style={tw`font-bold text-base`}>.{domain}.sol</Text>
+        <Text style={tw`text-base font-bold`}>.{domain}.sol</Text>
       </View>
       <View style={tw`flex flex-row items-center gap-4`}>
         <UiButton

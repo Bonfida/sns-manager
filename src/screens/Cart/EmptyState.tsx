@@ -1,8 +1,5 @@
 import { useRecoilState } from "recoil";
-import {
-  Text,
-  View,
-} from "react-native";
+import { Text, View } from "react-native";
 import { t } from "@lingui/macro";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,22 +15,28 @@ export const EmptyState = () => {
   return (
     <Screen>
       <View style={tw`mt-20`}>
-        <Text style={tw`font-bold text-lg text-center mb-6 text-content-primary`}>
+        <Text
+          style={tw`mb-6 text-lg font-bold text-center text-content-primary`}
+        >
           {t`Nothing in your cart yet`}
         </Text>
-        <Text style={tw`font-medium text-sm text-center text-content-secondary`}>
+        <Text
+          style={tw`text-sm font-medium text-center text-content-secondary`}
+        >
           {t`Discover the domain that represents you!`}
         </Text>
 
         <UiButton
-          onPress={() => navigation.navigate('search-result', {
-            domain: '',
-            loadPopular: true,
-          })}
+          onPress={() =>
+            navigation.navigate("search-result", {
+              domain: "",
+              loadPopular: true,
+            })
+          }
           content={t`Secure a domain for yourself`}
           style={tw`mt-10`}
         />
       </View>
     </Screen>
-  )
-}
+  );
+};

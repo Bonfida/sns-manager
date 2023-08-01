@@ -22,7 +22,7 @@ export const OrderSummary = ({
   const token = tokenList.find((e) => e.mintAddress === mint);
 
   const isFida = mint === FIDA_MINT;
-  const fullFidaPrice = total * 1.05
+  const fullFidaPrice = total * 1.05;
 
   return (
     <View>
@@ -38,19 +38,16 @@ export const OrderSummary = ({
                 <>
                   <Text style={tw`line-through`}>
                     {`${format(fullFidaPrice, true)} ${token?.tokenSymbol}`}
-                  </Text>
-                  {' '}
+                  </Text>{" "}
                 </>
               )}
 
-              <Text style={[
-                isFida && tw`text-content-success`
-              ]}>
+              <Text style={[isFida && tw`text-content-success`]}>
                 {`${format(total, true)} ${token?.tokenSymbol}`}
               </Text>
             </Text>
 
-            <Text style={tw`text-content-tertiary text-xs font-medium`}>
+            <Text style={tw`text-xs font-medium text-content-tertiary`}>
               {format(totalUsd)}
             </Text>
           </Text>
@@ -71,7 +68,7 @@ export const OrderSummary = ({
               <MaterialCommunityIcons
                 name="information-outline"
                 size={12}
-                color={tw.color('brand-primary')}
+                color={tw.color("brand-primary")}
               />
             </TouchableOpacity>
           </>
@@ -86,8 +83,12 @@ const Row = ({ label, value }: { label: ReactNode; value: ReactNode }) => {
     <View
       style={tw`flex flex-row items-start justify-between my-2 border-b border-[#F1EEFF]`}
     >
-      <Text style={tw`text-sm font-semibold text-content-secondary`}>{label}</Text>
-      <Text style={tw`text-sm font-semibold text-content-secondary`}>{value}</Text>
+      <Text style={tw`text-sm font-semibold text-content-secondary`}>
+        {label}
+      </Text>
+      <Text style={tw`text-sm font-semibold text-content-secondary`}>
+        {value}
+      </Text>
     </View>
   );
 };

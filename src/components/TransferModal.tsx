@@ -14,7 +14,7 @@ import tw from "@src/utils/tailwind";
 import { sendTx } from "@src/utils/send-tx";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useWallet } from "@src/hooks/useWallet";
-import { CustomTextInput } from '@src/components/CustomTextInput';
+import { CustomTextInput } from "@src/components/CustomTextInput";
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
 import { useHandleError } from "@src/hooks/useHandleError";
@@ -54,13 +54,16 @@ export const TransferModal = ({
         newOwner,
         publicKey,
         undefined,
-        ROOT_DOMAIN_ACCOUNT
+        ROOT_DOMAIN_ACCOUNT,
       );
 
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
       setLoading(false);
-      setStatus({ status: 'success', message: t`${domain}.sol successfully transfered!` })
+      setStatus({
+        status: "success",
+        message: t`${domain}.sol successfully transfered!`,
+      });
       refresh();
       closeModal();
     } catch (err) {
@@ -70,10 +73,7 @@ export const TransferModal = ({
   };
 
   return (
-    <WrapModal
-      closeModal={closeModal}
-      title={t`Transfer ${domain}.sol`}
-    >
+    <WrapModal closeModal={closeModal} title={t`Transfer ${domain}.sol`}>
       <CustomTextInput
         placeholder={t`New ${domain}.sol owner`}
         onChangeText={(text) => setValue(text)}

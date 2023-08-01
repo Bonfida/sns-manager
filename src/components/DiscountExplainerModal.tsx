@@ -9,19 +9,21 @@ import { WrapModal } from "@src/components/WrapModal";
 export const DiscountExplainerModal = ({
   modal: { closeModal },
 }: {
-  modal: { closeModal: () => void; };
+  modal: { closeModal: () => void };
 }) => {
   return (
     <WrapModal
       closeModal={closeModal}
-      title={<>
-        <MaterialCommunityIcons
-          name="information-outline"
-          size={24}
-          color={tw.color('content-success')}
-        />
-        <Trans>Registration discount</Trans>
-      </>}
+      title={
+        <>
+          <MaterialCommunityIcons
+            name="information-outline"
+            size={24}
+            color={tw.color("content-success")}
+          />
+          <Trans>Registration discount</Trans>
+        </>
+      }
     >
       <Text style={tw`mt-6 text-sm`}>
         <Trans>

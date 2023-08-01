@@ -7,18 +7,24 @@ import {
 import tw from "@src/utils/tailwind";
 import { ReactNode } from "react";
 
-export const UiButton = (
-  { small, content, outline = false, loading = false, danger = false, textAdditionalStyles = {}, children, ...props }:
-  TouchableOpacityProps & {
-    small?: boolean;
-    loading?: boolean;
-    content?: ReactNode;
-    children?: ReactNode;
-    outline?: boolean;
-    danger?: boolean;
-    textAdditionalStyles?: object;
-  }
-) => {
+export const UiButton = ({
+  small,
+  content,
+  outline = false,
+  loading = false,
+  danger = false,
+  textAdditionalStyles = {},
+  children,
+  ...props
+}: TouchableOpacityProps & {
+  small?: boolean;
+  loading?: boolean;
+  content?: ReactNode;
+  children?: ReactNode;
+  outline?: boolean;
+  danger?: boolean;
+  textAdditionalStyles?: object;
+}) => {
   return (
     <TouchableOpacity
       {...props}
@@ -33,26 +39,39 @@ export const UiButton = (
         props.style,
       ]}
     >
-
       {!content ? (
         <>
           {children}
-          {loading && <ActivityIndicator style={tw`ml-3`} size={16} color={outline ? tw.color('brand-primary') : tw.color("white")} /> }
+          {loading && (
+            <ActivityIndicator
+              style={tw`ml-3`}
+              size={16}
+              color={outline ? tw.color("brand-primary") : tw.color("white")}
+            />
+          )}
         </>
       ) : (
-        <Text style={[
-          tw`font-semibold flex flex-row items-center`,
-          small && tw`text-base`,
-          !small && tw`text-lg leading-6`,
-          outline && tw`text-brand-primary`,
-          (!outline || danger) && tw`text-white`,
-          textAdditionalStyles,
-        ]}>
+        <Text
+          style={[
+            tw`flex flex-row items-center font-semibold`,
+            small && tw`text-base`,
+            !small && tw`text-lg leading-6`,
+            outline && tw`text-brand-primary`,
+            (!outline || danger) && tw`text-white`,
+            textAdditionalStyles,
+          ]}
+        >
           {content}
-          {loading && <ActivityIndicator style={tw`ml-3`} size={16} color={outline ? tw.color('brand-primary') : tw.color("white")} /> }
+          {loading && (
+            <ActivityIndicator
+              style={tw`ml-3`}
+              size={16}
+              color={outline ? tw.color("brand-primary") : tw.color("white")}
+            />
+          )}
           {children}
         </Text>
       )}
     </TouchableOpacity>
-  )
-}
+  );
+};
