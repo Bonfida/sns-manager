@@ -61,7 +61,10 @@ export const DomainSizeModal = ({
           const selected = e.value === map.get(domain);
           return (
             <TouchableOpacity
-              onPress={() => actions.set(domain, e.value)}
+              onPress={() => {
+                actions.set(domain, e.value);
+                closeModal();
+              }}
               style={[
                 tw`border-[2px] border-black/10 rounded-lg px-5 py-2`,
                 selected && {
