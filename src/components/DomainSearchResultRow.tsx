@@ -3,9 +3,8 @@ import { useRecoilState } from "recoil";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Trans, t } from "@lingui/macro";
 import { useNavigation } from "@react-navigation/native";
-
 import { domainViewScreenProp } from "@src/types";
-
+import { abbreviate } from "@src/utils/abbreviate";
 import tw from "@src/utils/tailwind";
 import { tokenIconBySymbol } from "@src/utils/tokens/popular-tokens";
 import { priceFromLength } from "@src/utils/price/price-from-length";
@@ -37,10 +36,12 @@ export const DomainSearchResultRow = ({
     <View
       style={tw`flex flex-row items-center gap-4 px-4 py-3 my-2 border-0 rounded-xl bg-background-secondary`}
     >
-      <View style={tw`mr-auto`}>
-        <Text style={tw`text-base text-content-secondary`}>
-          {/* TODO: handle long name */}
-          {domain}.sol
+      <View style={tw`flex-auto mr-auto`}>
+        <Text
+          numberOfLines={1}
+          style={tw`text-base text-content-secondary`}
+        >
+          {abbreviate(`${domain}.sol`, 25, 3)}
         </Text>
       </View>
       {!available && (

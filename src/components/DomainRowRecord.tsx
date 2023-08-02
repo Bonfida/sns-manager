@@ -67,7 +67,7 @@ export const DomainRowRecord = ({
         </>
       </SkeletonContent>
 
-      <Text style={tw`mr-auto`}>
+      <Text style={tw`mr-auto`} numberOfLines={1}>
         {abbreviate(`${domain}.sol`, isSubdomain ? 25 : 20, 3)}
       </Text>
 
