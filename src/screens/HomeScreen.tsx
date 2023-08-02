@@ -72,7 +72,7 @@ function HomeRoot() {
                 {
                   backgroundClip: "text",
                   backgroundImage: `linear-gradient(to right, ${tw.color(
-                    "brand-primary",
+                    "brand-primary"
                   )}, ${tw.color("brand-accent")})`,
                 },
                 tw`font-medium text-transparent`,

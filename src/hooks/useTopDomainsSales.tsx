@@ -28,7 +28,7 @@ export const useTopDomainsSales = (allowedToLoad: boolean = true) => {
     const {
       data: { result },
     } = await axios.get<{ result: SearchResponseEntity[] }>(
-      `${URL}?${searchParams.toString()}`,
+      `${URL}?${searchParams.toString()}`
     );
 
     // All domains returned by the API are available

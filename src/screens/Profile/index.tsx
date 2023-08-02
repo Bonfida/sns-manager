@@ -39,7 +39,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   owner = owner || publicKey?.toBase58();
   const domains = useDomains(owner || publicKey?.toBase58());
   const subdomains = useSubdomainsFromUser(
-    owner || publicKey?.toBase58() || "",
+    owner || publicKey?.toBase58() || ""
   );
 
   const [isSearchVisible, toggleSearchBar] = useState(false);
@@ -51,8 +51,9 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
 
   const isOwner = owner === publicKey?.toBase58();
 
-  const completedStep = (progress?.result || [])?.filter((e) => !!e.value)
-    .length;
+  const completedStep = (progress?.result || [])?.filter(
+    (e) => !!e.value
+  ).length;
 
   const percentage = Math.floor((100 * completedStep) / 6);
   const showProgress = percentage !== 100;
@@ -92,8 +93,8 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       if (subdomains.result) {
         relatedSubdomains.push(
           ...subdomains.result.filter(
-            (sub) => sub.subdomain.split(".")[1] === item.domain,
-          ),
+            (sub) => sub.subdomain.split(".")[1] === item.domain
+          )
         );
       }
 
@@ -109,7 +110,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     });
 
     return domainsResult.sort((a, b) =>
-      a!.domain === favorite.result?.reverse ? -1 : 1,
+      a!.domain === favorite.result?.reverse ? -1 : 1
     );
   }, [
     domains.status,

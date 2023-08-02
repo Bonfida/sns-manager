@@ -178,7 +178,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   };
 
   const prepareUpdateInstructions = async (
-    fields: { record: SNSRecord; value: string }[],
+    fields: { record: SNSRecord; value: string }[]
   ) => {
     if (!connection || !publicKey || !signTransaction || !signMessage)
       return [];
@@ -190,7 +190,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
       const sub = Buffer.from([1]).toString() + record;
       let { pubkey: recordKey, isSub } = getDomainKeySync(
         record + "." + domain,
-        true,
+        true
       );
       const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
 
@@ -208,7 +208,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           new PublicKey(value),
           recordKey,
           publicKey,
-          signed,
+          signed
         );
       } else {
         ser = serializeRecord(value, record);
@@ -218,7 +218,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
       if (!currentAccount?.data) {
         const lamports = await connection.getMinimumBalanceForRentExemption(
-          space + NameRegistryState.HEADER_LEN,
+          space + NameRegistryState.HEADER_LEN
         );
         const ix = await createNameRegistry(
           connection,
@@ -228,13 +228,13 @@ export const DomainView = ({ domain }: { domain: string }) => {
           publicKey,
           lamports,
           undefined,
-          parent,
+          parent
         );
         ixs.push(ix);
       } else {
         const { registry } = await NameRegistryState.retrieve(
           connection,
-          recordKey,
+          recordKey
         );
 
         if (!registry.owner.equals(publicKey)) {
@@ -246,7 +246,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             registry.owner,
             undefined,
             parent,
-            publicKey,
+            publicKey
           );
           ixs.push(ix);
         }
@@ -261,18 +261,18 @@ export const DomainView = ({ domain }: { domain: string }) => {
             NAME_PROGRAM_ID,
             recordKey,
             publicKey,
-            publicKey,
+            publicKey
           );
           const sig = await sendTx(
             connection,
             publicKey,
             [ixClose],
-            signTransaction,
+            signTransaction
           );
           console.log(sig);
 
           const lamports = await connection.getMinimumBalanceForRentExemption(
-            space + NameRegistryState.HEADER_LEN,
+            space + NameRegistryState.HEADER_LEN
           );
           const ix = await createNameRegistry(
             connection,
@@ -282,7 +282,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             publicKey,
             lamports,
             undefined,
-            parent,
+            parent
           );
           ixs.push(ix);
         }
@@ -293,7 +293,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         recordKey,
         new Numberu32(0),
         ser,
-        publicKey,
+        publicKey
       );
 
       ixs.push(ix);
@@ -306,7 +306,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           domain,
           publicKey,
           1_000,
-          recordKey,
+          recordKey
         );
         ixs.push(...ix);
       }
@@ -327,7 +327,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         NAME_PROGRAM_ID,
         pubkey,
         publicKey,
-        publicKey,
+        publicKey
       );
 
       ixs.push(ix);
@@ -381,7 +381,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
       const deleteInstructions = prepareDeleteInstructions(fieldsToDelete);
       const updateInstructions = await prepareUpdateInstructions(
-        fieldsToUpdate,
+        fieldsToUpdate
       );
 
       if (!deleteInstructions.length && !updateInstructions.length) {
@@ -393,7 +393,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         connection,
         publicKey,
         [...deleteInstructions, ...updateInstructions],
-        signTransaction,
+        signTransaction
       );
 
       await sleep(400);
@@ -415,7 +415,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             acc.set(v.record, v.value || "");
             return acc;
           },
-          new Map(),
+          new Map()
         ),
       });
     }

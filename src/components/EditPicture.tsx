@@ -53,7 +53,7 @@ export const EditPicture = ({
       const ixs: TransactionInstruction[] = [];
       const { pubkey, parent } = getDomainKeySync(
         Record.Pic + "." + domain,
-        true,
+        true
       );
 
       try {
@@ -75,7 +75,7 @@ export const EditPicture = ({
         const ix = await registerFavourite(
           pubkey,
           new PublicKey(publicKey),
-          NAME_OFFERS_ID,
+          NAME_OFFERS_ID
         );
         ixs.push(...ix);
       }
@@ -85,7 +85,7 @@ export const EditPicture = ({
       if (!info?.data) {
         const space = 2_000;
         const lamports = await connection.getMinimumBalanceForRentExemption(
-          space + NameRegistryState.HEADER_LEN,
+          space + NameRegistryState.HEADER_LEN
         );
         const ix = await createNameRegistry(
           connection,
@@ -95,14 +95,14 @@ export const EditPicture = ({
           new PublicKey(publicKey),
           lamports,
           undefined,
-          parent,
+          parent
         );
         ixs.push(ix);
       } else {
         // Zero the data stored
         const { registry } = await NameRegistryState.retrieve(
           connection,
-          pubkey,
+          pubkey
         );
 
         if (!registry.owner.equals(new PublicKey(publicKey))) {
@@ -114,7 +114,7 @@ export const EditPicture = ({
             registry.owner,
             undefined,
             parent,
-            new PublicKey(publicKey),
+            new PublicKey(publicKey)
           );
           ixs.push(ix);
         }
@@ -127,7 +127,7 @@ export const EditPicture = ({
             pubkey,
             new Numberu32(0),
             zero,
-            new PublicKey(publicKey),
+            new PublicKey(publicKey)
           );
           ixs.push(ix);
         }
@@ -139,7 +139,7 @@ export const EditPicture = ({
         pubkey,
         new Numberu32(0),
         data,
-        new PublicKey(publicKey),
+        new PublicKey(publicKey)
       );
       ixs.push(ix);
 
@@ -147,7 +147,7 @@ export const EditPicture = ({
         connection,
         new PublicKey(publicKey),
         ixs,
-        signTransaction,
+        signTransaction
       );
       console.log(sig);
 

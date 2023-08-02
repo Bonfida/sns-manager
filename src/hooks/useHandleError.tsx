@@ -8,7 +8,7 @@ export const useHandleError = () => {
     err: any,
     {
       unknownErrorMessage = "Something went wrong - try again",
-    }: { unknownErrorMessage?: string } = {},
+    }: { unknownErrorMessage?: string } = {}
   ) => {
     console.error(err);
 

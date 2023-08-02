@@ -10,7 +10,7 @@
 export const abbreviate = (
   text: string | undefined,
   len: number,
-  charsAtTheEnd: number = 5,
+  charsAtTheEnd: number = 5
 ) => {
   if (!text) return "";
   if (text.length <= len) return text;
