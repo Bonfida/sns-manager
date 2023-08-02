@@ -71,9 +71,9 @@ export const DeleteModal = ({
       <Text style={tw`mt-3 mb-5 text-sm`}>
         {isSubdomain ? (
           <Trans>
-            Deleting a subdomain is a reversible action. Although you can recreate
-            it later, you will temporarily lose the ability to receive funds or
-            create records with it post-deletion.
+            Deleting a subdomain is a reversible action. Although you can
+            recreate it later, you will temporarily lose the ability to receive
+            funds or create records with it post-deletion.
           </Trans>
         ) : (
           <Trans>

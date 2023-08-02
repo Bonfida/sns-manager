@@ -37,10 +37,7 @@ export const DomainSearchResultRow = ({
       style={tw`flex flex-row items-center gap-4 px-4 py-3 my-2 border-0 rounded-xl bg-background-secondary`}
     >
       <View style={tw`flex-auto mr-auto`}>
-        <Text
-          numberOfLines={1}
-          style={tw`text-base text-content-secondary`}
-        >
+        <Text numberOfLines={1} style={tw`text-base text-content-secondary`}>
           {abbreviate(`${domain}.sol`, 25, 3)}
         </Text>
       </View>

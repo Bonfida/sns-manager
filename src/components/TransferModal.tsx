@@ -88,15 +88,15 @@ export const TransferModal = ({
         {isSubdomain ? (
           <Trans>
             Transferring your subdomain will link it to a new address and may
-            restrict your ability to receive funds through it. Although the action
-            can be reversed by the parent owners, we caution the user to be vigilant
-            of the addresses.
+            restrict your ability to receive funds through it. Although the
+            action can be reversed by the parent owners, we caution the user to
+            be vigilant of the addresses.
           </Trans>
         ) : (
           <Trans>
-            Please remember, once you transfer a domain, the action is irreversible.
-            You will lose its ownership and will no longer be able to receive funds
-            using this domain.
+            Please remember, once you transfer a domain, the action is
+            irreversible. You will lose its ownership and will no longer be able
+            to receive funds using this domain.
           </Trans>
         )}
       </Text>
