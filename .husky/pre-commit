@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run prettier on all staged files that match patter, automatically fix them
+# and add to staged files, so they will be automatically commited
+npx pretty-quick --staged --pattern "src/**/*.{ts,tsx}"

@@ -750,7 +750,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                     <Text
                       style={[
                         tw`flex flex-row justify-end gap-2 text-base text-brand-primary`,
-                        isTokenized && tw`text-[#A3A4B8]`
+                        isTokenized && tw`text-[#A3A4B8]`,
                       ]}
                     >
                       <Trans>Add subdomain</Trans>
@@ -761,7 +761,9 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 </View>
 
                 {isTokenized && (
-                  <Text style={tw`text-sm text-content-secondary rounded-lg bg-[#F3F3F3] p-2 mt-4`}>
+                  <Text
+                    style={tw`text-sm text-content-secondary rounded-lg bg-[#F3F3F3] p-2 mt-4`}
+                  >
                     <Trans>
                       You can only add subdomains when the domain is unwrapped.
                     </Trans>
