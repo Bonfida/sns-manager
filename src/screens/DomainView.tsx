@@ -739,26 +739,41 @@ export const DomainView = ({ domain }: { domain: string }) => {
             }}
           >
             {isOwner && (
-              <View style={tw`flex flex-row justify-end mb-4`}>
-                <TouchableOpacity
-                  onPress={() =>
-                    openModal("CreateSubdomain", { refresh, domain })
-                  }
-                >
-                  <Text
-                    style={tw`flex flex-row justify-end gap-2 text-base text-brand-primary`}
+              <>
+                <View style={tw`flex flex-row justify-end`}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      openModal("CreateSubdomain", { refresh, domain })
+                    }
+                    disabled={isTokenized}
                   >
-                    <Trans>Add subdomain</Trans>
+                    <Text
+                      style={[
+                        tw`flex flex-row justify-end gap-2 text-base text-brand-primary`,
+                        isTokenized && tw`text-[#A3A4B8]`
+                      ]}
+                    >
+                      <Trans>Add subdomain</Trans>
 
-                    <Entypo name="plus" size={20} color="brand-primary" />
+                      <Entypo name="plus" size={24} color="brand-primary" />
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {isTokenized && (
+                  <Text style={tw`text-sm text-content-secondary rounded-lg bg-[#F3F3F3] p-2 mt-4`}>
+                    <Trans>
+                      You can only add subdomains when the domain is unwrapped.
+                    </Trans>
                   </Text>
-                </TouchableOpacity>
-              </View>
+                )}
+              </>
             )}
 
             {hasSubdomain ? (
               <FlatList
                 data={subdomains.result}
+                style={isOwner && tw`mt-4`}
                 contentContainerStyle={tw`flex flex-col gap-3`}
                 renderItem={({ item }) => (
                   <DomainRowRecord
@@ -769,7 +784,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 )}
               />
             ) : (
-              <Text style={tw`text-sm text-content-secondary`}>
+              <Text style={tw`mt-4 text-sm text-content-secondary`}>
                 {isOwner ? (
                   <Trans>
                     You don’t have any subdomains yet. You can create as many as
