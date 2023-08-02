@@ -28,6 +28,7 @@ import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useWallet } from "@src/hooks/useWallet";
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { useHandleError } from "@src/hooks/useHandleError";
 
@@ -202,6 +203,16 @@ export const TokenizeModal = ({
           <UiButton onPress={() => closeModal()} content={t`Close`} />
         )}
       </View>
+
+      {isOwner && (
+        <>
+          {isTokenized ? (
+            <ActionWarning actionName={t`Unwrap domain`} />
+          ) : (
+            <ActionWarning actionName={t`Wrap domain`} />
+          )}
+        </>
+      )}
     </WrapModal>
   );
 };

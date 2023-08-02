@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -14,9 +14,10 @@ import { useNavigation } from "@react-navigation/native";
 import { domainViewScreenProp } from "@src/types";
 import { useHandleError } from "@src/hooks/useHandleError";
 import { trimTld } from "../utils/validate";
-import { t } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
 
 export const DeleteModal = ({
   modal: { closeModal, getParam },
@@ -32,6 +33,7 @@ export const DeleteModal = ({
   const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
+  const isSubdomain = domain?.split(".").length === 2;
 
   const navigation = useNavigation<domainViewScreenProp>();
 
@@ -66,7 +68,23 @@ export const DeleteModal = ({
 
   return (
     <WrapModal closeModal={closeModal} title={t`Delete ${domain}.sol`}>
-      <View style={tw`flex flex-row items-center gap-4 mt-10`}>
+      <Text style={tw`mt-3 mb-5 text-sm`}>
+        {isSubdomain ? (
+          <Trans>
+            Deleting a subdomain is a reversible action. Although you can recreate
+            it later, you will temporarily lose the ability to receive funds or
+            create records with it post-deletion.
+          </Trans>
+        ) : (
+          <Trans>
+            Deleting a domain is a permanent action. You will forfeit its
+            ownership and lose the ability to receive funds using this domain.
+            Upon deletion, the domain will revert back to the SNS registrar.
+          </Trans>
+        )}
+      </Text>
+
+      <View style={tw`flex flex-row items-center gap-4`}>
         <UiButton
           disabled={loading}
           onPress={() => closeModal()}
@@ -83,6 +101,8 @@ export const DeleteModal = ({
           loading={loading}
         />
       </View>
+
+      <ActionWarning actionName={t`Delete`} />
     </WrapModal>
   );
 };

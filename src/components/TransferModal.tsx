@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -8,7 +8,7 @@ import {
   ROOT_DOMAIN_ACCOUNT,
 } from "@bonfida/spl-name-service";
 import { PublicKey } from "@solana/web3.js";
-import { t } from "@lingui/macro";
+import { Trans, t } from "@lingui/macro";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { sendTx } from "@src/utils/send-tx";
@@ -17,6 +17,7 @@ import { useWallet } from "@src/hooks/useWallet";
 import { CustomTextInput } from "@src/components/CustomTextInput";
 import { WrapModal } from "@src/components/WrapModal";
 import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
 import { useHandleError } from "@src/hooks/useHandleError";
 
 export const TransferModal = ({
@@ -35,6 +36,7 @@ export const TransferModal = ({
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
+  const isSubdomain = domain?.split(".").length === 2;
 
   const handle = async () => {
     if (!connection || !publicKey || !signTransaction) return;
@@ -78,9 +80,26 @@ export const TransferModal = ({
         placeholder={t`New ${domain}.sol owner`}
         onChangeText={(text) => setValue(text)}
         value={value}
-        style={tw`my-5`}
+        style={tw`mt-5`}
         editable={!loading}
       />
+
+      <Text style={tw`mt-3 mb-5 text-sm`}>
+        {isSubdomain ? (
+          <Trans>
+            Transferring your subdomain will link it to a new address and may
+            restrict your ability to receive funds through it. Although the action
+            can be reversed by the parent owners, we caution the user to be vigilant
+            of the addresses.
+          </Trans>
+        ) : (
+          <Trans>
+            Please remember, once you transfer a domain, the action is irreversible.
+            You will lose its ownership and will no longer be able to receive funds
+            using this domain.
+          </Trans>
+        )}
+      </Text>
 
       <View style={tw`flex flex-row items-center gap-4`}>
         <UiButton
@@ -98,6 +117,8 @@ export const TransferModal = ({
           loading={loading}
         />
       </View>
+
+      <ActionWarning actionName={t`Confirm`} />
     </WrapModal>
   );
 };
