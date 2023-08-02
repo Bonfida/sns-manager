@@ -53,7 +53,7 @@ export const useUserProgress = () => {
     records.map((e, idx) => {
       const step = (1 + idx) as ProgressStep;
       if (e.status === "fulfilled") {
-        const des = e.value.data?.toString("utf-8");
+        const des = e.value?.data?.toString("utf-8");
         res.push({ step, value: des });
       } else {
         res.push({ step, value: undefined });

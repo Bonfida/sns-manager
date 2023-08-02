@@ -14,7 +14,7 @@ type DomainRowProps = Pick<
   DomainRowRecordProps,
   "domain" | "isFav" | "refresh" | "isOwner" | "callback"
 > & {
-  subdomains: SubdomainResult[];
+  subdomains?: SubdomainResult[];
 };
 
 export const DomainRow = ({
