@@ -448,7 +448,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const currentScrollPosition = currentScrollViewData?.contentOffset.y || 0;
   const scrollViewOffset = currentScrollViewData
     ? currentScrollViewData.contentSize.height -
-      currentScrollViewData?.layoutMeasurement.height
+      currentScrollViewData.layoutMeasurement.height
     : 0;
 
   const isSocialsTabHighlighted = currentScrollPosition <= socialsTabBreakpoint;
