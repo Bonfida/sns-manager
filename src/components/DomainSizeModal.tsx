@@ -1,10 +1,10 @@
-import { WrapModal } from "./WrapModal";
-import { View, Text, TouchableOpacity } from "react-native";
-import tw from "../utils/tailwind";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useStorageMap } from "../hooks/useStorageMap";
 import { useEffect } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Trans } from "@lingui/macro";
+import tw from "@src/utils/tailwind";
+import { useStorageMap } from "@src/hooks/useStorageMap";
+import { WrapModal } from "./WrapModal";
 
 const LIST = [
   { label: "1kb", value: 1_000 },
@@ -43,9 +43,7 @@ export const DomainSizeModal = ({
             size={24}
             color="#16a34a"
           />
-          <Text style={tw`ml-2 text-lg font-bold`}>
-            <Trans>Storage Size</Trans>
-          </Text>
+          <Trans>Storage Size</Trans>
         </>
       }
     >
@@ -53,6 +51,17 @@ export const DomainSizeModal = ({
         <Trans>
           The storage size will determine the maximum amount of data you can
           store on your domain.
+        </Trans>
+      </Text>
+      <Text style={tw`mt-2 text-xs`}>
+        <MaterialCommunityIcons
+          name="information-outline"
+          size={16}
+          style={tw`mr-1`}
+          color={tw.color("content-warning")}
+        />
+        <Trans>
+          Each additional kb of memory costs around 0.007 SOL (0.001 USDC)
         </Trans>
       </Text>
 
