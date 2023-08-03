@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  NativeScrollEvent,
+  Dimensions,
 } from "react-native";
 import {
   AntDesign,
@@ -150,7 +152,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
     addresses: 0,
     subdomains: 0,
   });
-  const [currentScrollPosition, setScrollPosition] = useState(0);
+  const [currentScrollViewData, setScrollViewMeasurements] =
+    useState<NativeScrollEvent | null>(null);
 
   const { signTransaction, signMessage } = useWallet();
   const [isEditing, toggleEditMode] = useState(false);
@@ -434,6 +437,34 @@ export const DomainView = ({ domain }: { domain: string }) => {
     );
   }
 
+  const halfScrollViewHeight = currentScrollViewData
+    ? currentScrollViewData.layoutMeasurement.height / 2
+    : 0;
+  const socialsTabBreakpoint =
+    UISectionsCoordinates.addresses - halfScrollViewHeight;
+  const subdomainBreakpoint =
+    UISectionsCoordinates.subdomains - halfScrollViewHeight;
+
+  const currentScrollPosition = currentScrollViewData?.contentOffset.y || 0;
+  const scrollViewOffset = currentScrollViewData
+    ? currentScrollViewData.contentSize.height -
+      currentScrollViewData?.layoutMeasurement.height
+    : 0;
+
+  const isSocialsTabHighlighted = currentScrollPosition <= socialsTabBreakpoint;
+
+  const subdomainRowHeight = 40;
+  // Make subdomain hightlighted if subdomains in the middle of the screen,
+  // or if the subdomains block is too small, then when we near the bottom of the screen
+  const isSubdomainsTabHighlighted =
+    !isSocialsTabHighlighted &&
+    (currentScrollPosition >= subdomainBreakpoint ||
+      currentScrollPosition > scrollViewOffset - subdomainRowHeight);
+
+  // To simplify, make addresses highlighted if other tabs are not highlighted
+  const isAddressesTabHighlighted =
+    !isSocialsTabHighlighted && !isSubdomainsTabHighlighted;
+
   return (
     <Screen style={tw`p-0`}>
       <ScrollView
@@ -442,9 +473,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         invertStickyHeaders={true}
         ref={scrollViewRef}
         scrollEventThrottle={300}
-        onScroll={(event) => {
-          setScrollPosition(event.nativeEvent.contentOffset.y);
-        }}
+        onScroll={(event) => setScrollViewMeasurements(event.nativeEvent)}
       >
         {isTokenized && (
           <TouchableOpacity
@@ -551,8 +580,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               }}
               style={[
                 tw`px-2 py-1 rounded-xl`,
-                currentScrollPosition <= UISectionsCoordinates.addresses - 35 &&
-                  tw`bg-background-secondary`,
+                isSocialsTabHighlighted && tw`bg-background-secondary`,
               ]}
             >
               <Text style={tw`text-sm text-brand-primary`}>{t`Socials`}</Text>
@@ -567,10 +595,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               }}
               style={[
                 tw`px-2 py-1 rounded-xl`,
-                currentScrollPosition > UISectionsCoordinates.addresses - 35 &&
-                  currentScrollPosition <
-                    UISectionsCoordinates.subdomains - 35 &&
-                  tw`bg-background-secondary`,
+                isAddressesTabHighlighted && tw`bg-background-secondary`,
               ]}
             >
               <Text style={tw`text-sm text-brand-primary`}>{t`Addresses`}</Text>
@@ -585,9 +610,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                 }}
                 style={[
                   tw`px-2 py-1 rounded-xl`,
-                  currentScrollPosition >=
-                    UISectionsCoordinates.subdomains - 24 &&
-                    tw`bg-background-secondary`,
+                  isSubdomainsTabHighlighted && tw`bg-background-secondary`,
                 ]}
               >
                 <Text style={tw`text-sm text-brand-primary`}>
