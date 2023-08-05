@@ -16,16 +16,18 @@ type Steps = 1 | 2 | 3 | 4;
 
 const stepsImages: Record<
   Steps,
-  { image: ImageSourcePropType; text: string; icon: ReactNode }
+  { image: ImageSourcePropType; text: () => string; icon: ReactNode }
 > = {
   1: {
     image: require("@assets/onboading/favorite-domain.png"),
-    text: t`Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar.`,
+    text: () =>
+      t`Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar.`,
     icon: <AntDesign name="star" size={24} color={tw.color("brand-primary")} />,
   },
   2: {
     image: require("@assets/onboading/engaging-profile.png"),
-    text: t`Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals.`,
+    text: () =>
+      t`Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals.`,
     icon: (
       <Ionicons
         style={{ transform: [{ scaleX: -1 }] }}
@@ -37,12 +39,13 @@ const stepsImages: Record<
   },
   3: {
     image: require("@assets/onboading/add-profile-pic.png"),
-    text: t`Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you.`,
+    text: () =>
+      t`Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you.`,
     icon: <Ionicons name="camera-sharp" size={24} color="#F391BD" />,
   },
   4: {
     image: require("@assets/onboading/connect-backpack.png"),
-    text: t`Connect your backpack username to your on-chain identity.`,
+    text: () => t`Connect your backpack username to your on-chain identity.`,
     icon: <MaterialIcons name="backpack" size={24} color="#E20505" />,
   },
 };
@@ -70,7 +73,7 @@ export const ProgressExplainerModal = ({
           {stepsImages[currentStep].icon}
 
           <Text style={tw`text-sm font-medium`}>
-            {stepsImages[currentStep].text}
+            {stepsImages[currentStep].text()}
           </Text>
         </View>
       </View>
