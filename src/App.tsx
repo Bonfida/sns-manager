@@ -123,7 +123,7 @@ function TabNavigator() {
           },
         })}
         options={{
-          tabBarLabel: (props) => TabBarLabel(props, "Profile"),
+          tabBarLabel: (props) => TabBarLabel(props, t`Profile`),
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
@@ -134,7 +134,7 @@ function TabNavigator() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: (props) => TabBarLabel(props, "Domains"),
+          tabBarLabel: (props) => TabBarLabel(props, t`Domains`),
           tabBarIcon: ({ color, size }) => (
             <Feather name="globe" size={size} color={color} />
           ),
@@ -144,7 +144,7 @@ function TabNavigator() {
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: (props) => TabBarLabel(props, "Cart"),
+          tabBarLabel: (props) => TabBarLabel(props, t`Cart`),
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />

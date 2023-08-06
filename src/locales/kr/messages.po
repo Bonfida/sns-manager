@@ -15,174 +15,267 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Parser: loco_parse_po"\n"
 
-#: src/components/TokenizeModal.tsx:126
+#: src/components/TokenizeModal.tsx:131
 msgid "{domain}.sol successfully {0}!"
 msgstr "{domain}.sol 성공적으로 {0}!"
 
-#: src/components/FavoriteButton.tsx:51
+#: src/components/FavoriteButton.tsx:55
 msgid "{domain}.sol successfully set as favorite domain name"
 msgstr "{domain}.sol이 즐겨찾기 도메인 이름으로 설정되었습니다."
 
-#: src/components/TransferModal.tsx:62
+#: src/components/TransferModal.tsx:67
 msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol이 성공적으로 전송되었습니다!"
 
-#: src/screens/SearchResult.tsx:50
+#: src/screens/SearchResult.tsx:55
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol은(는) 유효한 도메인이 아닙니다"
 
-#: src/screens/HomeScreen.tsx:41
+#: src/screens/HomeScreen.tsx:52
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol은(는) 유효한 도메인이 아닙니다."
 
-#: src/components/CreateSubdomainModal.tsx:45
+#: src/components/CreateSubdomainModal.tsx:46
 msgid "{subdomain}.sol is not a valid subdomain"
 msgstr "{subdomain}.sol은(는) 유효한 서브도메인이 아닙니다"
 
 #: src/components/ProgressExplainerModal.tsx:34
-msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-msgstr "<0>1. 즐겨찾는 도메인:</0> 옆에 있는 ❤️을 클릭하여 가장 선호하는 도메인을 선택하세요"
+#~ msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
+#~ msgstr "<0>1. 즐겨찾는 도메인:</0> 옆에 있는 ❤️을 클릭하여 가장 선호하는 도메인을 선택하세요"
+
+#: src/components/TokenizeModal.tsx:163
+msgid "<0>1.</0><1>Transferring funds can sometimes be a bit complex, and it may vary depending on the wallet you are using.</1>"
+msgstr "<0>1.</0><1>자금을 전송하는 것이 때때로 복잡해질 수 있으며, 사용하는 지갑에 따라 다를 수 있습니다.</1>"
 
 #: src/components/ProgressExplainerModal.tsx:41
-msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
-msgstr "<0>2. 프로필 사진:</0> 당신의 개성을 보여주는 사진을 추가하세요"
+#~ msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
+#~ msgstr "<0>2. 프로필 사진:</0> 당신의 개성을 보여주는 사진을 추가하세요"
+
+#: src/components/TokenizeModal.tsx:172
+msgid "<0>2.</0><1>You cannot edit the content of your domain or add subdomains.</1>"
+msgstr "<0>2.</0><1>도메인의 내용을 편집하거나 서브도메인을 추가할 수 없습니다.</1>"
 
 #: src/components/ProgressExplainerModal.tsx:48
-msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-msgstr "<0>3. 백팩 기록:</0> 백팩 사용자 이름을 온체인 신원과 연동하세요 🎒"
+#~ msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
+#~ msgstr "<0>3. 백팩 기록:</0> 백팩 사용자 이름을 온체인 신원과 연동하세요 🎒"
+
+#: src/components/TokenizeModal.tsx:180
+msgid "<0>3.</0><1>You cannot transfer your domain.</1>"
+msgstr "<0>3.</0><1>도메인을 전송할 수 없습니다.</1>"
 
 #: src/components/ProgressExplainerModal.tsx:55
-msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
-msgstr "<0>4. 트위터 기록:</0> 빠른 공유와 네트워킹을 위해 트위터를 연동하세요 🐦"
+#~ msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
+#~ msgstr "<0>4. 트위터 기록:</0> 빠른 공유와 네트워킹을 위해 트위터를 연동하세요 🐦"
 
 #: src/components/ProgressExplainerModal.tsx:62
-msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-msgstr "<0>5. 텔레그램 기록:</0> 실시간 커뮤니티 채팅을 위해 텔레그램을 연동하세요 📨"
+#~ msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
+#~ msgstr "<0>5. 텔레그램 기록:</0> 실시간 커뮤니티 채팅을 위해 텔레그램을 연동하세요 📨"
 
 #: src/components/ProgressExplainerModal.tsx:69
-msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
-msgstr "<0>6. 디스코드 기록:</0> 디스코드를 연동하고 순조로운 대화를 즐기세요 🎮"
+#~ msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
+#~ msgstr "<0>6. 디스코드 기록:</0> 디스코드를 연동하고 순조로운 대화를 즐기세요 🎮"
 
-#: src/screens/DomainView.tsx:260
+#: src/screens/HomeScreen.tsx:65
+msgid "A Humanized ID for the Metaverse"
+msgstr "메타버스를 위한 인간화된 ID"
+
+#: src/components/ProgressExplainerModal.tsx:40
+msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
+msgstr "당신의 멋지고 매력적인 프로필 사진을 추가하세요. 당신의 사진, 마음에 드는 NFT, 혹은 영감을 주는 것도 좋아요!"
+
+#: src/screens/DomainView.tsx:779
+msgid "Add subdomain"
+msgstr "서브도메인 추가"
+
+#: src/screens/DomainView.tsx:601
 msgid "Addresses"
 msgstr "주소들"
 
 #: src/components/SuccessCheckoutModal.tsx:26
-msgid "All your domains have been purchased"
-msgstr "모든 도메인이 결제되었습니다"
+#~ msgid "All your domains have been purchased"
+#~ msgstr "모든 도메인이 결제되었습니다"
 
 #: src/utils/record/place-holder.tsx:49
 msgid "ARWV"
 msgstr "아위브(ARWV)"
 
 #: src/components/AvailableRow.tsx:45
-msgid "Available"
-msgstr "구매 가능"
+#~ msgid "Available"
+#~ msgstr "구매 가능"
 
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
 msgstr "백팩(Backpack)"
 
 #: src/components/ProgressExplainerModal.tsx:23
-msgid "Boost Your Profile Journey! 🚀"
-msgstr "프로필 여정을 향상시키세요! 🚀"
+#~ msgid "Boost Your Profile Journey! 🚀"
+#~ msgstr "프로필 여정을 향상시키세요! 🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
 msgstr "바이낸스 스마트 체인(BSC)"
 
-#: src/components/CreateSubdomainModal.tsx:108
-#: src/components/DeleteModal.tsx:95
-#: src/components/EditPicture.tsx:267
-#: src/components/EditRecordModal.tsx:295
-#: src/components/TokenizeModal.tsx:165
-#: src/components/TransferModal.tsx:101
+#: src/components/ActionWarning.tsx:15
+msgid "By clicking \"{actionName}\" you will be asked for a confirmation by your wallet"
+msgstr "{actionName}\"을(를) 클릭하면 지갑에서 승인 확인을 받게 됩니다."
+
+#: src/components/CreateSubdomainModal.tsx:92
+#: src/components/DeleteModal.tsx:92
+#: src/components/EditPicture.tsx:247
+#: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:188
+#: src/App.tsx:163
 msgid "Cart"
 msgstr "장바구니"
 
-#: src/components/EditPicture.tsx:245
-msgid "Choose a picture"
-msgstr "사진을 선택하세요"
+#: src/components/LanguageModal.tsx:22
+msgid "Change language"
+msgstr "언어 변경"
 
-#: src/screens/Cart.tsx:159
+#: src/components/EditPicture.tsx:212
+msgid "Change profile picture"
+msgstr "프로필 사진 변경"
+
+#: src/components/EditPicture.tsx:245
+#~ msgid "Choose a picture"
+#~ msgstr "사진을 선택하세요"
+
+#: src/screens/Cart/index.tsx:195
 msgid "Clear all"
 msgstr "모두 지우기"
 
-#: src/components/SuccessModal.tsx:31
-#: src/components/SuccessSubdomainModal.tsx:47
+#: src/screens/Profile/index.tsx:241
+msgid "Clear search"
+msgstr "검색 지우기"
+
+#: src/components/ProgressExplainerModal.tsx:23
+msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
+msgstr "별 아이콘을 클릭하여 좋아하는 프로필을 선택하세요. 프로필 완료 진행률을 프로필 완성도 바를 통해 확인하세요."
+
+#: src/components/ProgressExplainerModal.tsx:106
+#: src/components/SuccessSubdomainModal.tsx:39
+#: src/components/TokenizeModal.tsx:203
 msgid "Close"
 msgstr "닫기"
 
-#: src/components/EditPicture.tsx:257
-#: src/components/EditRecordModal.tsx:275
-#: src/components/TransferModal.tsx:91
-#: src/screens/Cart.tsx:257
+#: src/screens/HomeScreen.tsx:31
+msgid "Collect & Exchange directly or as NFTs!"
+msgstr "직접 수집 및 교환하거나 NFT로 교환하세요!"
+
+#: src/components/TransferModal.tsx:116
+#: src/components/TransferModal.tsx:121
 msgid "Confirm"
 msgstr "확인"
 
-#: src/components/SuccessCheckoutModal.tsx:22
-msgid "Congrats!"
-msgstr "축하합니다!"
+#: src/screens/Cart/index.tsx:334
+msgid "Confirm and pay"
+msgstr "확인하고 결제하기"
 
-#: src/components/SocialRecord.tsx:74
-#: src/screens/DomainView.tsx:158
-#: src/screens/DomainView.tsx:371
-#: src/screens/Profile.tsx:165
+#: src/screens/Cart/index.tsx:391
+msgid "Confirmation"
+msgstr "확인"
+
+#: src/screens/Cart/index.tsx:353
+msgid "Congrats on purchasing new domains!"
+msgstr "새 도메인 구매를 축하합니다!"
+
+#: src/components/SuccessCheckoutModal.tsx:22
+#~ msgid "Congrats!"
+#~ msgstr "축하합니다!"
+
+#: src/components/ProgressExplainerModal.tsx:45
+msgid "Connect your backpack username to your on-chain identity."
+msgstr "백팩 (Backpack) 사용자 이름을 온체인 신원과 연결하세요."
+
+#: src/screens/Cart/index.tsx:280
+msgid "Continue"
+msgstr "계속하기"
+
+#: src/components/ProfileBlock.tsx:77
+#: src/components/ProfileBlock.tsx:89
+#: src/screens/DomainView.tsx:672
 msgid "Copied!"
 msgstr "복사 완료!"
 
-#: src/components/CreateSubdomainModal.tsx:96
+#: src/components/CreateSubdomainModal.tsx:99
 msgid "Create"
 msgstr "만들기"
 
-#: src/components/CreateSubdomainModal.tsx:77
+#: src/components/CreateSubdomainModal.tsx:75
 msgid "Create a subdomain"
 msgstr "서브도메인 만들기"
 
-#: src/components/DeleteModal.tsx:83
-#: src/components/EditRecordModal.tsx:285
-#: src/screens/DomainView.tsx:309
+#: src/components/ProgressExplainerModal.tsx:28
+msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
+msgstr "다양한 사람들과 연결하기 위해 트위터, 디스코드 및 텔레그램 링크를 추가하여 매력적인 프로필을 완성하세요."
+
+#: src/components/DeleteModal.tsx:99
+#: src/components/DeleteModal.tsx:105
+#: src/screens/DomainView.tsx:544
 msgid "Delete"
 msgstr "삭제"
 
-#: src/components/DeleteModal.tsx:74
+#: src/components/DeleteModal.tsx:70
 msgid "Delete {domain}.sol"
 msgstr "{domain}.sol 삭제하기"
+
+#: src/components/DeleteModal.tsx:79
+msgid "Deleting a domain is a permanent action. You will forfeit its ownership and lose the ability to receive funds using this domain. Upon deletion, the domain will revert back to the SNS registrar."
+msgstr "도메인 삭제는 영구적입니다. 이에 따라 소유권을 포기하게 되고, 도메인을 통한 자금 수령 기능도 잃어버립니다. 삭제 시, 해당 도메인은 SNS 등록소로 반환됩니다"
+
+#: src/components/DeleteModal.tsx:73
+msgid "Deleting a subdomain is a reversible action. Although you can recreate it later, you will temporarily lose the ability to receive funds or create records with it post-deletion."
+msgstr "서브도메인을 제거하는 것은 영구적이지 않습니다. 삭제 후에는 잠시 해당 서브도메인을 이용하여 자금을 받거나 데이터를 기록하는 것이 불가능해질 것이지만, 나중에 재생성이 가능합니다."
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
 msgstr "디스코드"
 
-#: src/components/OrderSummary.tsx:61
+#: src/components/OrderSummary.tsx:63
 msgid "Discount"
 msgstr "할인"
 
-#: src/screens/Cart.tsx:148
-#: src/screens/Profile.tsx:203
+#: src/screens/Cart/index.tsx:277
+msgid "Discounts may be applied in the next step"
+msgstr "다음 단계에서 할인이 적용될 수 있습니다."
+
+#: src/screens/Cart/EmptyState.tsx:26
+msgid "Discover the domain that represents you!"
+msgstr "당신만의 도메인을 탐색하세요!"
+
+#: src/components/TokenizeModal.tsx:152
+msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
+msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
+
+#: src/screens/Profile/index.tsx:184
 msgid "Domains"
 msgstr "도메인"
 
-#: src/screens/Cart.tsx:189
+#: src/components/DomainSizeModal.tsx:63
+msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
+msgstr "메모리 1kb 추가당 비용은 약 0.007 SOL (0.001 USDC)입니다"
+
+#: src/screens/Cart/index.tsx:235
+#: src/screens/DomainView.tsx:627
+#: src/screens/DomainView.tsx:739
 msgid "Edit"
 msgstr "편집"
 
 #: src/components/EditRecordModal.tsx:260
-msgid "Edit {0} record"
-msgstr "{0} 기록 수정"
+#~ msgid "Edit {0} record"
+#~ msgstr "{0} 기록 수정"
 
 #: src/components/EditPicture.tsx:220
-msgid "Edit Picture"
-msgstr "사진 편집"
+#~ msgid "Edit Picture"
+#~ msgstr "사진 편집"
 
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
 msgstr "이메일"
 
-#: src/components/CreateSubdomainModal.tsx:81
+#: src/components/CreateSubdomainModal.tsx:78
 msgid "Enter subdomain"
 msgstr "서브도메인을 입력하세요"
 
@@ -247,22 +340,42 @@ msgid "Enter your website URL"
 msgstr "웹사이트 URL을 입력하세요"
 
 #: src/components/OrderSummary.tsx:53
-msgid "Gas"
-msgstr "가스비(Gas)"
+#~ msgid "Gas"
+#~ msgstr "가스비(Gas)"
+
+#: src/screens/Profile/EmptyState.tsx:43
+msgid ""
+"Get a .sol domain and \n"
+" start building your profile"
+msgstr ""
+".sol 도메인을 구매하고\n"
+"프로필 작성을 시작하세요."
+
+#: src/screens/Cart/index.tsx:366
+msgid "Get started with my profiles"
+msgstr "내 프로필 작성 시작하기"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
 msgstr "깃허브"
 
 #: src/components/SuccessCheckoutModal.tsx:36
-msgid "Go to Profile"
-msgstr "프로필로 가기"
+#~ msgid "Go to Profile"
+#~ msgstr "프로필로 가기"
 
 #: src/App.tsx:159
-msgid "Home"
-msgstr "홈"
+#~ msgid "Home"
+#~ msgstr "홈"
 
-#: src/components/DiscountExplainerModal.tsx:26
+#: src/components/ProgressExplainerModal.tsx:60
+msgid "How to boost your profile?"
+msgstr "프로필을 어떻게 향상할까요?"
+
+#: src/screens/HomeScreen.tsx:30
+msgid "Human-readable address"
+msgstr "읽을 쉬운 주소"
+
+#: src/components/DiscountExplainerModal.tsx:29
 msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
 msgstr "FIDA를 통해 도메인을 등록하시면 5% 할인 혜택이 적용됩니다!"
 
@@ -270,20 +383,28 @@ msgstr "FIDA를 통해 도메인을 등록하시면 5% 할인 혜택이 적용�
 msgid "Injective"
 msgstr "인젝티브"
 
+#: src/screens/Profile/EmptyState.tsx:31
+msgid "Into this"
+msgstr "이것으로"
+
+#: src/screens/DomainView.tsx:372
+msgid "Invalid {key} address"
+msgstr "유효하지 않은 {key} 주소"
+
 #: src/components/EditRecordModal.tsx:86
-msgid "Invalid Arweave record"
-msgstr "유효하지 않은 아위브(Arweave) 기록입니다"
+#~ msgid "Invalid Arweave record"
+#~ msgstr "유효하지 않은 아위브(Arweave) 기록입니다"
 
 #: src/components/EditRecordModal.tsx:92
-msgid "Invalid BSC address"
-msgstr "유효하지 않은 바이낸스 스마트(BSC) 체인 주소입니다"
+#~ msgid "Invalid BSC address"
+#~ msgstr "유효하지 않은 바이낸스 스마트(BSC) 체인 주소입니다"
 
 #: src/components/EditRecordModal.tsx:80
-msgid "Invalid IPFS record - Must start with ipfs://"
-msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
+#~ msgid "Invalid IPFS record - Must start with ipfs://"
+#~ msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
 
-#: src/components/EditPicture.tsx:66
-#: src/components/EditRecordModal.tsx:74
+#: src/components/EditPicture.tsx:63
+#: src/screens/DomainView.tsx:363
 msgid "Invalid URL"
 msgstr "유효하지 않은 URL입니다"
 
@@ -293,56 +414,75 @@ msgstr "IPFS"
 
 #: src/components/LanguageModal.tsx:27
 #: src/screens/HomeScreen.tsx:105
-msgid "Language"
-msgstr "언어"
+#~ msgid "Language"
+#~ msgstr "언어"
 
-#: src/screens/Profile.tsx:203
+#: src/components/TokenizeModal.tsx:191
+msgid "Learn more in our docs"
+msgstr "문서로 더 알아보세요"
+
+#: src/screens/Profile/index.tsx:184
 msgid "My domains"
 msgstr "나의 도메인"
 
 #: src/screens/Profile.tsx:248
-msgid "My subdomains"
-msgstr "나의 서브도메인"
+#~ msgid "My subdomains"
+#~ msgstr "나의 서브도메인"
 
-#: src/components/TransferModal.tsx:79
+#: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
 msgstr "새로운 {domain}.sol 소유자"
 
-#: src/components/EditPicture.tsx:234
+#: src/components/EditPicture.tsx:236
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
+#: src/components/ProgressExplainerModal.tsx:112
+msgid "Next"
+msgstr "다음"
+
+#: src/screens/DomainView.tsx:738
+msgid "No changes to save"
+msgstr "저장할 변경 사항이 없습니다"
+
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile.tsx:239
+#: src/screens/Profile/index.tsx:231
 msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
 #: src/screens/Profile.tsx:266
-msgid "No subdomain found"
-msgstr ""
-"\n"
-"서브도메인을 찾을 수 없습니다"
+#~ msgid "No subdomain found"
+#~ msgstr ""
+#~ "\n"
+#~ "서브도메인을 찾을 수 없습니다"
 
 #: src/screens/DomainView.tsx:210
-msgid "No subdomains found"
-msgstr ""
-"\n"
-"서브도메인을 찾을 수 없습니다"
+#~ msgid "No subdomains found"
+#~ msgstr ""
+#~ "\n"
+#~ "서브도메인을 찾을 수 없습니다"
 
-#: src/components/SocialRecord.tsx:81
-#: src/screens/DomainView.tsx:380
+#: src/screens/DomainView.tsx:692
 msgid "Not set"
 msgstr "설정되지 않음"
 
-#: src/components/OrderSummary.tsx:41
+#: src/screens/Cart/EmptyState.tsx:21
+msgid "Nothing in your cart yet"
+msgstr "장바구니가 비었습니다"
+
+#: src/components/OrderSummary.tsx:30
 msgid "Order summary"
 msgstr "주문 내역"
 
-#: src/screens/Cart.tsx:213
+#: src/screens/Cart/index.tsx:290
 msgid "Pay with"
 msgstr "결제 방법"
 
-#: src/components/EditPicture.tsx:172
+#: src/screens/Cart/index.tsx:390
+msgid "Payment"
+msgstr "결제"
+
+#: src/components/EditPicture.tsx:170
 msgid "Permission to access photo album is required"
 msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 
@@ -350,60 +490,110 @@ msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 msgid "Pic"
 msgstr "사진"
 
+#: src/components/EditPicture.tsx:234
+msgid "Picture URL"
+msgstr "사진 URL"
+
+#: src/components/TransferModal.tsx:96
+msgid "Please remember, once you transfer a domain, the action is irreversible. You will lose its ownership and will no longer be able to receive funds using this domain."
+msgstr "도메인을 전송하는 동작은 되돌릴 수 없습니다. 소유권을 잃게 되며 이 도메인을 사용하여 자금을 받을 수 없게 되니 주의하시기 바랍니다."
+
 #: src/utils/record/place-holder.tsx:69
 msgid "POINT"
 msgstr "포인트"
 
 #: src/App.tsx:149
-msgid "Profile"
-msgstr "프로필"
+#~ msgid "Profile"
+#~ msgstr "프로필"
 
 #: src/screens/Profile.tsx:177
-msgid "Profile completed: {percentage}%"
-msgstr "프로필 완료율: {percentage}%"
+#~ msgid "Profile completed: {percentage}%"
+#~ msgstr "프로필 완료율: {percentage}%"
+
+#: src/screens/Profile/index.tsx:157
+msgid "Profile completion: {percentage}%"
+msgstr "프로필 완성도: {percentage}%"
+
+#: src/components/DomainSearchResultRow.tsx:51
+msgid "Purchased"
+msgstr "구매 완료"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
 msgstr "레딧"
 
-#: src/components/DiscountExplainerModal.tsx:22
+#: src/components/DiscountExplainerModal.tsx:24
 msgid "Registration discount"
 msgstr "등록 할인"
 
+#: src/screens/DomainView.tsx:627
+msgid "Revert"
+msgstr "취소"
+
+#: src/components/EditPicture.tsx:254
+#: src/screens/DomainView.tsx:737
+msgid "Save"
+msgstr "저장"
+
 #: src/App.tsx:178
 #: src/screens/HomeScreen.tsx:92
-msgid "Search"
-msgstr "검색"
+#~ msgid "Search"
+#~ msgstr "검색"
+
+#: src/screens/HomeScreen.tsx:142
+#: src/screens/HomeScreen.tsx:154
+msgid "Search domain"
+msgstr "도메인 검색"
 
 #: src/components/SearchModal.tsx:51
 msgid "Search domains"
 msgstr "도메인 검색"
 
+#: src/screens/HomeScreen.tsx:89
+#: src/screens/Profile/index.tsx:191
+#: src/screens/SearchResult.tsx:67
+msgid "Search for a domain"
+msgstr "도메인을 검색하기"
+
 #: src/screens/HomeScreen.tsx:78
 #: src/screens/SearchResult.tsx:71
-msgid "Search for your name.sol"
-msgstr "당신의 이름.sol을 검색하세요"
+#~ msgid "Search for your name.sol"
+#~ msgstr "당신의 이름.sol을 검색하세요"
+
+#: src/screens/HomeScreen.tsx:101
+#: src/screens/SearchResult.tsx:80
+msgid "Search your .SOL domain"
+msgstr "당신의 SOL 도메인 검색하기"
+
+#: src/screens/Cart/EmptyState.tsx:36
+#: src/screens/Profile/EmptyState.tsx:58
+msgid "Secure a domain for yourself"
+msgstr "자신만의 도메인을 확보하기"
 
 #: src/components/ProgressExplainerModal.tsx:27
-msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-msgstr "상단의 진행률은 당신의 멋지고 매력적인 프로필을 만드는 가이드 역할입니다. 사용 방법은 다음과 같습니다:"
+#~ msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
+#~ msgstr "상단의 진행률은 당신의 멋지고 매력적인 프로필을 만드는 가이드 역할입니다. 사용 방법은 다음과 같습니다:"
 
 #: src/screens/HomeScreen.tsx:66
-msgid "Seize your online identity."
-msgstr "당신의 온라인 신원을 확보하세요."
+#~ msgid "Seize your online identity."
+#~ msgstr "당신의 온라인 신원을 확보하세요."
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
 msgstr "섀도우 드라이브"
 
-#: src/screens/DomainView.tsx:221
+#: src/components/ProgressExplainerModal.tsx:100
+msgid "Skip"
+msgstr "건너뛰기"
+
+#: src/screens/DomainView.tsx:586
 msgid "Socials"
 msgstr "소셜"
 
 #: src/components/ErrorModal.tsx:12
 #: src/components/ErrorModal.tsx:20
-msgid "Something went wrong"
-msgstr "문제가 발생했습니다"
+#~ msgid "Something went wrong"
+#~ msgstr "문제가 발생했습니다"
 
 #: src/components/CreateSubdomainModal.tsx:69
 #: src/components/DeleteModal.tsx:66
@@ -414,97 +604,180 @@ msgstr "문제가 발생했습니다"
 #: src/components/FavoriteButton.tsx:59
 #: src/components/TokenizeModal.tsx:138
 #: src/components/TransferModal.tsx:68
-msgid "Something went wrong - try again"
-msgstr "문제가 발생했습니다 - 다시 시도하세요"
+#~ msgid "Something went wrong - try again"
+#~ msgstr "문제가 발생했습니다 - 다시 시도하세요"
 
 #: src/components/DomainSizeModal.tsx:46
-#: src/screens/Cart.tsx:175
 msgid "Storage Size"
 msgstr "저장 용량"
 
-#: src/components/DeleteModal.tsx:52
+#: src/screens/Cart/index.tsx:218
+msgid "Storage:"
+msgstr "저장 용량:"
+
+#: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
 msgstr "서브도메인 {domain}.sol이(가) 성공적으로 삭제되었습니다!"
 
-#: src/components/CreateSubdomainModal.tsx:58
+#: src/components/CreateSubdomainModal.tsx:60
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "서브도메인 {subdomain}.sol이(가) 성공적으로 생성되었습니다"
 
-#: src/screens/DomainView.tsx:174
-#: src/screens/Profile.tsx:248
+#: src/screens/DomainView.tsx:617
 msgid "Subdomains"
 msgstr "서브도메인"
 
-#: src/components/SuccessModal.tsx:20
-#: src/components/SuccessSubdomainModal.tsx:25
+#: src/components/DomainRow.tsx:48
+msgid "Subdomains ({0})"
+msgstr "서브도메인 ({0})"
+
+#: src/components/SuccessSubdomainModal.tsx:28
 msgid "Success!"
 msgstr "완료되었습니다!"
 
 #: src/components/UnavailableRow.tsx:19
-msgid "Taken"
-msgstr "등록된 도메인"
+#~ msgid "Taken"
+#~ msgstr "등록된 도메인"
 
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
 msgstr "텔레그램"
 
-#: src/components/DomainSizeModal.tsx:50
+#: src/components/DomainSizeModal.tsx:51
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "저장 용량은 도메인에 저장할 수 있는 데이터의 최대량입니다."
 
+#: src/screens/DomainView.tsx:819
+msgid "There are no subdomains."
+msgstr "서브도메인이 없습니다."
+
 #: src/components/UnavailableRow.tsx:36
-msgid "This domain has already been purchased"
-msgstr "이 도메인은 이미 구매되었습니다"
+#~ msgid "This domain has already been purchased"
+#~ msgstr "이 도메인은 이미 구매되었습니다"
 
 #: src/components/WormholeExplainerModal.tsx:13
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "이 도메인은 웜홀을 통해 연결되었으며 BNB에서 사용할 수 있습니다"
 
-#: src/components/OrderSummary.tsx:46
+#: src/screens/DomainView.tsx:499
+msgid "This domain is wrapped in an NFT"
+msgstr "이 도메인은 NFT로 래핑되어 있습니다."
+
+#: src/components/OrderSummary.tsx:55
 msgid "Total"
 msgstr "합계"
 
 #: src/components/OrderSummary.tsx:49
-msgid "Total USD"
-msgstr "USD 합계"
+#~ msgid "Total USD"
+#~ msgstr "USD 합계"
 
-#: src/screens/DomainView.tsx:292
+#: src/screens/DomainView.tsx:527
 msgid "Transfer"
 msgstr "전송"
 
-#: src/components/TransferModal.tsx:76
+#: src/components/TransferModal.tsx:78
 msgid "Transfer {domain}.sol"
 msgstr "{domain}.sol 전송"
+
+#: src/components/TransferModal.tsx:89
+msgid "Transferring your subdomain will link it to a new address and may restrict your ability to receive funds through it. Although the action can be reversed by the parent owners, we caution the user to be vigilant of the addresses."
+msgstr "서브도메인을 전송하면 새 주소에 연결되며 이를 통해 자금을 받는 기능이 제한될 수 있습니다. 이 작업은 상위 소유자에 의해 되돌릴 수 있지만, 항상 주소 확인을 주의 깊게 해주세요."
+
+#: src/screens/Profile/EmptyState.tsx:21
+msgid "Turn this"
+msgstr "이것을 전환"
 
 #: src/utils/record/place-holder.tsx:61
 msgid "Twitter"
 msgstr "트위터"
 
+#: src/screens/HomeScreen.tsx:29
+msgid "Unique domain name for your project"
+msgstr "당신의 프로젝트를 위한 개성적인 도메인 이름"
+
 #: src/components/TokenizeModal.tsx:146
 #: src/components/TokenizeModal.tsx:155
-msgid "Unwrap"
-msgstr "언랩하기 (Unwrap)"
+#~ msgid "Unwrap"
+#~ msgstr "언랩하기 (Unwrap)"
 
-#: src/screens/DomainView.tsx:331
+#: src/components/TokenizeModal.tsx:199
+#: src/components/TokenizeModal.tsx:210
+msgid "Unwrap domain"
+msgstr "도메인 언랩하기"
+
+#: src/screens/DomainView.tsx:558
 msgid "Unwrap NFT"
 msgstr "NFT 언랩하기"
 
-#: src/utils/record/place-holder.tsx:53
-msgid "Url"
-msgstr "URL"
+#: src/components/TokenizeModal.tsx:145
+msgid "Unwrap your domain from NFT"
+msgstr "NFT에서 도메인을 언랩하기"
 
-#: src/components/SuccessSubdomainModal.tsx:39
+#: src/components/EditPicture.tsx:228
+msgid "Upload a picture..."
+msgstr "사진 업로드..."
+
+#: src/utils/record/place-holder.tsx:53
+#~ msgid "Url"
+#~ msgstr "URL"
+
+#: src/components/SuccessSubdomainModal.tsx:48
 msgid "View subdomain"
 msgstr "서브도메인 보기"
 
+#: src/utils/record/place-holder.tsx:53
+msgid "Website"
+msgstr "웹사이트"
+
+#: src/components/TokenizeModal.tsx:147
+msgid "What is an NFT domain?"
+msgstr "NFT 도메인이란 무엇인가요?"
+
+#: src/components/TokenizeModal.tsx:159
+msgid "What to consider:"
+msgstr "고려할 사항:"
+
 #: src/components/TokenizeModal.tsx:155
-msgid "Wrap"
-msgstr "랩하기 (Wrap)"
+#~ msgid "Wrap"
+#~ msgstr "랩하기 (Wrap)"
+
+#: src/components/TokenizeModal.tsx:199
+#: src/components/TokenizeModal.tsx:212
+msgid "Wrap domain"
+msgstr "도메인 랩하기"
 
 #: src/screens/DomainView.tsx:331
-msgid "Wrap domain into NFT"
-msgstr "도메인을 NFT로 랩하기"
+#~ msgid "Wrap domain into NFT"
+#~ msgstr "도메인을 NFT로 랩하기"
+
+#: src/screens/DomainView.tsx:558
+msgid "Wrap to NFT"
+msgstr "NFT로 랩하기"
+
+#: src/components/TokenizeModal.tsx:146
+msgid "Wrap your domain into an NFT"
+msgstr "당신의 도메인을 NFT로 랩하기"
+
+#: src/screens/Cart/index.tsx:358
+msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
+msgstr "도메인에 연동된 프로필을 작성을 하므로서 도메인의 모든 혜택을 누리세요."
+
+#: src/screens/DomainView.tsx:790
+msgid "You can only add subdomains when the domain is unwrapped."
+msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있습니다."
+
+#: src/screens/DomainView.tsx:814
+msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
+msgstr "아직 보유하고 있는 서브도메인이 없습니다. 다양한 용도로 프로필을 사용하기 위해 원하는 만큼 생성해보세요."
 
 #: src/screens/HomeScreen.tsx:60
-msgid "Your <0>Name</0>. Your <1>Power</1>."
-msgstr "당신의 <0>이름</0>. 당신의 <1>선택</1>."
+#~ msgid "Your <0>Name</0>. Your <1>Power</1>."
+#~ msgstr "당신의 <0>이름</0>. 당신의 <1>선택</1>."
+
+#: src/screens/Cart/index.tsx:389
+msgid "Your domains"
+msgstr "당신의 도메인"
+
+#: src/screens/HomeScreen.tsx:68
+msgid "Your online identity starts with your <0>.sol domain</0>"
+msgstr "당신의 온라인 신원은 <0>.sol 도메인으로 시작됩니다</0>"
