@@ -57,7 +57,7 @@ msgstr "<0>3.</0><1>Vous ne pouvez pas transférer votre domaine.</1>"
 msgid "A Humanized ID for the Metaverse"
 msgstr "Un identifiant humanisé pour le métaverse."
 
-#: src/components/ProgressExplainerModal.tsx:40
+#: src/components/ProgressExplainerModal.tsx:43
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "Ajoutez une photo de profil qui vous représente. Cela peut être une photo de vous-même, votre NFT préféré ou quelque chose qui vous inspire."
 
@@ -92,6 +92,7 @@ msgstr "En cliquant sur \"{actionName}\", votre portefeuille vous demandera une 
 msgid "Cancel"
 msgstr "Annuler"
 
+#: src/App.tsx:147
 #: src/App.tsx:163
 msgid "Cart"
 msgstr "Panier"
@@ -112,11 +113,11 @@ msgstr "Tout effacer"
 msgid "Clear search"
 msgstr "Effacez la recherche"
 
-#: src/components/ProgressExplainerModal.tsx:23
+#: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
 msgstr "Cliquez sur l'icône en forme d'étoile pour sélectionner votre profil préféré. Suivez la progression de complétion de votre profil principal grâce à la barre de complétion du profil."
 
-#: src/components/ProgressExplainerModal.tsx:106
+#: src/components/ProgressExplainerModal.tsx:109
 #: src/components/SuccessSubdomainModal.tsx:39
 #: src/components/TokenizeModal.tsx:203
 msgid "Close"
@@ -149,7 +150,7 @@ msgstr "Confirmation"
 msgid "Congrats on purchasing new domains!"
 msgstr "Félicitations pour l'achat de nouveaux domaines !"
 
-#: src/components/ProgressExplainerModal.tsx:45
+#: src/components/ProgressExplainerModal.tsx:48
 msgid "Connect your backpack username to your on-chain identity."
 msgstr "Connectez votre nom d'utilisateur Backpack à votre identité on-chain."
 
@@ -171,7 +172,7 @@ msgstr "Créer"
 msgid "Create a subdomain"
 msgstr "Créer un sous-domaine"
 
-#: src/components/ProgressExplainerModal.tsx:28
+#: src/components/ProgressExplainerModal.tsx:30
 msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
 msgstr "Créez un profil captivant en ajoutant des liens Twitter, Discord et Telegram pour vous connecter avec des personnes partageant les mêmes intérêts."
 
@@ -213,6 +214,7 @@ msgstr "Découvrez le domaine qui vous représente !"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "La tokenisation (enveloppement) de noms de domaine consiste à convertir un nom de domaine en NFT."
 
+#: src/App.tsx:137
 #: src/screens/Profile/index.tsx:184
 msgid "Domains"
 msgstr "Domaines"
@@ -316,7 +318,7 @@ msgstr "Commencez avec mes profils"
 msgid "Github"
 msgstr "Github"
 
-#: src/components/ProgressExplainerModal.tsx:60
+#: src/components/ProgressExplainerModal.tsx:63
 msgid "How to boost your profile?"
 msgstr "Comment booster votre profil ?"
 
@@ -370,7 +372,7 @@ msgstr ""
 msgid "New picture URL"
 msgstr "Nouvelle photo de profil"
 
-#: src/components/ProgressExplainerModal.tsx:112
+#: src/components/ProgressExplainerModal.tsx:115
 msgid "Next"
 msgstr "Prochain"
 
@@ -429,6 +431,10 @@ msgstr "Veuillez vous rappeler que le transfert d'un domaine est une action irr�
 msgid "POINT"
 msgstr "POINT"
 
+#: src/App.tsx:126
+msgid "Profile"
+msgstr "Profil"
+
 #: src/screens/Profile/index.tsx:157
 msgid "Profile completion: {percentage}%"
 msgstr "Avancement du profil : {pourcentage} %"
@@ -483,7 +489,7 @@ msgstr "Sécurisez un domaine pour vous-même"
 msgid "SHDW"
 msgstr "SHDW"
 
-#: src/components/ProgressExplainerModal.tsx:100
+#: src/components/ProgressExplainerModal.tsx:103
 msgid "Skip"
 msgstr "Passer"
 
