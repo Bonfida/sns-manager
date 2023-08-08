@@ -407,7 +407,7 @@ msgstr "PUAN"
 
 #: src/App.tsx:126
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/screens/Profile/index.tsx:157
 msgid "Profile completion: {percentage}%"
@@ -583,7 +583,7 @@ msgstr "Önemsenmesi gerekenler nelerdir?"
 #: src/components/TokenizeModal.tsx:199
 #: src/components/TokenizeModal.tsx:212
 msgid "Wrap domain"
-msgstr ""
+msgstr "Domaini Katla (wrapping)"
 
 #: src/screens/DomainView.tsx:558
 msgid "Wrap to NFT"
