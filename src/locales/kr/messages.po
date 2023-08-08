@@ -79,7 +79,7 @@ msgstr "<0>3.</0><1>도메인을 전송할 수 없습니다.</1>"
 msgid "A Humanized ID for the Metaverse"
 msgstr "메타버스를 위한 인간화된 ID"
 
-#: src/components/ProgressExplainerModal.tsx:40
+#: src/components/ProgressExplainerModal.tsx:43
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "당신의 멋지고 매력적인 프로필 사진을 추가하세요. 당신의 사진, 마음에 드는 NFT, 혹은 영감을 주는 것도 좋아요!"
 
@@ -126,6 +126,7 @@ msgstr "{actionName}\"을(를) 클릭하면 지갑에서 승인 확인을 받게
 msgid "Cancel"
 msgstr "취소"
 
+#: src/App.tsx:147
 #: src/App.tsx:163
 msgid "Cart"
 msgstr "장바구니"
@@ -150,11 +151,11 @@ msgstr "모두 지우기"
 msgid "Clear search"
 msgstr "검색 지우기"
 
-#: src/components/ProgressExplainerModal.tsx:23
+#: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
 msgstr "별 아이콘을 클릭하여 좋아하는 프로필을 선택하세요. 프로필 완료 진행률을 프로필 완성도 바를 통해 확인하세요."
 
-#: src/components/ProgressExplainerModal.tsx:106
+#: src/components/ProgressExplainerModal.tsx:109
 #: src/components/SuccessSubdomainModal.tsx:39
 #: src/components/TokenizeModal.tsx:203
 msgid "Close"
@@ -185,7 +186,7 @@ msgstr "새 도메인 구매를 축하합니다!"
 #~ msgid "Congrats!"
 #~ msgstr "축하합니다!"
 
-#: src/components/ProgressExplainerModal.tsx:45
+#: src/components/ProgressExplainerModal.tsx:48
 msgid "Connect your backpack username to your on-chain identity."
 msgstr "백팩 (Backpack) 사용자 이름을 온체인 신원과 연결하세요."
 
@@ -207,7 +208,7 @@ msgstr "만들기"
 msgid "Create a subdomain"
 msgstr "서브도메인 만들기"
 
-#: src/components/ProgressExplainerModal.tsx:28
+#: src/components/ProgressExplainerModal.tsx:30
 msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
 msgstr "다양한 사람들과 연결하기 위해 트위터, 디스코드 및 텔레그램 링크를 추가하여 매력적인 프로필을 완성하세요."
 
@@ -249,6 +250,7 @@ msgstr "당신만의 도메인을 탐색하세요!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
 
+#: src/App.tsx:137
 #: src/screens/Profile/index.tsx:184
 msgid "Domains"
 msgstr "도메인"
@@ -367,7 +369,7 @@ msgstr "깃허브"
 #~ msgid "Home"
 #~ msgstr "홈"
 
-#: src/components/ProgressExplainerModal.tsx:60
+#: src/components/ProgressExplainerModal.tsx:63
 msgid "How to boost your profile?"
 msgstr "프로필을 어떻게 향상할까요?"
 
@@ -437,7 +439,7 @@ msgstr "새로운 {domain}.sol 소유자"
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
-#: src/components/ProgressExplainerModal.tsx:112
+#: src/components/ProgressExplainerModal.tsx:115
 msgid "Next"
 msgstr "다음"
 
@@ -502,9 +504,9 @@ msgstr "도메인을 전송하는 동작은 되돌릴 수 없습니다. 소유�
 msgid "POINT"
 msgstr "포인트"
 
-#: src/App.tsx:149
-#~ msgid "Profile"
-#~ msgstr "프로필"
+#: src/App.tsx:126
+msgid "Profile"
+msgstr "프로필"
 
 #: src/screens/Profile.tsx:177
 #~ msgid "Profile completed: {percentage}%"
@@ -582,7 +584,7 @@ msgstr "자신만의 도메인을 확보하기"
 msgid "SHDW"
 msgstr "섀도우 드라이브"
 
-#: src/components/ProgressExplainerModal.tsx:100
+#: src/components/ProgressExplainerModal.tsx:103
 msgid "Skip"
 msgstr "건너뛰기"
 

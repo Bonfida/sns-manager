@@ -77,7 +77,7 @@ msgstr ""
 msgid "A Humanized ID for the Metaverse"
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:40
+#: src/components/ProgressExplainerModal.tsx:43
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr ""
 
@@ -124,6 +124,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+#: src/App.tsx:147
 #: src/App.tsx:163
 msgid "Cart"
 msgstr ""
@@ -148,11 +149,11 @@ msgstr ""
 msgid "Clear search"
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:23
+#: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:106
+#: src/components/ProgressExplainerModal.tsx:109
 #: src/components/SuccessSubdomainModal.tsx:39
 #: src/components/TokenizeModal.tsx:203
 msgid "Close"
@@ -183,7 +184,7 @@ msgstr ""
 #~ msgid "Congrats!"
 #~ msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:45
+#: src/components/ProgressExplainerModal.tsx:48
 msgid "Connect your backpack username to your on-chain identity."
 msgstr ""
 
@@ -205,7 +206,7 @@ msgstr ""
 msgid "Create a subdomain"
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:28
+#: src/components/ProgressExplainerModal.tsx:30
 msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
 msgstr ""
 
@@ -247,6 +248,7 @@ msgstr ""
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr ""
 
+#: src/App.tsx:137
 #: src/screens/Profile/index.tsx:184
 msgid "Domains"
 msgstr ""
@@ -363,7 +365,7 @@ msgstr ""
 #~ msgid "Home"
 #~ msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:60
+#: src/components/ProgressExplainerModal.tsx:63
 msgid "How to boost your profile?"
 msgstr ""
 
@@ -433,7 +435,7 @@ msgstr ""
 msgid "New picture URL"
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:112
+#: src/components/ProgressExplainerModal.tsx:115
 msgid "Next"
 msgstr ""
 
@@ -494,9 +496,9 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
-#: src/App.tsx:149
-#~ msgid "Profile"
-#~ msgstr ""
+#: src/App.tsx:126
+msgid "Profile"
+msgstr ""
 
 #: src/screens/Profile.tsx:177
 #~ msgid "Profile completed: {percentage}%"
@@ -574,7 +576,7 @@ msgstr ""
 msgid "SHDW"
 msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:100
+#: src/components/ProgressExplainerModal.tsx:103
 msgid "Skip"
 msgstr ""
 
