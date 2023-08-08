@@ -111,7 +111,7 @@ export const Cart = () => {
     ) {
       return setStatus({
         status: "error",
-        message: `You do not have enough funds`,
+        message: t`You do not have enough funds`,
       });
     }
     try {
