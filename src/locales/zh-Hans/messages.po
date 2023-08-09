@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-01 20:16+1000\n"
-"PO-Revision-Date: 2023-08-09 13:04+0000\n"
+"PO-Revision-Date: 2023-08-09 14:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: Simplified Chinese\n"
 "Language: zh-Hans\n"
@@ -45,11 +45,11 @@ msgstr "<0>1.</0><1>转账过程可能会有些繁琐，这主要取决于你使
 
 #: src/components/TokenizeModal.tsx:172
 msgid "<0>2.</0><1>You cannot edit the content of your domain or add subdomains.</1>"
-msgstr "<0>2.</0><1>您无法编辑域名的内容或新增子域名。</1>"
+msgstr "<0>2.</0><1>您将无法编辑域名的内容或添加子域名。</1>"
 
 #: src/components/TokenizeModal.tsx:180
 msgid "<0>3.</0><1>You cannot transfer your domain.</1>"
-msgstr "<0>3.</0><1>您无法转移你的域名。</1>"
+msgstr "<0>3.</0><1>您将无法转移你的域名。</1>"
 
 #: src/screens/HomeScreen.tsx:65
 msgid "A Humanized ID for the Metaverse"
@@ -81,7 +81,7 @@ msgstr "BSC"
 
 #: src/components/ActionWarning.tsx:15
 msgid "By clicking \"{actionName}\" you will be asked for a confirmation by your wallet"
-msgstr "点击\"{actionName}\"，您的钱包需要您完成确认"
+msgstr "点击\"{actionName}\"，在您的钱包中完成确认"
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
@@ -144,7 +144,7 @@ msgstr "祝贺您成功购买新域名！"
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "Connect your backpack username to your on-chain identity."
-msgstr "将backpack用户名与链上身份连接。"
+msgstr "将backpack用户名与您的链上身份连接。"
 
 #: src/screens/Cart/index.tsx:280
 msgid "Continue"
@@ -166,7 +166,7 @@ msgstr "创建子域名"
 
 #: src/components/ProgressExplainerModal.tsx:30
 msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
-msgstr "通过添加Twitter、Discord和Telegram的链接，创建一个具有吸引力的个人资料，和有相同兴趣的朋友建立联系。"
+msgstr "通过添加Twitter、Discord和Telegram的链接，创建一个具有吸引力的个人资料，和志趣相投的朋友建立联系。"
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
@@ -184,7 +184,7 @@ msgstr "删除域名是一项永久性操作，您将失去对该域名的所有
 
 #: src/components/DeleteModal.tsx:73
 msgid "Deleting a subdomain is a reversible action. Although you can recreate it later, you will temporarily lose the ability to receive funds or create records with it post-deletion."
-msgstr "删除子域名是一项可逆的操作。虽然您可以重新再次创建，但在删除后您将暂时失去接收资金或添加记录的功能。"
+msgstr "删除子域名是一项可逆的操作。虽然您可以重新创建，但在删除后您将暂时失去接收资金或添加记录的功能。"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -204,7 +204,7 @@ msgstr "发现能代表你的域名！"
 
 #: src/components/TokenizeModal.tsx:152
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
-msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要显示原始域名，可通过恢复（解开封装）该通证完成。"
+msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要将其恢复为原始域名，可通过转换（解开封装）该通证完成操作。"
 
 #: src/App.tsx:137
 #: src/screens/Profile/index.tsx:184
@@ -227,7 +227,7 @@ msgstr "电子邮件"
 
 #: src/components/CreateSubdomainModal.tsx:78
 msgid "Enter subdomain"
-msgstr "进入子域名"
+msgstr "输入子域名"
 
 #: src/utils/record/place-holder.tsx:39
 msgid "Enter your {x} record"
@@ -352,7 +352,7 @@ msgstr "新的 {domain}.sol 所有者"
 
 #: src/components/EditPicture.tsx:236
 msgid "New picture URL"
-msgstr "新图片网址"
+msgstr "新的图片网址"
 
 #: src/components/ProgressExplainerModal.tsx:115
 msgid "Next"
@@ -401,7 +401,7 @@ msgstr "图片网址"
 
 #: src/components/TransferModal.tsx:96
 msgid "Please remember, once you transfer a domain, the action is irreversible. You will lose its ownership and will no longer be able to receive funds using this domain."
-msgstr "注意您一旦成功转让域名，该行为将不可逆转。您将失去该域名的所有权，并将再也无法使用该域名接收资金。"
+msgstr "注意一旦您成功转移域名，该操作将不可撤销。您将失去对该域名的所有权，并将再也无法使用该域名接收资金。"
 
 #: src/utils/record/place-holder.tsx:69
 msgid "POINT"
@@ -507,7 +507,7 @@ msgstr "Telegram"
 
 #: src/components/DomainSizeModal.tsx:51
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
-msgstr "存储容量将会决定你的域名上储存的最大数据量"
+msgstr "存储容量将会决定域名可储存的最大数据量"
 
 #: src/screens/DomainView.tsx:819
 msgid "There are no subdomains."
@@ -601,7 +601,7 @@ msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名
 
 #: src/screens/DomainView.tsx:790
 msgid "You can only add subdomains when the domain is unwrapped."
-msgstr "只有在域名解除封装后才能添加子域名。"
+msgstr "只有在域名解开封装后才能添加子域名。"
 
 #: src/screens/Cart/index.tsx:114
 msgid "You do not have enough funds"
