@@ -95,7 +95,6 @@ const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
 };
 
 function TabNavigator() {
-  console.log(1);
   // useReferrer();
   // const [cart] = useRecoilState(cartState);
   // const { publicKey, setVisible, connected } = useWallet();
@@ -195,7 +194,7 @@ function TabNavigator() {
   );
 }
 
-export function App() {
+function App() {
   let [fontsLoaded] = useFonts({
     Azeret: AzeretMono_400Regular,
   });
