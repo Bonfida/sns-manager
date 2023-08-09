@@ -9,11 +9,14 @@
     "dev": "GENERATE_SOURCEMAP=false expo start --clear --web & npx xnft --iframe http://localhost:19006",
     "dev:xnft": "XNFT=true yarn dev",
     "dev:web": "WEB=true yarn dev",
+    "dev:mobile": "expo start --dev-client --clear",
+    "dev:mobile:build": "eas build --profile development --platform android --local",
     "extract": "lingui extract",
     "compile": "lingui compile",
     "format": "npx prettier --write src/**/*.{ts,tsx}",
     "prepare": "husky install"
   },
+  "main": "./src/App",
   "dependencies": {
     "@adraffy/ens-normalize": "^1.9.0",
     "@bonfida/name-offers": "^0.0.10",
@@ -34,6 +37,8 @@
     "@react-navigation/native": "6.0.10",
     "@react-navigation/native-stack": "6.6.1",
     "@react-navigation/stack": "6.2.1",
+    "@solana-mobile/mobile-wallet-adapter-protocol": "^2.0.1",
+    "@solana-mobile/mobile-wallet-adapter-protocol-web3js": "^2.0.1",
     "@solana/buffer-layout": "^4.0.1",
     "@solana/spl-token": "^0.3.7",
     "@solana/wallet-adapter-react": "^0.15.32",
@@ -41,11 +46,13 @@
     "@solana/web3.js": "^1.75.0",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",
-    "expo": "~48.0.7",
+    "expo": "~48.0.18",
     "expo-blur": "~12.2.2",
     "expo-constants": "~14.2.1",
+    "expo-dev-client": "~2.2.1",
     "expo-image-picker": "~14.1.1",
     "expo-linear-gradient": "~12.1.2",
+    "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-async-hook": "^4.0.0",
@@ -83,5 +90,7 @@
   },
   "resolutions": {
     "react-error-overlay": "6.0.11"
-  }
+  },
+  "name": "sns-manager",
+  "version": "0.0.1"
 }

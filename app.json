@@ -2,6 +2,13 @@
   "expo": {
     "name": "SNS Manager",
     "slug": "sns-manager",
-    "entryPoint": "./src/App"
+    "extra": {
+      "eas": {
+        "projectId": "6a58dd40-2599-4f45-befe-c1ebe9766c1e"
+      }
+    },
+    "android": {
+      "package": "bonfida.sns_manager"
+    }
   }
 }
