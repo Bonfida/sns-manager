@@ -1,19 +1,12 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useState } from "react";
+import { View, Text } from "react-native";
 import { getDomainKeySync } from "@bonfida/spl-name-service";
-import tw from "../utils/tailwind";
 import {
   PublicKey,
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { useModal } from "react-native-modalfy";
-import { WrapModal } from "./WrapModal";
 import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { unwrap } from "../utils/unwrap";
-import { wrap } from "../utils/wrap";
 import {
   METADATA_SIGNER,
   MINT_PREFIX,
@@ -25,8 +18,19 @@ import {
   createCloseAccountInstruction,
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
-import { checkAccountExists } from "../utils/account";
-import { sendTx } from "../utils/send-tx";
+import { A as HTMLLink } from "@expo/html-elements";
+import tw from "@src/utils/tailwind";
+import { unwrap } from "@src/utils/unwrap";
+import { wrap } from "@src/utils/wrap";
+import { checkAccountExists } from "@src/utils/account";
+import { sendTx } from "@src/utils/send-tx";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+import { WrapModal } from "@src/components/WrapModal";
+import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const TokenizeModal = ({
   modal: { closeModal, getParam },
@@ -36,12 +40,14 @@ export const TokenizeModal = ({
     getParam: <T>(a: string, b?: string) => T;
   };
 }) => {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const isTokenized = getParam<string>("isTokenized");
+  const isOwner = getParam<string>("isOwner");
   const refresh = getParam<() => Promise<void>>("refresh");
 
   const handle = async () => {
@@ -120,53 +126,93 @@ export const TokenizeModal = ({
       }
 
       setLoading(false);
-      openModal(
-        "Success",
-        {
-          msg: t`${domain}.sol successfully ${
-            isTokenized ? "unwrapped" : "wrapped"
-          }!`,
-        },
-        () => {
-          closeModal("TokenizeModal");
-        }
-      );
+      setStatus({
+        status: "success",
+        message: t`${domain}.sol successfully ${
+          isTokenized ? "unwrapped" : "wrapped"
+        }!`,
+      });
+      closeModal("TokenizeModal");
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
+  const modalTitle = isOwner
+    ? isTokenized
+      ? t`Unwrap your domain from NFT`
+      : t`Wrap your domain into an NFT`
+    : t`What is an NFT domain?`;
+
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          {isTokenized ? t`Unwrap` : `Wrap`} {domain}.sol
+    <WrapModal closeModal={closeModal} title={modalTitle}>
+      <Text style={tw`mt-6 text-sm text-black`}>
+        <Trans>
+          Domain name tokenization (wrapping), involves converting a domain name
+          into an NFT. To reveal the original domain name, the token can be
+          redeemed (unwrapped).
+        </Trans>
+      </Text>
+      <Text style={tw`mt-6 text-sm text-black`}>
+        <Trans>What to consider:</Trans>
+      </Text>
+      <View style={tw`flex flex-col gap-2 pl-1 mt-6 text-sm text-black`}>
+        <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+          <Trans>
+            <Text>1.</Text>
+            <Text>
+              Transferring funds can sometimes be a bit complex, and it may vary
+              depending on the wallet you are using.
+            </Text>
+          </Trans>
         </Text>
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
+        <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+          <Trans>
+            <Text>2.</Text>
+            <Text>
+              You cannot edit the content of your domain or add subdomains.
+            </Text>
+          </Trans>
+        </Text>
+        <Text style={tw`flex flex-row gap-1 text-sm text-black`}>
+          <Trans>
+            <Text>3.</Text>
+            <Text>You cannot transfer your domain.</Text>
+          </Trans>
+        </Text>
+      </View>
+
+      <HTMLLink
+        style={tw`mt-6 text-sm text-center text-brand-primary`}
+        href="https://docs.bonfida.org/collection/naming-service/how-to-create-a-solana-domain-name/selling-a-domain-name/nft-domain-resell"
+      >
+        <Trans>Learn more in our docs</Trans>
+      </HTMLLink>
+
+      <View style={tw`mt-6`}>
+        {isOwner ? (
+          <UiButton
             disabled={loading}
             onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 mt-2 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              {isTokenized ? t`Unwrap` : t`Wrap`}
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => closeModal()}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+            content={isTokenized ? t`Unwrap domain` : t`Wrap domain`}
+            loading={loading}
+          />
+        ) : (
+          <UiButton onPress={() => closeModal()} content={t`Close`} />
+        )}
       </View>
+
+      {isOwner && (
+        <>
+          {isTokenized ? (
+            <ActionWarning actionName={t`Unwrap domain`} />
+          ) : (
+            <ActionWarning actionName={t`Wrap domain`} />
+          )}
+        </>
+      )}
     </WrapModal>
   );
 };

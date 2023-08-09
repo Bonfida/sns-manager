@@ -1,50 +1,71 @@
+import { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import tw from "../utils/tailwind";
-import { useNavigation } from "@react-navigation/native";
-import { searchResultScreenProp } from "../../types";
-import { FavoriteButton } from "../components/FavoriteButton";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
+import { Trans } from "@lingui/macro";
+
+import tw from "@src/utils/tailwind";
+import { SubdomainResult } from "@src/hooks/useSubdomains";
+import {
+  DomainRowRecord,
+  DomainRowRecordProps,
+} from "@src/components/DomainRowRecord";
+
+type DomainRowProps = Pick<
+  DomainRowRecordProps,
+  "domain" | "isFav" | "refresh" | "isOwner" | "callback"
+> & {
+  subdomains?: SubdomainResult[];
+};
 
 export const DomainRow = ({
   domain,
-  isFav,
-  refresh,
-  isOwner,
-  callback,
-}: {
-  domain: string;
-  isFav: boolean;
-  refresh: () => Promise<void>;
-  isOwner: boolean;
-  callback?: () => void;
-}) => {
-  const navigation = useNavigation<searchResultScreenProp>();
+  subdomains = [],
+  ...rest
+}: DomainRowProps) => {
+  const [isExpanded, setExpandedState] = useState(false);
+
   return (
     <View
-      style={tw`w-full px-4 h-[50px] bg-white border-[2px] border-black/10 rounded-lg flex items-center justify-between flex-row my-1`}
+      style={tw`px-4 py-3 my-1 border-0 rounded-xl bg-background-secondary`}
     >
-      <Text style={tw`font-bold`}>{domain}.sol</Text>
-      <View style={tw`flex flex-row items-center`}>
-        {isOwner && (
-          <FavoriteButton domain={domain} isFav={isFav} refresh={refresh} />
-        )}
-        <TouchableOpacity
-          onPress={() => {
-            callback && callback();
-            navigation.navigate("Search", {
-              screen: "Domain View",
-              params: { domain },
-            });
-          }}
-        >
-          <Feather
-            style={tw`ml-2`}
-            name="chevron-right"
-            size={22}
-            color="rgb(143, 146, 158)"
-          />
-        </TouchableOpacity>
-      </View>
+      <DomainRowRecord {...rest} domain={domain} />
+
+      {!!subdomains.length && (
+        <>
+          <TouchableOpacity
+            style={[
+              tw`flex flex-row items-center gap-2 mt-5`,
+              isExpanded && tw`mb-5`,
+            ]}
+            onPress={() => setExpandedState(!isExpanded)}
+          >
+            <Ionicons
+              name="layers"
+              size={16}
+              color={tw.color("brand-primary")}
+            />
+            <Text style={tw`text-base text-brand-primary`}>
+              <Trans>Subdomains ({subdomains.length})</Trans>
+            </Text>
+            <Feather
+              name={isExpanded ? "chevron-up" : "chevron-down"}
+              size={24}
+              color={tw.color("brand-primary")}
+            />
+          </TouchableOpacity>
+
+          <View style={[!isExpanded && tw`hidden`]}>
+            {subdomains.map((item) => (
+              <DomainRowRecord
+                key={item.subdomain}
+                {...rest}
+                domain={item.subdomain}
+                isSubdomain
+              />
+            ))}
+          </View>
+        </>
+      )}
     </View>
   );
 };

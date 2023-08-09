@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -8,13 +8,16 @@ import {
 import tw from "../utils/tailwind";
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { sendTx } from "../utils/send-tx";
-import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { useNavigation } from "@react-navigation/native";
-import { domainViewScreenProp } from "../../types";
+import { domainViewScreenProp } from "@src/types";
+import { useHandleError } from "@src/hooks/useHandleError";
 import { trimTld } from "../utils/validate";
 import { Trans, t } from "@lingui/macro";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
 
 export const DeleteModal = ({
   modal: { closeModal, getParam },
@@ -24,11 +27,13 @@ export const DeleteModal = ({
     getParam: <T>(a: string, b?: string) => T;
   };
 }) => {
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
+  const isSubdomain = domain?.split(".").length === 2;
 
   const navigation = useNavigation<domainViewScreenProp>();
 
@@ -46,57 +51,58 @@ export const DeleteModal = ({
       console.log(sig);
 
       setLoading(false);
-      openModal(
-        "Success",
-        {
-          msg: t`subdomain ${domain}.sol successfully deleted!`,
-        },
-        () => {
-          closeModal("Delete");
-        }
-      );
-
+      setStatus({
+        status: "success",
+        message: t`subdomain ${domain}.sol successfully deleted!`,
+      });
+      closeModal("Delete");
       const splitted = trimTld(domain).split(".");
-      return navigation.navigate("Domain View", {
+      return navigation.navigate("domain-view", {
         domain: splitted.length === 2 ? splitted[1] : domain,
       });
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Delete {domain}.sol</Trans>
-        </Text>
-        <View style={tw`flex flex-col items-center mt-2`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-red-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Delete</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => {
-              closeModal();
-            }}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+    <WrapModal closeModal={closeModal} title={t`Delete ${domain}.sol`}>
+      <Text style={tw`mt-3 mb-5 text-sm`}>
+        {isSubdomain ? (
+          <Trans>
+            Deleting a subdomain is a reversible action. Although you can
+            recreate it later, you will temporarily lose the ability to receive
+            funds or create records with it post-deletion.
+          </Trans>
+        ) : (
+          <Trans>
+            Deleting a domain is a permanent action. You will forfeit its
+            ownership and lose the ability to receive funds using this domain.
+            Upon deletion, the domain will revert back to the SNS registrar.
+          </Trans>
+        )}
+      </Text>
+
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
+
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Delete`}
+          danger
+          loading={loading}
+        />
       </View>
+
+      <ActionWarning actionName={t`Delete`} />
     </WrapModal>
   );
 };

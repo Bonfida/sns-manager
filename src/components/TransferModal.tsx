@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import {
   getDomainKeySync,
@@ -13,27 +7,36 @@ import {
   transferInstruction,
   ROOT_DOMAIN_ACCOUNT,
 } from "@bonfida/spl-name-service";
-import tw from "../utils/tailwind";
 import { PublicKey } from "@solana/web3.js";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { sendTx } from "../utils/send-tx";
-import { useModal } from "react-native-modalfy";
-import { WrapModal } from "./WrapModal";
 import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import tw from "@src/utils/tailwind";
+import { sendTx } from "@src/utils/send-tx";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { WrapModal } from "@src/components/WrapModal";
+import { UiButton } from "@src/components/UiButton";
+import { ActionWarning } from "@src/components/ActionWarning";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const TransferModal = ({
-  modal: { getParam },
+  modal: { closeModal, getParam },
 }: {
-  modal: { getParam: <T>(a: string, b?: string) => T };
+  modal: {
+    closeModal: () => void;
+    getParam: <T>(a: string, b?: string) => T;
+  };
 }) => {
-  const { openModal, closeModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
+  const isSubdomain = domain?.split(".").length === 2;
 
   const handle = async () => {
     if (!connection || !publicKey || !signTransaction) return;
@@ -59,50 +62,63 @@ export const TransferModal = ({
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);
       setLoading(false);
-      openModal("Success", { msg: t`${domain}.sol successfully transfered!` });
+      setStatus({
+        status: "success",
+        message: t`${domain}.sol successfully transfered!`,
+      });
       refresh();
-      closeModal("Transfer");
+      closeModal();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
   return (
-    <WrapModal closeModal={() => closeModal("Transfer")}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Transfer {domain}.sol</Trans>
-        </Text>
-        <TextInput
-          placeholder={t`New ${domain}.sol owner`}
-          onChangeText={(text) => setValue(text)}
-          value={value}
-          style={tw`h-[40px] text-sm pl-2 bg-blue-grey-050 rounded-lg my-5 font-bold`}
+    <WrapModal closeModal={closeModal} title={t`Transfer ${domain}.sol`}>
+      <CustomTextInput
+        placeholder={t`New ${domain}.sol owner`}
+        onChangeText={(text) => setValue(text)}
+        value={value}
+        style={tw`mt-5`}
+        editable={!loading}
+      />
+
+      <Text style={tw`mt-3 mb-5 text-sm`}>
+        {isSubdomain ? (
+          <Trans>
+            Transferring your subdomain will link it to a new address and may
+            restrict your ability to receive funds through it. Although the
+            action can be reversed by the parent owners, we caution the user to
+            be vigilant of the addresses.
+          </Trans>
+        ) : (
+          <Trans>
+            Please remember, once you transfer a domain, the action is
+            irreversible. You will lose its ownership and will no longer be able
+            to receive funds using this domain.
+          </Trans>
+        )}
+      </Text>
+
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
         />
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Confirm</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => closeModal("Transfer")}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+
+        <UiButton
+          disabled={loading || !value}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Confirm`}
+          loading={loading}
+        />
       </View>
+
+      <ActionWarning actionName={t`Confirm`} />
     </WrapModal>
   );
 };

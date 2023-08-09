@@ -1,37 +1,39 @@
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  ScrollView,
-  Platform,
-} from "react-native";
-import tw from "../utils/tailwind";
+import { View, FlatList, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
-import { Feather } from "@expo/vector-icons";
-import { AvailableRow } from "../components/AvailableRow";
-import { UnavailableRow } from "../components/UnavailableRow";
-import { useSearch } from "../hooks/useSearch";
 import SkeletonContent from "react-native-skeleton-content";
-import { Screen } from "../components/Screen";
-import { trimTld, validate } from "../utils/validate";
 import { useModal } from "react-native-modalfy";
-import { isPubkey } from "../utils/publickey";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "../../types";
 import { t } from "@lingui/macro";
-import { useDomainSuggestions } from "../hooks/useDomainSuggestions";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { profileScreenProp } from "@src/types";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import tw from "@src/utils/tailwind";
+import { trimTld, validate } from "@src/utils/validate";
+import { isPubkey } from "@src/utils/publickey";
+import { useSearch } from "@src/hooks/useSearch";
+import { useDomainSuggestions } from "@src/hooks/useDomainSuggestions";
+import { useTopDomainsSales } from "@src/hooks/useTopDomainsSales";
+import { Screen } from "@src/components/Screen";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { UiButton } from "@src/components/UiButton";
+import { DomainSearchResultRow } from "@src/components/DomainSearchResultRow";
 
-export const SearchResult = ({ domain }: { domain: string }) => {
-  const { openModal, currentModal } = useModal();
+export const SearchResult = ({
+  domain,
+  loadPopular = false,
+}: {
+  domain: string;
+  loadPopular?: boolean;
+}) => {
+  const { currentModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [search, setSearch] = useState(domain || "");
   const [input, setInput] = useState(domain || "");
   const results = useSearch(search);
   const suggestions = useDomainSuggestions(search);
   const navigation = useNavigation<profileScreenProp>();
   const isFocused = useIsFocused();
-
-  const isWeb = Platform.OS === "web";
+  const topDomainsSales = useTopDomainsSales(loadPopular);
+  const [showPopularDomains, togglePopularDomains] = useState(loadPopular);
 
   useEffect(() => {
     setSearch(domain || search);
@@ -40,91 +42,91 @@ export const SearchResult = ({ domain }: { domain: string }) => {
 
   const handle = async () => {
     if (!input) return;
+    togglePopularDomains(false);
     if (isPubkey(input)) {
-      return navigation.navigate("Search", {
-        screen: "Search Profile",
+      return navigation.navigate("Home", {
+        screen: "search-profile",
         params: { owner: input },
       });
     }
     if (!validate(input)) {
-      return openModal("Error", { msg: t`${input}.sol is not a valid domain` });
+      return setStatus({
+        status: "error",
+        message: t`${input}.sol is not a valid domain`,
+      });
     }
     setSearch(trimTld(input));
   };
 
   return (
     <Screen>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        style={tw`px-4 mt-${isWeb ? 10 : 4}`}
-      >
-        <View
-          style={tw`flex flex-row h-[55px] justify-center w-full items-center border-[1px] border-black/10 rounded-lg`}
-        >
-          <TextInput
-            style={[
-              tw`w-full h-full pl-5 font-semibold bg-white border-0 rounded-l-lg shadow-xl shadow-blue-900`,
-              Platform.OS === "web" && { outlineWidth: 0 },
-            ]}
-            onChangeText={(newText) => setInput(newText)}
-            value={input}
-            placeholder={t`Search for your name.sol`}
-            placeholderTextColor="#BCCCDC"
-            editable={currentModal !== "Error"}
-            onKeyPress={(e) => {
-              if (e.nativeEvent.key === "Enter") {
-                handle();
-              }
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => setInput("")}
-            style={tw`flex flex-col items-center justify-center h-full px-3 bg-white `}
-          >
-            <Feather name="x" size={16} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity
+      <ScrollView showsHorizontalScrollIndicator={false}>
+        <CustomTextInput
+          onChangeText={(newText) => setInput(newText)}
+          value={input}
+          placeholder={t`Search for a domain`}
+          type="search"
+          editable={currentModal !== "Error"}
+          onKeyPress={(e) => {
+            if (e.nativeEvent.key === "Enter") {
+              handle();
+            }
+          }}
+        />
+        <View style={tw`mt-4 w-[100%]`}>
+          <UiButton
             onPress={handle}
-            style={[
-              tw`bg-blue-900 h-[55px] rounded-tr-lg rounded-br-lg flex items-center justify-center`,
-              { width: "calc(30% - 40px)", maxWidth: 300, minWidth: 50 },
-            ]}
-          >
-            <Feather name="search" size={24} color="white" />
-          </TouchableOpacity>
+            disabled={!input}
+            content={t`Search your .SOL domain`}
+          />
         </View>
+
         <View style={tw`mt-3`}>
-          {results.loading && suggestions.loading ? (
-            <SkeletonContent isLoading>
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-            </SkeletonContent>
-          ) : !results.loading && results.result && suggestions.loading ? (
+          {showPopularDomains && topDomainsSales ? (
             <>
-              <RenderRow
-                domain={results.result[0].domain}
-                available={results.result[0].available}
-              />
-              <SkeletonContent isLoading>
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-                <View style={tw`w-full h-[60px] my-1 rounded-lg`} />
-              </SkeletonContent>
+              {topDomainsSales.loading && <RenderSkeleton />}
+              {!topDomainsSales.loading && (
+                <FlatList
+                  data={topDomainsSales.result}
+                  renderItem={({ item }) => (
+                    <DomainSearchResultRow
+                      domain={item.domain}
+                      price={item.price}
+                      available={false}
+                    />
+                  )}
+                />
+              )}
             </>
           ) : (
-            <FlatList
-              data={results.result?.concat(suggestions.result || [])}
-              renderItem={({ item }) => (
-                <RenderRow domain={item.domain} available={item.available} />
+            <>
+              {results.loading && suggestions.loading && (
+                <View>
+                  {/* not sure why but need to wrap into View. otherwise layout will break */}
+                  <RenderSkeleton />
+                </View>
               )}
-            />
+
+              {!results.loading && results.result && suggestions.loading ? (
+                <>
+                  <DomainSearchResultRow
+                    domain={results.result![0].domain}
+                    available={results.result![0].available}
+                  />
+                  <RenderSkeleton />
+                </>
+              ) : (
+                <FlatList
+                  data={results.result?.concat(suggestions.result || [])}
+                  renderItem={({ item }) => (
+                    <DomainSearchResultRow
+                      domain={item.domain}
+                      available={item.available}
+                    />
+                  )}
+                />
+              )}
+            </>
           )}
         </View>
       </ScrollView>
@@ -132,16 +134,13 @@ export const SearchResult = ({ domain }: { domain: string }) => {
   );
 };
 
-const RenderRow = ({
-  domain,
-  available,
-}: {
-  domain: string;
-  available: boolean;
-}) => {
-  return available ? (
-    <AvailableRow domain={domain} />
-  ) : (
-    <UnavailableRow domain={domain} />
-  );
-};
+const RenderSkeleton = () => (
+  <SkeletonContent isLoading>
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
+  </SkeletonContent>
+);

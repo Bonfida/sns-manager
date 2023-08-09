@@ -1,14 +1,6 @@
 import { useState } from "react";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  ActivityIndicator,
-  Image,
-} from "react-native";
-import tw from "../utils/tailwind";
-import { useModal } from "react-native-modalfy";
+import { View, Image } from "react-native";
+import tw from "@src/utils/tailwind";
 import * as ImagePicker from "expo-image-picker";
 import {
   Record,
@@ -21,17 +13,21 @@ import {
   Numberu32,
   NAME_OFFERS_ID,
 } from "@bonfida/spl-name-service";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
-import { PublicKey, TransactionInstruction } from "@solana/web3.js";
-import { removeZeroRight } from "../utils/record/zero";
-import { sendTx } from "../utils/send-tx";
-import { WrapModal } from "./WrapModal";
-import { isTokenized } from "@bonfida/name-tokenizer";
-import { unwrap } from "../utils/unwrap";
 import { registerFavourite } from "@bonfida/name-offers";
-import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { uploadToIPFS } from "../utils/ipfs";
+import { isTokenized } from "@bonfida/name-tokenizer";
+import { t } from "@lingui/macro";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { removeZeroRight } from "@src/utils/record/zero";
+import { sendTx } from "@src/utils/send-tx";
+import { WrapModal } from "./WrapModal";
+import { unwrap } from "@src/utils/unwrap";
+import { useWallet } from "@src/hooks/useWallet";
+import { uploadToIPFS } from "@src/utils/ipfs";
+import { UiButton } from "@src/components/UiButton";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
@@ -42,10 +38,11 @@ export const EditPicture = ({
   const domain = getParam<string>("domain");
   const setAsFav = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const { publicKey, signTransaction, setVisible, connected } = useWallet();
 
   const handle = async () => {
@@ -63,7 +60,8 @@ export const EditPicture = ({
         new URL(pic);
       } catch (err) {
         setLoading(false);
-        return openModal("Error", { msg: t`Invalid URL` });
+        setStatus({ status: "error", message: t`Invalid URL` });
+        return;
       }
 
       // Set as fav
@@ -157,9 +155,8 @@ export const EditPicture = ({
       await refresh();
       closeModal();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
@@ -168,8 +165,9 @@ export const EditPicture = ({
       let permissionResult =
         await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (permissionResult.granted === false) {
-        openModal("Error", {
-          msg: t`Permission to access photo album is required`,
+        setStatus({
+          status: "error",
+          message: t`Permission to access photo album is required`,
         });
         return;
       }
@@ -205,69 +203,57 @@ export const EditPicture = ({
         console.log("cancelled");
       }
     } catch (err) {
-      console.error(err);
-      setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     } finally {
       setLoading(false);
     }
   };
-
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Edit Picture</Trans>
-        </Text>
-        <View style={tw`flex items-center justify-center my-2`}>
-          <Image
-            style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
-            source={
-              pic || currentPic
-                ? { uri: pic || currentPic }
-                : require("../../assets/default-pic.png")
-            }
-          />
-        </View>
-        <View style={tw`flex flex-col my-5`}>
-          <TextInput
-            placeholder={t`New picture URL`}
-            onChangeText={(text) => setPic(text)}
-            value={pic}
-            style={tw`h-[40px] bg-blue-grey-050 pl-2 rounded-md font-bold`}
-          />
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handlePickImage : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Choose a picture</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-        </View>
-        <View style={tw`flex flex-col items-center`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Confirm</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={closeModal}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+    <WrapModal closeModal={closeModal} title={t`Change profile picture`}>
+      <View style={tw`flex items-center justify-center my-6`}>
+        <Image
+          style={tw`w-[100px] rounded-full h-[100px]`}
+          source={
+            pic || currentPic
+              ? { uri: pic || currentPic }
+              : require("@assets/default-pic.png")
+          }
+        />
+      </View>
+
+      <UiButton
+        disabled={loading}
+        onPress={connected ? handlePickImage : () => setVisible(true)}
+        style={tw`flex flex-row items-center justify-center`}
+        content={t`Upload a picture...`}
+        loading={loading}
+      />
+
+      <View style={tw`flex flex-col mt-4 mb-10`}>
+        <CustomTextInput
+          label={t`Picture URL`}
+          editable={!loading}
+          placeholder={t`New picture URL`}
+          onChangeText={(text) => setPic(text)}
+          value={pic}
+        />
+      </View>
+
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
+
+        <UiButton
+          disabled={loading}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Save`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );

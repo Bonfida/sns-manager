@@ -18,7 +18,7 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 
 <br />
 <center>
-<img src="./assets/illustration.png" />
+<img src="./assets/readme/app-screenshots.png" alt="App Screenshots" />
 </center>
 <br />
 

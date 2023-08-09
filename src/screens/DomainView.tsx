@@ -1,86 +1,128 @@
+import { useReducer, useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableOpacity,
   ScrollView,
+  Platform,
+  NativeScrollEvent,
+  Dimensions,
 } from "react-native";
-import tw from "../utils/tailwind";
 import {
-  SocialRecord,
-  useAddressRecords,
-  useSocialRecords,
-} from "../hooks/useRecords";
-import { Record } from "@bonfida/spl-name-service";
-import { Feather } from "@expo/vector-icons";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
+  AntDesign,
+  FontAwesome5,
+  MaterialIcons,
+  EvilIcons,
+  Ionicons,
+  MaterialCommunityIcons,
+  Entypo,
+} from "@expo/vector-icons";
+import {
+  Record as SNSRecord,
+  getDomainKeySync,
+  NameRegistryState,
+  transferInstruction,
+  NAME_PROGRAM_ID,
+  createNameRegistry,
+  updateInstruction,
+  Numberu32,
+  deleteInstruction,
+  serializeRecord,
+  serializeSolRecord,
+} from "@bonfida/spl-name-service";
+import { ROOT_DOMAIN } from "@bonfida/name-offers";
+import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
-import { useNavigation } from "@react-navigation/native";
-import { profileScreenProp } from "../../types";
 import { useModal } from "react-native-modalfy";
-import { SocialRecordCard } from "../components/SocialRecord";
-import { FontAwesome } from "@expo/vector-icons";
-import { Screen } from "../components/Screen";
-import { abbreviate } from "../utils/abbreviate";
-import { useDomainInfo } from "../hooks/useDomainInfo";
 import { useProfilePic } from "@bonfida/sns-react";
+import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Trans, t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
-import { useSubdomains } from "../hooks/useSubdomains";
-import { SubdomainRow } from "../components/SubdomainRow";
+import tw from "@src/utils/tailwind";
+import { getTranslatedName } from "@src/utils/record/place-holder";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import {
+  AddressRecord,
+  SocialRecord,
+  SOCIAL_RECORDS,
+  useAddressRecords,
+  useSocialRecords,
+} from "@src/hooks/useRecords";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useDomainInfo } from "@src/hooks/useDomainInfo";
+import { useWallet } from "@src/hooks/useWallet";
+import { useSubdomains } from "@src/hooks/useSubdomains";
+import { Screen } from "@src/components/Screen";
+import { DomainRowRecord } from "@src/components/DomainRowRecord";
+import { ProfileBlock } from "@src/components/ProfileBlock";
+import { UiButton } from "@src/components/UiButton";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { sendTx } from "@src/utils/send-tx";
+import { sleep } from "@src/utils/sleep";
+import { useHandleError } from "@src/hooks/useHandleError";
+import { LoadingState } from "@src/screens/Profile/LoadingState";
 
-export const LoadingState = () => {
-  return (
-    <View style={tw`px-4`}>
-      <View style={tw`flex flex-row items-center mt-5`}>
-        <SkeletonContent containerStyle={tw`mr-4`} isLoading>
-          <View style={tw`w-[100px] h-[100px] rounded-lg`} />
-        </SkeletonContent>
-        <View>
-          <View style={tw`flex flex-col`}>
-            <SkeletonContent isLoading>
-              <View style={tw`w-[160px] h-[20px]`} />
-            </SkeletonContent>
-            <SkeletonContent containerStyle={tw``} isLoading>
-              <View style={tw`w-[130px] mt-2 h-[10px]`} />
-            </SkeletonContent>
-          </View>
-        </View>
-      </View>
+const getIcon = (record: SocialRecord) => {
+  const defaultIconAttrs = {
+    size: 20,
+    color: tw.color("content-secondary"),
+  };
+  switch (record) {
+    case SNSRecord.Discord:
+      return <FontAwesome5 name="discord" {...defaultIconAttrs} />;
+    case SNSRecord.Email:
+      return <MaterialIcons name="email" {...defaultIconAttrs} />;
+    case SNSRecord.Github:
+      return <AntDesign name="github" {...defaultIconAttrs} />;
+    case SNSRecord.Reddit:
+      return <FontAwesome5 name="reddit" {...defaultIconAttrs} />;
+    case SNSRecord.Telegram:
+      return <FontAwesome5 name="telegram" {...defaultIconAttrs} />;
+    case SNSRecord.Twitter:
+      return <FontAwesome5 name="twitter" {...defaultIconAttrs} />;
+    case SNSRecord.Url:
+      return <MaterialCommunityIcons name="web" {...defaultIconAttrs} />;
+    case SNSRecord.Backpack:
+      return <MaterialIcons name="backpack" {...defaultIconAttrs} />;
+    default:
+      return null;
+  }
+};
 
-      <SkeletonContent containerStyle={tw`mt-10 ml-3`} isLoading>
-        <View style={tw`h-[30px] w-[150px]`} />
-      </SkeletonContent>
+type FormKeys = AddressRecord | SocialRecord;
+type FormValue = string;
+// using Map to store correct order of fields
+type FormState = Map<FormKeys, FormValue>;
+type FormAction =
+  | { type: FormKeys; value: FormValue }
+  | { type: "bulk"; value: FormState };
 
-      <FlatList
-        style={tw`border-[1px] border-black/10 px-4 mt-2 rounded-lg py-3`}
-        data={[0, 0, 0, 0, 0]}
-        renderItem={({ item }) => (
-          <SkeletonContent containerStyle={tw`my-1`} isLoading>
-            <View style={tw`h-[30px] w-[200px]`} />
-          </SkeletonContent>
-        )}
-      />
-    </View>
-  );
+const formReducer = (state: FormState, action: FormAction) => {
+  if (action.type === "bulk") {
+    return action.value;
+  }
+
+  const newState = new Map(state);
+  newState.set(action.type, action.value);
+  return newState;
 };
 
 export const DomainView = ({ domain }: { domain: string }) => {
   const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const socialRecords = useSocialRecords(domain);
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
   const subdomains = useSubdomains(domain);
   const picRecord = useProfilePic(connection!, domain);
   const { publicKey } = useWallet();
-  const navigation = useNavigation<profileScreenProp>();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
-  const isSub = domain?.split(".").length === 2;
+  const isSubdomain = domain?.split(".").length === 2;
   const hasSubdomain =
     subdomains.result !== undefined && subdomains.result.length !== 0;
   const isTokenized = domainInfo.result?.isTokenized;
@@ -102,315 +144,685 @@ export const DomainView = ({ domain }: { domain: string }) => {
     ]);
   };
 
+  const scrollViewRef = useRef<ScrollView | null>(null);
+  const [UISectionsCoordinates, setCoordinates] = useState<
+    Record<"socials" | "addresses" | "subdomains", number>
+  >({
+    socials: 0,
+    addresses: 0,
+    subdomains: 0,
+  });
+  const [currentScrollViewData, setScrollViewMeasurements] =
+    useState<NativeScrollEvent | null>(null);
+
+  const { signTransaction, signMessage } = useWallet();
+  const [isEditing, toggleEditMode] = useState(false);
+  const [formState, dispatchFormChange] = useReducer(formReducer, new Map());
+  // We store form dirtiness to disable/enable "Save" button
+  const [isFormDirty, setFormDirty] = useState(false);
+  const [previousFormState, setPreviousFormState] = useState<any>(null);
+  const [isLoading, setFormLoading] = useState(false);
+
+  const discardChanges = () => {
+    if (isFormDirty) {
+      dispatchFormChange({
+        type: "bulk",
+        value: new Map(previousFormState),
+      });
+    }
+    toggleEditMode(false);
+  };
+
+  const resetForm = () => {
+    setFormDirty(false);
+    toggleEditMode(false);
+    setPreviousFormState(null);
+    setFormLoading(false);
+  };
+
+  const prepareUpdateInstructions = async (
+    fields: { record: SNSRecord; value: string }[]
+  ) => {
+    if (!connection || !publicKey || !signTransaction || !signMessage)
+      return [];
+
+    const ixs: TransactionInstruction[] = [];
+
+    for (const field of fields) {
+      const { record, value } = field;
+      const sub = Buffer.from([1]).toString() + record;
+      let { pubkey: recordKey, isSub } = getDomainKeySync(
+        record + "." + domain,
+        true
+      );
+      const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
+
+      // Check if exists
+      let ser: Buffer;
+      if (record === SNSRecord.SOL) {
+        const toSign = Buffer.concat([
+          new PublicKey(value).toBuffer(),
+          recordKey.toBuffer(),
+        ]);
+
+        const encodedMessage = new TextEncoder().encode(toSign.toString("hex"));
+        const signed = await signMessage(encodedMessage);
+        ser = serializeSolRecord(
+          new PublicKey(value),
+          recordKey,
+          publicKey,
+          signed
+        );
+      } else {
+        ser = serializeRecord(value, record);
+      }
+      const space = ser.length;
+      const currentAccount = await connection.getAccountInfo(recordKey);
+
+      if (!currentAccount?.data) {
+        const lamports = await connection.getMinimumBalanceForRentExemption(
+          space + NameRegistryState.HEADER_LEN
+        );
+        const ix = await createNameRegistry(
+          connection,
+          sub,
+          space,
+          publicKey,
+          publicKey,
+          lamports,
+          undefined,
+          parent
+        );
+        ixs.push(ix);
+      } else {
+        const { registry } = await NameRegistryState.retrieve(
+          connection,
+          recordKey
+        );
+
+        if (!registry.owner.equals(publicKey)) {
+          // Record was created before domain was transfered
+          const ix = transferInstruction(
+            NAME_PROGRAM_ID,
+            recordKey,
+            publicKey,
+            registry.owner,
+            undefined,
+            parent,
+            publicKey
+          );
+          ixs.push(ix);
+        }
+
+        // The size changed: delete + create to resize
+        if (
+          currentAccount.data.length - NameRegistryState.HEADER_LEN !==
+          space
+        ) {
+          console.log("Resizing...");
+          const ixClose = deleteInstruction(
+            NAME_PROGRAM_ID,
+            recordKey,
+            publicKey,
+            publicKey
+          );
+          const sig = await sendTx(
+            connection,
+            publicKey,
+            [ixClose],
+            signTransaction
+          );
+          console.log(sig);
+
+          const lamports = await connection.getMinimumBalanceForRentExemption(
+            space + NameRegistryState.HEADER_LEN
+          );
+          const ix = await createNameRegistry(
+            connection,
+            sub,
+            space,
+            publicKey,
+            publicKey,
+            lamports,
+            undefined,
+            parent
+          );
+          ixs.push(ix);
+        }
+      }
+
+      const ix = updateInstruction(
+        NAME_PROGRAM_ID,
+        recordKey,
+        new Numberu32(0),
+        ser,
+        publicKey
+      );
+
+      ixs.push(ix);
+
+      // Handle bridge cases
+      if (record === SNSRecord.BSC) {
+        const ix = await post(
+          ChainId.BSC,
+          Network.Mainnet,
+          domain,
+          publicKey,
+          1_000,
+          recordKey
+        );
+        ixs.push(...ix);
+      }
+    }
+
+    return ixs;
+  };
+
+  const prepareDeleteInstructions = (records: SNSRecord[]) => {
+    if (!publicKey) return [];
+
+    const ixs: TransactionInstruction[] = [];
+
+    for (const record of records) {
+      const { pubkey } = getDomainKeySync(record + "." + domain, true);
+
+      const ix = deleteInstruction(
+        NAME_PROGRAM_ID,
+        pubkey,
+        publicKey,
+        publicKey
+      );
+
+      ixs.push(ix);
+    }
+
+    return ixs;
+  };
+
+  const saveForm = async () => {
+    if (!isFormDirty) return;
+    if (!connection || !publicKey || !signTransaction || !signMessage) return;
+
+    try {
+      const fieldsToUpdate: { record: SNSRecord; value: string }[] = [];
+      const fieldsToDelete: SNSRecord[] = [];
+
+      for (const key of formState.keys()) {
+        const stateValue: string = formState.get(key) as string;
+        const prevStateValue: string = previousFormState.get(key);
+
+        if (stateValue !== prevStateValue) {
+          // if new value is not nullish, it means it's a set or update action,
+          // so we need to validate the value
+          if (stateValue) {
+            if (key === SNSRecord.Url) {
+              try {
+                new URL(stateValue);
+              } catch (err) {
+                setFormLoading(false);
+                setStatus({ status: "error", message: t`Invalid URL` });
+                return;
+              }
+            } else if ([SNSRecord.BSC, SNSRecord.ETH].includes(key)) {
+              const buffer = Buffer.from(stateValue.slice(2), "hex");
+              if (!stateValue.startsWith("0x") || buffer.length !== 20) {
+                setFormLoading(false);
+                setStatus({
+                  status: "error",
+                  message: t`Invalid ${key} address`,
+                });
+                return;
+              }
+            }
+          }
+
+          stateValue === ""
+            ? fieldsToDelete.push(key)
+            : fieldsToUpdate.push({ record: key, value: stateValue });
+        }
+      }
+
+      const deleteInstructions = prepareDeleteInstructions(fieldsToDelete);
+      const updateInstructions = await prepareUpdateInstructions(
+        fieldsToUpdate
+      );
+
+      if (!deleteInstructions.length && !updateInstructions.length) {
+        resetForm();
+        return;
+      }
+
+      await sendTx(
+        connection,
+        publicKey,
+        [...deleteInstructions, ...updateInstructions],
+        signTransaction
+      );
+
+      await sleep(400);
+
+      resetForm();
+      refresh();
+    } catch (err) {
+      setFormLoading(false);
+      handleError(err);
+    }
+  };
+
+  useEffect(() => {
+    if (addressRecords.result && socialRecords.result) {
+      dispatchFormChange({
+        type: "bulk",
+        value: [...socialRecords.result, ...addressRecords.result].reduce(
+          (acc, v) => {
+            acc.set(v.record, v.value || "");
+            return acc;
+          },
+          new Map()
+        ),
+      });
+    }
+  }, [addressRecords.loading, socialRecords.loading]);
+
+  useEffect(() => {
+    setPreviousFormState(isEditing ? formState : null);
+    if (!isEditing) setFormDirty(false);
+  }, [isEditing]);
+
   if (loading) {
-    return <LoadingState />;
+    return (
+      <Screen style={tw`p-0`}>
+        <LoadingState />
+      </Screen>
+    );
   }
+
+  const halfScrollViewHeight = currentScrollViewData
+    ? currentScrollViewData.layoutMeasurement.height / 2
+    : 0;
+  const socialsTabBreakpoint =
+    UISectionsCoordinates.addresses - halfScrollViewHeight;
+  const subdomainBreakpoint =
+    UISectionsCoordinates.subdomains - halfScrollViewHeight;
+
+  const currentScrollPosition = currentScrollViewData?.contentOffset.y || 0;
+  const scrollViewOffset = currentScrollViewData
+    ? currentScrollViewData.contentSize.height -
+      currentScrollViewData.layoutMeasurement.height
+    : 0;
+
+  const isSocialsTabHighlighted = currentScrollPosition <= socialsTabBreakpoint;
+
+  const subdomainRowHeight = 40;
+  // Make subdomain hightlighted if subdomains in the middle of the screen,
+  // or if the subdomains block is too small, then when we near the bottom of the screen
+  const isSubdomainsTabHighlighted =
+    !isSocialsTabHighlighted &&
+    (currentScrollPosition >= subdomainBreakpoint ||
+      currentScrollPosition > scrollViewOffset - subdomainRowHeight);
+
+  // To simplify, make addresses highlighted if other tabs are not highlighted
+  const isAddressesTabHighlighted =
+    !isSocialsTabHighlighted && !isSubdomainsTabHighlighted;
 
   return (
     <Screen style={tw`p-0`}>
-      <ScrollView showsHorizontalScrollIndicator={false}>
-        <View
-          style={tw`flex px-4 py-4 flex-row items-center my-5 bg-blue-grey-100/50`}
-        >
-          <View style={tw`relative`}>
-            <Image
-              source={
-                picRecord.result
-                  ? picRecord.result
-                  : require("../../assets/default-pic.png")
-              }
-              style={tw`w-[100px] border-[3px] rounded-lg border-black/10 h-[100px]`}
-            />
-            {isOwner && (
-              <TouchableOpacity
-                onPress={() =>
-                  openModal("EditPicture", {
-                    currentPic: picRecord.result,
-                    domain,
-                    refresh,
-                  })
-                }
-                style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-[-2px] right-[-2px] bg-blue-900`}
-              >
-                <Feather name="edit-2" size={12} color="white" />
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={tw`w-full`}>
-            <Text style={tw`font-bold text-xl ml-4 max-w-[65%]`}>
-              {domain}.sol
-            </Text>
-            <View style={tw`flex flex-row items-center`}>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("Search Profile", {
-                    owner: domainInfo.result?.owner as string,
-                  })
-                }
-              >
-                <Text style={tw`text-xs text-blue-grey-800 ml-4 mr-1`}>
-                  {abbreviate(domainInfo.result?.owner, 18)}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  Clipboard.setString(domainInfo.result?.owner!);
-                  openModal("Success", { msg: t`Copied!` });
-                }}
-              >
-                <Feather name="copy" size={12} color="black" />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-
-        <View style={tw`px-4`}>
-          {!isSub && (
-            <>
-              <View
-                style={tw`flex flex-row items-center w-full justify-between`}
-              >
-                <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-                  <Trans>Subdomains</Trans>
-                </Text>
-
-                <View style={tw`flex flex-row gap-4`}>
-                  {/* add subdomain button (if owner & not tokenized) */}
-                  {isOwner && !isTokenized && (
-                    <TouchableOpacity
-                      onPress={() => {
-                        openModal("CreateSubdomain", { refresh, domain });
-                      }}
-                    >
-                      <FontAwesome name="plus" size={20} color="black" />
-                    </TouchableOpacity>
-                  )}
-                  <TouchableOpacity onPress={refresh}>
-                    <FontAwesome name="refresh" size={20} color="black" />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              <View style={tw`flex flex-col justify-around flex-wrap`}>
-                {hasSubdomain ? (
-                  <FlatList
-                    style={tw`mb-3`}
-                    data={subdomains.result}
-                    renderItem={({ item }) => (
-                      <SubdomainRow
-                        subdomain={`${item}.${domain}`}
-                        key={item}
-                      />
-                    )}
-                  />
-                ) : (
-                  <Text
-                    style={tw`mt-2 mb-2 text-xl font-semibold text-center text-blue-grey-300`}
-                  >
-                    <Trans>No subdomains found</Trans>
-                  </Text>
-                )}
-              </View>
-            </>
-          )}
-
-          <View
-            style={tw`flex flex-row items-center w-full justify-between mt-2`}
-          >
-            <Text style={tw`text-xl font-bold text-blue-grey-900 mb-1`}>
-              <Trans>Socials</Trans>
-            </Text>
-
-            {isSub && (
-              <View style={tw`flex flex-row gap-4`}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Domain View", {
-                      domain: domain.split(".")[1],
-                    })
-                  }
-                >
-                  <FontAwesome name="arrow-left" size={20} color="black" />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={refresh}>
-                  <FontAwesome name="refresh" size={20} color="black" />
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-
-          <View style={tw`flex flex-col justify-around flex-wrap`}>
-            {socialRecords?.result?.map((e) => {
-              return (
-                <SocialRecordCard
-                  domain={domain}
-                  currentValue={e.value}
-                  record={e.record as SocialRecord}
-                  isOwner={isOwner}
-                  refresh={refresh}
-                  key={`record-${e.record}`}
-                  isTokenized={isTokenized}
-                />
-              );
-            })}
-          </View>
-
-          <Text style={tw`text-xl font-bold text-blue-grey-900 mt-4 mb-1`}>
-            <Trans>Addresses</Trans>
-          </Text>
-          <FlatList
-            style={tw`mb-3`}
-            data={addressRecords.result}
-            renderItem={({ item }) => (
-              <RenderRecord
-                isOwner={isOwner}
-                record={item.record}
-                value={item.value}
-                domain={domain}
-                isTokenized={isTokenized}
-                refresh={refresh}
-              />
-            )}
-          />
-
-          {/* Transfer button */}
-          {isOwner && !isSub && !isTokenized && (
-            <View style={tw`flex flex-col`}>
-              <TouchableOpacity
-                onPress={() =>
-                  openModal("Transfer", {
-                    domain,
-                    refresh: async () => {
-                      await domainInfo.execute();
-                    },
-                  })
-                }
-                style={tw`flex flex-row justify-center items-center w-full bg-blue-900 rounded-lg h-[50px] mb-2`}
-              >
-                <Text style={tw`text-white font-bold text-xl mr-3`}>
-                  <Trans>Transfer</Trans>
-                </Text>
-              </TouchableOpacity>
-
-              {isSub && (
-                <TouchableOpacity
-                  onPress={() =>
-                    openModal("Delete", {
-                      domain,
-                      refresh: async () => {
-                        await domainInfo.execute();
-                      },
-                    })
-                  }
-                  style={tw`flex flex-row justify-center items-center w-full bg-red-400 rounded-lg h-[50px] mb-2`}
-                >
-                  <Text style={tw`text-white font-bold text-xl mr-3`}>
-                    <Trans>Delete</Trans>
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          )}
-
-          {/* wrap/unwrap button */}
-          {isOwner && !isSub && (
-            <TouchableOpacity
-              onPress={() =>
-                openModal("TokenizeModal", {
-                  domain,
-                  isTokenized,
-                  refresh: async () => {
-                    await domainInfo.execute();
-                  },
-                })
-              }
-              style={tw`flex flex-row justify-center items-center w-full bg-blue-600 rounded-lg h-[50px] mb-2`}
-            >
-              <Text style={tw`text-white font-bold text-xl mr-3`}>
-                {isTokenized ? t`Unwrap NFT` : t`Wrap domain into NFT`}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </ScrollView>
-    </Screen>
-  );
-};
-
-const RenderRecord = ({
-  record,
-  value,
-  isOwner,
-  domain,
-  refresh,
-  isTokenized,
-}: {
-  record: Record;
-  value: string | undefined;
-  isOwner?: boolean;
-  domain: string;
-  refresh: () => Promise<void>;
-  isTokenized?: boolean;
-}) => {
-  const { openModal } = useModal();
-  const worm = value && record === Record.BSC;
-
-  return (
-    <View
-      style={tw`border-b-[1px] flex flex-row items-center justify-between px-4 py-2 w-full h-[60px] border-black/20`}
-    >
-      <View style={tw`flex flex-row items-center`}>
-        {/* Record title & content */}
-        <View style={tw`flex flex-col items-start justify-start`}>
-          <Text style={tw`font-bold text-blue-900 capitalize`}>{record}</Text>
-          {!!value ? (
-            <>
-              <TouchableOpacity
-                onPress={() => {
-                  openModal("Success", { msg: t`Copied!` });
-                  Clipboard.setString(value);
-                }}
-              >
-                <Text style={tw`text-sm font-bold`}>{value}</Text>
-              </TouchableOpacity>
-            </>
-          ) : (
-            <Text style={tw`text-sm font-bold`}>
-              <Trans>Not set</Trans>
-            </Text>
-          )}
-        </View>
-      </View>
-
-      {/* Edit button (if owner) */}
-      <View style={tw`flex flex-row items-center`}>
-        {worm && (
-          <TouchableOpacity
-            style={tw`mr-2`}
-            onPress={() => openModal("WormholeExplainer")}
-          >
-            <Image
-              style={tw`h-[15px] w-[15px]`}
-              source={require("../../assets/wormhole.svg")}
-            />
-          </TouchableOpacity>
-        )}
-        {isOwner && !isTokenized && (
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        stickyHeaderIndices={[2]}
+        invertStickyHeaders={true}
+        ref={scrollViewRef}
+        scrollEventThrottle={300}
+        onScroll={(event) => setScrollViewMeasurements(event.nativeEvent)}
+      >
+        {isTokenized && (
           <TouchableOpacity
             onPress={() =>
-              openModal("EditRecordModal", {
-                record,
-                currentValue: value,
+              openModal("TokenizeModal", {
+                refresh: () => domainInfo.execute(),
                 domain,
-                refresh,
+                isTokenized,
+                isOwner,
               })
             }
+            style={tw`flex flex-row items-center justify-between px-3 py-1 mb-3 border rounded-lg border-brand-primary bg-brand-primary bg-opacity-10`}
           >
-            <Feather name="edit-3" size={16} color="black" />
+            <Text
+              style={tw`flex flex-row gap-2 text-sm font-medium text-brand-primary`}
+            >
+              <MaterialCommunityIcons
+                name="diamond-stone"
+                size={24}
+                color={tw.color("brand-primary")}
+              />
+
+              <Trans>This domain is wrapped in an NFT</Trans>
+            </Text>
+
+            <MaterialCommunityIcons
+              name="information-outline"
+              size={24}
+              color={tw.color("brand-primary")}
+            />
           </TouchableOpacity>
         )}
-      </View>
-    </View>
+
+        <View style={tw`mb-6`}>
+          <ProfileBlock
+            owner={domainInfo.result?.owner!}
+            domain={domain}
+            picRecord={picRecord}
+          >
+            <View style={tw`flex flex-row gap-6`}>
+              {/* Transfer button */}
+              {isOwner && !isSubdomain && !isTokenized && (
+                <UiButton
+                  onPress={() =>
+                    openModal("Transfer", {
+                      domain,
+                      refresh: () => domainInfo.execute(),
+                    })
+                  }
+                  small
+                  content={t`Transfer`}
+                  style={tw`basis-1/2`}
+                />
+              )}
+              {isOwner && (
+                <>
+                  {isSubdomain ? (
+                    // delete subdomain button
+                    <UiButton
+                      onPress={() =>
+                        openModal("Delete", {
+                          domain,
+                          refresh: () => domainInfo.execute(),
+                        })
+                      }
+                      small
+                      danger
+                      content={t`Delete`}
+                    />
+                  ) : (
+                    // wrap/unwrap button
+                    <UiButton
+                      onPress={() =>
+                        openModal("TokenizeModal", {
+                          domain,
+                          isTokenized,
+                          refresh: () => domainInfo.execute(),
+                          isOwner,
+                        })
+                      }
+                      small
+                      content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
+                      style={tw`basis-1/2`}
+                    />
+                  )}
+                </>
+              )}
+            </View>
+          </ProfileBlock>
+        </View>
+
+        {/* This bars are sticky using stickyHeaderIndices */}
+        <View
+          style={tw`flex flex-row items-center justify-between pb-2 bg-background-primary`}
+        >
+          <View style={tw`flex flex-row gap-2`}>
+            <TouchableOpacity
+              onPress={() => {
+                scrollViewRef.current?.scrollTo({
+                  // -24 so there will be some space between header and field
+                  y: UISectionsCoordinates.socials - 35,
+                  animated: true,
+                });
+              }}
+              style={[
+                tw`px-2 py-1 rounded-xl`,
+                isSocialsTabHighlighted && tw`bg-background-secondary`,
+              ]}
+            >
+              <Text style={tw`text-sm text-brand-primary`}>{t`Socials`}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                scrollViewRef.current?.scrollTo({
+                  // -24 so there will be some space between header and field
+                  y: UISectionsCoordinates.addresses - 24,
+                  animated: true,
+                });
+              }}
+              style={[
+                tw`px-2 py-1 rounded-xl`,
+                isAddressesTabHighlighted && tw`bg-background-secondary`,
+              ]}
+            >
+              <Text style={tw`text-sm text-brand-primary`}>{t`Addresses`}</Text>
+            </TouchableOpacity>
+            {!isSubdomain && (
+              <TouchableOpacity
+                onPress={() => {
+                  scrollViewRef.current?.scrollTo({
+                    y: UISectionsCoordinates.subdomains,
+                    animated: true,
+                  });
+                }}
+                style={[
+                  tw`px-2 py-1 rounded-xl`,
+                  isSubdomainsTabHighlighted && tw`bg-background-secondary`,
+                ]}
+              >
+                <Text style={tw`text-sm text-brand-primary`}>
+                  {t`Subdomains`}
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
+          {!isTokenized && (
+            <>
+              {isOwner ? (
+                <UiButton
+                  content={isEditing ? t`Revert` : t`Edit`}
+                  small
+                  style={tw`flex-initial`}
+                  outline={isEditing}
+                  disabled={isLoading}
+                  textAdditionalStyles={tw`text-sm font-medium`}
+                  onPress={() => {
+                    isEditing ? discardChanges() : toggleEditMode(true);
+                  }}
+                >
+                  {isEditing ? (
+                    <Ionicons
+                      name="close-outline"
+                      size={16}
+                      color={tw.color("brand-primary")}
+                      style={tw`ml-2`}
+                    />
+                  ) : (
+                    <MaterialIcons
+                      name="edit"
+                      size={16}
+                      color="white"
+                      style={tw`ml-2`}
+                    />
+                  )}
+                </UiButton>
+              ) : (
+                <TouchableOpacity onPress={refresh}>
+                  <EvilIcons
+                    name="refresh"
+                    size={24}
+                    color={tw.color("content-secondary")}
+                  />
+                </TouchableOpacity>
+              )}
+            </>
+          )}
+        </View>
+
+        {[...formState.keys()].map((item) => (
+          <TouchableOpacity
+            key={item}
+            onPress={() => {
+              if (isEditing || !formState.get(item)) return;
+              Clipboard.setString(String(formState.get(item)));
+              setStatus({ status: "success", message: t`Copied!` });
+            }}
+            onLayout={(event) => {
+              if (item === SNSRecord.Backpack) {
+                setCoordinates((prevState) => ({
+                  ...prevState,
+                  socials: event.nativeEvent.layout.y,
+                }));
+              }
+              if (item === SNSRecord.BSC) {
+                setCoordinates((prevState) => ({
+                  ...prevState,
+                  addresses: event.nativeEvent.layout.y,
+                }));
+              }
+            }}
+            activeOpacity={1}
+          >
+            <CustomTextInput
+              value={formState.get(item)}
+              placeholder={t`Not set`}
+              editable={isEditing && !isLoading}
+              style={tw`mt-4`}
+              label={
+                <View style={tw`flex flex-row items-center gap-1`}>
+                  {/* TS is kinda stupid here so "any" is required */}
+                  {SOCIAL_RECORDS.includes(item as any) && getIcon(item as any)}
+
+                  <Text style={tw`text-sm leading-6 text-content-secondary`}>
+                    {getTranslatedName(item)}
+                  </Text>
+                </View>
+              }
+              onChangeText={(text) => {
+                setFormDirty(true);
+                dispatchFormChange({
+                  type: item,
+                  value: text,
+                });
+              }}
+            />
+          </TouchableOpacity>
+        ))}
+
+        {!isTokenized && isOwner && (
+          <View
+            style={[
+              tw`mt-10 bg-background-primary`,
+              // TODO: realize how to implement that on mobile
+              Platform.OS === "web" &&
+                isEditing && {
+                  position: "sticky",
+                  bottom: "0px",
+                },
+            ]}
+          >
+            <UiButton
+              disabled={isEditing && !isFormDirty}
+              onPress={() => {
+                isEditing ? saveForm() : toggleEditMode(true);
+              }}
+              loading={isLoading}
+              content={
+                isEditing
+                  ? isFormDirty
+                    ? t`Save`
+                    : t`No changes to save`
+                  : t`Edit`
+              }
+            >
+              {!isEditing && (
+                <MaterialIcons
+                  name="edit"
+                  size={16}
+                  color="white"
+                  style={tw`ml-2`}
+                />
+              )}
+            </UiButton>
+          </View>
+        )}
+
+        {!isSubdomain && (
+          <View
+            style={tw`flex flex-col justify-around px-4 py-3 mt-10 bg-background-secondary rounded-xl`}
+            onLayout={(event) => {
+              setCoordinates((prevState) => ({
+                ...prevState,
+                subdomains: event.nativeEvent.layout.y,
+              }));
+            }}
+          >
+            {isOwner && (
+              <>
+                <View style={tw`flex flex-row justify-end`}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      openModal("CreateSubdomain", { refresh, domain })
+                    }
+                    disabled={isTokenized}
+                  >
+                    <Text
+                      style={[
+                        tw`flex flex-row justify-end gap-2 text-base text-brand-primary`,
+                        isTokenized && tw`text-[#A3A4B8]`,
+                      ]}
+                    >
+                      <Trans>Add subdomain</Trans>
+
+                      <Entypo name="plus" size={24} color="brand-primary" />
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {isTokenized && (
+                  <Text
+                    style={tw`text-sm text-content-secondary rounded-lg bg-[#F3F3F3] p-2 mt-4`}
+                  >
+                    <Trans>
+                      You can only add subdomains when the domain is unwrapped.
+                    </Trans>
+                  </Text>
+                )}
+              </>
+            )}
+
+            {hasSubdomain ? (
+              <FlatList
+                data={subdomains.result}
+                style={isOwner && tw`mt-4`}
+                contentContainerStyle={tw`flex flex-col gap-3`}
+                renderItem={({ item }) => (
+                  <DomainRowRecord
+                    key={`${item}.${domain}`}
+                    domain={`${item}.${domain}`}
+                    isSubdomain
+                  />
+                )}
+              />
+            ) : (
+              <Text style={tw`mt-4 text-sm text-content-secondary`}>
+                {isOwner ? (
+                  <Trans>
+                    You don’t have any subdomains yet. You can create as many as
+                    you want to use your profiles for different purposes.
+                  </Trans>
+                ) : (
+                  <Trans>There are no subdomains.</Trans>
+                )}
+              </Text>
+            )}
+          </View>
+        )}
+      </ScrollView>
+    </Screen>
   );
 };

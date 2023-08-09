@@ -1,17 +1,19 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { useState } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
+import { AntDesign } from "@expo/vector-icons";
+import { TransactionInstruction } from "@solana/web3.js";
+import { t } from "@lingui/macro";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { registerFavourite } from "@bonfida/name-offers";
 import { NAME_OFFERS_ID, getDomainKeySync } from "@bonfida/spl-name-service";
-import { TransactionInstruction } from "@solana/web3.js";
-import { sendTx } from "../utils/send-tx";
-import { useModal } from "react-native-modalfy";
-import { useState } from "react";
-import { sleep } from "../utils/sleep";
 import { isTokenized } from "@bonfida/name-tokenizer";
-import { unwrap } from "../utils/unwrap";
-import { t } from "@lingui/macro";
-import { useWallet } from "../hooks/useWallet";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
+import { useWallet } from "@src/hooks/useWallet";
+import tw from "@src/utils/tailwind";
+import { sendTx } from "@src/utils/send-tx";
+import { sleep } from "@src/utils/sleep";
+import { unwrap } from "@src/utils/unwrap";
+import { useHandleError } from "@src/hooks/useHandleError";
 
 export const FavoriteButton = ({
   domain,
@@ -23,8 +25,9 @@ export const FavoriteButton = ({
   refresh: () => void;
 }) => {
   const [loading, setLoading] = useState(false);
-  const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const connection = useSolanaConnection();
+  const { handleError } = useHandleError();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
 
   const handle = async () => {
@@ -47,16 +50,16 @@ export const FavoriteButton = ({
       const sig = await sendTx(connection, publicKey, ixs, signTransaction);
       console.log(sig);
 
-      openModal("Success", {
-        msg: t`${domain}.sol successfully set as favorite domain name`,
+      setStatus({
+        status: "success",
+        message: t`${domain}.sol successfully set as favorite domain name`,
       });
       setLoading(false);
       await sleep(500);
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
@@ -68,9 +71,13 @@ export const FavoriteButton = ({
       {loading ? (
         <ActivityIndicator size={21} />
       ) : isFav ? (
-        <FontAwesome name="heart" size={22} color="#186FAF" />
+        <AntDesign name="star" size={24} color={tw.color("brand-primary")} />
       ) : (
-        <FontAwesome name="heart-o" size={22} color="#186FAF" />
+        <AntDesign
+          name="staro"
+          size={24}
+          color={tw.color("content-tertiary")}
+        />
       )}
     </TouchableOpacity>
   );

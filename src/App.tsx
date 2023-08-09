@@ -3,25 +3,21 @@ global.Buffer = global.Buffer || require("buffer").Buffer;
 
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { ActivityIndicator, View } from "react-native";
+import { TouchableOpacity, ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  createBottomTabNavigator,
+  BottomTabBarButtonProps,
+} from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
 import { Feather } from "@expo/vector-icons";
-import { SearchResult } from "./screens/SearchResult";
 import { cartState } from "./atoms/cart";
 import { Text } from "react-native";
 import tw from "./utils/tailwind";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
-import { createStackNavigator } from "@react-navigation/stack";
-import { DomainView } from "./screens/DomainView";
-import { SuccessCheckoutModal } from "./components/SuccessCheckoutModal";
-import { EditRecordModal } from "./components/EditRecordModal";
-import { ErrorModal } from "./components/ErrorModal";
-import { SuccessModal } from "./components/SuccessModal";
 import { TransferModal } from "./components/TransferModal";
 import { WormholeExplainerModal } from "./components/WormholeExplainerModal";
 import { EditPicture } from "./components/EditPicture";
@@ -48,20 +44,17 @@ import {
   LanguageProvider,
   useLanguageContext,
 } from "./contexts/LanguageContext";
+import { StatusModalProvider } from "@src/contexts/StatusModalContext";
 import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
+import { NavigatorTabsParamList } from "@src/types";
+import { LanguageHeader } from "@src/components/Header";
 
 const xnftjson = require("../xnft.json");
 
 console.log(`Version: ${xnftjson.version}`);
 
-const Stack = createStackNavigator<RootBottomTabParamList>();
-
 const modalConfig = {
-  SuccessCheckout: SuccessCheckoutModal,
-  EditRecordModal,
-  Error: ErrorModal,
-  Success: SuccessModal,
   Transfer: TransferModal,
   Delete: DeleteModal,
   CreateSubdomain: CreateSubdomainModal,
@@ -78,35 +71,14 @@ const modalConfig = {
 
 const stackModal = createModalStack(modalConfig);
 
-export type RootBottomTabParamList = {
-  Home: undefined;
-  Profile: { owner?: string };
-  Cart: undefined;
-  "Search Result": { domain: string };
-  "Domain View": { domain: string };
-  Search: { screen: string; params: Object };
-  "Search Profile": { owner: string };
-};
+const Tab = createBottomTabNavigator<NavigatorTabsParamList>();
 
-const Tab = createBottomTabNavigator<RootBottomTabParamList>();
+const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
+  const style = focused
+    ? tw`mt-1 text-sm font-bold`
+    : tw`mt-1 text-sm text-content-tertiary`;
 
-const SearchNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={{ header: () => null }}>
-      <Stack.Screen
-        name="Search Result"
-        children={({ route }) => <SearchResult domain={route.params?.domain} />}
-      />
-      <Stack.Screen
-        name="Domain View"
-        children={({ route }) => <DomainView domain={route.params?.domain} />}
-      />
-      <Stack.Screen
-        name="Search Profile"
-        children={({ route }) => <ProfileScreen owner={route.params.owner} />}
-      />
-    </Stack.Navigator>
-  );
+  return <Text style={style}>{label}</Text>;
 };
 
 function TabNavigator() {
@@ -128,7 +100,12 @@ function TabNavigator() {
       initialRouteName="Home"
       screenOptions={{
         header: () => null,
-        tabBarActiveTintColor: "#186FAF",
+        tabBarActiveTintColor: tw.color("content-primary"),
+        tabBarInactiveTintColor: tw.color("content-tertiary"),
+        tabBarStyle: tw`h-[60px] bg-background-primary border-t-0 pt-2 pb-1 px-3`,
+        tabBarIconStyle: {
+          aspectRatio: "1/1",
+        },
       }}
       key={currentLanguage} // trigger tab re-render when translation is toggled
     >
@@ -146,38 +123,20 @@ function TabNavigator() {
           },
         })}
         options={{
-          tabBarLabel: t`Profile`,
+          tabBarLabel: (props) => TabBarLabel(props, t`Profile`),
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
+          header: () => <LanguageHeader />,
         }}
       />
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarLabel: t`Home`,
+          tabBarLabel: (props) => TabBarLabel(props, t`Domains`),
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Search"
-        component={SearchNavigator}
-        listeners={({ navigation }) => ({
-          tabPress: () => {
-            navigation.navigate("Search", {
-              screen: "Search Result",
-              domain: "",
-            });
-          },
-        })}
-        options={{
-          headerShown: false,
-          tabBarLabel: t`Search`,
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="search" size={size} color={color} />
+            <Feather name="globe" size={size} color={color} />
           ),
         }}
       />
@@ -185,17 +144,24 @@ function TabNavigator() {
         name="Cart"
         component={Cart}
         options={{
-          tabBarLabel: t`Cart`,
+          tabBarLabel: (props) => TabBarLabel(props, t`Cart`),
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
               {cart.length !== 0 ? (
                 <Text
-                  style={tw`absolute -top-1 text-white -right-2 bg-red-400 rounded-full font-bold h-[15px] text-center text-xs w-[16px]`}
+                  style={tw`absolute -top-1 text-white -right-2 bg-brand-primary rounded-full font-bold h-[15px] text-center text-xs w-[16px]`}
                 >
                   {cart.length}
                 </Text>
               ) : null}
+            </View>
+          ),
+          header: () => (
+            <View style={tw`px-3 py-4 bg-background-primary`}>
+              <Text style={tw`text-lg font-semibold text-content-primary`}>
+                {t`Cart`}
+              </Text>
             </View>
           ),
         }}
@@ -222,9 +188,11 @@ function App() {
       <RecoilRoot>
         <NavigationContainer>
           <LanguageProvider i18n={i18n}>
-            <ModalProvider stack={stackModal}>
-              <TabNavigator />
-            </ModalProvider>
+            <StatusModalProvider>
+              <ModalProvider stack={stackModal}>
+                <TabNavigator />
+              </ModalProvider>
+            </StatusModalProvider>
           </LanguageProvider>
         </NavigationContainer>
       </RecoilRoot>

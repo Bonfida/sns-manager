@@ -1,4 +1,4 @@
-import { View, Image, Text } from "react-native";
+import { View, Text } from "react-native";
 import tw from "../utils/tailwind";
 import { Feather } from "@expo/vector-icons";
 import { Trans } from "@lingui/macro";

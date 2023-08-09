@@ -1,4 +1,21 @@
 {
+  "brand-primary": "#5A5DDC",
+  "brand-accent": "#F7A1CC",
+
+  "content-primary": "#090A21",
+  "content-secondary": "#4C4D5E",
+  "content-tertiary": "#8289A3",
+  "content-border": "#ECE9FF",
+  "content-active-border": "#DED9FF",
+  "content-inactive-border": "#F4F2FF",
+  "content-success": "#0F7420",
+  "content-error": "#D64545",
+  "content-warning": "#F4A051",
+  "content-progress": "#8D99FF",
+
+  "background-primary": "#F5F7FF",
+  "background-secondary": "#FFFFFF",
+
   "blue-050": "#DCEEFB",
   "blue-100": "#B6E0FE",
   "blue-200": "#84C5F4",

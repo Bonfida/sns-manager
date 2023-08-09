@@ -59,4 +59,7 @@ export const tokenList = [
   },
 ];
 
+export const tokenIconBySymbol = (symbol: string) =>
+  tokenList.find((item) => item.tokenSymbol === symbol)?.icon;
+
 export const FIDA_MINT = "EchesyfXePKdLtoiZSL8pBe8Myagyy8ZRqsACNCFGnvp";

@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text } from "react-native";
 import { useState } from "react";
 import { createSubdomain } from "@bonfida/spl-name-service";
 import tw from "../utils/tailwind";
@@ -14,7 +8,11 @@ import { useModal } from "react-native-modalfy";
 import { WrapModal } from "./WrapModal";
 import { useWallet } from "../hooks/useWallet";
 import { validate } from "../utils/validate";
-import { Trans, t } from "@lingui/macro";
+import { t } from "@lingui/macro";
+import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { useHandleError } from "@src/hooks/useHandleError";
+import { CustomTextInput } from "@src/components/CustomTextInput";
+import { UiButton } from "@src/components/UiButton";
 
 export const CreateSubdomainModal = ({
   modal: { closeModal, getParam },
@@ -25,9 +23,11 @@ export const CreateSubdomainModal = ({
   };
 }) => {
   const { openModal } = useModal();
+  const { setStatus } = useStatusModalContext();
   const { publicKey, signTransaction, connected, setVisible } = useWallet();
   const connection = useSolanaConnection();
   const [value, setValue] = useState("");
+  const { handleError } = useHandleError();
   const [loading, setLoading] = useState(false);
   const domain = getParam<string>("domain");
   const refresh = getParam<() => Promise<void>>("refresh");
@@ -41,9 +41,11 @@ export const CreateSubdomainModal = ({
 
       if (!validate(subdomain)) {
         setLoading(false);
-        return openModal("Error", {
-          msg: t`${subdomain}.sol is not a valid subdomain`,
+        setStatus({
+          status: "error",
+          message: t`${subdomain}.sol is not a valid subdomain`,
         });
+        return;
       }
 
       const [, ix] = await createSubdomain(connection, subdomain, publicKey);
@@ -64,51 +66,39 @@ export const CreateSubdomainModal = ({
       );
       refresh();
     } catch (err) {
-      console.error(err);
       setLoading(false);
-      openModal("Error", { msg: t`Something went wrong - try again` });
+      handleError(err);
     }
   };
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <Text style={tw`text-xl font-bold`}>
-          <Trans>Create a subdomain</Trans>
-        </Text>
-        <View style={tw`flex flex-row items-center gap-2`}>
-          <TextInput
-            placeholder={t`Enter subdomain`}
-            onChangeText={(text) => setValue(text)}
-            value={value}
-            style={tw`h-[40px] pl-2 flex-1 bg-blue-grey-050 rounded-lg my-5`}
-          />
+    <WrapModal closeModal={closeModal} title={t`Create a subdomain`}>
+      <View style={tw`flex flex-row items-center gap-2 my-5`}>
+        <CustomTextInput
+          placeholder={t`Enter subdomain`}
+          onChangeText={(text) => setValue(text)}
+          value={value}
+          editable={!loading}
+          style={tw`w-auto`}
+        />
 
-          <Text style={tw`font-bold text-md`}>.{domain}.sol</Text>
-        </View>
-        <View style={tw`flex flex-col items-center mt-2`}>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={connected ? handle : () => setVisible(true)}
-            style={tw`bg-blue-900 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Create</Trans>
-            </Text>
-            {loading && <ActivityIndicator style={tw`ml-3`} size={16} />}
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={loading}
-            onPress={() => {
-              closeModal();
-            }}
-            style={tw`bg-blue-grey-400 w-full h-[40px] my-1 flex flex-row items-center justify-center rounded-lg`}
-          >
-            <Text style={tw`font-bold text-white`}>
-              <Trans>Cancel</Trans>
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={tw`text-base font-bold`}>.{domain}.sol</Text>
+      </View>
+      <View style={tw`flex flex-row items-center gap-4`}>
+        <UiButton
+          disabled={loading}
+          onPress={() => closeModal()}
+          outline
+          content={t`Cancel`}
+          loading={loading}
+        />
+
+        <UiButton
+          disabled={loading || !value}
+          onPress={connected ? handle : () => setVisible(true)}
+          content={t`Create`}
+          loading={loading}
+        />
       </View>
     </WrapModal>
   );

@@ -1,10 +1,10 @@
-import { WrapModal } from "./WrapModal";
-import { View, Text, TouchableOpacity } from "react-native";
-import tw from "../utils/tailwind";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useStorageMap } from "../hooks/useStorageMap";
 import { useEffect } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Trans } from "@lingui/macro";
+import tw from "@src/utils/tailwind";
+import { useStorageMap } from "@src/hooks/useStorageMap";
+import { WrapModal } from "./WrapModal";
 
 const LIST = [
   { label: "1kb", value: 1_000 },
@@ -34,42 +34,59 @@ export const DomainSizeModal = ({
   }, []);
 
   return (
-    <WrapModal closeModal={closeModal}>
-      <View style={tw`bg-white rounded-lg px-4 py-10 w-[350px]`}>
-        <View style={tw`flex flex-row items-center`}>
+    <WrapModal
+      closeModal={closeModal}
+      title={
+        <>
           <MaterialCommunityIcons
             name="content-save"
             size={24}
             color="#16a34a"
           />
-          <Text style={tw`ml-2 text-lg font-bold`}>
-            <Trans>Storage Size</Trans>
-          </Text>
-        </View>
-        <Text style={tw`pl-2 mt-2 text-sm`}>
-          <Trans>
-            The storage size will determine the maximum amount of data you can
-            store on your domain.
-          </Trans>
-        </Text>
+          <Trans>Storage Size</Trans>
+        </>
+      }
+    >
+      <Text style={tw`mt-2 text-sm`}>
+        <Trans>
+          The storage size will determine the maximum amount of data you can
+          store on your domain.
+        </Trans>
+      </Text>
+      <Text style={tw`mt-2 text-xs`}>
+        <MaterialCommunityIcons
+          name="information-outline"
+          size={16}
+          style={tw`mr-1`}
+          color={tw.color("content-warning")}
+        />
+        <Trans>
+          Each additional kb of memory costs around 0.007 SOL (0.001 USDC)
+        </Trans>
+      </Text>
 
-        <View style={tw`flex flex-row flex-wrap items-center`}>
-          {LIST.map((e) => {
-            const selected = e.value === map.get(domain);
-            return (
-              <TouchableOpacity
-                onPress={() => actions.set(domain, e.value)}
-                style={[
-                  tw`border-[2px] border-black/10 rounded-lg mt-3 px-5 py-2 ml-2`,
-                  selected && { borderColor: "#0A558C", borderWidth: 2 },
-                ]}
-                key={e.label}
-              >
-                <Text>{e.label}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+      <View style={tw`flex flex-row flex-wrap items-center gap-3 mt-3`}>
+        {LIST.map((e) => {
+          const selected = e.value === map.get(domain);
+          return (
+            <TouchableOpacity
+              onPress={() => {
+                actions.set(domain, e.value);
+                closeModal();
+              }}
+              style={[
+                tw`border-[2px] border-black/10 rounded-lg px-5 py-2`,
+                selected && {
+                  borderColor: tw.color("brand-primary"),
+                  borderWidth: 2,
+                },
+              ]}
+              key={e.label}
+            >
+              <Text>{e.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </WrapModal>
   );
