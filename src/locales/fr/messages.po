@@ -627,6 +627,10 @@ msgstr "Vous pouvez maintenant profiter pleinement des avantages de posséder un
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Vous ne pouvez ajouter des sous-domaines que lorsque le domaine est désenveloppé."
 
+#: src/screens/Cart/index.tsx:114
+msgid "You do not have enough funds"
+msgstr "Vous n'avez pas assez de fonds"
+
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Vous n'avez pas encore de sous-domaines. Vous pouvez en créer autant que vous le souhaitez pour utiliser vos profils à des fins différentes."

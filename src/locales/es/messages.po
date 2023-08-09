@@ -601,6 +601,10 @@ msgstr "Ahora puedes disfrutar de todos los beneficios de ser dueño de un domin
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Solo puedes agregar subdominios cuando el dominio no está envuelto en un NFT."
 
+#: src/screens/Cart/index.tsx:114
+msgid "You do not have enough funds"
+msgstr "No dispone de fondos suficientes"
+
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Aún no tienes subdominios. Puedes crear tantos como desees para usar tus perfiles con diferentes propósitos."

@@ -768,6 +768,10 @@ msgstr "도메인에 연동된 프로필을 작성을 하므로서 도메인의 
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있습니다."
 
+#: src/screens/Cart/index.tsx:114
+msgid "You do not have enough funds"
+msgstr ""
+
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "아직 보유하고 있는 서브도메인이 없습니다. 다양한 용도로 프로필을 사용하기 위해 원하는 만큼 생성해보세요."

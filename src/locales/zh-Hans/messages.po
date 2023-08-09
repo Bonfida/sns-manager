@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-01 20:16+1000\n"
-"PO-Revision-Date: 2023-06-26 05:55+0000\n"
+"PO-Revision-Date: 2023-08-09 13:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: Simplified Chinese\n"
 "Language: zh-Hans\n"
@@ -39,77 +39,41 @@ msgstr "{search}.sol 不是有效的域名"
 msgid "{subdomain}.sol is not a valid subdomain"
 msgstr "{subdomain}.sol 不是可用的子域名"
 
-#: src/components/ProgressExplainerModal.tsx:34
-#~ msgid "<0>1. Favorite Domain:</0> Choose your favorite domain by clicking on the ❤️ next to it"
-#~ msgstr "<0>1. 喜爱的域名：</0>点击 ❤️ 来选择你喜爱的域名"
-
 #: src/components/TokenizeModal.tsx:163
 msgid "<0>1.</0><1>Transferring funds can sometimes be a bit complex, and it may vary depending on the wallet you are using.</1>"
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:41
-#~ msgid "<0>2. Profile Picture:</0> Add a pic to let us see the real you"
-#~ msgstr "<0>2. 个人头像：</0>上传一张照片，让我们看到真实的你"
+msgstr "<0>1.</0><1>转账过程可能会有些繁琐，这主要取决于你使用的钱包类型。</1>"
 
 #: src/components/TokenizeModal.tsx:172
 msgid "<0>2.</0><1>You cannot edit the content of your domain or add subdomains.</1>"
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:48
-#~ msgid "<0>3. Backpack Record:</0> Connect your Backpack username to your on-chain identity 🎒"
-#~ msgstr "<0>3. 背包记录：</0>将你的背包用户名连接到你的链上身份 🎒"
+msgstr "<0>2.</0><1>您无法编辑域名的内容或新增子域名。</1>"
 
 #: src/components/TokenizeModal.tsx:180
 msgid "<0>3.</0><1>You cannot transfer your domain.</1>"
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:55
-#~ msgid "<0>4. Twitter Record:</0> Connect Twitter for swift sharing and networking 🐦"
-#~ msgstr "<0>4. 推特记录：</0>连接推特以便快速分享和交流 🐦"
-
-#: src/components/ProgressExplainerModal.tsx:62
-#~ msgid "<0>5. Telegram Record:</0> Link Telegram for real-time community chats 📨"
-#~ msgstr "<0>5. Telegram 记录：</0>连接 Telegram 进行实时社区聊天 📨"
-
-#: src/components/ProgressExplainerModal.tsx:69
-#~ msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
-#~ msgstr "<0>6. Discord 记录：</0>连接 Discord，保持对话畅通 🎮"
+msgstr "<0>3.</0><1>您无法转移你的域名。</1>"
 
 #: src/screens/HomeScreen.tsx:65
 msgid "A Humanized ID for the Metaverse"
-msgstr ""
+msgstr "为元宇宙打造的人性化ID"
 
 #: src/components/ProgressExplainerModal.tsx:43
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
-msgstr ""
+msgstr "上传一张能代表你的头像图片。它可以是你自己的照片，或是你最喜欢的NFT，或是给你带来灵感的图片。"
 
 #: src/screens/DomainView.tsx:779
 msgid "Add subdomain"
-msgstr ""
+msgstr "添加子域名"
 
 #: src/screens/DomainView.tsx:601
 msgid "Addresses"
 msgstr "地址"
 
-#: src/components/SuccessCheckoutModal.tsx:26
-#~ msgid "All your domains have been purchased"
-#~ msgstr "你所有的域名都已购买"
-
 #: src/utils/record/place-holder.tsx:49
 msgid "ARWV"
 msgstr "ARWV"
 
-#: src/components/AvailableRow.tsx:45
-#~ msgid "Available"
-#~ msgstr "可用"
-
 #: src/utils/record/place-holder.tsx:75
 msgid "Backpack"
 msgstr "背包"
-
-#: src/components/ProgressExplainerModal.tsx:23
-#~ msgid "Boost Your Profile Journey! 🚀"
-#~ msgstr "完善你的个人资料之旅！🚀"
 
 #: src/utils/record/place-holder.tsx:71
 msgid "BSC"
@@ -117,7 +81,7 @@ msgstr "BSC"
 
 #: src/components/ActionWarning.tsx:15
 msgid "By clicking \"{actionName}\" you will be asked for a confirmation by your wallet"
-msgstr ""
+msgstr "点击\"{actionName}\"，您的钱包需要您完成确认"
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
@@ -133,15 +97,11 @@ msgstr "购物车"
 
 #: src/components/LanguageModal.tsx:22
 msgid "Change language"
-msgstr ""
+msgstr "更换语言"
 
 #: src/components/EditPicture.tsx:212
 msgid "Change profile picture"
-msgstr ""
-
-#: src/components/EditPicture.tsx:245
-#~ msgid "Choose a picture"
-#~ msgstr "选择图片"
+msgstr "更换个人头像"
 
 #: src/screens/Cart/index.tsx:195
 msgid "Clear all"
@@ -149,11 +109,11 @@ msgstr "清除所有"
 
 #: src/screens/Profile/index.tsx:241
 msgid "Clear search"
-msgstr ""
+msgstr "清除搜索记录"
 
 #: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
-msgstr ""
+msgstr "点击星星图标设置您最喜欢的域名。通过进度栏追踪个人主要资料完成进度。"
 
 #: src/components/ProgressExplainerModal.tsx:109
 #: src/components/SuccessSubdomainModal.tsx:39
@@ -163,7 +123,7 @@ msgstr "关闭"
 
 #: src/screens/HomeScreen.tsx:31
 msgid "Collect & Exchange directly or as NFTs!"
-msgstr ""
+msgstr "直接收藏、交易或封装成 NFT！"
 
 #: src/components/TransferModal.tsx:116
 #: src/components/TransferModal.tsx:121
@@ -172,27 +132,23 @@ msgstr "确认"
 
 #: src/screens/Cart/index.tsx:334
 msgid "Confirm and pay"
-msgstr ""
+msgstr "确认并支付"
 
 #: src/screens/Cart/index.tsx:391
 msgid "Confirmation"
-msgstr ""
+msgstr "确认"
 
 #: src/screens/Cart/index.tsx:353
 msgid "Congrats on purchasing new domains!"
-msgstr ""
-
-#: src/components/SuccessCheckoutModal.tsx:22
-#~ msgid "Congrats!"
-#~ msgstr "恭喜!"
+msgstr "祝贺您成功购买新域名！"
 
 #: src/components/ProgressExplainerModal.tsx:48
 msgid "Connect your backpack username to your on-chain identity."
-msgstr ""
+msgstr "将backpack用户名与链上身份连接。"
 
 #: src/screens/Cart/index.tsx:280
 msgid "Continue"
-msgstr ""
+msgstr "继续"
 
 #: src/components/ProfileBlock.tsx:77
 #: src/components/ProfileBlock.tsx:89
@@ -210,7 +166,7 @@ msgstr "创建子域名"
 
 #: src/components/ProgressExplainerModal.tsx:30
 msgid "Create an engaging profile by adding links Twitter, Discord and Telegram to connect with like-minded individuals."
-msgstr ""
+msgstr "通过添加Twitter、Discord和Telegram的链接，创建一个具有吸引力的个人资料，和有相同兴趣的朋友建立联系。"
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
@@ -224,11 +180,11 @@ msgstr "删除 {domain}.sol"
 
 #: src/components/DeleteModal.tsx:79
 msgid "Deleting a domain is a permanent action. You will forfeit its ownership and lose the ability to receive funds using this domain. Upon deletion, the domain will revert back to the SNS registrar."
-msgstr ""
+msgstr "删除域名是一项永久性操作，您将失去对该域名的所有权，并无法使用该域名接收资金。完成删除后该域名将重新进入 SNS 注册库内。"
 
 #: src/components/DeleteModal.tsx:73
 msgid "Deleting a subdomain is a reversible action. Although you can recreate it later, you will temporarily lose the ability to receive funds or create records with it post-deletion."
-msgstr ""
+msgstr "删除子域名是一项可逆的操作。虽然您可以重新再次创建，但在删除后您将暂时失去接收资金或添加记录的功能。"
 
 #: src/utils/record/place-holder.tsx:55
 msgid "Discord"
@@ -240,15 +196,15 @@ msgstr "折扣"
 
 #: src/screens/Cart/index.tsx:277
 msgid "Discounts may be applied in the next step"
-msgstr ""
+msgstr "您可在下一步使用折扣"
 
 #: src/screens/Cart/EmptyState.tsx:26
 msgid "Discover the domain that represents you!"
-msgstr ""
+msgstr "发现能代表你的域名！"
 
 #: src/components/TokenizeModal.tsx:152
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
-msgstr ""
+msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要显示原始域名，可通过恢复（解开封装）该通证完成。"
 
 #: src/App.tsx:137
 #: src/screens/Profile/index.tsx:184
@@ -257,21 +213,13 @@ msgstr "域名"
 
 #: src/components/DomainSizeModal.tsx:63
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
-msgstr ""
+msgstr "每额外增加的1kb内存需花费约0.007 SOL（0.001 USDC）"
 
 #: src/screens/Cart/index.tsx:235
 #: src/screens/DomainView.tsx:627
 #: src/screens/DomainView.tsx:739
 msgid "Edit"
 msgstr "编辑"
-
-#: src/components/EditRecordModal.tsx:260
-#~ msgid "Edit {0} record"
-#~ msgstr "编辑{0}记录"
-
-#: src/components/EditPicture.tsx:220
-#~ msgid "Edit Picture"
-#~ msgstr "编辑图片"
 
 #: src/utils/record/place-holder.tsx:51
 msgid "Email"
@@ -287,11 +235,11 @@ msgstr "输入你的{x}记录"
 
 #: src/utils/record/place-holder.tsx:8
 msgid "Enter your Backpack username"
-msgstr "输入你的背包帐号名"
+msgstr "输入你的Backpack用户名"
 
 #: src/utils/record/place-holder.tsx:28
 msgid "Enter your Bitcoin address"
-msgstr "输入你的比特币地址"
+msgstr "输入你的Bitcoin地址"
 
 #: src/utils/record/place-holder.tsx:26
 msgid "Enter your BNB address"
@@ -307,7 +255,7 @@ msgstr "输入你的 Dogecoin 地址"
 
 #: src/utils/record/place-holder.tsx:12
 msgid "Enter your email address"
-msgstr "输入你的电子邮件地址"
+msgstr "输入你的比特币地址"
 
 #: src/utils/record/place-holder.tsx:30
 msgid "Enter your Ethereum address"
@@ -339,45 +287,35 @@ msgstr "输入你的推特用户名"
 
 #: src/utils/record/place-holder.tsx:22
 msgid "Enter your website URL"
-msgstr "输入你的网站 URL"
-
-#: src/components/OrderSummary.tsx:53
-#~ msgid "Gas"
-#~ msgstr "矿工费"
+msgstr "输入你的网站地址"
 
 #: src/screens/Profile/EmptyState.tsx:43
 msgid ""
 "Get a .sol domain and \n"
 " start building your profile"
 msgstr ""
+"获取 .sol 域名并 \n"
+" 开始构建您的个人资料"
 
 #: src/screens/Cart/index.tsx:366
 msgid "Get started with my profiles"
-msgstr ""
+msgstr "从个人资料开始"
 
 #: src/utils/record/place-holder.tsx:57
 msgid "Github"
 msgstr "Github"
 
-#: src/components/SuccessCheckoutModal.tsx:36
-#~ msgid "Go to Profile"
-#~ msgstr "前往个人账户"
-
-#: src/App.tsx:159
-#~ msgid "Home"
-#~ msgstr "主页"
-
 #: src/components/ProgressExplainerModal.tsx:63
 msgid "How to boost your profile?"
-msgstr ""
+msgstr "如何升级你的个人资料"
 
 #: src/screens/HomeScreen.tsx:30
 msgid "Human-readable address"
-msgstr ""
+msgstr "人类可读的钱包地址"
 
 #: src/components/DiscountExplainerModal.tsx:29
 msgid "If you register your domains using FIDA, you are eligible for a 5% discount!"
-msgstr "使用 FIDA 注册域名可以享受 5% 的折扣!"
+msgstr "如果您使用 FIDA 注册域名，将可以享受 5% 的折扣!"
 
 #: src/utils/record/place-holder.tsx:73
 msgid "Injective"
@@ -385,23 +323,11 @@ msgstr "Injective"
 
 #: src/screens/Profile/EmptyState.tsx:31
 msgid "Into this"
-msgstr ""
+msgstr "进入"
 
 #: src/screens/DomainView.tsx:372
 msgid "Invalid {key} address"
-msgstr ""
-
-#: src/components/EditRecordModal.tsx:86
-#~ msgid "Invalid Arweave record"
-#~ msgstr "Arweave 记录无效"
-
-#: src/components/EditRecordModal.tsx:92
-#~ msgid "Invalid BSC address"
-#~ msgstr "BSC 地址无效"
-
-#: src/components/EditRecordModal.tsx:80
-#~ msgid "Invalid IPFS record - Must start with ipfs://"
-#~ msgstr "IPFS 记录无效 - 必须以 ipfs:// 开头"
+msgstr "无效的 {key} 钱包地址"
 
 #: src/components/EditPicture.tsx:63
 #: src/screens/DomainView.tsx:363
@@ -412,22 +338,13 @@ msgstr "网址无效"
 msgid "IPFS"
 msgstr "IPFS"
 
-#: src/components/LanguageModal.tsx:27
-#: src/screens/HomeScreen.tsx:105
-#~ msgid "Language"
-#~ msgstr "语言"
-
 #: src/components/TokenizeModal.tsx:191
 msgid "Learn more in our docs"
-msgstr ""
+msgstr "在docs中学习更多内容"
 
 #: src/screens/Profile/index.tsx:184
 msgid "My domains"
 msgstr "我的域名"
-
-#: src/screens/Profile.tsx:248
-#~ msgid "My subdomains"
-#~ msgstr "我的子域名"
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -439,24 +356,16 @@ msgstr "新图片网址"
 
 #: src/components/ProgressExplainerModal.tsx:115
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 #: src/screens/DomainView.tsx:738
 msgid "No changes to save"
-msgstr ""
+msgstr "无需保存更改"
 
 #: src/components/SearchModal.tsx:75
 #: src/screens/Profile/index.tsx:231
 msgid "No domain found"
 msgstr "未找到域名"
-
-#: src/screens/Profile.tsx:266
-#~ msgid "No subdomain found"
-#~ msgstr "未找到子域名"
-
-#: src/screens/DomainView.tsx:210
-#~ msgid "No subdomains found"
-#~ msgstr "未找到子域名"
 
 #: src/screens/DomainView.tsx:692
 msgid "Not set"
@@ -464,7 +373,7 @@ msgstr "未设置"
 
 #: src/screens/Cart/EmptyState.tsx:21
 msgid "Nothing in your cart yet"
-msgstr ""
+msgstr "购物车中还没有任何域名"
 
 #: src/components/OrderSummary.tsx:30
 msgid "Order summary"
@@ -476,7 +385,7 @@ msgstr "支付方式"
 
 #: src/screens/Cart/index.tsx:390
 msgid "Payment"
-msgstr ""
+msgstr "支付方式"
 
 #: src/components/EditPicture.tsx:170
 msgid "Permission to access photo album is required"
@@ -488,11 +397,11 @@ msgstr "图片"
 
 #: src/components/EditPicture.tsx:234
 msgid "Picture URL"
-msgstr ""
+msgstr "图片网址"
 
 #: src/components/TransferModal.tsx:96
 msgid "Please remember, once you transfer a domain, the action is irreversible. You will lose its ownership and will no longer be able to receive funds using this domain."
-msgstr ""
+msgstr "注意您一旦成功转让域名，该行为将不可逆转。您将失去该域名的所有权，并将再也无法使用该域名接收资金。"
 
 #: src/utils/record/place-holder.tsx:69
 msgid "POINT"
@@ -502,17 +411,13 @@ msgstr "积分"
 msgid "Profile"
 msgstr "个人账户"
 
-#: src/screens/Profile.tsx:177
-#~ msgid "Profile completed: {percentage}%"
-#~ msgstr "个人资料完成进度：{percentage}%"
-
 #: src/screens/Profile/index.tsx:157
 msgid "Profile completion: {percentage}%"
-msgstr ""
+msgstr "个人资料完成度: {percentage}%"
 
 #: src/components/DomainSearchResultRow.tsx:51
 msgid "Purchased"
-msgstr ""
+msgstr "已购买"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -524,22 +429,17 @@ msgstr "注册折扣"
 
 #: src/screens/DomainView.tsx:627
 msgid "Revert"
-msgstr ""
+msgstr "返回"
 
 #: src/components/EditPicture.tsx:254
 #: src/screens/DomainView.tsx:737
 msgid "Save"
-msgstr ""
-
-#: src/App.tsx:178
-#: src/screens/HomeScreen.tsx:92
-#~ msgid "Search"
-#~ msgstr "搜索"
+msgstr "保存"
 
 #: src/screens/HomeScreen.tsx:142
 #: src/screens/HomeScreen.tsx:154
 msgid "Search domain"
-msgstr ""
+msgstr "搜索域名"
 
 #: src/components/SearchModal.tsx:51
 msgid "Search domains"
@@ -549,30 +449,17 @@ msgstr "搜索域名"
 #: src/screens/Profile/index.tsx:191
 #: src/screens/SearchResult.tsx:67
 msgid "Search for a domain"
-msgstr ""
-
-#: src/screens/HomeScreen.tsx:78
-#: src/screens/SearchResult.tsx:71
-#~ msgid "Search for your name.sol"
-#~ msgstr "搜索你的 名字.sol"
+msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:101
 #: src/screens/SearchResult.tsx:80
 msgid "Search your .SOL domain"
-msgstr ""
+msgstr "搜索你的 .SOL 域名"
 
 #: src/screens/Cart/EmptyState.tsx:36
 #: src/screens/Profile/EmptyState.tsx:58
 msgid "Secure a domain for yourself"
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:27
-#~ msgid "See that cool progress bar at the top? That's your personal guide to building a robust and engaging profile. Here's how it works:"
-#~ msgstr "看到上方的进度条了吗？这将引导你一步步构建完备且迷人的个人资料。请参考以下的步骤："
-
-#: src/screens/HomeScreen.tsx:66
-#~ msgid "Seize your online identity."
-#~ msgstr "掌控您的网络身份。"
+msgstr "为自己创建一个域名"
 
 #: src/utils/record/place-holder.tsx:67
 msgid "SHDW"
@@ -580,28 +467,11 @@ msgstr "SHDW"
 
 #: src/components/ProgressExplainerModal.tsx:103
 msgid "Skip"
-msgstr ""
+msgstr "跳过"
 
 #: src/screens/DomainView.tsx:586
 msgid "Socials"
 msgstr "社交媒体"
-
-#: src/components/ErrorModal.tsx:12
-#: src/components/ErrorModal.tsx:20
-#~ msgid "Something went wrong"
-#~ msgstr "问题出现了"
-
-#: src/components/CreateSubdomainModal.tsx:69
-#: src/components/DeleteModal.tsx:66
-#: src/components/EditPicture.tsx:162
-#: src/components/EditPicture.tsx:210
-#: src/components/EditRecordModal.tsx:226
-#: src/components/EditRecordModal.tsx:252
-#: src/components/FavoriteButton.tsx:59
-#: src/components/TokenizeModal.tsx:138
-#: src/components/TransferModal.tsx:68
-#~ msgid "Something went wrong - try again"
-#~ msgstr "问题出现了，请重试"
 
 #: src/components/DomainSizeModal.tsx:46
 msgid "Storage Size"
@@ -609,7 +479,7 @@ msgstr "存储容量"
 
 #: src/screens/Cart/index.tsx:218
 msgid "Storage:"
-msgstr ""
+msgstr "存储容量:"
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
@@ -625,15 +495,11 @@ msgstr "子域名"
 
 #: src/components/DomainRow.tsx:48
 msgid "Subdomains ({0})"
-msgstr ""
+msgstr "子域名({0})"
 
 #: src/components/SuccessSubdomainModal.tsx:28
 msgid "Success!"
 msgstr "成功！"
-
-#: src/components/UnavailableRow.tsx:19
-#~ msgid "Taken"
-#~ msgstr "已被使用"
 
 #: src/utils/record/place-holder.tsx:63
 msgid "Telegram"
@@ -645,11 +511,7 @@ msgstr "存储容量将会决定你的域名上储存的最大数据量"
 
 #: src/screens/DomainView.tsx:819
 msgid "There are no subdomains."
-msgstr ""
-
-#: src/components/UnavailableRow.tsx:36
-#~ msgid "This domain has already been purchased"
-#~ msgstr "该域名已被购买"
+msgstr "尚无任何子域名。"
 
 #: src/components/WormholeExplainerModal.tsx:13
 msgid "This domain has been bridged via Wormhole and is available on BNB"
@@ -657,15 +519,11 @@ msgstr "该域名已通过Wormhole桥接，可在BNB上使用"
 
 #: src/screens/DomainView.tsx:499
 msgid "This domain is wrapped in an NFT"
-msgstr ""
+msgstr "该域名已被封装为NFT"
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"
 msgstr "总计"
-
-#: src/components/OrderSummary.tsx:49
-#~ msgid "Total USD"
-#~ msgstr "总计美元"
 
 #: src/screens/DomainView.tsx:527
 msgid "Transfer"
@@ -677,11 +535,11 @@ msgstr "转移 {domain}.sol"
 
 #: src/components/TransferModal.tsx:89
 msgid "Transferring your subdomain will link it to a new address and may restrict your ability to receive funds through it. Although the action can be reversed by the parent owners, we caution the user to be vigilant of the addresses."
-msgstr ""
+msgstr "转移的子域名将会与新地址相关联，这可能会限制你使用该地址接收资金。尽管主域名所有者可以撤销此操作，但我们提醒用户需要对这些地址保持警惕。"
 
 #: src/screens/Profile/EmptyState.tsx:21
 msgid "Turn this"
-msgstr ""
+msgstr "跳转"
 
 #: src/utils/record/place-holder.tsx:61
 msgid "Twitter"
@@ -689,17 +547,12 @@ msgstr "Twitter"
 
 #: src/screens/HomeScreen.tsx:29
 msgid "Unique domain name for your project"
-msgstr ""
-
-#: src/components/TokenizeModal.tsx:146
-#: src/components/TokenizeModal.tsx:155
-#~ msgid "Unwrap"
-#~ msgstr "解除封装"
+msgstr "为您的项目创建独一无二的域名"
 
 #: src/components/TokenizeModal.tsx:199
 #: src/components/TokenizeModal.tsx:210
 msgid "Unwrap domain"
-msgstr ""
+msgstr "解除封装域名"
 
 #: src/screens/DomainView.tsx:558
 msgid "Unwrap NFT"
@@ -707,15 +560,11 @@ msgstr "将NFT解除封装"
 
 #: src/components/TokenizeModal.tsx:145
 msgid "Unwrap your domain from NFT"
-msgstr ""
+msgstr "将NFT解除封装为你的域名"
 
 #: src/components/EditPicture.tsx:228
 msgid "Upload a picture..."
-msgstr ""
-
-#: src/utils/record/place-holder.tsx:53
-#~ msgid "Url"
-#~ msgstr "网址"
+msgstr "上传一张图片..."
 
 #: src/components/SuccessSubdomainModal.tsx:48
 msgid "View subdomain"
@@ -723,57 +572,49 @@ msgstr "浏览子域名"
 
 #: src/utils/record/place-holder.tsx:53
 msgid "Website"
-msgstr ""
+msgstr "网站"
 
 #: src/components/TokenizeModal.tsx:147
 msgid "What is an NFT domain?"
-msgstr ""
+msgstr "什么是 NFT 域名？"
 
 #: src/components/TokenizeModal.tsx:159
 msgid "What to consider:"
-msgstr ""
-
-#: src/components/TokenizeModal.tsx:155
-#~ msgid "Wrap"
-#~ msgstr "封装"
+msgstr "注意事项："
 
 #: src/components/TokenizeModal.tsx:199
 #: src/components/TokenizeModal.tsx:212
 msgid "Wrap domain"
-msgstr ""
-
-#: src/screens/DomainView.tsx:331
-#~ msgid "Wrap domain into NFT"
-#~ msgstr "将域名封装为NFT"
+msgstr "封装域名"
 
 #: src/screens/DomainView.tsx:558
 msgid "Wrap to NFT"
-msgstr ""
+msgstr "封装为NFT"
 
 #: src/components/TokenizeModal.tsx:146
 msgid "Wrap your domain into an NFT"
-msgstr ""
+msgstr "将你的域名封装成NFT"
 
 #: src/screens/Cart/index.tsx:358
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
-msgstr ""
+msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名相关个人资料开始使用。"
 
 #: src/screens/DomainView.tsx:790
 msgid "You can only add subdomains when the domain is unwrapped."
-msgstr ""
+msgstr "只有在域名解除封装后才能添加子域名。"
+
+#: src/screens/Cart/index.tsx:114
+msgid "You do not have enough funds"
+msgstr "您的资金不足"
 
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
-msgstr ""
-
-#: src/screens/HomeScreen.tsx:60
-#~ msgid "Your <0>Name</0>. Your <1>Power</1>."
-#~ msgstr "你的<0>名字</0>。你的<1>力量</1>。"
+msgstr "您还没有任何子域名。您可以创建任意数量的子域名，以便将您的个人资料用于不同的用途。"
 
 #: src/screens/Cart/index.tsx:389
 msgid "Your domains"
-msgstr ""
+msgstr "你的域名"
 
 #: src/screens/HomeScreen.tsx:68
 msgid "Your online identity starts with your <0>.sol domain</0>"
-msgstr ""
+msgstr "您的线上身份从 <0>.sol 域名</0>开始"
