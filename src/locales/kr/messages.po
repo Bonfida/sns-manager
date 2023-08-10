@@ -770,7 +770,7 @@ msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있
 
 #: src/screens/Cart/index.tsx:114
 msgid "You do not have enough funds"
-msgstr ""
+msgstr "자금이 부족합니다."
 
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."

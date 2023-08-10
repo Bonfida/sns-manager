@@ -603,7 +603,7 @@ msgstr "Yalnızca domain katlanmamış (unwrapped) haldeyken subdomain ekleyebil
 
 #: src/screens/Cart/index.tsx:114
 msgid "You do not have enough funds"
-msgstr ""
+msgstr "Yeterli bakiyeye sahip değilsiniz"
 
 #: src/screens/DomainView.tsx:814
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
