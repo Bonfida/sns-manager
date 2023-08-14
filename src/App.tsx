@@ -3,12 +3,9 @@ global.Buffer = global.Buffer || require("buffer").Buffer;
 
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { TouchableOpacity, ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createBottomTabNavigator,
-  BottomTabBarButtonProps,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
