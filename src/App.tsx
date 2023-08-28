@@ -114,9 +114,9 @@ function TabNavigator() {
         listeners={({ navigation }) => ({
           tabPress: (e) => {
             e.preventDefault();
-            // if (!connected) {
-            //   return setVisible(true);
-            // }
+            if (!connected) {
+              return setVisible(true);
+            }
             navigation.navigate("Profile", { owner: publicKey?.toBase58() });
           },
         })}
@@ -168,7 +168,7 @@ function TabNavigator() {
   );
 }
 
-export function App() {
+function App() {
   let [fontsLoaded] = useFonts({
     Azeret: AzeretMono_400Regular,
   });

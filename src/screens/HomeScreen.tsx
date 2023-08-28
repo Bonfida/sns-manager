@@ -68,13 +68,15 @@ function HomeRoot() {
             Your online identity starts with your{" "}
             <Text
               style={[
-                (isMobile ? {} : {
-                  // This css rules are supported only in browser
-                  backgroundClip: "text",
-                  backgroundImage: `linear-gradient(to right, ${tw.color(
-                    "brand-primary"
-                  )}, ${tw.color("brand-accent")})`,
-                }),
+                isMobile
+                  ? {}
+                  : {
+                      // This css rules are supported only in browser
+                      backgroundClip: "text",
+                      backgroundImage: `linear-gradient(to right, ${tw.color(
+                        "brand-primary"
+                      )}, ${tw.color("brand-accent")})`,
+                    },
                 !isMobile && tw`font-medium text-transparent`,
                 isMobile && tw`font-bold`,
               ]}
