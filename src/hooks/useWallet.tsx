@@ -26,12 +26,12 @@ export const useWalletXnft = () => {
   const res = useMemo(() => {
     return {
       connected: !!didLaunch,
-      signTransaction: signTransaction,
-      publicKey: publicKey ? new PublicKey(publicKey) : undefined,
+      signTransaction,
       signAllTransactions,
+      signMessage,
+      publicKey: publicKey ? new PublicKey(publicKey) : undefined,
       setVisible: (x: boolean) => console.log("No need for setVisible"),
       visible: false,
-      signMessage,
     };
   }, [didLaunch, publicKey]);
 

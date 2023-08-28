@@ -10,6 +10,7 @@ import {
 import { Fragment, useState } from "react";
 import { useModal } from "react-native-modalfy";
 import { Trans, t } from "@lingui/macro";
+import { isMobile } from "@src/utils/platform";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
@@ -185,7 +186,14 @@ export const Cart = () => {
           style={tw`h-[24px]`}
         />
 
-        <View style={[tw`pt-6`, { height: "calc(100% - 24px)" }]}>
+        <View
+          style={[
+            tw`pt-6`,
+            // So the "Continue" button will be tied to the bottom of the page
+            !isMobile && { height: "calc(100% - 24px)" },
+            isMobile && tw`h-[100%] pb-6`,
+          ]}
+        >
           {currentStep === 1 ? (
             <>
               {cart.length > 1 && (
@@ -204,6 +212,7 @@ export const Cart = () => {
               >
                 <FlatList
                   data={cart}
+                  scrollEnabled={false}
                   contentContainerStyle={tw`flex flex-col gap-2`}
                   renderItem={({ item }) => (
                     <View

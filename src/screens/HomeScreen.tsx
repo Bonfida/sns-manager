@@ -11,6 +11,7 @@ import {
 import { trimTld, validate } from "@src/utils/validate";
 import { isPubkey } from "@src/utils/publickey";
 import { abbreviate } from "@src/utils/abbreviate";
+import { isMobile } from "@src/utils/platform";
 import { Trans, t } from "@lingui/macro";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchResult } from "./SearchResult";
@@ -20,8 +21,6 @@ import { CustomTextInput } from "@src/components/CustomTextInput";
 import { UiButton } from "@src/components/UiButton";
 import { LanguageHeader } from "@src/components/Header";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
-
-require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Stack = createStackNavigator<NavigatorTabsParamList>();
 
@@ -69,13 +68,15 @@ function HomeRoot() {
             Your online identity starts with your{" "}
             <Text
               style={[
-                {
+                (isMobile ? {} : {
+                  // This css rules are supported only in browser
                   backgroundClip: "text",
                   backgroundImage: `linear-gradient(to right, ${tw.color(
                     "brand-primary"
                   )}, ${tw.color("brand-accent")})`,
-                },
-                tw`font-medium text-transparent`,
+                }),
+                !isMobile && tw`font-medium text-transparent`,
+                isMobile && tw`font-bold`,
               ]}
             >
               .sol domain

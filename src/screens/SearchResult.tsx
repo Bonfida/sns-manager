@@ -88,6 +88,7 @@ export const SearchResult = ({
               {!topDomainsSales.loading && (
                 <FlatList
                   data={topDomainsSales.result}
+                  scrollEnabled={false}
                   renderItem={({ item }) => (
                     <DomainSearchResultRow
                       domain={item.domain}
@@ -118,6 +119,7 @@ export const SearchResult = ({
               ) : (
                 <FlatList
                   data={results.result?.concat(suggestions.result || [])}
+                  scrollEnabled={false}
                   renderItem={({ item }) => (
                     <DomainSearchResultRow
                       domain={item.domain}

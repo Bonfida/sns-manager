@@ -32,6 +32,7 @@
     "@lingui/macro": "^4.2.0",
     "@lingui/react": "^4.2.0",
     "@pythnetwork/client": "^2.17.0",
+    "@react-native-async-storage/async-storage": "1.17.11",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-navigation/bottom-tabs": "6.3.1",
     "@react-navigation/native": "6.0.10",
@@ -60,8 +61,10 @@
     "react-error-overlay": "6.0.11",
     "react-native": "0.71.8",
     "react-native-gesture-handler": "~2.9.0",
+    "react-native-get-random-values": "~1.9.0",
     "react-native-heroicons": "^3.2.0",
     "react-native-modalfy": "^3.4.0",
+    "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
     "react-native-skeleton-content": "^1.0.28",
@@ -89,7 +92,8 @@
     "xnft": "latest"
   },
   "resolutions": {
-    "react-error-overlay": "6.0.11"
+    "react-error-overlay": "6.0.11",
+    "react-native-reanimated": "2.14.4"
   },
   "name": "sns-manager",
   "version": "0.0.1"

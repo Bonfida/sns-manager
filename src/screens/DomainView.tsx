@@ -799,6 +799,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <FlatList
                 data={subdomains.result}
                 style={isOwner && tw`mt-4`}
+                scrollEnabled={false}
                 contentContainerStyle={tw`flex flex-col gap-3`}
                 renderItem={({ item }) => (
                   <DomainRowRecord

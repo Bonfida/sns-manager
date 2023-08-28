@@ -9,8 +9,7 @@ import {
   ReauthorizeAPI,
 } from "@solana-mobile/mobile-wallet-adapter-protocol";
 import { toUint8Array } from "js-base64";
-import { useState, useCallback, useMemo, ReactNode } from "react";
-import React from "react";
+import React, { useState, useCallback, useMemo, ReactNode } from "react";
 
 import { RPC_ENDPOINT } from "./ConnectionProvider";
 
@@ -64,9 +63,10 @@ function getPublicKeyFromAddress(address: Base64EncodedAddress): PublicKey {
 }
 
 export const APP_IDENTITY = {
-  name: "React Native dApp",
-  uri: "https://solanamobile.com",
-  icon: "favicon.ico",
+  name: "SNS Manager",
+  uri: "https://bonfida.org/en",
+  // TODO:
+  // icon: '',
 };
 
 export interface AuthorizationProviderContext {

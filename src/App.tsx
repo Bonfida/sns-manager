@@ -1,25 +1,18 @@
+// Required to fix the issue with "crypto.getRandomValues() not supported"
+// https://github.com/uuidjs/uuid#getrandomvalues-not-supported
+// https://github.com/uuidjs/uuid/issues/416
+// TODO: load only for Android separately using .android.tsx suffix
+import "react-native-get-random-values";
+
 window.Buffer = window.Buffer || require("buffer").Buffer;
 global.Buffer = global.Buffer || require("buffer").Buffer;
 
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
-import {
-  AppRegistry,
-  Platform,
-  TouchableOpacity,
-  ActivityIndicator,
-  View,
-  Button,
-  Alert,
-  Text,
-} from "react-native";
-import { useState, useCallback } from "react";
+import { ActivityIndicator, View, Text } from "react-native";
+import { ReactNode, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol";
-import {
-  createBottomTabNavigator,
-  BottomTabBarButtonProps,
-} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
@@ -34,15 +27,8 @@ import { EditPicture } from "./components/EditPicture";
 import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
-import { isXnft, isMobile, isWeb } from "./utils/platform";
-import { ReactNode, useEffect, useMemo } from "react";
-import {
-  // ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { isXnft, isMobile, isWeb } from "@src/utils/platform";
 import { useWallet } from "./hooks/useWallet";
-import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
 import { DeleteModal } from "./components/DeleteModal";
@@ -59,27 +45,25 @@ import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
 import { LanguageHeader } from "@src/components/Header";
-import { ConnectionProvider } from "@src/mobile/ConnectionProvider";
-import { AuthorizationProvider } from "@src/mobile/AuthorizationProvider";
-import { MainScreen } from "@src/mobile/MainScreen";
+import { SolanaProvider } from "@src/providers/SolanaProvider";
 
 const xnftjson = require("../xnft.json");
 
 console.log(`Version: ${xnftjson.version}`);
 
 const modalConfig = {
-  // Transfer: TransferModal,
-  // Delete: DeleteModal,
-  // CreateSubdomain: CreateSubdomainModal,
-  // SuccessSubdomainModal: SuccessSubdomainModal,
-  // WormholeExplainer: WormholeExplainerModal,
-  // EditPicture: EditPicture,
-  // ProgressExplainerModal: ProgressExplainerModal,
-  // SearchModal: SearchModal,
-  // DiscountExplainerModal: DiscountExplainerModal,
-  // DomainSizeModal: DomainSizeModal,
-  // LanguageModal: LanguageModal,
-  // TokenizeModal: TokenizeModal,
+  Transfer: TransferModal,
+  Delete: DeleteModal,
+  CreateSubdomain: CreateSubdomainModal,
+  SuccessSubdomainModal: SuccessSubdomainModal,
+  WormholeExplainer: WormholeExplainerModal,
+  EditPicture: EditPicture,
+  ProgressExplainerModal: ProgressExplainerModal,
+  SearchModal: SearchModal,
+  DiscountExplainerModal: DiscountExplainerModal,
+  DomainSizeModal: DomainSizeModal,
+  LanguageModal: LanguageModal,
+  TokenizeModal: TokenizeModal,
 };
 
 const stackModal = createModalStack(modalConfig);
@@ -95,18 +79,19 @@ const TabBarLabel = ({ focused }: { focused: boolean }, label: ReactNode) => {
 };
 
 function TabNavigator() {
-  // useReferrer();
-  // const [cart] = useRecoilState(cartState);
-  // const { publicKey, setVisible, connected } = useWallet();
-  // const { currentLanguage } = useLanguageContext();
+  useReferrer();
+  const [cart] = useRecoilState(cartState);
+  const { publicKey, setVisible, connected } = useWallet();
 
-  // useEffect(() => {
-  //   console.table(isMobile, isXnft, isWeb);
-  //   if (isXnft) return;
-  //   if (!connected) {
-  //     setVisible(true);
-  //   }
-  // }, []);
+  const { currentLanguage } = useLanguageContext();
+
+  useEffect(() => {
+    console.table(isMobile, isXnft, isWeb);
+    if (isXnft) return;
+    if (!connected) {
+      setVisible(true);
+    }
+  }, []);
 
   return (
     <Tab.Navigator
@@ -120,24 +105,19 @@ function TabNavigator() {
           aspectRatio: "1/1",
         },
       }}
-      // key={currentLanguage} // trigger tab re-render when translation is toggled
+      key={currentLanguage} // trigger tab re-render when translation is toggled
     >
       <Tab.Screen
         name="Profile"
-        // initialParams={{ owner: publicKey?.toBase58() }}
-        // children={({ route }) => <ProfileScreen owner={route.params.owner} />}
-        children={({ route }) => (
-          <View>
-            <Text>Profile</Text>
-          </View>
-        )}
+        initialParams={{ owner: publicKey?.toBase58() }}
+        children={({ route }) => <ProfileScreen owner={route.params.owner} />}
         listeners={({ navigation }) => ({
           tabPress: (e) => {
-            // e.preventDefault();
+            e.preventDefault();
             // if (!connected) {
             //   return setVisible(true);
             // }
-            // navigation.navigate("Profile", { owner: publicKey?.toBase58() });
+            navigation.navigate("Profile", { owner: publicKey?.toBase58() });
           },
         })}
         options={{
@@ -145,13 +125,12 @@ function TabNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Feather name="user" size={size} color={color} />
           ),
-          // header: () => <LanguageHeader />,
+          header: () => <LanguageHeader />,
         }}
       />
       <Tab.Screen
         name="Home"
-        // component={HomeScreen}
-        component={MainScreen}
+        component={HomeScreen}
         options={{
           tabBarLabel: (props) => TabBarLabel(props, t`Domains`),
           tabBarIcon: ({ color, size }) => (
@@ -161,24 +140,19 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Cart"
-        // component={Cart}
-        component={() => (
-          <View>
-            <Text>Cart</Text>
-          </View>
-        )}
+        component={Cart}
         options={{
           tabBarLabel: (props) => TabBarLabel(props, t`Cart`),
           tabBarIcon: ({ color, size }) => (
             <View style={tw`relative`}>
               <Feather name="shopping-cart" size={size} color={color} />
-              {/* {cart.length !== 0 ? (
+              {cart.length !== 0 ? (
                 <Text
                   style={tw`absolute -top-1 text-white -right-2 bg-brand-primary rounded-full font-bold h-[15px] text-center text-xs w-[16px]`}
                 >
                   {cart.length}
                 </Text>
-              ) : null} */}
+              ) : null}
             </View>
           ),
           header: () => (
@@ -194,7 +168,7 @@ function TabNavigator() {
   );
 }
 
-function App() {
+export function App() {
   let [fontsLoaded] = useFonts({
     Azeret: AzeretMono_400Regular,
   });
@@ -208,58 +182,20 @@ function App() {
   }
 
   return (
-    <Wrap>
+    <SolanaProvider>
       <RecoilRoot>
         <NavigationContainer>
-          {/* <LanguageProvider i18n={i18n}> */}
-          <StatusModalProvider>
-            <ModalProvider stack={stackModal}>
-              <Button
-                onPress={() => {
-                  transact(async (mobileWallet) => {
-                    const authorization = await mobileWallet.authorize({
-                      cluster: "devnet",
-                      identity: { name: "My Expo App" },
-                    });
-                    console.log(authorization);
-                  });
-                }}
-                title="Authorize"
-              />
-              {/* <TabNavigator /> */}
-            </ModalProvider>
-          </StatusModalProvider>
-          {/* </LanguageProvider> */}
+          <LanguageProvider i18n={i18n}>
+            <StatusModalProvider>
+              <ModalProvider stack={stackModal}>
+                <TabNavigator />
+              </ModalProvider>
+            </StatusModalProvider>
+          </LanguageProvider>
         </NavigationContainer>
       </RecoilRoot>
-    </Wrap>
+    </SolanaProvider>
   );
 }
-
-const Wrap = ({ children }: { children: ReactNode }) => {
-  const wallets = useMemo(() => [], []);
-  if (isXnft) {
-    return <>{children}</>;
-  }
-  console.log({ isMobile });
-  // if (isWeb) {
-  //   return (
-  //     <ConnectionProvider endpoint={URL}>
-  //       <WalletProvider autoConnect wallets={wallets}>
-  //         <WalletModalProvider>
-  //           {children}
-  //         </WalletModalProvider>
-  //       </WalletProvider>
-  //     </ConnectionProvider>
-  //   );
-  // }
-  return (
-    <>
-      <ConnectionProvider endpoint={URL}>
-        <AuthorizationProvider>{children}</AuthorizationProvider>
-      </ConnectionProvider>
-    </>
-  );
-};
 
 registerRootComponent(App);

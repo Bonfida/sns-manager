@@ -1,5 +1,6 @@
 import {
   Text,
+  View,
   TouchableOpacity,
   TouchableOpacityProps,
   ActivityIndicator,
@@ -29,7 +30,7 @@ export const UiButton = ({
     <TouchableOpacity
       {...props}
       style={[
-        tw`rounded-lg flex flex-1 items-center justify-center border-2 border-brand-primary px-2.5`,
+        tw`flex gap-3 flex-row items-center justify-center border-2 rounded-lg border-brand-primary px-2.5`,
         small && tw`py-0.5`,
         !small && tw`py-1.5`,
         !outline && tw`bg-brand-primary`,
@@ -39,38 +40,38 @@ export const UiButton = ({
         props.style,
       ]}
     >
-      {!content ? (
+      {!Boolean(content) ? (
         <>
           {children}
           {loading && (
             <ActivityIndicator
-              style={tw`ml-3`}
               size={16}
               color={outline ? tw.color("brand-primary") : tw.color("white")}
             />
           )}
         </>
       ) : (
-        <Text
-          style={[
-            tw`flex flex-row items-center font-semibold`,
-            small && tw`text-base`,
-            !small && tw`text-lg leading-6`,
-            outline && tw`text-brand-primary`,
-            (!outline || danger) && tw`text-white`,
-            textAdditionalStyles,
-          ]}
-        >
-          {content}
+        <View style={tw`flex flex-row items-center gap-3`}>
+          <Text
+            style={[
+              tw`font-semibold`,
+              small && tw`text-base`,
+              !small && tw`text-lg leading-6`,
+              outline && tw`text-brand-primary`,
+              (!outline || danger) && tw`text-white`,
+              textAdditionalStyles,
+            ]}
+          >
+            {content}
+          </Text>
           {loading && (
             <ActivityIndicator
-              style={tw`ml-3`}
               size={16}
               color={outline ? tw.color("brand-primary") : tw.color("white")}
             />
           )}
           {children}
-        </Text>
+        </View>
       )}
     </TouchableOpacity>
   );
