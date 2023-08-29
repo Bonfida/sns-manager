@@ -32,7 +32,7 @@ export const OrderSummary = ({
 
       <Row
         value={
-          <Text style={tw`flex flex-col items-end`}>
+          <View style={tw`flex flex-col items-end`}>
             <Text>
               {isFida && (
                 <>
@@ -50,7 +50,7 @@ export const OrderSummary = ({
             <Text style={tw`text-xs font-medium text-content-tertiary`}>
               {format(totalUsd)}
             </Text>
-          </Text>
+          </View>
         }
         label={t`Total`}
       />

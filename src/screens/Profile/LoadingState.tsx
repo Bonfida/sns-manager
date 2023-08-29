@@ -5,8 +5,8 @@ import tw from "@src/utils/tailwind";
 
 export const LoadingState = () => {
   return (
-    <View style={tw`flex flex-col items-start w-full h-full px-3 py-5 mt-4`}>
-      <View style={tw`relative w-full mb-20`}>
+    <View style={tw`flex items-start w-full h-full px-3 py-5 mt-4`}>
+      <View style={tw`relative w-full h-[140px] mb-20`}>
         <SkeletonContent isLoading>
           <View
             style={tw`w-[100px] h-[100px] mb-2 rounded-full absolute top-[-25px]`}
@@ -16,7 +16,7 @@ export const LoadingState = () => {
           <View style={tw`h-[140px] w-full rounded-lg`} />
         </SkeletonContent>
       </View>
-      <View style={tw`w-full`}>
+      <View style={tw`w-full h-[240px]`}>
         <SkeletonContent isLoading>
           <View style={tw`w-full h-[50px] my-1`} />
           <View style={tw`w-full h-[50px] my-1`} />

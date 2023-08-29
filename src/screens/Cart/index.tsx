@@ -238,33 +238,35 @@ export const Cart = () => {
                               })
                             }
                           >
-                            <Text
-                              style={tw`flex flex-row items-center text-sm text-brand-primary`}
-                            >
-                              <Trans>Edit</Trans>
+                            <View style={tw`flex flex-row items-center gap-1`}>
+                              <Text style={tw`text-sm text-brand-primary`}>
+                                <Trans>Edit</Trans>
+                              </Text>
 
                               <MaterialIcons
                                 name="edit"
                                 size={14}
                                 color={tw.color("brand-primary")}
-                                style={tw`ml-1`}
                               />
-                            </Text>
+                            </View>
                           </TouchableOpacity>
                         </View>
                       </View>
 
                       <View style={tw`flex flex-row items-center gap-6`}>
-                        <Text
-                          style={tw`flex flex-row items-center gap-1 text-sm font-medium text-content-primary`}
-                        >
+                        <View style={tw`flex flex-row items-center gap-1`}>
                           <Image
                             style={tw`h-[16px] w-[16px]`}
                             source={{ uri: tokenIconBySymbol("USDC") }}
                             resizeMode="contain"
                           />
-                          {priceFromLength(item)}
-                        </Text>
+
+                          <Text
+                            style={tw`text-sm font-medium text-content-primary`}
+                          >
+                            {priceFromLength(item)}
+                          </Text>
+                        </View>
                         <TouchableOpacity
                           onPress={() =>
                             setCart((prev) => prev.filter((e) => e !== item))
@@ -312,16 +314,16 @@ export const Cart = () => {
                       ]}
                       key={e.mintAddress}
                     >
-                      <Text
-                        style={tw`flex flex-row items-center gap-1 text-xs text-content-primary`}
-                      >
+                      <View style={tw`flex flex-row items-center gap-1`}>
                         <Image
                           style={tw`h-[14px] w-[14px] rounded-full`}
                           source={{ uri: tokenIconBySymbol(e.tokenSymbol) }}
                           resizeMode="contain"
                         />
-                        {e.tokenSymbol}
-                      </Text>
+                        <Text style={tw`text-xs text-content-primary`}>
+                          {e.tokenSymbol}
+                        </Text>
+                      </View>
                       {e.mintAddress === FIDA_MINT && (
                         <Text
                           style={tw`px-1 text-white text-xs bg-content-success absolute top-[-6px] right-[-6px] rounded`}
