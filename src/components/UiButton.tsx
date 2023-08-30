@@ -30,7 +30,7 @@ export const UiButton = ({
     <TouchableOpacity
       {...props}
       style={[
-        tw`flex gap-3 flex-row items-center justify-center border-2 rounded-lg border-brand-primary px-2.5`,
+        tw`flex flex-grow gap-3 flex-row items-center justify-center border-2 rounded-lg border-brand-primary px-2.5`,
         small && tw`py-0.5`,
         !small && tw`py-1.5`,
         !outline && tw`bg-brand-primary`,

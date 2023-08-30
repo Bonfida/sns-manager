@@ -525,7 +525,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   }
                   small
                   content={t`Transfer`}
-                  style={tw`basis-1/2`}
                 />
               )}
               {isOwner && (
@@ -556,7 +555,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       }
                       small
                       content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
-                      style={tw`basis-1/2`}
                     />
                   )}
                 </>
@@ -778,7 +776,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                     >
                       <Trans>Add subdomain</Trans>
 
-                      <Entypo name="plus" size={24} color="brand-primary" />
+                      <Entypo name="plus" size={24} />
                     </Text>
                   </TouchableOpacity>
                 </View>

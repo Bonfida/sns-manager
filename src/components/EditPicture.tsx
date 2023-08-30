@@ -224,7 +224,6 @@ export const EditPicture = ({
       <UiButton
         disabled={loading}
         onPress={connected ? handlePickImage : () => setVisible(true)}
-        style={tw`flex flex-row items-center justify-center`}
         content={t`Upload a picture...`}
         loading={loading}
       />
