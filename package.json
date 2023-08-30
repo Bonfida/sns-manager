@@ -4,6 +4,7 @@
   "scripts": {
     "build:xnft": "XNFT=true expo export:web",
     "build:web": "WEB=true expo export:web && cp _headers web-build/",
+    "build:mobile-apk": "eas build -p android --profile preview --local",
     "start": "yarn build:xnt && npx xnft web",
     "bundle": "yarn build:xnft && npx xnft bundle",
     "dev": "GENERATE_SOURCEMAP=false expo start --clear --web & npx xnft --iframe http://localhost:19006",
