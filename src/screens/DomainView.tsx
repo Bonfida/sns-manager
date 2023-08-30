@@ -757,7 +757,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             onLayout={(event) => {
               setCoordinates((prevState) => ({
                 ...prevState,
-                subdomains: event.nativeEvent.layout.y,
+                subdomains: event.nativeEvent?.layout?.y || 0,
               }));
             }}
           >
