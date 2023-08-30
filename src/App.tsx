@@ -87,7 +87,8 @@ function TabNavigator() {
 
   useEffect(() => {
     console.table(isMobile, isXnft, isWeb);
-    if (isXnft) return;
+    // Do not authorize automatically
+    if (isXnft || isMobile) return;
     if (!connected) {
       setVisible(true);
     }
