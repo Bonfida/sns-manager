@@ -65,8 +65,7 @@ function getPublicKeyFromAddress(address: Base64EncodedAddress): PublicKey {
 export const APP_IDENTITY = {
   name: "SNS Manager",
   uri: "https://bonfida.org/en",
-  // TODO:
-  // icon: '',
+  icon: require("@assets/icon.png"),
 };
 
 export interface AuthorizationProviderContext {
@@ -96,6 +95,25 @@ function AuthorizationProvider(props: { children: ReactNode }) {
   const [authorization, setAuthorization] = useState<Authorization | null>(
     null
   );
+
+  // useEffect(() => {
+  //   reauthorizeFromCache();
+  // }, []);
+
+  // const reauthorizeFromCache = async () => {
+  //   try {
+  //     const prevAuth = await AsyncStorage.getItem("Authorization");
+  //     if (prevAuth) {
+  //       const auth: Authorization = JSON.parse(prevAuth)
+  //       if (auth) {
+  //         await setAuthorization(auth);
+  //       }
+  //     }
+  //   } catch (err) {
+  //     await AsyncStorage.setItem("Authorization", '');
+  //   }
+  // }
+
   const handleAuthorizationResult = useCallback(
     async (
       authorizationResult: AuthorizationResult
@@ -105,10 +123,14 @@ function AuthorizationProvider(props: { children: ReactNode }) {
         authorization?.selectedAccount
       );
       await setAuthorization(nextAuthorization);
+      // try {
+      //   await AsyncStorage.setItem("Authorization", JSON.stringify(nextAuthorization));
+      // } catch (err) {}
       return nextAuthorization;
     },
     [authorization, setAuthorization]
   );
+
   const authorizeSession = useCallback(
     async (wallet: AuthorizeAPI & ReauthorizeAPI) => {
       const authorizationResult = await (authorization
