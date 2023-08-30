@@ -69,7 +69,7 @@ function HomeRoot() {
             <Text
               style={[
                 isMobile
-                  ? {}
+                  ? tw`font-bold`
                   : {
                       // This css rules are supported only in browser
                       backgroundClip: "text",
@@ -78,7 +78,6 @@ function HomeRoot() {
                       )}, ${tw.color("brand-accent")})`,
                     },
                 !isMobile && tw`font-medium text-transparent`,
-                isMobile && tw`font-bold`,
               ]}
             >
               .sol domain
