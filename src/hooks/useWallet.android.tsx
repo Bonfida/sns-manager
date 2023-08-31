@@ -13,56 +13,75 @@ export const useMobilePlatformWallet = () => {
   async function signAllTransactions<T extends Tx>(
     transactions: T[]
   ): Promise<T[]> {
-    return transact(async (wallet) => {
-      await authorizeSession(wallet);
-
-      return wallet.signTransactions({ transactions: transactions });
-    });
-  }
-
-  async function signTransaction<T extends Tx>(transaction: T): Promise<T> {
-    return transact(async (wallet) => {
-      try {
+    try {
+      return transact(async (wallet) => {
         await authorizeSession(wallet);
 
-        const result = await wallet.signTransactions({
-          transactions: [transaction],
-        });
-        return result[0];
-      } catch (err) {
-        handleError(err);
-        throw err;
-      }
-    });
+        return wallet.signTransactions({ transactions: transactions });
+      });
+    } catch (err) {
+      handleError(err);
+      return [];
+    }
+  }
+
+  async function signTransaction<T extends Tx>(
+    transaction: T
+  ): Promise<T | undefined> {
+    try {
+      return transact(async (wallet) => {
+        try {
+          await authorizeSession(wallet);
+
+          const result = await wallet.signTransactions({
+            transactions: [transaction],
+          });
+          return result[0];
+        } catch (err) {
+          handleError(err);
+          throw err;
+        }
+      });
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function signMessage(
     message: Uint8Array
   ): Promise<Uint8Array | undefined> {
-    return transact(async (wallet) => {
-      try {
-        const authorizationResult = await authorizeSession(wallet);
+    try {
+      return transact(async (wallet) => {
+        try {
+          const authorizationResult = await authorizeSession(wallet);
 
-        const result = await wallet.signMessages({
-          addresses: [authorizationResult.address],
-          payloads: [message],
-        });
+          const result = await wallet.signMessages({
+            addresses: [authorizationResult.address],
+            payloads: [message],
+          });
 
-        return result[0];
-      } catch (err) {
-        handleError(err);
-      }
-    });
+          return result[0];
+        } catch (err) {
+          handleError(err);
+        }
+      });
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   async function authorize() {
-    await transact(async (wallet) => {
-      try {
-        await authorizeSession(wallet);
-      } catch (err) {
-        handleError(err);
-      }
-    });
+    try {
+      await transact(async (wallet) => {
+        try {
+          await authorizeSession(wallet);
+        } catch (err) {
+          handleError(err);
+        }
+      });
+    } catch (err) {
+      handleError(err);
+    }
   }
 
   const res = useMemo(() => {

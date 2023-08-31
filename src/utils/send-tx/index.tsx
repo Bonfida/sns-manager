@@ -4,7 +4,6 @@ import {
   TransactionInstruction,
   Transaction,
 } from "@solana/web3.js";
-import { Tx } from "../../hooks/useWallet";
 
 export const sendTx = async (
   connection: Connection,
