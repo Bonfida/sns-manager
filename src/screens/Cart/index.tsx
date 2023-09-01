@@ -7,8 +7,8 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { SvgUri } from "react-native-svg";
-import { Fragment, useState } from "react";
+import { SvgUri, WithLocalSvg } from "react-native-svg";
+import { Fragment, useState, useEffect } from "react";
 import { useModal } from "react-native-modalfy";
 import { Trans, t } from "@lingui/macro";
 import { isMobile } from "@src/utils/platform";
@@ -82,6 +82,7 @@ export const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useRecoilState(cartState);
   const pyth = usePyth();
+  const [showSuccessScreen, toggleSuccessScreen] = useState(false);
   const [mint, setMint] = useState(tokenList[0].mintAddress);
   const { openModal } = useModal();
   const { setStatus } = useStatusModalContext();
@@ -101,6 +102,11 @@ export const Cart = () => {
 
   const total = totalUsd / (price || 1);
 
+  const goSuccessStep = () => {
+    setStep(3);
+    toggleSuccessScreen(true);
+  };
+
   const handle = async () => {
     if (!connection || !publicKey || !signAllTransactions) return;
     if (
@@ -116,6 +122,7 @@ export const Cart = () => {
         message: t`You do not have enough funds`,
       });
     }
+
     try {
       setLoading(true);
       let ixs: TransactionInstruction[] = [];
@@ -164,16 +171,32 @@ export const Cart = () => {
         console.log(sig);
       }
 
-      setCart([]);
       setLoading(false);
-      setStep(3);
+      goSuccessStep();
     } catch (err) {
       setLoading(false);
       handleError(err);
     }
   };
 
-  if (!cart.length) return <EmptyState />;
+  useEffect(() => {
+    const leaveSuccessPage = () => {
+      if (showSuccessScreen) {
+        toggleSuccessScreen(false);
+        setStep(1);
+        setCart([]);
+      }
+    };
+
+    const unsubscribe = navigation.addListener("blur", leaveSuccessPage);
+
+    return () => {
+      unsubscribe();
+      leaveSuccessPage();
+    };
+  }, [navigation, showSuccessScreen, currentStep]);
+
+  if (!cart.length && !showSuccessScreen) return <EmptyState />;
 
   return (
     <ScrollView
@@ -366,10 +389,19 @@ export const Cart = () => {
           {currentStep === 3 ? (
             <>
               <View style={tw`flex flex-row justify-center`}>
-                <Image
-                  source={require("@assets/icons/celebrate.svg")}
-                  style={tw`w-[120px] h-[120px] opacity-60`}
-                />
+                {isMobile ? (
+                  <WithLocalSvg
+                    style={tw`opacity-60`}
+                    width={120}
+                    height={120}
+                    asset={require("@assets/icons/celebrate.svg")}
+                  />
+                ) : (
+                  <Image
+                    source={require("@assets/icons/celebrate.svg")}
+                    style={tw`w-[120px] h-[120px] opacity-60`}
+                  />
+                )}
               </View>
               <Text
                 style={tw`mt-10 text-lg font-bold text-center text-content-primary`}

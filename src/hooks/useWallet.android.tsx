@@ -86,8 +86,6 @@ export const useMobilePlatformWallet = () => {
   }
 
   const res = useMemo(() => {
-    console.log("calling for memo selectedAccount", selectedAccount);
-
     return {
       connected: !!selectedAccount,
       publicKey: selectedAccount
