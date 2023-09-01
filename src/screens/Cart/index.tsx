@@ -7,6 +7,7 @@ import {
   View,
   ScrollView,
 } from "react-native";
+import { SvgUri } from "react-native-svg";
 import { Fragment, useState } from "react";
 import { useModal } from "react-native-modalfy";
 import { Trans, t } from "@lingui/macro";
@@ -303,6 +304,8 @@ export const Cart = () => {
               <View style={tw`flex flex-row flex-wrap items-center gap-4`}>
                 {tokenList.map((e) => {
                   const selected = e.mintAddress === mint;
+                  const url = tokenIconBySymbol(e.tokenSymbol);
+                  const isSvg = url?.includes(".svg");
 
                   return (
                     <TouchableOpacity
@@ -315,11 +318,21 @@ export const Cart = () => {
                       key={e.mintAddress}
                     >
                       <View style={tw`flex flex-row items-center gap-1`}>
-                        <Image
-                          style={tw`h-[14px] w-[14px] rounded-full`}
-                          source={{ uri: tokenIconBySymbol(e.tokenSymbol) }}
-                          resizeMode="contain"
-                        />
+                        {/* On the web SvgUri is not working */}
+                        {isMobile && isSvg ? (
+                          <SvgUri
+                            style={tw`rounded-full`}
+                            width={20}
+                            height={20}
+                            uri={String(url)}
+                          />
+                        ) : (
+                          <Image
+                            style={tw`h-[20px] w-[20px] rounded-full`}
+                            source={{ uri: url }}
+                            resizeMode="contain"
+                          />
+                        )}
                         <Text style={tw`text-xs text-content-primary`}>
                           {e.tokenSymbol}
                         </Text>
