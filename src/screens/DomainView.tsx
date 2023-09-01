@@ -472,7 +472,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
         ref={scrollViewRef}
         scrollEventThrottle={300}
         onScroll={(event) => {
-          event.persist();
+          if (event.persist) event.persist();
           setScrollViewMeasurements(event.nativeEvent);
         }}
       >
@@ -676,7 +676,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               setStatus({ status: "success", message: t`Copied!` });
             }}
             onLayout={(event) => {
-              event.persist();
+              if (event.persist) event.persist();
               if (item === SNSRecord.Backpack) {
                 setCoordinates((prevState) => ({
                   ...prevState,
@@ -760,7 +760,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           <View
             style={tw`flex flex-col justify-around px-4 py-3 mt-10 bg-background-secondary rounded-xl`}
             onLayout={(event) => {
-              event.persist();
+              if (event.persist) event.persist();
               setCoordinates((prevState) => ({
                 ...prevState,
                 subdomains: event.nativeEvent.layout.y,
