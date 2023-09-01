@@ -56,6 +56,7 @@
     "expo-linear-gradient": "~12.1.2",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
+    "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-async-hook": "^4.0.0",
     "react-dom": "18.2.0",
@@ -77,6 +78,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@expo/webpack-config": "^18.0.1",
+    "@types/lodash": "^4.14.197",
     "@types/react": "~18.0.28",
     "@types/react-native": "~0.71.3",
     "babel-plugin-macros": "^3.1.0",

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import throttle from "lodash/throttle";
 import { Transaction, VersionedTransaction, PublicKey } from "@solana/web3.js";
 import { useHandleError } from "@src/hooks/useHandleError";
 import { transact } from "@solana-mobile/mobile-wallet-adapter-protocol-web3js";
@@ -95,10 +96,14 @@ export const useMobilePlatformWallet = () => {
       signTransaction,
       signAllTransactions,
       signMessage: selectedAccount ? signMessage : undefined,
-      // We just need to call for `authorize` and @solana-mobile/mobile-wallet-adapter-protocol-web3js
+      // 1. We just need to call for `authorize` and @solana-mobile/mobile-wallet-adapter-protocol-web3js
       // will automatically open the wallet if user has only 1 wallet on his device,
       // and will open a "select wallet" screen if user has multiple wallets on his device
-      setVisible: (x: boolean) => authorize(),
+      // 2. We need to throttle because if user will call "authorize" super fast and lot of times,
+      // then SolanaWalletMobile will throw a native-code error which we cannot handle
+      // by try/catch (dunno why)
+      // https://github.com/solana-mobile/mobile-wallet-adapter/issues/541
+      setVisible: throttle(authorize, 3000),
       visible: false,
     };
   }, [selectedAccount]);
