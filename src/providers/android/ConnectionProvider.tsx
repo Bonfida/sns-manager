@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from "react";
 
-export const RPC_ENDPOINT = "mainnet-beta";
+export const SOLANA_CLUSTER = "mainnet-beta";
 
 export interface ConnectionProviderProps {
   children: ReactNode;

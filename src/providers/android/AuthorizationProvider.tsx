@@ -11,7 +11,7 @@ import {
 import { toUint8Array } from "js-base64";
 import React, { useState, useCallback, useMemo, ReactNode } from "react";
 
-import { RPC_ENDPOINT } from "./ConnectionProvider";
+import { SOLANA_CLUSTER } from "./ConnectionProvider";
 
 export type Account = Readonly<{
   address: Base64EncodedAddress;
@@ -139,7 +139,7 @@ function AuthorizationProvider(props: { children: ReactNode }) {
             identity: APP_IDENTITY,
           })
         : wallet.authorize({
-            cluster: RPC_ENDPOINT,
+            cluster: SOLANA_CLUSTER,
             identity: APP_IDENTITY,
           }));
       return (await handleAuthorizationResult(authorizationResult))
