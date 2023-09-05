@@ -1,6 +1,6 @@
 {
   "name": "SNS Manager (Beta)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "storage": "aws",
   "description": "All-in-one tool for SNS",
   "longDescription": "Your all-in-one tool for handling Solana Name Service (SNS) domains",
