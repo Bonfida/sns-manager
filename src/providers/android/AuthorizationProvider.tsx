@@ -64,8 +64,8 @@ function getPublicKeyFromAddress(address: Base64EncodedAddress): PublicKey {
 
 export const APP_IDENTITY = {
   name: "SNS Manager",
-  uri: "https://bonfida.org/en",
-  icon: require("@assets/icon.png"),
+  uri: "https://bonfida.org",
+  icon: "/images/fida-icon.png",
 };
 
 export interface AuthorizationProviderContext {
