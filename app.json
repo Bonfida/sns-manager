@@ -10,7 +10,7 @@
       }
     },
     "android": {
-      "package": "bonfida.sns_manager",
+      "package": "org.bonfida.sns_manager",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
