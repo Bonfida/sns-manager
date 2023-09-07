@@ -1,40 +1,43 @@
 publisher:
-  name: <<YOUR_PUBLISHER_NAME>>
+  name: Bonfida
   address: ''
-  website: <<URL_OF_PUBLISHER_WEBSITE>>
-  email: <<EMAIL_ADDRESS_TO_CONTACT_PUBLISHER>>
+  website: https://bonfida.org
+  email: contact@bonfida.com
   media:
     - purpose: icon
-      uri: <<RELATIVE_PATH_TO_PUBLISHER_ICON>>
+      uri: /images/fida-icon.png
 app:
-  name: <<APP_NAME>>
+  name: SNS Manager
   address: ''
-  android_package: <<ANDROID_PACKAGE_NAME>>
+  android_package: org.bonfida.sns_manager
   urls:
-    license_url: <<URL_OF_APP_LICENSE_OR_TERMS_OF_SERVICE>>
-    copyright_url: <<URL_OF_COPYRIGHT_DETAILS_FOR_APP>>
-    privacy_policy_url: <<URL_OF_APP_PRIVACY_POLICY>>
-    website: <<URL_OF_APP_WEBSITE>>
+    license_url: https://github.com/Bonfida/sns-manager/blob/master/LICENSE
+    privacy_policy_url: https://github.com/Bonfida/sns-manager/blob/master/PRIVACY.md
+    website: https://sns.id
   media:
     - purpose: icon
-      uri: <<RELATIVE_PATH_TO_APP_ICON>>
+      uri: /favicon.svg
 release:
   address: ''
   media:
     - purpose: icon
-      uri: <<RELATIVE_PATH_TO_RELEASE_ICON>>
+      uri: ../assets/dapp-store/fida-icon-512x512.png
     - purpose: screenshot
-      uri: <<RELATIVE_PATH_TO_SCREENSHOT>>
+      uri: ../assets/dapp-store/screenshots/homescreen-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/domains-search-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/domain-profile-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/cart-domains-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/cart-payment-1080x1920.png
   files:
     - purpose: install
       uri: <<RELATIVE_PATH_TO_APK>>
   catalog:
     en-US:
-      name: <<APP_NAME>>
-      short_description: <<SHORT_APP_DESCRIPTION>>
-      long_description: <<LONG_APP_DESCRIPTION>>
-      new_in_version: <<WHATS_NEW_IN_THIS_VERSION>>
-      saga_features: <<ANY_FEATURES_ONLY_AVAILBLE_WHEN_RUNNING_ON_SAGA>>
-solana_mobile_dapp_publisher_portal:
-  google_store_package: <<ANDROID_PACKAGE_NAME_OF_GOOGLE_PLAY_STORE_VERSION_IF_DIFFERENT>>
-  testing_instructions: <<TESTING_INSTRUCTIONS>>
+      name: SNS Manager
+      short_description: All-in-one tool for SNS
+      long_description: Your all-in-one tool for handling Solana Name Service (SNS) domains
+      new_in_version: SNS Manager release!

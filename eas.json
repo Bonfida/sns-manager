@@ -1,15 +1,28 @@
 {
+  "cli": {
+    "version": ">=4.1.0",
+    "appVersionSource": "local"
+  },
   "build": {
     "development": {
+      "node": "18.15.0",
       "developmentClient": true,
       "distribution": "internal"
     },
     "preview": {
       "distribution": "internal",
+      "node": "18.15.0",
       "android": {
         "buildType": "apk"
       }
     },
-    "production": {}
+    "production": {
+      "distribution": "store",
+      "node": "18.15.0",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      }
+    }
   }
 }

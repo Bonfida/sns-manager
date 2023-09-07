@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "SNS Manager",
+    "version": "1.0.0",
     "slug": "sns-manager",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "versionCode": 1
     }
   }
 }
