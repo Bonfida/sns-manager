@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../assets/dapp-store/fida-icon-512x512.png
 release:
-  address: ''
+  address: EYQrvFZWXp7ZMJpg82geHLLgVfQ1UoDLDgCGZ54CNrpY
   media:
     - purpose: icon
       uri: ../assets/dapp-store/fida-icon-512x512.png
