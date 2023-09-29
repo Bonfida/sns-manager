@@ -64,6 +64,7 @@
     "react-error-overlay": "6.0.11",
     "react-native": "0.71.8",
     "react-native-dotenv": "^3.4.9",
+    "react-native-error-boundary": "^1.2.3",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-get-random-values": "~1.9.0",
     "react-native-heroicons": "^3.2.0",

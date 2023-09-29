@@ -46,6 +46,7 @@ import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
 import { LanguageHeader } from "@src/components/Header";
 import { SolanaProvider } from "@src/providers/SolanaProvider";
+import ErrorBoundary from "react-native-error-boundary";
 
 const xnftjson = require("../xnft.json");
 
@@ -169,6 +170,14 @@ function TabNavigator() {
   );
 }
 
+const CustomFallback = (props: { error: Error; resetError: Function }) => (
+  <View>
+    <Text>Something bad happened!</Text>
+    <Text>{props.error.toString()}</Text>
+    <Text>{props.error.stack}</Text>
+  </View>
+);
+
 function App() {
   let [fontsLoaded] = useFonts({
     Azeret: AzeretMono_400Regular,
@@ -183,19 +192,21 @@ function App() {
   }
 
   return (
-    <SolanaProvider>
-      <RecoilRoot>
-        <NavigationContainer>
-          <LanguageProvider i18n={i18n}>
-            <StatusModalProvider>
-              <ModalProvider stack={stackModal}>
-                <TabNavigator />
-              </ModalProvider>
-            </StatusModalProvider>
-          </LanguageProvider>
-        </NavigationContainer>
-      </RecoilRoot>
-    </SolanaProvider>
+    <ErrorBoundary FallbackComponent={CustomFallback}>
+      <SolanaProvider>
+        <RecoilRoot>
+          <NavigationContainer>
+            <LanguageProvider i18n={i18n}>
+              <StatusModalProvider>
+                <ModalProvider stack={stackModal}>
+                  <TabNavigator />
+                </ModalProvider>
+              </StatusModalProvider>
+            </LanguageProvider>
+          </NavigationContainer>
+        </RecoilRoot>
+      </SolanaProvider>
+    </ErrorBoundary>
   );
 }
 

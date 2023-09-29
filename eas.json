@@ -14,6 +14,9 @@
       "node": "18.15.0",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "SOLANA_RPC_URL": "https://helius-proxy.bonfida.com"
       }
     },
     "production": {
@@ -22,6 +25,9 @@
       "autoIncrement": true,
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "SOLANA_RPC_URL": "https://helius-proxy.bonfida.com"
       }
     }
   }
