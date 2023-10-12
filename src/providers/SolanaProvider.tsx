@@ -11,9 +11,6 @@ require("@solana/wallet-adapter-react-ui/styles.css");
 
 export const SolanaProvider = ({ children }: { children: ReactNode }) => {
   const wallets = useMemo(() => [], []);
-  if (isXnft) {
-    return <>{children}</>;
-  }
   if (isWeb) {
     return (
       <ConnectionProvider endpoint={URL}>
@@ -23,5 +20,5 @@ export const SolanaProvider = ({ children }: { children: ReactNode }) => {
       </ConnectionProvider>
     );
   }
-  return <>children</>;
+  return <>{children}</>;
 };
