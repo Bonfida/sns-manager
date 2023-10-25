@@ -22,7 +22,7 @@
   "dependencies": {
     "@adraffy/ens-normalize": "^1.9.0",
     "@bonfida/name-offers": "^0.0.10",
-    "@bonfida/name-tokenizer": "^0.0.11",
+    "@bonfida/name-tokenizer": "^0.0.12",
     "@bonfida/sns-emitter": "^0.1.7",
     "@bonfida/sns-react": "^1.1.2",
     "@bonfida/spl-name-service": "^1.0.7",

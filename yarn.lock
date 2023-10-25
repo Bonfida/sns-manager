@@ -1186,10 +1186,10 @@
     bs58 "4.0.1"
     buffer "^6.0.3"
 
-"@bonfida/name-tokenizer@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@bonfida/name-tokenizer/-/name-tokenizer-0.0.11.tgz#97ae8077048c26e2d4c62f055a1675491dbfee89"
-  integrity sha512-xDKxlD55MDwd41Y5G9YO/DRbVtiAXA16d9P8sXe/00v0opVpCBNA0teh9Jlq3AY9/zSuuvlZLD0TiX0mD6tLIw==
+"@bonfida/name-tokenizer@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@bonfida/name-tokenizer/-/name-tokenizer-0.0.12.tgz#c7f159f3e30c372700a43ebaac6b206641ee8b49"
+  integrity sha512-Ydagm5+bS8B+XVluBpf13V5XKdE6XmCnH2b6TGHzcbhftiJj6GyhHOqV0j9vu9Unzv8ZCq13YG8l39gGWynvDQ==
   dependencies:
     "@bonfida/spl-name-service" "^0.2.8"
     "@solana/spl-token" "^0.3.7"

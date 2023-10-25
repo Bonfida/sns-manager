@@ -16,15 +16,9 @@ export const wrap = async (domain: string, publicKey: PublicKey) => {
   const { pubkey } = getDomainKeySync(domain);
 
   const { data }: { data: CreateNftResponse } = await axios.post(
-    "https://naming-api.bonfida.com/nft/make-nft",
-    null,
-    {
-      params: {
-        name: trimTld(domain),
-        feePayer: publicKey.toBase58(),
-        nameAccount: pubkey.toBase58(),
-      },
-    }
+    "https://naming-api.bonfida.com/make-image",
+    { domain: trimTld(domain) },
+    { headers: { "Content-type": "application/json" } }
   );
 
   const ix = await createNft(
