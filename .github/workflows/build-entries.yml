@@ -1,0 +1,57 @@
+name: Build xNFT, web, and mobile
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  prepare-dependencies:
+    name: Prepare local deps
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - id: prepare-env
+        uses: ./.github/actions/prepare-local-env
+      - name: Use cache or install dependencies
+        if: steps.prepare-env.outputs.cache-hit != 'true'
+        run: npm ci
+
+  build-xnft:
+    name: Build xNFT
+    needs: prepare-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/prepare-local-env
+      - name: Build xNFT
+        run: npm run build:xnft
+
+  build-web:
+    name: Build web
+    needs: prepare-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/prepare-local-env
+      - name: Build web
+        run: npm run build:web
+
+  # build-android:
+  #   name: Build Android
+  #   needs: prepare-dependencies
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v2
+  #     - uses: ./.github/actions/prepare-local-env
+  #     - name: 🏗 Setup EAS
+  #       uses: expo/expo-github-action@v8
+  #       with:
+  #         eas-version: latest
+  #     - name: Build Android
+  #       run: npm run build:mobile:prod
