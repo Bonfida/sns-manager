@@ -7,9 +7,11 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { Fragment, useState } from "react";
+import { SvgUri, WithLocalSvg } from "react-native-svg";
+import { Fragment, useState, useEffect } from "react";
 import { useModal } from "react-native-modalfy";
 import { Trans, t } from "@lingui/macro";
+import { isMobile } from "@src/utils/platform";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { REFERRERS, registerDomainName } from "@bonfida/spl-name-service";
 import { NATIVE_MINT, getAssociatedTokenAddressSync } from "@solana/spl-token";
@@ -80,6 +82,7 @@ export const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useRecoilState(cartState);
   const pyth = usePyth();
+  const [showSuccessScreen, toggleSuccessScreen] = useState(false);
   const [mint, setMint] = useState(tokenList[0].mintAddress);
   const { openModal } = useModal();
   const { setStatus } = useStatusModalContext();
@@ -99,6 +102,11 @@ export const Cart = () => {
 
   const total = totalUsd / (price || 1);
 
+  const goSuccessStep = () => {
+    setStep(3);
+    toggleSuccessScreen(true);
+  };
+
   const handle = async () => {
     if (!connection || !publicKey || !signAllTransactions) return;
     if (
@@ -114,6 +122,7 @@ export const Cart = () => {
         message: t`You do not have enough funds`,
       });
     }
+
     try {
       setLoading(true);
       let ixs: TransactionInstruction[] = [];
@@ -162,16 +171,32 @@ export const Cart = () => {
         console.log(sig);
       }
 
-      setCart([]);
       setLoading(false);
-      setStep(3);
+      goSuccessStep();
     } catch (err) {
       setLoading(false);
       handleError(err);
     }
   };
 
-  if (!cart.length) return <EmptyState />;
+  useEffect(() => {
+    const leaveSuccessPage = () => {
+      if (showSuccessScreen) {
+        toggleSuccessScreen(false);
+        setStep(1);
+        setCart([]);
+      }
+    };
+
+    const unsubscribe = navigation.addListener("blur", leaveSuccessPage);
+
+    return () => {
+      unsubscribe();
+      leaveSuccessPage();
+    };
+  }, [navigation, showSuccessScreen, currentStep]);
+
+  if (!cart.length && !showSuccessScreen) return <EmptyState />;
 
   return (
     <ScrollView
@@ -185,7 +210,14 @@ export const Cart = () => {
           style={tw`h-[24px]`}
         />
 
-        <View style={[tw`pt-6`, { height: "calc(100% - 24px)" }]}>
+        <View
+          style={[
+            tw`pt-6`,
+            // So the "Continue" button will be tied to the bottom of the page
+            !isMobile && { height: "calc(100% - 24px)" },
+            isMobile && tw`h-[100%] pb-6`,
+          ]}
+        >
           {currentStep === 1 ? (
             <>
               {cart.length > 1 && (
@@ -204,6 +236,7 @@ export const Cart = () => {
               >
                 <FlatList
                   data={cart}
+                  scrollEnabled={false}
                   contentContainerStyle={tw`flex flex-col gap-2`}
                   renderItem={({ item }) => (
                     <View
@@ -229,33 +262,35 @@ export const Cart = () => {
                               })
                             }
                           >
-                            <Text
-                              style={tw`flex flex-row items-center text-sm text-brand-primary`}
-                            >
-                              <Trans>Edit</Trans>
+                            <View style={tw`flex flex-row items-center gap-1`}>
+                              <Text style={tw`text-sm text-brand-primary`}>
+                                <Trans>Edit</Trans>
+                              </Text>
 
                               <MaterialIcons
                                 name="edit"
                                 size={14}
                                 color={tw.color("brand-primary")}
-                                style={tw`ml-1`}
                               />
-                            </Text>
+                            </View>
                           </TouchableOpacity>
                         </View>
                       </View>
 
                       <View style={tw`flex flex-row items-center gap-6`}>
-                        <Text
-                          style={tw`flex flex-row items-center gap-1 text-sm font-medium text-content-primary`}
-                        >
+                        <View style={tw`flex flex-row items-center gap-1`}>
                           <Image
                             style={tw`h-[16px] w-[16px]`}
                             source={{ uri: tokenIconBySymbol("USDC") }}
                             resizeMode="contain"
                           />
-                          {priceFromLength(item)}
-                        </Text>
+
+                          <Text
+                            style={tw`text-sm font-medium text-content-primary`}
+                          >
+                            {priceFromLength(item)}
+                          </Text>
+                        </View>
                         <TouchableOpacity
                           onPress={() =>
                             setCart((prev) => prev.filter((e) => e !== item))
@@ -292,6 +327,8 @@ export const Cart = () => {
               <View style={tw`flex flex-row flex-wrap items-center gap-4`}>
                 {tokenList.map((e) => {
                   const selected = e.mintAddress === mint;
+                  const url = tokenIconBySymbol(e.tokenSymbol);
+                  const isSvg = url?.includes(".svg");
 
                   return (
                     <TouchableOpacity
@@ -303,16 +340,26 @@ export const Cart = () => {
                       ]}
                       key={e.mintAddress}
                     >
-                      <Text
-                        style={tw`flex flex-row items-center gap-1 text-xs text-content-primary`}
-                      >
-                        <Image
-                          style={tw`h-[14px] w-[14px] rounded-full`}
-                          source={{ uri: tokenIconBySymbol(e.tokenSymbol) }}
-                          resizeMode="contain"
-                        />
-                        {e.tokenSymbol}
-                      </Text>
+                      <View style={tw`flex flex-row items-center gap-1`}>
+                        {/* On the web SvgUri is not working */}
+                        {isMobile && isSvg ? (
+                          <SvgUri
+                            style={tw`rounded-full`}
+                            width={20}
+                            height={20}
+                            uri={String(url)}
+                          />
+                        ) : (
+                          <Image
+                            style={tw`h-[20px] w-[20px] rounded-full`}
+                            source={{ uri: url }}
+                            resizeMode="contain"
+                          />
+                        )}
+                        <Text style={tw`text-xs text-content-primary`}>
+                          {e.tokenSymbol}
+                        </Text>
+                      </View>
                       {e.mintAddress === FIDA_MINT && (
                         <Text
                           style={tw`px-1 text-white text-xs bg-content-success absolute top-[-6px] right-[-6px] rounded`}
@@ -342,10 +389,19 @@ export const Cart = () => {
           {currentStep === 3 ? (
             <>
               <View style={tw`flex flex-row justify-center`}>
-                <Image
-                  source={require("@assets/icons/celebrate.svg")}
-                  style={tw`w-[120px] h-[120px] opacity-60`}
-                />
+                {isMobile ? (
+                  <WithLocalSvg
+                    style={tw`opacity-60`}
+                    width={120}
+                    height={120}
+                    asset={require("@assets/icons/celebrate.svg")}
+                  />
+                ) : (
+                  <Image
+                    source={require("@assets/icons/celebrate.svg")}
+                    style={tw`w-[120px] h-[120px] opacity-60`}
+                  />
+                )}
               </View>
               <Text
                 style={tw`mt-10 text-lg font-bold text-center text-content-primary`}

@@ -38,8 +38,8 @@ export const EmptyState = ({ owner }: { owner?: string }) => {
         </Text>
       </View>
 
-      <View style={tw`w-full mt-10 text-center`}>
-        <Text style={tw`text-sm leading-6 text-content-secondary`}>
+      <View style={tw`w-full mt-10`}>
+        <Text style={tw`text-sm leading-6 text-center text-content-secondary`}>
           <Trans>
             Get a .sol domain and {"\n"}
             start building your profile

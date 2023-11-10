@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity, Image } from "react-native";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { t } from "@lingui/macro";
 import { LinearGradient } from "expo-linear-gradient";
@@ -30,6 +30,7 @@ export const ProfileBlock = ({
   const isOwner = owner === publicKey?.toBase58();
   const favorite = useFavoriteDomain(owner);
   const { openModal } = useModal();
+  const [containerWidth, setContainerWidth] = useState(0);
 
   return (
     <LinearGradient
@@ -38,18 +39,21 @@ export const ProfileBlock = ({
         tw.color("brand-accent") as string,
       ]}
       style={tw`mt-15 p-3 pt-[50px] rounded-[20px] relative`}
+      onLayout={(event) => {
+        setContainerWidth(event.nativeEvent.layout.width);
+      }}
     >
       <View
         style={[
           tw`w-[100px] h-[100px] absolute top-[-60px]`,
-          // for some reason tailwild properties doesn't work with calc
-          { left: "calc(50% - 50px)" },
+          // We cannot use calc(50% - 50px) because of react-native limitations
+          { left: containerWidth / 2 - 50 },
         ]}
       >
         <Image
           source={
             picRecord.result
-              ? picRecord.result
+              ? { uri: picRecord.result }
               : require("@assets/default-pic.png")
           }
           style={tw`w-full h-full rounded-full`}

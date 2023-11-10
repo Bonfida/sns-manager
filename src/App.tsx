@@ -1,9 +1,16 @@
+// Required to fix the issue with "crypto.getRandomValues() not supported"
+// https://github.com/uuidjs/uuid#getrandomvalues-not-supported
+// https://github.com/uuidjs/uuid/issues/416
+// TODO: load only for Android separately using .android.tsx suffix
+import "react-native-get-random-values";
+
 window.Buffer = window.Buffer || require("buffer").Buffer;
 global.Buffer = global.Buffer || require("buffer").Buffer;
 
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, Text } from "react-native";
+import { ReactNode, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts, AzeretMono_400Regular } from "@expo-google-fonts/dev";
@@ -11,7 +18,6 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { ProfileScreen } from "./screens/Profile";
 import { Feather } from "@expo/vector-icons";
 import { cartState } from "./atoms/cart";
-import { Text } from "react-native";
 import tw from "./utils/tailwind";
 import { Cart } from "./screens/Cart";
 import { ModalProvider, createModalStack } from "react-native-modalfy";
@@ -21,15 +27,8 @@ import { EditPicture } from "./components/EditPicture";
 import { ProgressExplainerModal } from "./components/ProgressExplainerModal";
 import { SearchModal } from "./components/SearchModal";
 import { DiscountExplainerModal } from "./components/DiscountExplainerModal";
-import { isXnft, isMobile, isWeb } from "./utils/platform";
-import { ReactNode, useEffect, useMemo } from "react";
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { isXnft, isMobile, isWeb } from "@src/utils/platform";
 import { useWallet } from "./hooks/useWallet";
-import { URL } from "./utils/rpc";
 import { useReferrer } from "./hooks/useReferrer";
 import { DomainSizeModal } from "./components/DomainSizeModal";
 import { DeleteModal } from "./components/DeleteModal";
@@ -46,6 +45,8 @@ import { LanguageModal } from "./components/LanguageModal";
 import { TokenizeModal } from "./components/TokenizeModal";
 import { NavigatorTabsParamList } from "@src/types";
 import { LanguageHeader } from "@src/components/Header";
+import { SolanaProvider } from "@src/providers/SolanaProvider";
+import ErrorBoundary from "react-native-error-boundary";
 
 const xnftjson = require("../xnft.json");
 
@@ -82,11 +83,13 @@ function TabNavigator() {
   useReferrer();
   const [cart] = useRecoilState(cartState);
   const { publicKey, setVisible, connected } = useWallet();
+
   const { currentLanguage } = useLanguageContext();
 
   useEffect(() => {
     console.table(isMobile, isXnft, isWeb);
-    if (isXnft) return;
+    // Do not authorize automatically
+    if (isXnft || isMobile) return;
     if (!connected) {
       setVisible(true);
     }
@@ -167,6 +170,14 @@ function TabNavigator() {
   );
 }
 
+const CustomFallback = (props: { error: Error; resetError: Function }) => (
+  <View>
+    <Text>Something bad happened!</Text>
+    <Text>{props.error.toString()}</Text>
+    <Text>{props.error.stack}</Text>
+  </View>
+);
+
 function App() {
   let [fontsLoaded] = useFonts({
     Azeret: AzeretMono_400Regular,
@@ -181,46 +192,22 @@ function App() {
   }
 
   return (
-    <Wrap>
-      <RecoilRoot>
-        <NavigationContainer>
-          <LanguageProvider i18n={i18n}>
-            <StatusModalProvider>
-              <ModalProvider stack={stackModal}>
-                <TabNavigator />
-              </ModalProvider>
-            </StatusModalProvider>
-          </LanguageProvider>
-        </NavigationContainer>
-      </RecoilRoot>
-    </Wrap>
+    <ErrorBoundary FallbackComponent={CustomFallback}>
+      <SolanaProvider>
+        <RecoilRoot>
+          <NavigationContainer>
+            <LanguageProvider i18n={i18n}>
+              <StatusModalProvider>
+                <ModalProvider stack={stackModal}>
+                  <TabNavigator />
+                </ModalProvider>
+              </StatusModalProvider>
+            </LanguageProvider>
+          </NavigationContainer>
+        </RecoilRoot>
+      </SolanaProvider>
+    </ErrorBoundary>
   );
 }
 
-const Wrap = ({ children }: { children: ReactNode }) => {
-  const wallets = useMemo(() => [], []);
-  if (isXnft) {
-    return <>{children}</>;
-  }
-  if (isWeb) {
-    return (
-      <ConnectionProvider endpoint={URL}>
-        <WalletProvider autoConnect wallets={wallets}>
-          <WalletModalProvider>{children}</WalletModalProvider>
-        </WalletProvider>
-      </ConnectionProvider>
-    );
-  }
-  if (isMobile) {
-    return (
-      <ConnectionProvider endpoint={URL}>
-        <WalletProvider autoConnect wallets={wallets}>
-          <WalletModalProvider>{children}</WalletModalProvider>
-        </WalletProvider>
-      </ConnectionProvider>
-    );
-  }
-  return <>{children}</>;
-};
-
-export default registerRootComponent(App);
+registerRootComponent(App);

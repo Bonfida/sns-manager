@@ -3,6 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": ".",
+    "typeRoots": ["./src/types/"],
     "paths": {
       "@src/*": ["./src/*"],
       "@assets/*": ["./assets/*"],

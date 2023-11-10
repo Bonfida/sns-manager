@@ -53,17 +53,18 @@ export const DomainSizeModal = ({
           store on your domain.
         </Trans>
       </Text>
-      <Text style={tw`mt-2 text-xs`}>
+      <View style={tw`flex flex-row gap-1 mt-2`}>
         <MaterialCommunityIcons
           name="information-outline"
           size={16}
-          style={tw`mr-1`}
           color={tw.color("content-warning")}
         />
-        <Trans>
-          Each additional kb of memory costs around 0.007 SOL (0.001 USDC)
-        </Trans>
-      </Text>
+        <Text style={tw`text-xs`}>
+          <Trans>
+            Each additional kb of memory costs around 0.007 SOL (0.001 USDC)
+          </Trans>
+        </Text>
+      </View>
 
       <View style={tw`flex flex-row flex-wrap items-center gap-3 mt-3`}>
         {LIST.map((e) => {

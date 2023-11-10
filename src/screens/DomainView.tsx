@@ -7,7 +7,6 @@ import {
   ScrollView,
   Platform,
   NativeScrollEvent,
-  Dimensions,
 } from "react-native";
 import {
   AntDesign,
@@ -31,9 +30,9 @@ import {
   serializeRecord,
   serializeSolRecord,
 } from "@bonfida/spl-name-service";
+import { isMobile } from "@src/utils/platform";
 import { ROOT_DOMAIN } from "@bonfida/name-offers";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
-import SkeletonContent from "react-native-skeleton-content";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useModal } from "react-native-modalfy";
 import { useProfilePic } from "@bonfida/sns-react";
@@ -469,11 +468,13 @@ export const DomainView = ({ domain }: { domain: string }) => {
     <Screen style={tw`p-0`}>
       <ScrollView
         showsHorizontalScrollIndicator={false}
-        stickyHeaderIndices={[2]}
-        invertStickyHeaders={true}
+        stickyHeaderIndices={[isMobile ? 1 : 2]}
         ref={scrollViewRef}
         scrollEventThrottle={300}
-        onScroll={(event) => setScrollViewMeasurements(event.nativeEvent)}
+        onScroll={(event) => {
+          if (event.persist) event.persist();
+          setScrollViewMeasurements(event.nativeEvent);
+        }}
       >
         {isTokenized && (
           <TouchableOpacity
@@ -525,7 +526,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   }
                   small
                   content={t`Transfer`}
-                  style={tw`basis-1/2`}
                 />
               )}
               {isOwner && (
@@ -556,7 +556,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       }
                       small
                       content={isTokenized ? t`Unwrap NFT` : t`Wrap to NFT`}
-                      style={tw`basis-1/2`}
                     />
                   )}
                 </>
@@ -566,101 +565,106 @@ export const DomainView = ({ domain }: { domain: string }) => {
         </View>
 
         {/* This bars are sticky using stickyHeaderIndices */}
-        <View
-          style={tw`flex flex-row items-center justify-between pb-2 bg-background-primary`}
-        >
-          <View style={tw`flex flex-row gap-2`}>
-            <TouchableOpacity
-              onPress={() => {
-                scrollViewRef.current?.scrollTo({
-                  // -24 so there will be some space between header and field
-                  y: UISectionsCoordinates.socials - 35,
-                  animated: true,
-                });
-              }}
-              style={[
-                tw`px-2 py-1 rounded-xl`,
-                isSocialsTabHighlighted && tw`bg-background-secondary`,
-              ]}
-            >
-              <Text style={tw`text-sm text-brand-primary`}>{t`Socials`}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                scrollViewRef.current?.scrollTo({
-                  // -24 so there will be some space between header and field
-                  y: UISectionsCoordinates.addresses - 24,
-                  animated: true,
-                });
-              }}
-              style={[
-                tw`px-2 py-1 rounded-xl`,
-                isAddressesTabHighlighted && tw`bg-background-secondary`,
-              ]}
-            >
-              <Text style={tw`text-sm text-brand-primary`}>{t`Addresses`}</Text>
-            </TouchableOpacity>
-            {!isSubdomain && (
+        {/* The `View` wrapper shouldn't not have `style` cause it will be ignored on mobile  */}
+        <View>
+          <View
+            style={tw`flex flex-row items-center justify-between pb-2 bg-background-primary`}
+          >
+            <View style={tw`flex flex-row gap-2`}>
               <TouchableOpacity
                 onPress={() => {
                   scrollViewRef.current?.scrollTo({
-                    y: UISectionsCoordinates.subdomains,
+                    // -24 so there will be some space between header and field
+                    y: UISectionsCoordinates.socials - 35,
                     animated: true,
                   });
                 }}
                 style={[
                   tw`px-2 py-1 rounded-xl`,
-                  isSubdomainsTabHighlighted && tw`bg-background-secondary`,
+                  isSocialsTabHighlighted && tw`bg-background-secondary`,
                 ]}
               >
-                <Text style={tw`text-sm text-brand-primary`}>
-                  {t`Subdomains`}
-                </Text>
+                <Text style={tw`text-sm text-brand-primary`}>{t`Socials`}</Text>
               </TouchableOpacity>
-            )}
-          </View>
-
-          {!isTokenized && (
-            <>
-              {isOwner ? (
-                <UiButton
-                  content={isEditing ? t`Revert` : t`Edit`}
-                  small
-                  style={tw`flex-initial`}
-                  outline={isEditing}
-                  disabled={isLoading}
-                  textAdditionalStyles={tw`text-sm font-medium`}
+              <TouchableOpacity
+                onPress={() => {
+                  scrollViewRef.current?.scrollTo({
+                    // -24 so there will be some space between header and field
+                    y: UISectionsCoordinates.addresses - 24,
+                    animated: true,
+                  });
+                }}
+                style={[
+                  tw`px-2 py-1 rounded-xl`,
+                  isAddressesTabHighlighted && tw`bg-background-secondary`,
+                ]}
+              >
+                <Text
+                  style={tw`text-sm text-brand-primary`}
+                >{t`Addresses`}</Text>
+              </TouchableOpacity>
+              {!isSubdomain && (
+                <TouchableOpacity
                   onPress={() => {
-                    isEditing ? discardChanges() : toggleEditMode(true);
+                    scrollViewRef.current?.scrollTo({
+                      y: UISectionsCoordinates.subdomains,
+                      animated: true,
+                    });
                   }}
+                  style={[
+                    tw`px-2 py-1 rounded-xl`,
+                    isSubdomainsTabHighlighted && tw`bg-background-secondary`,
+                  ]}
                 >
-                  {isEditing ? (
-                    <Ionicons
-                      name="close-outline"
-                      size={16}
-                      color={tw.color("brand-primary")}
-                      style={tw`ml-2`}
-                    />
-                  ) : (
-                    <MaterialIcons
-                      name="edit"
-                      size={16}
-                      color="white"
-                      style={tw`ml-2`}
-                    />
-                  )}
-                </UiButton>
-              ) : (
-                <TouchableOpacity onPress={refresh}>
-                  <EvilIcons
-                    name="refresh"
-                    size={24}
-                    color={tw.color("content-secondary")}
-                  />
+                  <Text style={tw`text-sm text-brand-primary`}>
+                    {t`Subdomains`}
+                  </Text>
                 </TouchableOpacity>
               )}
-            </>
-          )}
+            </View>
+
+            {!isTokenized && (
+              <>
+                {isOwner ? (
+                  <UiButton
+                    content={isEditing ? t`Revert` : t`Edit`}
+                    small
+                    outline={isEditing}
+                    disabled={isLoading}
+                    style={tw`grow-0`}
+                    textAdditionalStyles={tw`text-sm font-medium`}
+                    onPress={() => {
+                      isEditing ? discardChanges() : toggleEditMode(true);
+                    }}
+                  >
+                    {isEditing ? (
+                      <Ionicons
+                        name="close-outline"
+                        size={16}
+                        color={tw.color("brand-primary")}
+                        style={tw`ml-2`}
+                      />
+                    ) : (
+                      <MaterialIcons
+                        name="edit"
+                        size={16}
+                        color="white"
+                        style={tw`ml-2`}
+                      />
+                    )}
+                  </UiButton>
+                ) : (
+                  <TouchableOpacity onPress={refresh}>
+                    <EvilIcons
+                      name="refresh"
+                      size={24}
+                      color={tw.color("content-secondary")}
+                    />
+                  </TouchableOpacity>
+                )}
+              </>
+            )}
+          </View>
         </View>
 
         {[...formState.keys()].map((item) => (
@@ -672,6 +676,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               setStatus({ status: "success", message: t`Copied!` });
             }}
             onLayout={(event) => {
+              if (event.persist) event.persist();
               if (item === SNSRecord.Backpack) {
                 setCoordinates((prevState) => ({
                   ...prevState,
@@ -755,6 +760,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           <View
             style={tw`flex flex-col justify-around px-4 py-3 mt-10 bg-background-secondary rounded-xl`}
             onLayout={(event) => {
+              if (event.persist) event.persist();
               setCoordinates((prevState) => ({
                 ...prevState,
                 subdomains: event.nativeEvent.layout.y,
@@ -778,7 +784,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                     >
                       <Trans>Add subdomain</Trans>
 
-                      <Entypo name="plus" size={24} color="brand-primary" />
+                      <Entypo name="plus" size={24} />
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -799,6 +805,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
               <FlatList
                 data={subdomains.result}
                 style={isOwner && tw`mt-4`}
+                scrollEnabled={false}
                 contentContainerStyle={tw`flex flex-col gap-3`}
                 renderItem={({ item }) => (
                   <DomainRowRecord

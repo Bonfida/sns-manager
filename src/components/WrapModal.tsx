@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   ViewStyle,
+  Dimensions,
 } from "react-native";
 import { ReactNode } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -28,7 +29,13 @@ export const WrapModal = ({
   return (
     <BlurView
       tint="light"
-      style={[{ width: "100vw", height: "100vh" }, blurStyle]}
+      style={[
+        {
+          width: Dimensions.get("screen").width,
+          height: Dimensions.get("screen").height,
+        },
+        blurStyle,
+      ]}
       intensity={30}
     >
       <TouchableOpacity

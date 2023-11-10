@@ -128,19 +128,21 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
 
   const hasDomain = domainsList !== undefined && domainsList.length !== 0;
 
-  if (loading)
+  if (loading) {
     return (
       <Screen style={tw`p-0`}>
         <LoadingState />
       </Screen>
     );
+  }
 
-  if (!loading && !hasDomain && isOwner)
+  if (!loading && !hasDomain && isOwner) {
     return (
       <Screen style={tw`p-0`}>
         <EmptyState owner={owner} />
       </Screen>
     );
+  }
 
   return (
     <Screen style={tw`p-0`}>
@@ -211,6 +213,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           {hasDomain && filteredDomainsList.length ? (
             <FlatList
               data={filteredDomainsList}
+              scrollEnabled={false}
               renderItem={({ item }) => (
                 <DomainRow
                   key={item.domain}

@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Platform } from "react-native";
 import tw from "@src/utils/tailwind";
 import { useState } from "react";
 import { Screen } from "@src/components/Screen";
@@ -8,9 +8,11 @@ import {
   searchResultScreenProp,
   NavigatorTabsParamList,
 } from "@src/types";
+import { A as HTMLLink } from "@expo/html-elements";
 import { trimTld, validate } from "@src/utils/validate";
 import { isPubkey } from "@src/utils/publickey";
 import { abbreviate } from "@src/utils/abbreviate";
+import { isMobile } from "@src/utils/platform";
 import { Trans, t } from "@lingui/macro";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SearchResult } from "./SearchResult";
@@ -20,8 +22,7 @@ import { CustomTextInput } from "@src/components/CustomTextInput";
 import { UiButton } from "@src/components/UiButton";
 import { LanguageHeader } from "@src/components/Header";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
-
-require("@solana/wallet-adapter-react-ui/styles.css");
+import { useKeyboardVisible } from "@src/hooks/react-native/useKeyboardVisible";
 
 const Stack = createStackNavigator<NavigatorTabsParamList>();
 
@@ -37,6 +38,7 @@ function HomeRoot() {
   const navigation = useNavigation<
     searchResultScreenProp | profileScreenProp
   >();
+  const isKeyboardVisible = useKeyboardVisible();
 
   const handle = async () => {
     if (!search) return;
@@ -69,13 +71,16 @@ function HomeRoot() {
             Your online identity starts with your{" "}
             <Text
               style={[
-                {
-                  backgroundClip: "text",
-                  backgroundImage: `linear-gradient(to right, ${tw.color(
-                    "brand-primary"
-                  )}, ${tw.color("brand-accent")})`,
-                },
-                tw`font-medium text-transparent`,
+                isMobile
+                  ? tw`font-bold`
+                  : {
+                      // This css rules are supported only in browser
+                      backgroundClip: "text",
+                      backgroundImage: `linear-gradient(to right, ${tw.color(
+                        "brand-primary"
+                      )}, ${tw.color("brand-accent")})`,
+                    },
+                !isMobile && tw`font-medium text-transparent`,
               ]}
             >
               .sol domain
@@ -116,6 +121,24 @@ function HomeRoot() {
           </View>
         ))}
       </View>
+
+      <>
+        {Platform.OS === "android" && (
+          <View
+            style={[
+              tw`absolute left-0 right-0 mt-auto bottom-2 bg-background-primary`,
+              isKeyboardVisible && tw`hidden`,
+            ]}
+          >
+            <HTMLLink
+              style={tw`mt-6 text-sm text-center underline`}
+              href="https://github.com/Bonfida/sns-manager/blob/master/PRIVACY.md"
+            >
+              <Trans>Privacy Policy</Trans>
+            </HTMLLink>
+          </View>
+        )}
+      </>
     </Screen>
   );
 }

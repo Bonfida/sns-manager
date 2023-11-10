@@ -32,7 +32,7 @@ export const OrderSummary = ({
 
       <Row
         value={
-          <Text style={tw`flex flex-col items-end`}>
+          <View style={tw`flex flex-col items-end`}>
             <Text>
               {isFida && (
                 <>
@@ -50,7 +50,7 @@ export const OrderSummary = ({
             <Text style={tw`text-xs font-medium text-content-tertiary`}>
               {format(totalUsd)}
             </Text>
-          </Text>
+          </View>
         }
         label={t`Total`}
       />
@@ -59,10 +59,11 @@ export const OrderSummary = ({
       <Row
         value={isFida ? "5%" : "0%"}
         label={
-          <>
-            <Trans>Discount</Trans>
+          <View style={tw`flex flex-row items-center gap-1`}>
+            <Text>
+              <Trans>Discount</Trans>
+            </Text>
             <TouchableOpacity
-              style={tw`ml-1`}
               onPress={() => openModal("DiscountExplainerModal")}
             >
               <MaterialCommunityIcons
@@ -71,7 +72,7 @@ export const OrderSummary = ({
                 color={tw.color("brand-primary")}
               />
             </TouchableOpacity>
-          </>
+          </View>
         }
       />
     </View>

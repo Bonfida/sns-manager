@@ -1,0 +1,47 @@
+publisher:
+  name: Bonfida
+  address: FZfwBevSCk8LKKs7nCQYCD3kaJHQ86feM76c5rooeNSD
+  website: https://bonfida.org
+  email: contact@bonfida.com
+  media:
+    - purpose: icon
+      uri: ../assets/dapp-store/fida-icon-512x512.png
+app:
+  name: SNS Manager
+  address: Eeq6c1HbtWZ143YRm4eNyfVL2VsAGGYoV3euyeHVPQtr
+  android_package: org.bonfida.sns_manager
+  urls:
+    license_url: https://github.com/Bonfida/sns-manager/blob/master/LICENSE
+    privacy_policy_url: https://github.com/Bonfida/sns-manager/blob/master/PRIVACY.md
+    website: https://sns.id
+    copyright_url: https://github.com/Bonfida/sns-manager/blob/master/LICENSE
+  media:
+    - purpose: icon
+      uri: ../assets/dapp-store/fida-icon-512x512.png
+release:
+  address: ELyJgn72Kxn6gMSk46eTREP6MVi82JLbuowRA8XBG6Kp
+  media:
+    - purpose: icon
+      uri: ../assets/dapp-store/fida-icon-512x512.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/homescreen-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/domains-search-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/domain-profile-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/cart-domains-1080x1920.png
+    - purpose: screenshot
+      uri: ../assets/dapp-store/screenshots/cart-payment-1080x1920.png
+  files:
+    - purpose: install
+      uri: build-1696412787473.apk
+  catalog:
+    en-US:
+      name: SNS Manager
+      short_description: All-in-one tool for SNS
+      long_description: Your all-in-one tool for handling Solana Name Service (SNS) domains
+      new_in_version: SNS Manager release!
+solana_mobile_dapp_publisher_portal:
+  google_store_package: org.bonfida.sns_manager
+  testing_instructions: Open the app, connect the wallet, try to search for the domain, then select it and purchase (you should have enough funds). After that domain must appear in your profile (bottom navigation => bottom left button) and on sns.id To test localization, click on the top left button and select preferable language from a popup. There's no automatic device language detection.

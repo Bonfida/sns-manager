@@ -46,8 +46,8 @@ export function usePublicKeys(): Map<string, string> {
 
 /** @deprecated use blockchain-specific connections instead */
 export function useConnection(): Connection | undefined {
-  const didLaunch = useDidLaunch();
-  const [connection, setConnection] = useState();
+  // const didLaunch = useDidLaunch();
+  // const [connection, setConnection] = useState();
   // useEffect(() => {
   //   if (didLaunch) {
   //     window.xnft.solana.on("connectionUpdate", () => {
@@ -60,8 +60,8 @@ export function useConnection(): Connection | undefined {
 }
 
 export function useSolanaConnection(): Connection | undefined {
-  const didLaunch = useDidLaunch();
-  const [connection, setConnection] = useState();
+  // const didLaunch = useDidLaunch();
+  // const [connection, setConnection] = useState();
   // useEffect(() => {
   //   if (didLaunch) {
   //     window.xnft.solana.on("connectionUpdate", () => {

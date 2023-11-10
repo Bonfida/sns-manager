@@ -76,7 +76,7 @@ export const DomainSearchResultRow = ({
               : () => navigation.navigate("domain-view", { domain })
           }
           style={[
-            tw`p-2 h-[32px] w-[32px] flex items-center justify-center`,
+            tw`h-[32px] w-[32px] flex items-center justify-center`,
             available && tw`border rounded-md border-brand-primary`,
             available && !inCart && tw`bg-brand-primary`,
           ]}

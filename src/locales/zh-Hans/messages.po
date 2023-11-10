@@ -31,7 +31,7 @@ msgstr "{domain}.sol 汇款成功"
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol 不是有效的域名"
 
-#: src/screens/HomeScreen.tsx:52
+#: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol 不是有效的域名"
 
@@ -51,7 +51,7 @@ msgstr "<0>2.</0><1>您将无法编辑域名的内容或添加子域名。</1>"
 msgid "<0>3.</0><1>You cannot transfer your domain.</1>"
 msgstr "<0>3.</0><1>您将无法转移你的域名。</1>"
 
-#: src/screens/HomeScreen.tsx:65
+#: src/screens/HomeScreen.tsx:67
 msgid "A Humanized ID for the Metaverse"
 msgstr "为元宇宙打造的人性化ID"
 
@@ -59,11 +59,11 @@ msgstr "为元宇宙打造的人性化ID"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "上传一张能代表你的头像图片。它可以是你自己的照片，或是你最喜欢的NFT，或是给你带来灵感的图片。"
 
-#: src/screens/DomainView.tsx:779
+#: src/screens/DomainView.tsx:785
 msgid "Add subdomain"
 msgstr "添加子域名"
 
-#: src/screens/DomainView.tsx:601
+#: src/screens/DomainView.tsx:604
 msgid "Addresses"
 msgstr "地址"
 
@@ -85,7 +85,7 @@ msgstr "点击\"{actionName}\"，在您的钱包中完成确认"
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:247
+#: src/components/EditPicture.tsx:246
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "取消"
@@ -103,11 +103,11 @@ msgstr "更换语言"
 msgid "Change profile picture"
 msgstr "更换个人头像"
 
-#: src/screens/Cart/index.tsx:195
+#: src/screens/Cart/index.tsx:227
 msgid "Clear all"
 msgstr "清除所有"
 
-#: src/screens/Profile/index.tsx:241
+#: src/screens/Profile/index.tsx:244
 msgid "Clear search"
 msgstr "清除搜索记录"
 
@@ -121,7 +121,7 @@ msgstr "点击星星图标设置您最喜欢的域名。通过进度栏追踪个
 msgid "Close"
 msgstr "关闭"
 
-#: src/screens/HomeScreen.tsx:31
+#: src/screens/HomeScreen.tsx:32
 msgid "Collect & Exchange directly or as NFTs!"
 msgstr "直接收藏、交易或封装成 NFT！"
 
@@ -130,15 +130,15 @@ msgstr "直接收藏、交易或封装成 NFT！"
 msgid "Confirm"
 msgstr "确认"
 
-#: src/screens/Cart/index.tsx:334
+#: src/screens/Cart/index.tsx:381
 msgid "Confirm and pay"
 msgstr "确认并支付"
 
-#: src/screens/Cart/index.tsx:391
+#: src/screens/Cart/index.tsx:447
 msgid "Confirmation"
 msgstr "确认"
 
-#: src/screens/Cart/index.tsx:353
+#: src/screens/Cart/index.tsx:409
 msgid "Congrats on purchasing new domains!"
 msgstr "祝贺您成功购买新域名！"
 
@@ -146,13 +146,13 @@ msgstr "祝贺您成功购买新域名！"
 msgid "Connect your backpack username to your on-chain identity."
 msgstr "将backpack用户名与您的链上身份连接。"
 
-#: src/screens/Cart/index.tsx:280
+#: src/screens/Cart/index.tsx:315
 msgid "Continue"
 msgstr "继续"
 
-#: src/components/ProfileBlock.tsx:77
-#: src/components/ProfileBlock.tsx:89
-#: src/screens/DomainView.tsx:672
+#: src/components/ProfileBlock.tsx:81
+#: src/components/ProfileBlock.tsx:93
+#: src/screens/DomainView.tsx:676
 msgid "Copied!"
 msgstr "已复制!"
 
@@ -190,11 +190,11 @@ msgstr "删除子域名是一项可逆的操作。虽然您可以重新创建，
 msgid "Discord"
 msgstr "Discord"
 
-#: src/components/OrderSummary.tsx:63
+#: src/components/OrderSummary.tsx:64
 msgid "Discount"
 msgstr "折扣"
 
-#: src/screens/Cart/index.tsx:277
+#: src/screens/Cart/index.tsx:312
 msgid "Discounts may be applied in the next step"
 msgstr "您可在下一步使用折扣"
 
@@ -207,7 +207,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要将其恢复为原始域名，可通过转换（解开封装）该通证完成操作。"
 
 #: src/App.tsx:137
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "Domains"
 msgstr "域名"
 
@@ -215,9 +215,9 @@ msgstr "域名"
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "每额外增加的1kb内存需花费约0.007 SOL（0.001 USDC）"
 
-#: src/screens/Cart/index.tsx:235
-#: src/screens/DomainView.tsx:627
-#: src/screens/DomainView.tsx:739
+#: src/screens/Cart/index.tsx:267
+#: src/screens/DomainView.tsx:630
+#: src/screens/DomainView.tsx:744
 msgid "Edit"
 msgstr "编辑"
 
@@ -297,7 +297,7 @@ msgstr ""
 "获取 .sol 域名并 \n"
 " 开始构建您的个人资料"
 
-#: src/screens/Cart/index.tsx:366
+#: src/screens/Cart/index.tsx:422
 msgid "Get started with my profiles"
 msgstr "从个人资料开始"
 
@@ -309,7 +309,7 @@ msgstr "Github"
 msgid "How to boost your profile?"
 msgstr "如何升级你的个人资料"
 
-#: src/screens/HomeScreen.tsx:30
+#: src/screens/HomeScreen.tsx:31
 msgid "Human-readable address"
 msgstr "人类可读的钱包地址"
 
@@ -325,12 +325,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "进入"
 
-#: src/screens/DomainView.tsx:372
+#: src/screens/DomainView.tsx:371
 msgid "Invalid {key} address"
 msgstr "无效的 {key} 钱包地址"
 
 #: src/components/EditPicture.tsx:63
-#: src/screens/DomainView.tsx:363
+#: src/screens/DomainView.tsx:362
 msgid "Invalid URL"
 msgstr "网址无效"
 
@@ -342,7 +342,7 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "在docs中学习更多内容"
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "My domains"
 msgstr "我的域名"
 
@@ -350,7 +350,7 @@ msgstr "我的域名"
 msgid "New {domain}.sol owner"
 msgstr "新的 {domain}.sol 所有者"
 
-#: src/components/EditPicture.tsx:236
+#: src/components/EditPicture.tsx:235
 msgid "New picture URL"
 msgstr "新的图片网址"
 
@@ -358,16 +358,16 @@ msgstr "新的图片网址"
 msgid "Next"
 msgstr "下一步"
 
-#: src/screens/DomainView.tsx:738
+#: src/screens/DomainView.tsx:743
 msgid "No changes to save"
 msgstr "无需保存更改"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:231
+#: src/screens/Profile/index.tsx:234
 msgid "No domain found"
 msgstr "未找到域名"
 
-#: src/screens/DomainView.tsx:692
+#: src/screens/DomainView.tsx:697
 msgid "Not set"
 msgstr "未设置"
 
@@ -379,11 +379,11 @@ msgstr "购物车中还没有任何域名"
 msgid "Order summary"
 msgstr "订单摘要"
 
-#: src/screens/Cart/index.tsx:290
+#: src/screens/Cart/index.tsx:325
 msgid "Pay with"
 msgstr "支付方式"
 
-#: src/screens/Cart/index.tsx:390
+#: src/screens/Cart/index.tsx:446
 msgid "Payment"
 msgstr "支付方式"
 
@@ -395,7 +395,7 @@ msgstr "请求获取相册权限"
 msgid "Pic"
 msgstr "图片"
 
-#: src/components/EditPicture.tsx:234
+#: src/components/EditPicture.tsx:233
 msgid "Picture URL"
 msgstr "图片网址"
 
@@ -407,11 +407,15 @@ msgstr "注意一旦您成功转移域名，该操作将不可撤销。您将失
 msgid "POINT"
 msgstr "积分"
 
+#: src/screens/HomeScreen.tsx:137
+msgid "Privacy Policy"
+msgstr ""
+
 #: src/App.tsx:126
 msgid "Profile"
 msgstr "个人账户"
 
-#: src/screens/Profile/index.tsx:157
+#: src/screens/Profile/index.tsx:159
 msgid "Profile completion: {percentage}%"
 msgstr "个人资料完成度: {percentage}%"
 
@@ -427,17 +431,17 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "注册折扣"
 
-#: src/screens/DomainView.tsx:627
+#: src/screens/DomainView.tsx:630
 msgid "Revert"
 msgstr "返回"
 
-#: src/components/EditPicture.tsx:254
-#: src/screens/DomainView.tsx:737
+#: src/components/EditPicture.tsx:253
+#: src/screens/DomainView.tsx:742
 msgid "Save"
 msgstr "保存"
 
-#: src/screens/HomeScreen.tsx:142
-#: src/screens/HomeScreen.tsx:154
+#: src/screens/HomeScreen.tsx:165
+#: src/screens/HomeScreen.tsx:177
 msgid "Search domain"
 msgstr "搜索域名"
 
@@ -445,13 +449,13 @@ msgstr "搜索域名"
 msgid "Search domains"
 msgstr "搜索域名"
 
-#: src/screens/HomeScreen.tsx:89
-#: src/screens/Profile/index.tsx:191
+#: src/screens/HomeScreen.tsx:94
+#: src/screens/Profile/index.tsx:193
 #: src/screens/SearchResult.tsx:67
 msgid "Search for a domain"
 msgstr "搜索域名"
 
-#: src/screens/HomeScreen.tsx:101
+#: src/screens/HomeScreen.tsx:106
 #: src/screens/SearchResult.tsx:80
 msgid "Search your .SOL domain"
 msgstr "搜索你的 .SOL 域名"
@@ -469,7 +473,7 @@ msgstr "SHDW"
 msgid "Skip"
 msgstr "跳过"
 
-#: src/screens/DomainView.tsx:586
+#: src/screens/DomainView.tsx:587
 msgid "Socials"
 msgstr "社交媒体"
 
@@ -477,7 +481,7 @@ msgstr "社交媒体"
 msgid "Storage Size"
 msgstr "存储容量"
 
-#: src/screens/Cart/index.tsx:218
+#: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr "存储容量:"
 
@@ -489,7 +493,7 @@ msgstr "子域名 {domain}.sol 删除成功!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "子域名 {subdomain}.sol 创建成功!"
 
-#: src/screens/DomainView.tsx:617
+#: src/screens/DomainView.tsx:620
 msgid "Subdomains"
 msgstr "子域名"
 
@@ -509,7 +513,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "存储容量将会决定域名可储存的最大数据量"
 
-#: src/screens/DomainView.tsx:819
+#: src/screens/DomainView.tsx:826
 msgid "There are no subdomains."
 msgstr "尚无任何子域名。"
 
@@ -517,7 +521,7 @@ msgstr "尚无任何子域名。"
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "该域名已通过Wormhole桥接，可在BNB上使用"
 
-#: src/screens/DomainView.tsx:499
+#: src/screens/DomainView.tsx:500
 msgid "This domain is wrapped in an NFT"
 msgstr "该域名已被封装为NFT"
 
@@ -525,7 +529,7 @@ msgstr "该域名已被封装为NFT"
 msgid "Total"
 msgstr "总计"
 
-#: src/screens/DomainView.tsx:527
+#: src/screens/DomainView.tsx:528
 msgid "Transfer"
 msgstr "转移"
 
@@ -545,7 +549,7 @@ msgstr "跳转"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/screens/HomeScreen.tsx:29
+#: src/screens/HomeScreen.tsx:30
 msgid "Unique domain name for your project"
 msgstr "为您的项目创建独一无二的域名"
 
@@ -562,7 +566,7 @@ msgstr "将NFT解除封装"
 msgid "Unwrap your domain from NFT"
 msgstr "将NFT解除封装为你的域名"
 
-#: src/components/EditPicture.tsx:228
+#: src/components/EditPicture.tsx:227
 msgid "Upload a picture..."
 msgstr "上传一张图片..."
 
@@ -595,26 +599,26 @@ msgstr "封装为NFT"
 msgid "Wrap your domain into an NFT"
 msgstr "将你的域名封装成NFT"
 
-#: src/screens/Cart/index.tsx:358
+#: src/screens/Cart/index.tsx:414
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名相关个人资料开始使用。"
 
-#: src/screens/DomainView.tsx:790
+#: src/screens/DomainView.tsx:796
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "只有在域名解开封装后才能添加子域名。"
 
-#: src/screens/Cart/index.tsx:114
+#: src/screens/Cart/index.tsx:122
 msgid "You do not have enough funds"
 msgstr "您的资金不足"
 
-#: src/screens/DomainView.tsx:814
+#: src/screens/DomainView.tsx:821
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "您还没有任何子域名。您可以创建任意数量的子域名，以便将您的个人资料用于不同的用途。"
 
-#: src/screens/Cart/index.tsx:389
+#: src/screens/Cart/index.tsx:445
 msgid "Your domains"
 msgstr "你的域名"
 
-#: src/screens/HomeScreen.tsx:68
+#: src/screens/HomeScreen.tsx:70
 msgid "Your online identity starts with your <0>.sol domain</0>"
 msgstr "您的线上身份从 <0>.sol 域名</0>开始"

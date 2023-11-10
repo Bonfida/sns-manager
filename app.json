@@ -1,7 +1,23 @@
 {
   "expo": {
     "name": "SNS Manager",
+    "version": "1.0.0",
     "slug": "sns-manager",
-    "entryPoint": "./src/App"
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "extra": {
+      "eas": {
+        "projectId": "8f89b699-2f93-4ad0-b084-d943e0bb3eb0"
+      }
+    },
+    "android": {
+      "package": "org.bonfida.sns_manager",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "versionCode": 4
+    },
+    "owner": "sns-manager"
   }
 }
