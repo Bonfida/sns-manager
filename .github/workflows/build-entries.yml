@@ -1,4 +1,4 @@
-name: Build xNFT, web, and mobile
+name: Build apps
 
 on:
   push:
@@ -41,17 +41,18 @@ jobs:
       - name: Build web
         run: npm run build:web
 
-  # build-android:
-  #   name: Build Android
-  #   needs: prepare-dependencies
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
-  #     - uses: ./.github/actions/prepare-local-env
-  #     - name: 🏗 Setup EAS
-  #       uses: expo/expo-github-action@v8
-  #       with:
-  #         eas-version: latest
-  #     - name: Build Android
-  #       run: npm run build:mobile:prod
+  build-android:
+    name: Build Android
+    needs: prepare-dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/prepare-local-env
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Build Android
+        run: npm run build:mobile:prod
