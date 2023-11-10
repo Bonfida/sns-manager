@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "extra": {
       "eas": {
-        "projectId": "6a58dd40-2599-4f45-befe-c1ebe9766c1e"
+        "projectId": "8f89b699-2f93-4ad0-b084-d943e0bb3eb0"
       }
     },
     "android": {
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "versionCode": 3
-    }
+      "versionCode": 4
+    },
+    "owner": "sns-manager"
   }
 }
