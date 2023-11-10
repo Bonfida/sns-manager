@@ -31,7 +31,7 @@ msgstr "{domain}.sol başarıyla gönderildi!"
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol geçerli bir domain değil"
 
-#: src/screens/HomeScreen.tsx:52
+#: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
 msgstr "{search}.sol geçerli bir domain değil"
 
@@ -51,7 +51,7 @@ msgstr "<0>2.</0><1> Kendi domaininizin içeriğini düzenleyemez veya ona subdo
 msgid "<0>3.</0><1>You cannot transfer your domain.</1>"
 msgstr "<0>3.</0><1> Domaininizi gönderemezsiniz. </1>"
 
-#: src/screens/HomeScreen.tsx:65
+#: src/screens/HomeScreen.tsx:67
 msgid "A Humanized ID for the Metaverse"
 msgstr "Metaverse için insanlaştırılmış kimlik"
 
@@ -59,11 +59,11 @@ msgstr "Metaverse için insanlaştırılmış kimlik"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "Kendinizi tanıtan bir profil resmi ekleyin. Bu; size veya sahip olduğunuz bir NFT'ye ait bir fotoğraf olabileceği gibi size ilham veren bir resim de olabilir. "
 
-#: src/screens/DomainView.tsx:779
+#: src/screens/DomainView.tsx:785
 msgid "Add subdomain"
 msgstr "Subdomain ekle"
 
-#: src/screens/DomainView.tsx:601
+#: src/screens/DomainView.tsx:604
 msgid "Addresses"
 msgstr "Adresler"
 
@@ -85,7 +85,7 @@ msgstr "\"{actionName}\"ya tıklayınca cüzdan onayı vermeniz istenecektir. "
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:247
+#: src/components/EditPicture.tsx:246
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "İptal"
@@ -103,11 +103,11 @@ msgstr "Dili  değiştir"
 msgid "Change profile picture"
 msgstr "Profil resmini değiştir"
 
-#: src/screens/Cart/index.tsx:195
+#: src/screens/Cart/index.tsx:227
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:241
+#: src/screens/Profile/index.tsx:244
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -121,7 +121,7 @@ msgstr "Favori profillerinizi belirlemek için yıldız simgesine tıklayın. Pr
 msgid "Close"
 msgstr "Kapat"
 
-#: src/screens/HomeScreen.tsx:31
+#: src/screens/HomeScreen.tsx:32
 msgid "Collect & Exchange directly or as NFTs!"
 msgstr "Topla ve doğrudan ya da NFT halinde takas et!"
 
@@ -130,15 +130,15 @@ msgstr "Topla ve doğrudan ya da NFT halinde takas et!"
 msgid "Confirm"
 msgstr "Onayla"
 
-#: src/screens/Cart/index.tsx:334
+#: src/screens/Cart/index.tsx:381
 msgid "Confirm and pay"
 msgstr "Onayla ve öde"
 
-#: src/screens/Cart/index.tsx:391
+#: src/screens/Cart/index.tsx:447
 msgid "Confirmation"
 msgstr "Onay"
 
-#: src/screens/Cart/index.tsx:353
+#: src/screens/Cart/index.tsx:409
 msgid "Congrats on purchasing new domains!"
 msgstr "Yeni domain satın alımlarınız için tebrikler!"
 
@@ -146,13 +146,13 @@ msgstr "Yeni domain satın alımlarınız için tebrikler!"
 msgid "Connect your backpack username to your on-chain identity."
 msgstr "Backpack kullanıcı isminizi zincir üstü kimlikle eşleştirin."
 
-#: src/screens/Cart/index.tsx:280
+#: src/screens/Cart/index.tsx:315
 msgid "Continue"
 msgstr "İlerle"
 
-#: src/components/ProfileBlock.tsx:77
-#: src/components/ProfileBlock.tsx:89
-#: src/screens/DomainView.tsx:672
+#: src/components/ProfileBlock.tsx:81
+#: src/components/ProfileBlock.tsx:93
+#: src/screens/DomainView.tsx:676
 msgid "Copied!"
 msgstr "Kopyalandı"
 
@@ -190,11 +190,11 @@ msgstr "Subdomain silme işlemi geri dönüşlü bir eylemdir. Sonradan tekrar o
 msgid "Discord"
 msgstr "Discord"
 
-#: src/components/OrderSummary.tsx:63
+#: src/components/OrderSummary.tsx:64
 msgid "Discount"
 msgstr "İndirim"
 
-#: src/screens/Cart/index.tsx:277
+#: src/screens/Cart/index.tsx:312
 msgid "Discounts may be applied in the next step"
 msgstr "İndirimler sonraki adımda hesaba katılacaktır"
 
@@ -207,7 +207,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
 #: src/App.tsx:137
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "Domains"
 msgstr "Domainler"
 
@@ -215,9 +215,9 @@ msgstr "Domainler"
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Her bir fazladan kb hafıza 0.007 SOL ya da 0.001 USDC masraf çıkartır."
 
-#: src/screens/Cart/index.tsx:235
-#: src/screens/DomainView.tsx:627
-#: src/screens/DomainView.tsx:739
+#: src/screens/Cart/index.tsx:267
+#: src/screens/DomainView.tsx:630
+#: src/screens/DomainView.tsx:744
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -295,7 +295,7 @@ msgid ""
 " start building your profile"
 msgstr "Bir .sol domain edinin ve profilinizi oluşturmaya başlayın"
 
-#: src/screens/Cart/index.tsx:366
+#: src/screens/Cart/index.tsx:422
 msgid "Get started with my profiles"
 msgstr "Profillerim kısmından başlayın"
 
@@ -307,7 +307,7 @@ msgstr "Github"
 msgid "How to boost your profile?"
 msgstr "Profilinizi nasıl güçlendirirsiniz?"
 
-#: src/screens/HomeScreen.tsx:30
+#: src/screens/HomeScreen.tsx:31
 msgid "Human-readable address"
 msgstr "İnsanlarca okunabilen adres"
 
@@ -323,12 +323,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "Buna doğru"
 
-#: src/screens/DomainView.tsx:372
+#: src/screens/DomainView.tsx:371
 msgid "Invalid {key} address"
 msgstr "Geçersiz {key} adresi"
 
 #: src/components/EditPicture.tsx:63
-#: src/screens/DomainView.tsx:363
+#: src/screens/DomainView.tsx:362
 msgid "Invalid URL"
 msgstr "Geçersiz URL "
 
@@ -340,7 +340,7 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "My domains"
 msgstr "Domainlerim"
 
@@ -348,7 +348,7 @@ msgstr "Domainlerim"
 msgid "New {domain}.sol owner"
 msgstr "{domain}.sol'un yeni sahibi"
 
-#: src/components/EditPicture.tsx:236
+#: src/components/EditPicture.tsx:235
 msgid "New picture URL"
 msgstr "Yeni resim URL'si"
 
@@ -356,16 +356,16 @@ msgstr "Yeni resim URL'si"
 msgid "Next"
 msgstr "Sonraki"
 
-#: src/screens/DomainView.tsx:738
+#: src/screens/DomainView.tsx:743
 msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:231
+#: src/screens/Profile/index.tsx:234
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
-#: src/screens/DomainView.tsx:692
+#: src/screens/DomainView.tsx:697
 msgid "Not set"
 msgstr "Belirlenmemiş"
 
@@ -377,11 +377,11 @@ msgstr "Sepetindeki herhangi bir şey yok"
 msgid "Order summary"
 msgstr "Emir geçmişi"
 
-#: src/screens/Cart/index.tsx:290
+#: src/screens/Cart/index.tsx:325
 msgid "Pay with"
 msgstr "ile öde"
 
-#: src/screens/Cart/index.tsx:390
+#: src/screens/Cart/index.tsx:446
 msgid "Payment"
 msgstr "Ödeme"
 
@@ -393,7 +393,7 @@ msgstr "Fotoğraf albümüne erişim izni gereklidir"
 msgid "Pic"
 msgstr "Resim"
 
-#: src/components/EditPicture.tsx:234
+#: src/components/EditPicture.tsx:233
 msgid "Picture URL"
 msgstr "Resim URL'si"
 
@@ -405,11 +405,15 @@ msgstr "Unutmayınız ki domain gönderme işlemi geri dönüşsüzdür. Ona sah
 msgid "POINT"
 msgstr "PUAN"
 
+#: src/screens/HomeScreen.tsx:137
+msgid "Privacy Policy"
+msgstr ""
+
 #: src/App.tsx:126
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:157
+#: src/screens/Profile/index.tsx:159
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -425,17 +429,17 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "Kaydetme indirimi"
 
-#: src/screens/DomainView.tsx:627
+#: src/screens/DomainView.tsx:630
 msgid "Revert"
 msgstr "Eski haline getir"
 
-#: src/components/EditPicture.tsx:254
-#: src/screens/DomainView.tsx:737
+#: src/components/EditPicture.tsx:253
+#: src/screens/DomainView.tsx:742
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/screens/HomeScreen.tsx:142
-#: src/screens/HomeScreen.tsx:154
+#: src/screens/HomeScreen.tsx:165
+#: src/screens/HomeScreen.tsx:177
 msgid "Search domain"
 msgstr "Domain ara"
 
@@ -443,13 +447,13 @@ msgstr "Domain ara"
 msgid "Search domains"
 msgstr "Domainler ara"
 
-#: src/screens/HomeScreen.tsx:89
-#: src/screens/Profile/index.tsx:191
+#: src/screens/HomeScreen.tsx:94
+#: src/screens/Profile/index.tsx:193
 #: src/screens/SearchResult.tsx:67
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
 
-#: src/screens/HomeScreen.tsx:101
+#: src/screens/HomeScreen.tsx:106
 #: src/screens/SearchResult.tsx:80
 msgid "Search your .SOL domain"
 msgstr ".SOL domain isminizi arayın"
@@ -467,7 +471,7 @@ msgstr "SHDW"
 msgid "Skip"
 msgstr "Atla"
 
-#: src/screens/DomainView.tsx:586
+#: src/screens/DomainView.tsx:587
 msgid "Socials"
 msgstr "Sosyal Medya Hesapları"
 
@@ -475,7 +479,7 @@ msgstr "Sosyal Medya Hesapları"
 msgid "Storage Size"
 msgstr "Depo Hacmi"
 
-#: src/screens/Cart/index.tsx:218
+#: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr "Depo"
 
@@ -487,7 +491,7 @@ msgstr "{domain}.sol subdomaini başarıyla silindi!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "{domain}.sol başarıyla oluşturuldu!"
 
-#: src/screens/DomainView.tsx:617
+#: src/screens/DomainView.tsx:620
 msgid "Subdomains"
 msgstr "Subdomainler"
 
@@ -507,7 +511,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "Depo kapasitesi, domaininide depolanabilecek azami veri miktarını belirler. "
 
-#: src/screens/DomainView.tsx:819
+#: src/screens/DomainView.tsx:826
 msgid "There are no subdomains."
 msgstr "Hiçbir subdomain bulunamadı."
 
@@ -515,7 +519,7 @@ msgstr "Hiçbir subdomain bulunamadı."
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "Bu domain Wormhole aracılığıyla BNB ağına aktarılmış ve BNB ağında da kullanılabilir. "
 
-#: src/screens/DomainView.tsx:499
+#: src/screens/DomainView.tsx:500
 msgid "This domain is wrapped in an NFT"
 msgstr "Bu domain, NFT haline katlanmış."
 
@@ -523,7 +527,7 @@ msgstr "Bu domain, NFT haline katlanmış."
 msgid "Total"
 msgstr "Toplam"
 
-#: src/screens/DomainView.tsx:527
+#: src/screens/DomainView.tsx:528
 msgid "Transfer"
 msgstr "Gönder"
 
@@ -543,7 +547,7 @@ msgstr "Bunu çevir"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/screens/HomeScreen.tsx:29
+#: src/screens/HomeScreen.tsx:30
 msgid "Unique domain name for your project"
 msgstr "Projenize özgü domain ismi"
 
@@ -560,7 +564,7 @@ msgstr "NFT'yi geri katla (unwrapping)"
 msgid "Unwrap your domain from NFT"
 msgstr "Domaini, NFT'den geri katla (unwrapping)"
 
-#: src/components/EditPicture.tsx:228
+#: src/components/EditPicture.tsx:227
 msgid "Upload a picture..."
 msgstr "Bir resim yükle..."
 
@@ -593,26 +597,26 @@ msgstr "NFT'ye katla (wrapping)"
 msgid "Wrap your domain into an NFT"
 msgstr "Domaini, NFT'ye katla (wrapping)"
 
-#: src/screens/Cart/index.tsx:358
+#: src/screens/Cart/index.tsx:414
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "Artık bir domaine sahip olmanın tüm avantajlarından faydalanabilirsin. Domainle ilişkilendirilmiş profili doldurarak başla."
 
-#: src/screens/DomainView.tsx:790
+#: src/screens/DomainView.tsx:796
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Yalnızca domain katlanmamış (unwrapped) haldeyken subdomain ekleyebilirsin."
 
-#: src/screens/Cart/index.tsx:114
+#: src/screens/Cart/index.tsx:122
 msgid "You do not have enough funds"
 msgstr "Yeterli bakiyeye sahip değilsiniz"
 
-#: src/screens/DomainView.tsx:814
+#: src/screens/DomainView.tsx:821
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Herhangi bir subdomaine sahip değilsiniz. Farklı profillerinizde farklı amaçlarda kullanmak üzere istediğiniz kadar subdomain oluşturabilirsiniz. "
 
-#: src/screens/Cart/index.tsx:389
+#: src/screens/Cart/index.tsx:445
 msgid "Your domains"
 msgstr "Domainleriniz"
 
-#: src/screens/HomeScreen.tsx:68
+#: src/screens/HomeScreen.tsx:70
 msgid "Your online identity starts with your <0>.sol domain</0>"
 msgstr "Çevrimiçi kimliğiniz  <0>.sol domain</0> ile başlar."

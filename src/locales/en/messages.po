@@ -29,7 +29,7 @@ msgstr ""
 msgid "{input}.sol is not a valid domain"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:52
+#: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 #~ msgid "<0>6. Discord Record:</0> Connect Discord and keep conversations flowing 🎮"
 #~ msgstr ""
 
-#: src/screens/HomeScreen.tsx:65
+#: src/screens/HomeScreen.tsx:67
 msgid "A Humanized ID for the Metaverse"
 msgstr ""
 
@@ -81,11 +81,11 @@ msgstr ""
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr ""
 
-#: src/screens/DomainView.tsx:779
+#: src/screens/DomainView.tsx:785
 msgid "Add subdomain"
 msgstr ""
 
-#: src/screens/DomainView.tsx:601
+#: src/screens/DomainView.tsx:604
 msgid "Addresses"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:247
+#: src/components/EditPicture.tsx:246
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr ""
@@ -141,11 +141,11 @@ msgstr ""
 #~ msgid "Choose a picture"
 #~ msgstr ""
 
-#: src/screens/Cart/index.tsx:195
+#: src/screens/Cart/index.tsx:227
 msgid "Clear all"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:241
+#: src/screens/Profile/index.tsx:244
 msgid "Clear search"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:31
+#: src/screens/HomeScreen.tsx:32
 msgid "Collect & Exchange directly or as NFTs!"
 msgstr ""
 
@@ -168,15 +168,15 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:334
+#: src/screens/Cart/index.tsx:381
 msgid "Confirm and pay"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:391
+#: src/screens/Cart/index.tsx:447
 msgid "Confirmation"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:353
+#: src/screens/Cart/index.tsx:409
 msgid "Congrats on purchasing new domains!"
 msgstr ""
 
@@ -188,13 +188,13 @@ msgstr ""
 msgid "Connect your backpack username to your on-chain identity."
 msgstr ""
 
-#: src/screens/Cart/index.tsx:280
+#: src/screens/Cart/index.tsx:315
 msgid "Continue"
 msgstr ""
 
-#: src/components/ProfileBlock.tsx:77
-#: src/components/ProfileBlock.tsx:89
-#: src/screens/DomainView.tsx:672
+#: src/components/ProfileBlock.tsx:81
+#: src/components/ProfileBlock.tsx:93
+#: src/screens/DomainView.tsx:676
 msgid "Copied!"
 msgstr ""
 
@@ -232,11 +232,11 @@ msgstr ""
 msgid "Discord"
 msgstr ""
 
-#: src/components/OrderSummary.tsx:63
+#: src/components/OrderSummary.tsx:64
 msgid "Discount"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:277
+#: src/screens/Cart/index.tsx:312
 msgid "Discounts may be applied in the next step"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr ""
 
 #: src/App.tsx:137
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "Domains"
 msgstr ""
 
@@ -257,9 +257,9 @@ msgstr ""
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:235
-#: src/screens/DomainView.tsx:627
-#: src/screens/DomainView.tsx:739
+#: src/screens/Cart/index.tsx:267
+#: src/screens/DomainView.tsx:630
+#: src/screens/DomainView.tsx:744
 msgid "Edit"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid ""
 " start building your profile"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:366
+#: src/screens/Cart/index.tsx:422
 msgid "Get started with my profiles"
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr ""
 msgid "How to boost your profile?"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:30
+#: src/screens/HomeScreen.tsx:31
 msgid "Human-readable address"
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr ""
 msgid "Into this"
 msgstr ""
 
-#: src/screens/DomainView.tsx:372
+#: src/screens/DomainView.tsx:371
 msgid "Invalid {key} address"
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/EditPicture.tsx:63
-#: src/screens/DomainView.tsx:363
+#: src/screens/DomainView.tsx:362
 msgid "Invalid URL"
 msgstr ""
 
@@ -419,7 +419,7 @@ msgstr ""
 msgid "Learn more in our docs"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:186
 msgid "My domains"
 msgstr ""
 
@@ -431,7 +431,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr ""
 
-#: src/components/EditPicture.tsx:236
+#: src/components/EditPicture.tsx:235
 msgid "New picture URL"
 msgstr ""
 
@@ -439,12 +439,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/screens/DomainView.tsx:738
+#: src/screens/DomainView.tsx:743
 msgid "No changes to save"
 msgstr ""
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:231
+#: src/screens/Profile/index.tsx:234
 msgid "No domain found"
 msgstr ""
 
@@ -456,7 +456,7 @@ msgstr ""
 #~ msgid "No subdomains found"
 #~ msgstr ""
 
-#: src/screens/DomainView.tsx:692
+#: src/screens/DomainView.tsx:697
 msgid "Not set"
 msgstr ""
 
@@ -468,11 +468,11 @@ msgstr ""
 msgid "Order summary"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:290
+#: src/screens/Cart/index.tsx:325
 msgid "Pay with"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:390
+#: src/screens/Cart/index.tsx:446
 msgid "Payment"
 msgstr ""
 
@@ -484,7 +484,7 @@ msgstr ""
 msgid "Pic"
 msgstr ""
 
-#: src/components/EditPicture.tsx:234
+#: src/components/EditPicture.tsx:233
 msgid "Picture URL"
 msgstr ""
 
@@ -496,6 +496,10 @@ msgstr ""
 msgid "POINT"
 msgstr ""
 
+#: src/screens/HomeScreen.tsx:137
+msgid "Privacy Policy"
+msgstr ""
+
 #: src/App.tsx:126
 msgid "Profile"
 msgstr ""
@@ -504,7 +508,7 @@ msgstr ""
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr ""
 
-#: src/screens/Profile/index.tsx:157
+#: src/screens/Profile/index.tsx:159
 msgid "Profile completion: {percentage}%"
 msgstr ""
 
@@ -520,12 +524,12 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/screens/DomainView.tsx:627
+#: src/screens/DomainView.tsx:630
 msgid "Revert"
 msgstr ""
 
-#: src/components/EditPicture.tsx:254
-#: src/screens/DomainView.tsx:737
+#: src/components/EditPicture.tsx:253
+#: src/screens/DomainView.tsx:742
 msgid "Save"
 msgstr ""
 
@@ -534,8 +538,8 @@ msgstr ""
 #~ msgid "Search"
 #~ msgstr ""
 
-#: src/screens/HomeScreen.tsx:142
-#: src/screens/HomeScreen.tsx:154
+#: src/screens/HomeScreen.tsx:165
+#: src/screens/HomeScreen.tsx:177
 msgid "Search domain"
 msgstr ""
 
@@ -543,8 +547,8 @@ msgstr ""
 msgid "Search domains"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:89
-#: src/screens/Profile/index.tsx:191
+#: src/screens/HomeScreen.tsx:94
+#: src/screens/Profile/index.tsx:193
 #: src/screens/SearchResult.tsx:67
 msgid "Search for a domain"
 msgstr ""
@@ -554,7 +558,7 @@ msgstr ""
 #~ msgid "Search for your name.sol"
 #~ msgstr ""
 
-#: src/screens/HomeScreen.tsx:101
+#: src/screens/HomeScreen.tsx:106
 #: src/screens/SearchResult.tsx:80
 msgid "Search your .SOL domain"
 msgstr ""
@@ -580,7 +584,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/screens/DomainView.tsx:586
+#: src/screens/DomainView.tsx:587
 msgid "Socials"
 msgstr ""
 
@@ -605,7 +609,7 @@ msgstr ""
 msgid "Storage Size"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:218
+#: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr ""
 
@@ -617,7 +621,7 @@ msgstr ""
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr ""
 
-#: src/screens/DomainView.tsx:617
+#: src/screens/DomainView.tsx:620
 msgid "Subdomains"
 msgstr ""
 
@@ -646,7 +650,7 @@ msgstr ""
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr ""
 
-#: src/screens/DomainView.tsx:819
+#: src/screens/DomainView.tsx:826
 msgid "There are no subdomains."
 msgstr ""
 
@@ -658,7 +662,7 @@ msgstr ""
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr ""
 
-#: src/screens/DomainView.tsx:499
+#: src/screens/DomainView.tsx:500
 msgid "This domain is wrapped in an NFT"
 msgstr ""
 
@@ -670,7 +674,7 @@ msgstr ""
 #~ msgid "Total USD"
 #~ msgstr ""
 
-#: src/screens/DomainView.tsx:527
+#: src/screens/DomainView.tsx:528
 msgid "Transfer"
 msgstr ""
 
@@ -690,7 +694,7 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:29
+#: src/screens/HomeScreen.tsx:30
 msgid "Unique domain name for your project"
 msgstr ""
 
@@ -712,7 +716,7 @@ msgstr ""
 msgid "Unwrap your domain from NFT"
 msgstr ""
 
-#: src/components/EditPicture.tsx:228
+#: src/components/EditPicture.tsx:227
 msgid "Upload a picture..."
 msgstr ""
 
@@ -757,19 +761,19 @@ msgstr ""
 msgid "Wrap your domain into an NFT"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:358
+#: src/screens/Cart/index.tsx:414
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr ""
 
-#: src/screens/DomainView.tsx:790
+#: src/screens/DomainView.tsx:796
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr ""
 
-#: src/screens/Cart/index.tsx:114
+#: src/screens/Cart/index.tsx:122
 msgid "You do not have enough funds"
 msgstr ""
 
-#: src/screens/DomainView.tsx:814
+#: src/screens/DomainView.tsx:821
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr ""
 
@@ -777,10 +781,10 @@ msgstr ""
 #~ msgid "Your <0>Name</0>. Your <1>Power</1>."
 #~ msgstr ""
 
-#: src/screens/Cart/index.tsx:389
+#: src/screens/Cart/index.tsx:445
 msgid "Your domains"
 msgstr ""
 
-#: src/screens/HomeScreen.tsx:68
+#: src/screens/HomeScreen.tsx:70
 msgid "Your online identity starts with your <0>.sol domain</0>"
 msgstr ""
