@@ -1,6 +1,6 @@
 import { useSolanaConnection } from "../hooks/xnft-hooks";
 import { Record } from "@bonfida/spl-name-service";
-import * as snsHooks from "@bonfida/sns-react";
+import { useDeserializedRecords } from "@bonfida/sns-react";
 
 export type AddressRecord =
   | Record.BSC
@@ -48,11 +48,7 @@ export const ADDRESS_RECORDS: AddressRecord[] = [
 
 export const useRecords = (domain: string | undefined, records: Record[]) => {
   const connection = useSolanaConnection();
-  const res = snsHooks.useDeserializedRecords(
-    connection!,
-    domain || "",
-    records
-  );
+  const res = useDeserializedRecords(connection!, domain || "", records);
   const { result, ...rest } = res;
 
   return {
