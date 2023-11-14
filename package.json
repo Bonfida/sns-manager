@@ -6,11 +6,11 @@
     "build:web": "WEB=true expo export:web && cp _headers web-build/",
     "build:mobile:dev": "eas build -p android --profile preview --local",
     "build:mobile:prod": "eas build -p android --profile production",
-    "start": "yarn build:xnt && npx xnft web",
-    "bundle": "yarn build:xnft && npx xnft bundle",
+    "start": "npm run build:xnt && npx xnft web",
+    "bundle": "npm run build:xnft && npx xnft bundle",
     "dev": "GENERATE_SOURCEMAP=false expo start --clear --web & npx xnft --iframe http://localhost:19006",
-    "dev:xnft": "XNFT=true yarn dev",
-    "dev:web": "WEB=true yarn dev",
+    "dev:xnft": "XNFT=true npm run dev",
+    "dev:web": "WEB=true npm run dev",
     "dev:mobile": "expo start --dev-client --clear",
     "dev:mobile:build": "eas build --profile development --platform android --local",
     "extract": "lingui extract",
@@ -101,6 +101,9 @@
   "overrides": {
     "react-error-overlay": "6.0.11",
     "react-native-reanimated": "2.14.4"
+  },
+  "volta": {
+    "node": "20.9.0"
   },
   "name": "sns-manager",
   "version": "1.0.1"
