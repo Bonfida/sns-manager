@@ -4,14 +4,17 @@
     "appVersionSource": "local"
   },
   "build": {
+    "base": {
+      "node": "20.9.0"
+    },
     "development": {
-      "node": "20.9.0",
+      "extends": "base",
       "developmentClient": true,
       "distribution": "internal"
     },
     "preview": {
+      "extends": "base",
       "distribution": "internal",
-      "node": "20.9.0",
       "android": {
         "buildType": "app-bundle"
       },
@@ -20,8 +23,8 @@
       }
     },
     "production": {
+      "extends": "base",
       "distribution": "store",
-      "node": "20.9.0",
       "autoIncrement": true,
       "android": {
         "buildType": "app-bundle"
