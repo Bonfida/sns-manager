@@ -34,7 +34,7 @@ function getAccountFromAuthorizedAccount(account: AuthorizedAccount): Account {
 
 function getAuthorizationFromAuthorizationResult(
   authorizationResult: AuthorizationResult,
-  previouslySelectedAccount?: Account
+  previouslySelectedAccount?: Account,
 ): Authorization {
   let selectedAccount: Account;
   if (
@@ -42,7 +42,7 @@ function getAuthorizationFromAuthorizationResult(
     previouslySelectedAccount == null ||
     // The previously selected account is no longer in the set of authorized addresses.
     !authorizationResult.accounts.some(
-      ({ address }) => address === previouslySelectedAccount.address
+      ({ address }) => address === previouslySelectedAccount.address,
     )
   ) {
     const firstAccount = authorizationResult.accounts[0];
@@ -93,7 +93,7 @@ const AuthorizationContext = React.createContext<AuthorizationProviderContext>({
 function AuthorizationProvider(props: { children: ReactNode }) {
   const { children } = props;
   const [authorization, setAuthorization] = useState<Authorization | null>(
-    null
+    null,
   );
 
   // useEffect(() => {
@@ -116,11 +116,11 @@ function AuthorizationProvider(props: { children: ReactNode }) {
 
   const handleAuthorizationResult = useCallback(
     async (
-      authorizationResult: AuthorizationResult
+      authorizationResult: AuthorizationResult,
     ): Promise<Authorization> => {
       const nextAuthorization = getAuthorizationFromAuthorizationResult(
         authorizationResult,
-        authorization?.selectedAccount
+        authorization?.selectedAccount,
       );
       await setAuthorization(nextAuthorization);
       // try {
@@ -128,7 +128,7 @@ function AuthorizationProvider(props: { children: ReactNode }) {
       // } catch (err) {}
       return nextAuthorization;
     },
-    [authorization, setAuthorization]
+    [authorization, setAuthorization],
   );
 
   const authorizeSession = useCallback(
@@ -145,7 +145,7 @@ function AuthorizationProvider(props: { children: ReactNode }) {
       return (await handleAuthorizationResult(authorizationResult))
         .selectedAccount;
     },
-    [authorization, handleAuthorizationResult]
+    [authorization, handleAuthorizationResult],
   );
   const deauthorizeSession = useCallback(
     async (wallet: DeauthorizeAPI) => {
@@ -155,18 +155,18 @@ function AuthorizationProvider(props: { children: ReactNode }) {
       await wallet.deauthorize({ auth_token: authorization.authToken });
       setAuthorization(null);
     },
-    [authorization, setAuthorization]
+    [authorization, setAuthorization],
   );
   const onChangeAccount = useCallback(
     (nextSelectedAccount: Account) => {
       setAuthorization((currentAuthorization) => {
         if (
           !currentAuthorization?.accounts.some(
-            ({ address }) => address === nextSelectedAccount.address
+            ({ address }) => address === nextSelectedAccount.address,
           )
         ) {
           throw new Error(
-            `${nextSelectedAccount.address} is not one of the available addresses`
+            `${nextSelectedAccount.address} is not one of the available addresses`,
           );
         }
         return {
@@ -175,7 +175,7 @@ function AuthorizationProvider(props: { children: ReactNode }) {
         };
       });
     },
-    [setAuthorization]
+    [setAuthorization],
   );
   const value = useMemo(
     () => ({
@@ -185,7 +185,7 @@ function AuthorizationProvider(props: { children: ReactNode }) {
       onChangeAccount,
       selectedAccount: authorization?.selectedAccount ?? null,
     }),
-    [authorization, authorizeSession, deauthorizeSession, onChangeAccount]
+    [authorization, authorizeSession, deauthorizeSession, onChangeAccount],
   );
 
   return (

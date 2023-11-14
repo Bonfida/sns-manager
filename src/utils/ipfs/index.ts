@@ -12,7 +12,7 @@ export const uploadToIPFS = async (image: string) => {
   const { data }: { data: Response } = await axios.post(
     "https://ipfs-proxy.bonfida.com/v2/ipfs/add",
     Buffer.from(blob),
-    { headers: { "Content-Type": "application/octet-stream" } }
+    { headers: { "Content-Type": "application/octet-stream" } },
   );
 
   return {

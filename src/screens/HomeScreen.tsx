@@ -77,7 +77,7 @@ function HomeRoot() {
                       // This css rules are supported only in browser
                       backgroundClip: "text",
                       backgroundImage: `linear-gradient(to right, ${tw.color(
-                        "brand-primary"
+                        "brand-primary",
                       )}, ${tw.color("brand-accent")})`,
                     },
                 !isMobile && tw`font-medium text-transparent`,

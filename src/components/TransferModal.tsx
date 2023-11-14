@@ -56,7 +56,7 @@ export const TransferModal = ({
         newOwner,
         publicKey,
         undefined,
-        ROOT_DOMAIN_ACCOUNT
+        ROOT_DOMAIN_ACCOUNT,
       );
 
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);

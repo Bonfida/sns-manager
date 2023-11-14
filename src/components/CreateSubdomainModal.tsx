@@ -62,7 +62,7 @@ export const CreateSubdomainModal = ({
         },
         () => {
           closeModal("CreateSubdomain");
-        }
+        },
       );
       refresh();
     } catch (err) {

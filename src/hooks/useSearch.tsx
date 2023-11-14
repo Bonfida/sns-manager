@@ -11,7 +11,7 @@ export interface Result {
 
 export const getDomainsResult = async (
   connection: Connection,
-  domains: string[]
+  domains: string[],
 ): Promise<Result[]> => {
   const keys = domains.map((e) => getDomainKeySync(e).pubkey);
   const infos = await connection?.getMultipleAccountsInfo(keys);
@@ -41,7 +41,7 @@ export const useSearch = (domain: string) => {
       const domainsAlternatives = generateRandom(parsedDomain, 10);
       const domainsAlternativesResult = await getDomainsResult(
         connection,
-        domainsAlternatives
+        domainsAlternatives,
       );
       // if the subdomain doesn't exists check if the domain is available
       if (!subdomainInfo?.data) {

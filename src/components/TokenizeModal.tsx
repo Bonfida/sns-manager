@@ -60,7 +60,7 @@ export const TokenizeModal = ({
 
       const [mintKey] = PublicKey.findProgramAddressSync(
         [MINT_PREFIX, pubkey.toBuffer()],
-        NAME_TOKENIZER_ID
+        NAME_TOKENIZER_ID,
       );
 
       const ata = await getAssociatedTokenAddress(mintKey, publicKey);
@@ -73,7 +73,7 @@ export const TokenizeModal = ({
         const closeAtaIx = createCloseAccountInstruction(
           ata,
           publicKey,
-          publicKey
+          publicKey,
         );
 
         ixs.push(closeAtaIx);
@@ -96,7 +96,7 @@ export const TokenizeModal = ({
             publicKey,
             ata,
             publicKey,
-            mintKey
+            mintKey,
           );
           ixs.push(ix);
         }

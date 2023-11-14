@@ -34,7 +34,7 @@ export const DomainRowRecord = ({
   const connection = useSolanaConnection();
   const picRecord = useProfilePic(connection!, domain);
   const [picPlaceholderColor, setPicPlaceholderColor] = useState(
-    tw.color("brand-accent")
+    tw.color("brand-accent"),
   );
 
   useEffect(() => {

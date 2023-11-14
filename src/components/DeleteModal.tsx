@@ -45,7 +45,7 @@ export const DeleteModal = ({
         NAME_PROGRAM_ID,
         getDomainKeySync(domain).pubkey,
         publicKey,
-        publicKey
+        publicKey,
       );
       const sig = await sendTx(connection, publicKey, [ix], signTransaction);
       console.log(sig);

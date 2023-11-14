@@ -9,7 +9,7 @@ export const sendTx = async (
   connection: Connection,
   feePayer: PublicKey,
   ixs: TransactionInstruction[],
-  signTransaction: (tx: Transaction) => Promise<Transaction>
+  signTransaction: (tx: Transaction) => Promise<Transaction>,
 ) => {
   let tx = new Transaction().add(...ixs);
   tx.feePayer = feePayer;

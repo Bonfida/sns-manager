@@ -9,7 +9,7 @@ const MAX = 1_232;
 export const chunkIx = (
   instructions: TransactionInstruction[],
   buyer: PublicKey,
-  blockhash = "48tzUutUCPDohF4YqFpX9dHHS43V1bn9R45LHEFVhbtq"
+  blockhash = "48tzUutUCPDohF4YqFpX9dHHS43V1bn9R45LHEFVhbtq",
 ) => {
   const result: TransactionInstruction[][] = [];
   let temp: TransactionInstruction[] = [];
@@ -34,7 +34,7 @@ export const chunkIx = (
 const getSize = (
   instructions: TransactionInstruction[],
   buyer: PublicKey,
-  blockhash = "48tzUutUCPDohF4YqFpX9dHHS43V1bn9R45LHEFVhbtq"
+  blockhash = "48tzUutUCPDohF4YqFpX9dHHS43V1bn9R45LHEFVhbtq",
 ) => {
   try {
     const tx = new Transaction().add(...instructions);

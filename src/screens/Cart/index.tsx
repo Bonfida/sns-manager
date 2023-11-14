@@ -46,7 +46,7 @@ import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 
 const getTokenAccountBalance = async (
   connection: Connection,
-  key: PublicKey
+  key: PublicKey,
 ): Promise<number> => {
   try {
     const balances = await connection.getTokenAccountBalance(key);
@@ -60,7 +60,7 @@ const checkEnoughFunds = async (
   connection: Connection,
   publicKey: PublicKey,
   mint: PublicKey,
-  total: number
+  total: number,
 ) => {
   const ata = getAssociatedTokenAddressSync(mint, publicKey);
   const balances = await getTokenAccountBalance(connection, ata);
@@ -95,7 +95,7 @@ export const Cart = () => {
   const discountMul = mint === FIDA_MINT ? 0.95 : 1;
   const totalUsd = cart.reduce(
     (acc, v) => acc + priceFromLength(v, discountMul),
-    0
+    0,
   );
 
   const price = pyth.result?.get(mint)?.price;
@@ -114,7 +114,7 @@ export const Cart = () => {
         connection,
         new PublicKey(publicKey),
         new PublicKey(mint),
-        total
+        total,
       ))
     ) {
       return setStatus({
@@ -139,7 +139,7 @@ export const Cart = () => {
           buyer,
           ata,
           mintKey,
-          referrer ? REFERRERS[referrer] : undefined
+          referrer ? REFERRERS[referrer] : undefined,
         );
         ixs.push(...ix);
       }
@@ -150,7 +150,7 @@ export const Cart = () => {
           connection,
           ata,
           buyer,
-          Math.ceil(total * 1.01 * Math.pow(10, 9))
+          Math.ceil(total * 1.01 * Math.pow(10, 9)),
         );
         const unwrap = unwrapSol(ata, buyer);
         ixs = [...wrap, ...ixs, ...unwrap];
