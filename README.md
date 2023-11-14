@@ -25,7 +25,9 @@ Hello, Solana lovers! Welcome to the official repository for SNS Manager, your a
 <div align="center">
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 </div>
@@ -49,15 +51,15 @@ This open-source mobile app is designed to provide a seamless and user-friendly 
 <h2 align="center">Rodmap 🗺️</h2>
 <br />
 
-| Feature             | Description                                                       | In progress | Completed | Bounty | Contributor                             |
-| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ | --------------------------------------- |
-| UI/UX Redesign      | New UI/UX design for the app                                      | ✅          | ❌        | ✅     |                                         |
-| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ✅          | ❌        | ✅     |                                         |
-| Turkish translation | Translate the app in Turkish                                      | ❌          | ✅        | ✅     | [Eren](https://twitter.com/inside_eren_tr)  |
-| Chinese translation | Translate the app in Chinese                                      | ❌          | ✅        | ✅     | [2Tako2](https://github.com/2Tako2)     |
-| Korean translation  | Translate the app in Korean                                       | ❌          | ✅        | ✅     | [mjLabrys](https://github.com/mjLabrys) |
-| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ✅        | ❌     | [W](https://github.com/wosleyv)         |
-| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ✅        | ✅     | [W](https://github.com/wosleyv)         |
+| Feature             | Description                                                       | In progress | Completed | Bounty | Contributor                                |
+| ------------------- | ----------------------------------------------------------------- | ----------- | --------- | ------ | ------------------------------------------ |
+| UI/UX Redesign      | New UI/UX design for the app                                      | ❌          | ✅        | ✅     |                                            |
+| Profile pic upload  | Allow people to upload a picture from device as a profile picture | ❌          | ✅        | ✅     |                                            |
+| Turkish translation | Translate the app in Turkish                                      | ❌          | ✅        | ✅     | [Eren](https://twitter.com/inside_eren_tr) |
+| Chinese translation | Translate the app in Chinese                                      | ❌          | ✅        | ✅     | [2Tako2](https://github.com/2Tako2)        |
+| Korean translation  | Translate the app in Korean                                       | ❌          | ✅        | ✅     | [mjLabrys](https://github.com/mjLabrys)    |
+| Wrap domain names   | Allow tokenization of domain names into NFT                       | ❌          | ✅        | ❌     | [W](https://github.com/wosleyv)            |
+| Subdomain support   | Add support for subdomain management, creation and search         | ❌          | ✅        | ✅     | [W](https://github.com/wosleyv)            |
 
 <br />
 <h2 align="center">Development and Build Commands 💻</h2>
