@@ -1,0 +1,7 @@
+# ...
+# ... This file ignores commits that are just cleaning up the code, fixing prettier
+# ... or code-style-related eslint warnings
+# ...
+
+# prettier warnings cleanup after introducing @bonfida/prettier-config
+fa2c3bf739b008b9397a064ad91bf3329f844350
