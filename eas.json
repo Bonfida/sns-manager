@@ -24,7 +24,7 @@
       "node": "18.15.0",
       "autoIncrement": true,
       "android": {
-        "buildType": "apk"
+        "buildType": "app-bundle"
       },
       "env": {
         "SOLANA_RPC_URL": "https://helius-proxy.bonfida.com"
