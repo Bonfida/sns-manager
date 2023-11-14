@@ -4,7 +4,7 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { isXnft, isWeb } from "@src/utils/platform";
+import { isWeb } from "@src/utils/platform";
 import { URL } from "@src/utils/rpc";
 
 require("@solana/wallet-adapter-react-ui/styles.css");

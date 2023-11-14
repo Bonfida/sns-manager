@@ -1,6 +1,6 @@
 import { View, FlatList, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
-import SkeletonContent from "react-native-skeleton-content";
+import { Skeleton } from "@src/components/Skeleton";
 import { useModal } from "react-native-modalfy";
 import { t } from "@lingui/macro";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
@@ -137,12 +137,12 @@ export const SearchResult = ({
 };
 
 const RenderSkeleton = () => (
-  <SkeletonContent isLoading>
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-    <View style={tw`w-full h-[56px] my-1 rounded-lg`} />
-  </SkeletonContent>
+  <View>
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+    <Skeleton isLoading style={tw`w-full h-[56px] my-1 rounded-lg`} />
+  </View>
 );
