@@ -22,7 +22,7 @@ export const ConnectionProvider: FC<ConnectionProviderProps> = ({
 }) => {
   const connection = useMemo(
     () => new Connection(endpoint, config),
-    [endpoint, config]
+    [endpoint, config],
   );
 
   return (
@@ -37,7 +37,7 @@ export interface ConnectionContextState {
 }
 
 export const ConnectionContext = createContext<ConnectionContextState>(
-  {} as ConnectionContextState
+  {} as ConnectionContextState,
 );
 
 export function useConnection(): ConnectionContextState {

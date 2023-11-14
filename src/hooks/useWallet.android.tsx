@@ -12,7 +12,7 @@ export const useMobilePlatformWallet = () => {
   const { handleError } = useHandleError();
 
   async function signAllTransactions<T extends Tx>(
-    transactions: T[]
+    transactions: T[],
   ): Promise<T[]> {
     try {
       return transact(async (wallet) => {
@@ -27,7 +27,7 @@ export const useMobilePlatformWallet = () => {
   }
 
   async function signTransaction<T extends Tx>(
-    transaction: T
+    transaction: T,
   ): Promise<T | undefined> {
     try {
       return transact(async (wallet) => {
@@ -49,7 +49,7 @@ export const useMobilePlatformWallet = () => {
   }
 
   async function signMessage(
-    message: Uint8Array
+    message: Uint8Array,
   ): Promise<Uint8Array | undefined> {
     try {
       return transact(async (wallet) => {

@@ -21,7 +21,7 @@ export const redeemSol = async (
   recordKey: PublicKey,
   publicKey: PublicKey,
   tokenAccountLen: number,
-  nftMint: PublicKey
+  nftMint: PublicKey,
 ) => {
   const instructions: TransactionInstruction[] = [];
   const recordInfo = await connection.getAccountInfo(recordKey);
@@ -29,7 +29,7 @@ export const redeemSol = async (
     throw new Error("Record info not found");
   }
   const minRent = await connection.getMinimumBalanceForRentExemption(
-    recordInfo?.data.length
+    recordInfo?.data.length,
   );
   if (
     recordInfo.lamports > minRent &&
@@ -37,7 +37,7 @@ export const redeemSol = async (
   ) {
     const ataDestination = await getAssociatedTokenAddress(
       NATIVE_MINT,
-      publicKey
+      publicKey,
     );
     if (!(await checkAccountExists(connection, ataDestination))) {
       instructions.push(
@@ -45,27 +45,27 @@ export const redeemSol = async (
           publicKey,
           ataDestination,
           publicKey,
-          NATIVE_MINT
-        )
+          NATIVE_MINT,
+        ),
       );
     }
     const ataSource = await getAssociatedTokenAddress(
       NATIVE_MINT,
       recordKey,
-      true
+      true,
     );
     const createAta = createAssociatedTokenAccountInstruction(
       publicKey,
       ataSource,
       recordKey,
-      NATIVE_MINT
+      NATIVE_MINT,
     );
     const withdrawIx = await withdrawTokens(
       nftMint,
       NATIVE_MINT,
       publicKey,
       recordKey,
-      NAME_TOKENIZER_ID
+      NAME_TOKENIZER_ID,
     );
     instructions.push(createAta, ...withdrawIx);
   }
@@ -75,7 +75,7 @@ export const redeemSol = async (
 export const unwrap = async (
   connection: Connection,
   domain: string,
-  publicKey: PublicKey
+  publicKey: PublicKey,
 ) => {
   const instructions: TransactionInstruction[] = [];
   const { pubkey } = getDomainKeySync(domain);
@@ -84,7 +84,7 @@ export const unwrap = async (
 
   const recordTokenAccounts = await connection.getTokenAccountsByOwner(
     recordKey,
-    { programId: TOKEN_PROGRAM_ID }
+    { programId: TOKEN_PROGRAM_ID },
   );
 
   for (let tokenAcc of recordTokenAccounts.value) {
@@ -95,7 +95,7 @@ export const unwrap = async (
         publicKey,
         ata,
         publicKey,
-        des.mint
+        des.mint,
       );
       instructions.push(ix);
     }
@@ -104,7 +104,7 @@ export const unwrap = async (
       des.mint,
       publicKey,
       recordKey,
-      NAME_TOKENIZER_ID
+      NAME_TOKENIZER_ID,
     );
     instructions.push(...ix);
   }
@@ -113,7 +113,7 @@ export const unwrap = async (
     recordKey,
     publicKey,
     recordTokenAccounts.value.length,
-    mint
+    mint,
   );
   instructions.push(...withdrawNativeSol);
 

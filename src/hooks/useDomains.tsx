@@ -14,7 +14,7 @@ export interface Response {
 const get = async (key: string | undefined | null) => {
   if (!key) return;
   const { data }: { data: Response } = await axios.get(
-    `https://sns-sdk-proxy.bonfida.workers.dev/domains/${key}`
+    `https://sns-sdk-proxy.bonfida.workers.dev/domains/${key}`,
   );
   if (data.s !== "ok") return;
   data.result.sort((a, b) => a.domain.localeCompare(b.domain));

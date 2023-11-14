@@ -10,7 +10,7 @@ export const useDomainInfo = (domain: string) => {
     const { pubkey } = getDomainKeySync(domain);
     const { registry, nftOwner } = await NameRegistryState.retrieve(
       connection,
-      pubkey
+      pubkey,
     );
 
     const _isTokenized = await isTokenized(connection, pubkey);

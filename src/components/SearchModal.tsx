@@ -28,7 +28,7 @@ export const SearchModal = ({
 
   const list = useMemo(
     () => domains?.filter((e) => e.domain.includes(search)),
-    [search]
+    [search],
   );
 
   return (

@@ -17,7 +17,7 @@ export interface SubdomainResult {
 
 async function findOwnedNameAccountsForUser(
   connection: Connection,
-  userAccount: PublicKey
+  userAccount: PublicKey,
 ): Promise<PublicKey[]> {
   const filters = [
     {
@@ -57,32 +57,32 @@ export const useSubdomainsFromUser = (owner: string) => {
 
     const ownedAccounts = await findOwnedNameAccountsForUser(
       connection,
-      new PublicKey(owner)
+      new PublicKey(owner),
     );
 
     const nameRegistriesState = (
       await NameRegistryState.retrieveBatch(connection, ownedAccounts)
     ).filter(
       (registryState): registryState is NameRegistryState =>
-        registryState !== undefined
+        registryState !== undefined,
     );
 
     const uniqueRegistryStateParents = nameRegistriesState.filter(
       (nameRegistryState, idx) =>
         nameRegistriesState.findIndex((e) =>
-          e.parentName.equals(nameRegistryState.parentName)
-        ) === idx
+          e.parentName.equals(nameRegistryState.parentName),
+        ) === idx,
     );
 
     const userOwnedSubdomainsPromises = uniqueRegistryStateParents.map(
       async (registryState) => {
         const domain = await reverseLookup(
           connection,
-          registryState.parentName
+          registryState.parentName,
         );
         const subdomains = await findSubdomains(
           connection,
-          registryState.parentName
+          registryState.parentName,
         );
 
         const ownedSubdomains: SubdomainResult[] = [];
@@ -100,12 +100,12 @@ export const useSubdomainsFromUser = (owner: string) => {
         }
 
         return ownedSubdomains;
-      }
+      },
     );
 
     const userSubdomainsResult: SubdomainResult[] = [];
     const userOwnedSubdomains = await Promise.allSettled(
-      userOwnedSubdomainsPromises
+      userOwnedSubdomainsPromises,
     );
     userOwnedSubdomains.map((e) => {
       if (e.status === "fulfilled") {

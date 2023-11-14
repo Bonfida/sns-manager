@@ -33,11 +33,11 @@ export function usePublicKeys(): Map<string, string> {
     if (didLaunch) {
       window.xnft.on("publicKeysUpdate", () => {
         setPublicKeys(
-          new Map<string, string>(Object.entries(window.xnft.publicKeys))
+          new Map<string, string>(Object.entries(window.xnft.publicKeys)),
         );
       });
       setPublicKeys(
-        new Map<string, string>(Object.entries(window.xnft.publicKeys))
+        new Map<string, string>(Object.entries(window.xnft.publicKeys)),
       );
     }
   }, [didLaunch, setPublicKeys]);

@@ -24,7 +24,7 @@ const LanguageProvider = ({
 }) => {
   // Define a state for the current language
   const [currentLanguage, setCurrentLanguage] = useState<string>(
-    i18n.locale || "en"
+    i18n.locale || "en",
   );
 
   const setLanguage = async (language: string) => {

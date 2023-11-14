@@ -30,7 +30,7 @@ export const Skeleton = ({
           useNativeDriver: false,
           easing: Easing.ease,
         }),
-      ])
+      ]),
     ).start();
   }, [translateX]);
 

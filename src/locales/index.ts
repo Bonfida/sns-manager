@@ -33,7 +33,7 @@ export const LANGUAGES: Language[] = [
 
 // format so we can import directly into lingui's i18n.load()
 export const allTranslations = Object.fromEntries(
-  LANGUAGES.map(({ locale, messages }) => [locale, messages])
+  LANGUAGES.map(({ locale, messages }) => [locale, messages]),
 );
 
 // export all available locales for lingui.config.js
