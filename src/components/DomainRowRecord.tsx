@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { useProfilePic } from "@bonfida/sns-react";
-import SkeletonContent from "react-native-skeleton-content";
+import { Skeleton } from "@src/components/Skeleton";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
@@ -45,8 +45,8 @@ export const DomainRowRecord = ({
 
   return (
     <View style={tw`flex flex-row items-center gap-4`}>
-      <SkeletonContent
-        containerStyle={tw`w-[40px] h-[40px]`}
+      <Skeleton
+        style={tw`w-[40px] h-[40px] rounded-full`}
         isLoading={picRecord.loading}
       >
         <>
@@ -65,7 +65,7 @@ export const DomainRowRecord = ({
             </LinearGradient>
           )}
         </>
-      </SkeletonContent>
+      </Skeleton>
 
       <Text style={tw`mr-auto`} numberOfLines={1}>
         {abbreviate(`${domain}.sol`, isSubdomain ? 25 : 20, 3)}
