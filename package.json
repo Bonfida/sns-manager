@@ -83,6 +83,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.3",
+    "@bonfida/prettier-config": "^1.0.0",
     "@expo/webpack-config": "^19.0.0",
     "@types/lodash": "4.14.201",
     "@types/react": "~18.2.14",
@@ -104,6 +105,7 @@
   "volta": {
     "node": "20.9.0"
   },
+  "prettier": "@bonfida/prettier-config",
   "name": "sns-manager",
   "version": "1.0.1"
 }
