@@ -28,7 +28,7 @@ import { cartState } from "@src/atoms/cart";
 import { referrerState } from "@src/atoms/referrer";
 import tw from "@src/utils/tailwind";
 import { FIDA_MINT, tokenList } from "@src/utils/tokens/popular-tokens";
-import { priceFromLength } from "@src/utils/price/price-from-length";
+import { getDomainPriceFromName } from "@bonfida/spl-name-service";
 import { wrapSol } from "@src/utils/tokens/wrap-sol";
 import { unwrapSol } from "@src/utils/tokens/unwrap-sol";
 import { chunkIx } from "@src/utils/tx/chunk-tx";
@@ -94,7 +94,7 @@ export const Cart = () => {
 
   const discountMul = mint === FIDA_MINT ? 0.95 : 1;
   const totalUsd = cart.reduce(
-    (acc, v) => acc + priceFromLength(v, discountMul),
+    (acc, v) => acc + getDomainPriceFromName(v) * discountMul,
     0,
   );
 
@@ -288,7 +288,7 @@ export const Cart = () => {
                           <Text
                             style={tw`text-sm font-medium text-content-primary`}
                           >
-                            {priceFromLength(item)}
+                            {getDomainPriceFromName(item)}
                           </Text>
                         </View>
                         <TouchableOpacity

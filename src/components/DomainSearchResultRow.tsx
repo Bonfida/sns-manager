@@ -7,7 +7,7 @@ import { domainViewScreenProp } from "@src/types";
 import { abbreviate } from "@src/utils/abbreviate";
 import tw from "@src/utils/tailwind";
 import { tokenIconBySymbol } from "@src/utils/tokens/popular-tokens";
-import { priceFromLength } from "@src/utils/price/price-from-length";
+import { getDomainPriceFromName } from "@bonfida/spl-name-service";
 import { cartState } from "@src/atoms/cart";
 
 export const DomainSearchResultRow = ({
@@ -21,7 +21,7 @@ export const DomainSearchResultRow = ({
 }) => {
   const [cart, setCart] = useRecoilState(cartState);
   const inCart = cart.includes(domain);
-  price = price ?? priceFromLength(domain);
+  price = price ?? getDomainPriceFromName(domain);
   const navigation = useNavigation<domainViewScreenProp>();
 
   const handle = () => {
