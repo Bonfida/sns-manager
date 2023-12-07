@@ -9,13 +9,13 @@ import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { trimTld, validate } from "@src/utils/validate";
 import { isPubkey } from "@src/utils/publickey";
-import { useSearch } from "@src/hooks/useSearch";
-import { useDomainSuggestions } from "@src/hooks/useDomainSuggestions";
+import { useSearch, useDomainSuggestions } from "@bonfida/sns-react";
 import { useTopDomainsSales } from "@src/hooks/useTopDomainsSales";
 import { Screen } from "@src/components/Screen";
 import { CustomTextInput } from "@src/components/CustomTextInput";
 import { UiButton } from "@src/components/UiButton";
 import { DomainSearchResultRow } from "@src/components/DomainSearchResultRow";
+import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 
 export const SearchResult = ({
   domain,
@@ -24,12 +24,16 @@ export const SearchResult = ({
   domain: string;
   loadPopular?: boolean;
 }) => {
+  const connection = useSolanaConnection();
   const { currentModal } = useModal();
   const { setStatus } = useStatusModalContext();
   const [search, setSearch] = useState(domain || "");
   const [input, setInput] = useState(domain || "");
-  const results = useSearch(search);
-  const suggestions = useDomainSuggestions(search);
+  const results = useSearch({ connection: connection!, domain: search });
+  const suggestions = useDomainSuggestions({
+    connection: connection!,
+    domain: search,
+  });
   const navigation = useNavigation<profileScreenProp>();
   const isFocused = useIsFocused();
   const topDomainsSales = useTopDomainsSales(loadPopular);
