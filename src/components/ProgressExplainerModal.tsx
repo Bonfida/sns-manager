@@ -67,7 +67,7 @@ export const ProgressExplainerModal = ({
         <View style={tw`flex flex-row items-start gap-2 mt-2`}>
           {stepsImages[currentStep].icon}
 
-          <Text style={tw`text-sm font-medium`}>
+          <Text style={tw`text-sm font-medium text-center`}>
             {stepsImages[currentStep].text()}
           </Text>
         </View>
