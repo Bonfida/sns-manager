@@ -21,7 +21,7 @@ const stepsImages: Record<
   1: {
     image: require("@assets/onboading/favorite-domain.png"),
     text: () =>
-      t`Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar.`,
+      t`Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar.`,
     icon: <AntDesign name="star" size={24} color={tw.color("brand-primary")} />,
   },
   2: {
