@@ -12,7 +12,7 @@ import { WrapModal } from "./WrapModal";
 import tw from "@src/utils/tailwind";
 import { UiButton } from "@src/components/UiButton";
 
-type Steps = 1 | 2 | 3 | 4;
+type Steps = 1 | 2 | 3;
 
 const stepsImages: Record<
   Steps,
@@ -42,11 +42,6 @@ const stepsImages: Record<
     text: () =>
       t`Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you.`,
     icon: <Ionicons name="camera-sharp" size={24} color="#F391BD" />,
-  },
-  4: {
-    image: require("@assets/onboading/connect-backpack.png"),
-    text: () => t`Connect your backpack username to your on-chain identity.`,
-    icon: <MaterialIcons name="backpack" size={24} color="#E20505" />,
   },
 };
 
@@ -79,7 +74,7 @@ export const ProgressExplainerModal = ({
       </View>
 
       <View style={tw`flex flex-row justify-center mt-4`}>
-        {new Array(4).fill(0).map((_, i) => (
+        {new Array(3).fill(0).map((_, i) => (
           <TouchableOpacity
             key={i}
             onPress={() => {
@@ -105,7 +100,7 @@ export const ProgressExplainerModal = ({
         </TouchableOpacity>
 
         <View style={tw`flex-initial`}>
-          {currentStep === 4 ? (
+          {currentStep === 3 ? (
             <UiButton onPress={closeModal} content={t`Close`} />
           ) : (
             <UiButton
