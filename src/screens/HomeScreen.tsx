@@ -89,7 +89,8 @@ function HomeRoot() {
         </Text>
       </View>
       <CustomTextInput
-        onChangeText={(newText) => setSearch(newText)}
+        autoCapitalize="none"
+        onChangeText={(newText) => setSearch(newText.toLowerCase())}
         value={search}
         placeholder={t`Search for a domain`}
         type="search"
