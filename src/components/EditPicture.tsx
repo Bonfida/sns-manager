@@ -5,13 +5,11 @@ import * as ImagePicker from "expo-image-picker";
 import {
   Record,
   getDomainKeySync,
-  NameRegistryState,
-  transferInstruction,
-  NAME_PROGRAM_ID,
-  createNameRegistry,
-  updateInstruction,
-  Numberu32,
   NAME_OFFERS_ID,
+  getRecordV2Key,
+  createRecordV2Instruction,
+  updateRecordV2Instruction,
+  validateRecordV2Content,
 } from "@bonfida/spl-name-service";
 import { registerFavourite } from "@bonfida/name-offers";
 import { isTokenized } from "@bonfida/name-tokenizer";
@@ -19,7 +17,6 @@ import { t } from "@lingui/macro";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
-import { removeZeroRight } from "@src/utils/record/zero";
 import { sendTx } from "@src/utils/send-tx";
 import { WrapModal } from "./WrapModal";
 import { unwrap } from "@src/utils/unwrap";
@@ -51,10 +48,7 @@ export const EditPicture = ({
     try {
       setLoading(true);
       const ixs: TransactionInstruction[] = [];
-      const { pubkey, parent } = getDomainKeySync(
-        Record.Pic + "." + domain,
-        true,
-      );
+      const recordKey = getRecordV2Key(domain, Record.Pic);
 
       try {
         new URL(pic);
@@ -81,67 +75,37 @@ export const EditPicture = ({
       }
 
       // Check if exists
-      const info = await connection.getAccountInfo(pubkey);
+      const info = await connection.getAccountInfo(recordKey);
       if (!info?.data) {
-        const space = 2_000;
-        const lamports = await connection.getMinimumBalanceForRentExemption(
-          space + NameRegistryState.HEADER_LEN,
-        );
-        const ix = await createNameRegistry(
-          connection,
-          Buffer.from([1]).toString() + Record.Pic,
-          space, // Hardcode space to 2kB
-          new PublicKey(publicKey),
-          new PublicKey(publicKey),
-          lamports,
-          undefined,
-          parent,
+        const ix = createRecordV2Instruction(
+          domain,
+          Record.Pic,
+          pic,
+          publicKey,
+          publicKey,
         );
         ixs.push(ix);
       } else {
-        // Zero the data stored
-        const { registry } = await NameRegistryState.retrieve(
-          connection,
-          pubkey,
+        const ix = updateRecordV2Instruction(
+          domain,
+          Record.Pic,
+          pic,
+          publicKey,
+          publicKey,
         );
-
-        if (!registry.owner.equals(new PublicKey(publicKey))) {
-          // Record was created before domain was transfered
-          const ix = transferInstruction(
-            NAME_PROGRAM_ID,
-            pubkey,
-            new PublicKey(publicKey),
-            registry.owner,
-            undefined,
-            parent,
-            new PublicKey(publicKey),
-          );
-          ixs.push(ix);
-        }
-
-        if (registry.data) {
-          const trimmed = removeZeroRight(registry.data);
-          const zero = Buffer.alloc(trimmed.length);
-          const ix = updateInstruction(
-            NAME_PROGRAM_ID,
-            pubkey,
-            new Numberu32(0),
-            zero,
-            new PublicKey(publicKey),
-          );
-          ixs.push(ix);
-        }
+        ixs.push(ix);
       }
 
-      const data = Buffer.from(pic, "utf-8");
-      const ix = updateInstruction(
-        NAME_PROGRAM_ID,
-        pubkey,
-        new Numberu32(0),
-        data,
-        new PublicKey(publicKey),
+      ixs.push(
+        validateRecordV2Content(
+          true,
+          domain,
+          Record.Pic,
+          publicKey,
+          publicKey,
+          publicKey,
+        ),
       );
-      ixs.push(ix);
 
       const sig = await sendTx(
         connection,

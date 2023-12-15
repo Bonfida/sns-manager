@@ -29,10 +29,24 @@ import {
   deleteInstruction,
   serializeRecord,
   serializeSolRecord,
+  serializeRecordV2Content,
+  updateRecordV2Instruction,
+  createRecordV2Instruction,
+  getRecordKeySync,
+  getRecordV2Key,
+  deleteRecordV2,
+  Record,
+  validateRecordV2Content,
+  GUARDIANS,
+  writRoaRecordV2,
 } from "@bonfida/spl-name-service";
 import { isMobile } from "@src/utils/platform";
 import { ROOT_DOMAIN } from "@bonfida/name-offers";
-import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import {
+  PublicKey,
+  Transaction,
+  TransactionInstruction,
+} from "@solana/web3.js";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useModal } from "react-native-modalfy";
 import { useProfilePic } from "@bonfida/sns-react";
@@ -47,6 +61,7 @@ import {
   SOCIAL_RECORDS,
   useAddressRecords,
   useSocialRecords,
+  usePicRecord,
 } from "@src/hooks/useRecords";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useDomainInfo } from "@src/hooks/useDomainInfo";
@@ -61,6 +76,8 @@ import { sendTx } from "@src/utils/send-tx";
 import { sleep } from "@src/utils/sleep";
 import { useHandleError } from "@src/hooks/useHandleError";
 import { LoadingState } from "@src/screens/Profile/LoadingState";
+import { RecordV2Badge } from "@src/components/RecordV2Badge";
+import { sendRoaRequest } from "@src/hooks/useRecordsV2Guardians";
 
 const getIcon = (record: SocialRecord) => {
   const defaultIconAttrs = {
@@ -90,7 +107,7 @@ const getIcon = (record: SocialRecord) => {
 };
 
 type FormKeys = AddressRecord | SocialRecord;
-type FormValue = string;
+type FormValue = { value: string | undefined; roa: boolean; stale: boolean };
 // using Map to store correct order of fields
 type FormState = Map<FormKeys, FormValue>;
 type FormAction =
@@ -116,8 +133,9 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
   const subdomains = useSubdomains(domain);
-  const picRecord = useProfilePic(connection!, domain);
+  const picRecord = usePicRecord(domain);
   const { publicKey } = useWallet();
+  console.log(picRecord, socialRecords, addressRecords);
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
@@ -136,17 +154,15 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const refresh = async () => {
     await Promise.allSettled([
       domainInfo.execute(),
-      socialRecords.execute(),
-      addressRecords.execute(),
+      socialRecords?.execute(),
+      addressRecords?.execute(),
       picRecord.execute(),
       subdomains.execute(),
     ]);
   };
 
   const scrollViewRef = useRef<ScrollView | null>(null);
-  const [UISectionsCoordinates, setCoordinates] = useState<
-    Record<"socials" | "addresses" | "subdomains", number>
-  >({
+  const [UISectionsCoordinates, setCoordinates] = useState({
     socials: 0,
     addresses: 0,
     subdomains: 0,
@@ -189,118 +205,59 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
     for (const field of fields) {
       const { record, value } = field;
-      const sub = Buffer.from([1]).toString() + record;
-      let { pubkey: recordKey, isSub } = getDomainKeySync(
-        record + "." + domain,
-        true,
-      );
-      const parent = isSub ? getDomainKeySync(domain).pubkey : ROOT_DOMAIN;
+      const recordKey = getRecordV2Key(domain, record);
+      const isRoaSupported = GUARDIANS.has(record);
 
-      // Check if exists
-      let ser: Buffer;
-      if (record === SNSRecord.SOL) {
-        const toSign = Buffer.concat([
-          new PublicKey(value).toBuffer(),
-          recordKey.toBuffer(),
-        ]);
-
-        const encodedMessage = new TextEncoder().encode(toSign.toString("hex"));
-        const signed = await signMessage(encodedMessage);
-        ser = serializeSolRecord(
-          new PublicKey(value),
-          recordKey,
-          publicKey,
-          signed,
-        );
-      } else {
-        ser = serializeRecord(value, record);
-      }
-      const space = ser.length;
       const currentAccount = await connection.getAccountInfo(recordKey);
-
       if (!currentAccount?.data) {
-        const lamports = await connection.getMinimumBalanceForRentExemption(
-          space + NameRegistryState.HEADER_LEN,
-        );
-        const ix = await createNameRegistry(
-          connection,
-          sub,
-          space,
+        const ix = createRecordV2Instruction(
+          domain,
+          record,
+          value,
           publicKey,
           publicKey,
-          lamports,
-          undefined,
-          parent,
         );
         ixs.push(ix);
       } else {
-        const { registry } = await NameRegistryState.retrieve(
-          connection,
-          recordKey,
+        const ix = updateRecordV2Instruction(
+          domain,
+          record,
+          value,
+          publicKey,
+          publicKey,
         );
-
-        if (!registry.owner.equals(publicKey)) {
-          // Record was created before domain was transfered
-          const ix = transferInstruction(
-            NAME_PROGRAM_ID,
-            recordKey,
-            publicKey,
-            registry.owner,
-            undefined,
-            parent,
-            publicKey,
-          );
-          ixs.push(ix);
-        }
-
-        // The size changed: delete + create to resize
-        if (
-          currentAccount.data.length - NameRegistryState.HEADER_LEN !==
-          space
-        ) {
-          console.log("Resizing...");
-          const ixClose = deleteInstruction(
-            NAME_PROGRAM_ID,
-            recordKey,
-            publicKey,
-            publicKey,
-          );
-          const sig = await sendTx(
-            connection,
-            publicKey,
-            [ixClose],
-            signTransaction,
-          );
-          console.log(sig);
-
-          const lamports = await connection.getMinimumBalanceForRentExemption(
-            space + NameRegistryState.HEADER_LEN,
-          );
-          const ix = await createNameRegistry(
-            connection,
-            sub,
-            space,
-            publicKey,
-            publicKey,
-            lamports,
-            undefined,
-            parent,
-          );
-          ixs.push(ix);
-        }
+        ixs.push(ix);
       }
 
-      const ix = updateInstruction(
-        NAME_PROGRAM_ID,
-        recordKey,
-        new Numberu32(0),
-        ser,
-        publicKey,
+      ixs.push(
+        validateRecordV2Content(
+          true,
+          domain,
+          record,
+          publicKey,
+          publicKey,
+          publicKey,
+        ),
       );
 
-      ixs.push(ix);
+      /**
+       * If eligible to RoA create write ix
+       */
+
+      if (isRoaSupported) {
+        ixs.push(
+          writRoaRecordV2(
+            domain,
+            record,
+            publicKey,
+            publicKey,
+            GUARDIANS.get(record)!,
+          ),
+        );
+      }
 
       // Handle bridge cases
+      // TODO add Injective mainnet
       if (record === SNSRecord.BSC) {
         const ix = await post(
           ChainId.BSC,
@@ -321,17 +278,8 @@ export const DomainView = ({ domain }: { domain: string }) => {
     if (!publicKey) return [];
 
     const ixs: TransactionInstruction[] = [];
-
     for (const record of records) {
-      const { pubkey } = getDomainKeySync(record + "." + domain, true);
-
-      const ix = deleteInstruction(
-        NAME_PROGRAM_ID,
-        pubkey,
-        publicKey,
-        publicKey,
-      );
-
+      const ix = deleteRecordV2(domain, record, publicKey, publicKey);
       ixs.push(ix);
     }
 
@@ -347,7 +295,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
       const fieldsToDelete: SNSRecord[] = [];
 
       for (const key of formState.keys()) {
-        const stateValue: string = formState.get(key) as string;
+        const stateValue = formState.get(key)?.value;
         const prevStateValue: string = previousFormState.get(key);
 
         if (stateValue !== prevStateValue) {
@@ -377,7 +325,9 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
           stateValue === ""
             ? fieldsToDelete.push(key)
-            : fieldsToUpdate.push({ record: key, value: stateValue });
+            : stateValue
+            ? fieldsToUpdate.push({ record: key, value: stateValue })
+            : undefined;
         }
       }
 
@@ -400,6 +350,12 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
       await sleep(400);
 
+      for (let update of fieldsToUpdate) {
+        if (GUARDIANS.has(update.record)) {
+          await sendRoaRequest(domain, update.record);
+        }
+      }
+
       resetForm();
       refresh();
     } catch (err) {
@@ -414,10 +370,14 @@ export const DomainView = ({ domain }: { domain: string }) => {
         type: "bulk",
         value: [...socialRecords.result, ...addressRecords.result].reduce(
           (acc, v) => {
-            acc.set(v.record, v.value || "");
+            acc.set(v.record as FormKeys, {
+              value: v.deserialized,
+              roa: v.roa,
+              stale: v.stale,
+            });
             return acc;
           },
-          new Map(),
+          new Map<FormKeys, FormValue>(),
         ),
       });
     }
@@ -693,7 +653,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
             activeOpacity={1}
           >
             <CustomTextInput
-              value={formState.get(item)}
+              value={formState.get(item)?.value}
               placeholder={t`Not set`}
               editable={isEditing && !isLoading}
               style={tw`mt-4`}
@@ -705,13 +665,19 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   <Text style={tw`text-sm leading-6 text-content-secondary`}>
                     {getTranslatedName(item)}
                   </Text>
+                  <RecordV2Badge
+                    record={item as Record}
+                    recordDefined={formState.get(item)?.value !== undefined}
+                    stale={!!formState.get(item)?.stale}
+                    roa={!!formState.get(item)?.roa}
+                  />
                 </View>
               }
               onChangeText={(text) => {
                 setFormDirty(true);
                 dispatchFormChange({
                   type: item,
-                  value: text,
+                  value: { value: text, roa: false, stale: true },
                 });
               }}
             />

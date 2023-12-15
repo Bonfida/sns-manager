@@ -47,6 +47,7 @@ import { NavigatorTabsParamList } from "@src/types";
 import { LanguageHeader } from "@src/components/Header";
 import { SolanaProvider } from "@src/providers/SolanaProvider";
 import ErrorBoundary from "react-native-error-boundary";
+import { RecordV2BadgeExplanationModal } from "./components/RecordV2Badge";
 
 const xnftjson = require("../xnft.json");
 
@@ -65,6 +66,7 @@ const modalConfig = {
   DomainSizeModal: DomainSizeModal,
   LanguageModal: LanguageModal,
   TokenizeModal: TokenizeModal,
+  RecordV2BadgeExplanationModal: RecordV2BadgeExplanationModal,
 };
 
 const stackModal = createModalStack(modalConfig);
