@@ -4,19 +4,19 @@ import Clipboard from "@react-native-clipboard/clipboard";
 import { t } from "@lingui/macro";
 import { LinearGradient } from "expo-linear-gradient";
 import { Feather, FontAwesome } from "@expo/vector-icons";
-import { useProfilePic } from "@bonfida/sns-react";
 import { useModal } from "react-native-modalfy";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
 import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 import { useWallet } from "@src/hooks/useWallet";
 import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
+import { usePicRecord } from "@src/hooks/useRecords";
 
 interface ProfileBlockProps {
   children?: ReactNode;
   owner: string;
   domain: string;
-  picRecord: ReturnType<typeof useProfilePic>;
+  picRecord: ReturnType<typeof usePicRecord>;
 }
 
 export const ProfileBlock = ({
@@ -52,8 +52,10 @@ export const ProfileBlock = ({
       >
         <Image
           source={
-            picRecord.result
-              ? { uri: picRecord.result }
+            picRecord.uri
+              ? {
+                  uri: picRecord.uri,
+                }
               : require("@assets/default-pic.png")
           }
           style={tw`w-full h-full rounded-full`}
@@ -62,9 +64,10 @@ export const ProfileBlock = ({
           <TouchableOpacity
             onPress={() =>
               openModal("EditPicture", {
-                currentPic: picRecord.result,
+                currentPic: picRecord.uri,
                 domain: domain,
                 setAsFav: !favorite.result?.reverse,
+                refresh: picRecord.execute,
               })
             }
             style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-0 right-0 bg-brand-accent`}
