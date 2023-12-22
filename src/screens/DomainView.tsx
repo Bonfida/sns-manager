@@ -135,7 +135,6 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const subdomains = useSubdomains(domain);
   const picRecord = usePicRecord(domain);
   const { publicKey } = useWallet();
-  console.log(picRecord, socialRecords, addressRecords);
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
 
