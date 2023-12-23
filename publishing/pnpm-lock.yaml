@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@solana-mobile/dapp-store-cli':
-    specifier: ^0.5.2
-    version: 0.5.2
+    specifier: ^0.6.0
+    version: 0.6.0
 
 packages:
 
@@ -575,6 +575,7 @@ packages:
 
   /@bundlr-network/client@0.8.9(debug@4.3.4):
     resolution: {integrity: sha512-SJ7BAt/KhONeFQ0+nbqrw2DUWrsev6y6cmlXt+3x7fPCkw7OJwudtxV/h2nBteZd65NXjqw8yzkmLiLfZ7CCRA==}
+    deprecated: Bundlr is now Irys - please switch to @irys/sdk - this package will remain compatible with Irys for the foreseeable future.
     hasBin: true
     dependencies:
       '@solana/wallet-adapter-base': 0.9.23(@solana/web3.js@1.68.0)
@@ -1616,14 +1617,14 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@solana-mobile/dapp-store-cli@0.5.2:
-    resolution: {integrity: sha512-PkevK+bHMNfVuSwO/mBFCSjV7dIu0sBIhD4CNhDyEEdBBSaRzlvOo0mYkwSDvyTIbfN1IHVtmAIzZFJXoA9UZg==}
+  /@solana-mobile/dapp-store-cli@0.6.0:
+    resolution: {integrity: sha512-17pVza46mKqplkpIFZ0tUo+gD/mDN/ZmDqBoaGv5KSYErxTzuqDWNHc9yjSgBNur2VHdwwNmdMDNKD81tW2ksw==}
     engines: {node: '>=18'}
     hasBin: true
     dependencies:
       '@aws-sdk/client-s3': 3.405.0
       '@metaplex-foundation/js-plugin-aws': 0.18.3
-      '@solana-mobile/dapp-store-publishing-tools': 0.5.2
+      '@solana-mobile/dapp-store-publishing-tools': 0.6.0
       '@solana/web3.js': 1.68.0
       '@types/semver': 7.5.1
       ajv: 8.12.0
@@ -1649,8 +1650,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@solana-mobile/dapp-store-publishing-tools@0.5.2:
-    resolution: {integrity: sha512-rzRELWoQOtVAobfpTSVdCh4p42N6XrSbVka2dAbQhj1uex0RJiQQsEvx+EcdtRLNeJuLZup84gv4t5Z10p56CA==}
+  /@solana-mobile/dapp-store-publishing-tools@0.6.0:
+    resolution: {integrity: sha512-EBXrWEq+vCcaYE63T5Q3110LuNo3+7dh1pZQ001tTvFHcAbupBMjsy0liI5t7HtheUW3TwMJ19B7v76pKpGZxA==}
     engines: {node: '>=18'}
     dependencies:
       '@metaplex-foundation/js': 0.18.3
@@ -1910,7 +1911,7 @@ packages:
       algosdk: 1.24.1
       arweave: 1.14.4
       arweave-stream-tx: 1.2.2(arweave@1.14.4)
-      avsc: github.com/Bundlr-Network/avsc/a730cc8018b79e114b6a3381bbb57760a24c6cef
+      avsc: git@github.com+Bundlr-Network/avsc/a730cc8018b79e114b6a3381bbb57760a24c6cef
       axios: 0.21.4(debug@4.3.4)
       base64url: 3.0.1
       bs58: 4.0.1
@@ -3893,8 +3894,8 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
-  github.com/Bundlr-Network/avsc/a730cc8018b79e114b6a3381bbb57760a24c6cef:
-    resolution: {tarball: https://codeload.github.com/Bundlr-Network/avsc/tar.gz/a730cc8018b79e114b6a3381bbb57760a24c6cef}
+  git@github.com+Bundlr-Network/avsc/a730cc8018b79e114b6a3381bbb57760a24c6cef:
+    resolution: {commit: a730cc8018b79e114b6a3381bbb57760a24c6cef, repo: git@github.com:Bundlr-Network/avsc.git, type: git}
     name: avsc
     version: 5.4.7
     engines: {node: '>=0.11'}

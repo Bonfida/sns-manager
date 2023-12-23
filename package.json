@@ -9,6 +9,7 @@
     "build:mobile:preview:local": "eas build -p android --profile preview --local",
     "build:mobile:prod": "eas build -p android --profile production",
     "build:mobile:prod:local": "eas build -p android --profile production --local",
+    "build:mobile:prod:solana-store": "eas build -p android --profile solana-store",
     "start": "npm run build:xnt && npx xnft web",
     "bundle": "npm run build:xnft && npx xnft bundle",
     "dev": "GENERATE_SOURCEMAP=false expo start --clear --web & npx xnft --iframe http://localhost:19006",
