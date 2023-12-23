@@ -22,6 +22,18 @@
         "SOLANA_RPC_URL": "https://helius-proxy.bonfida.com"
       }
     },
+    "solana-store": {
+      "distribution": "store",
+      "node": "18.15.0",
+      "autoIncrement": false,
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "SOLANA_RPC_URL": "https://helius-proxy.bonfida.com"
+      }
+    },
+
     "production": {
       "extends": "base",
       "distribution": "store",
