@@ -81,11 +81,11 @@ msgstr ""
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr ""
 
-#: src/screens/DomainView.tsx:750
+#: src/screens/DomainView.tsx:732
 msgid "Add subdomain"
 msgstr ""
 
-#: src/screens/DomainView.tsx:563
+#: src/screens/DomainView.tsx:545
 msgid "Addresses"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgstr ""
 
 #: src/components/ProfileBlock.tsx:84
 #: src/components/ProfileBlock.tsx:96
-#: src/screens/DomainView.tsx:635
+#: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgstr ""
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:503
+#: src/screens/DomainView.tsx:485
 msgid "Delete"
 msgstr ""
 
@@ -263,8 +263,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr ""
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:589
-#: src/screens/DomainView.tsx:709
+#: src/screens/DomainView.tsx:571
+#: src/screens/DomainView.tsx:691
 msgid "Edit"
 msgstr ""
 
@@ -390,7 +390,7 @@ msgstr ""
 msgid "Into this"
 msgstr ""
 
-#: src/screens/DomainView.tsx:318
+#: src/screens/DomainView.tsx:300
 msgid "Invalid {key} address"
 msgstr ""
 
@@ -407,7 +407,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/EditPicture.tsx:57
-#: src/screens/DomainView.tsx:309
+#: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr ""
 
@@ -444,7 +444,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/screens/DomainView.tsx:708
+#: src/screens/DomainView.tsx:690
 msgid "No changes to save"
 msgstr ""
 
@@ -461,7 +461,7 @@ msgstr ""
 #~ msgid "No subdomains found"
 #~ msgstr ""
 
-#: src/screens/DomainView.tsx:656
+#: src/screens/DomainView.tsx:638
 msgid "Not set"
 msgstr ""
 
@@ -552,12 +552,12 @@ msgstr ""
 msgid "Registration discount"
 msgstr ""
 
-#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:571
 msgid "Revert"
 msgstr ""
 
 #: src/components/EditPicture.tsx:217
-#: src/screens/DomainView.tsx:707
+#: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr ""
 
@@ -616,7 +616,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/screens/DomainView.tsx:546
+#: src/screens/DomainView.tsx:528
 msgid "Socials"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr ""
 
-#: src/screens/DomainView.tsx:579
+#: src/screens/DomainView.tsx:561
 msgid "Subdomains"
 msgstr ""
 
@@ -682,7 +682,7 @@ msgstr ""
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr ""
 
-#: src/screens/DomainView.tsx:791
+#: src/screens/DomainView.tsx:773
 msgid "There are no subdomains."
 msgstr ""
 
@@ -694,7 +694,7 @@ msgstr ""
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr ""
 
-#: src/screens/DomainView.tsx:459
+#: src/screens/DomainView.tsx:441
 msgid "This domain is wrapped in an NFT"
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr ""
 #~ msgid "Total USD"
 #~ msgstr ""
 
-#: src/screens/DomainView.tsx:487
+#: src/screens/DomainView.tsx:469
 msgid "Transfer"
 msgstr ""
 
@@ -744,7 +744,7 @@ msgstr ""
 msgid "Unwrap domain"
 msgstr ""
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Unwrap NFT"
 msgstr ""
 
@@ -789,7 +789,7 @@ msgstr ""
 #~ msgid "Wrap domain into NFT"
 #~ msgstr ""
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Wrap to NFT"
 msgstr ""
 
@@ -801,7 +801,7 @@ msgstr ""
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr ""
 
-#: src/screens/DomainView.tsx:761
+#: src/screens/DomainView.tsx:743
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr ""
 
@@ -809,7 +809,7 @@ msgstr ""
 msgid "You do not have enough funds"
 msgstr ""
 
-#: src/screens/DomainView.tsx:786
+#: src/screens/DomainView.tsx:768
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr ""
 

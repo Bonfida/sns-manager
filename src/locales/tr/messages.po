@@ -59,11 +59,11 @@ msgstr "Metaverse için insanlaştırılmış kimlik"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "Kendinizi tanıtan bir profil resmi ekleyin. Bu; size veya sahip olduğunuz bir NFT'ye ait bir fotoğraf olabileceği gibi size ilham veren bir resim de olabilir. "
 
-#: src/screens/DomainView.tsx:750
+#: src/screens/DomainView.tsx:732
 msgid "Add subdomain"
 msgstr "Subdomain ekle"
 
-#: src/screens/DomainView.tsx:563
+#: src/screens/DomainView.tsx:545
 msgid "Addresses"
 msgstr "Adresler"
 
@@ -157,7 +157,7 @@ msgstr "İlerle"
 
 #: src/components/ProfileBlock.tsx:84
 #: src/components/ProfileBlock.tsx:96
-#: src/screens/DomainView.tsx:635
+#: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "Kopyalandı"
 
@@ -175,7 +175,7 @@ msgstr "Sizin gibi düşünen bireylerle iletişim kurmak için Twitter, Discord
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:503
+#: src/screens/DomainView.tsx:485
 msgid "Delete"
 msgstr "Sil"
 
@@ -221,8 +221,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Her bir fazladan kb hafıza 0.007 SOL ya da 0.001 USDC masraf çıkartır."
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:589
-#: src/screens/DomainView.tsx:709
+#: src/screens/DomainView.tsx:571
+#: src/screens/DomainView.tsx:691
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -328,12 +328,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "Buna doğru"
 
-#: src/screens/DomainView.tsx:318
+#: src/screens/DomainView.tsx:300
 msgid "Invalid {key} address"
 msgstr "Geçersiz {key} adresi"
 
 #: src/components/EditPicture.tsx:57
-#: src/screens/DomainView.tsx:309
+#: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "Geçersiz URL "
 
@@ -361,7 +361,7 @@ msgstr "Yeni resim URL'si"
 msgid "Next"
 msgstr "Sonraki"
 
-#: src/screens/DomainView.tsx:708
+#: src/screens/DomainView.tsx:690
 msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
@@ -370,7 +370,7 @@ msgstr "Kaydedilecek değişiklik yok"
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
-#: src/screens/DomainView.tsx:656
+#: src/screens/DomainView.tsx:638
 msgid "Not set"
 msgstr "Belirlenmemiş"
 
@@ -457,12 +457,12 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "Kaydetme indirimi"
 
-#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:571
 msgid "Revert"
 msgstr "Eski haline getir"
 
 #: src/components/EditPicture.tsx:217
-#: src/screens/DomainView.tsx:707
+#: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Kaydet"
 
@@ -503,7 +503,7 @@ msgstr ""
 msgid "Skip"
 msgstr "Atla"
 
-#: src/screens/DomainView.tsx:546
+#: src/screens/DomainView.tsx:528
 msgid "Socials"
 msgstr "Sosyal Medya Hesapları"
 
@@ -523,7 +523,7 @@ msgstr "{domain}.sol subdomaini başarıyla silindi!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "{domain}.sol başarıyla oluşturuldu!"
 
-#: src/screens/DomainView.tsx:579
+#: src/screens/DomainView.tsx:561
 msgid "Subdomains"
 msgstr "Subdomainler"
 
@@ -543,7 +543,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "Depo kapasitesi, domaininide depolanabilecek azami veri miktarını belirler. "
 
-#: src/screens/DomainView.tsx:791
+#: src/screens/DomainView.tsx:773
 msgid "There are no subdomains."
 msgstr "Hiçbir subdomain bulunamadı."
 
@@ -551,7 +551,7 @@ msgstr "Hiçbir subdomain bulunamadı."
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "Bu domain Wormhole aracılığıyla BNB ağına aktarılmış ve BNB ağında da kullanılabilir. "
 
-#: src/screens/DomainView.tsx:459
+#: src/screens/DomainView.tsx:441
 msgid "This domain is wrapped in an NFT"
 msgstr "Bu domain, NFT haline katlanmış."
 
@@ -563,7 +563,7 @@ msgstr ""
 msgid "Total"
 msgstr "Toplam"
 
-#: src/screens/DomainView.tsx:487
+#: src/screens/DomainView.tsx:469
 msgid "Transfer"
 msgstr "Gönder"
 
@@ -592,7 +592,7 @@ msgstr "Projenize özgü domain ismi"
 msgid "Unwrap domain"
 msgstr "Domaini geri katla (unwrapping)"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Unwrap NFT"
 msgstr "NFT'yi geri katla (unwrapping)"
 
@@ -625,7 +625,7 @@ msgstr "Önemsenmesi gerekenler nelerdir?"
 msgid "Wrap domain"
 msgstr "Domaini Katla (wrapping)"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Wrap to NFT"
 msgstr "NFT'ye katla (wrapping)"
 
@@ -637,7 +637,7 @@ msgstr "Domaini, NFT'ye katla (wrapping)"
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "Artık bir domaine sahip olmanın tüm avantajlarından faydalanabilirsin. Domainle ilişkilendirilmiş profili doldurarak başla."
 
-#: src/screens/DomainView.tsx:761
+#: src/screens/DomainView.tsx:743
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Yalnızca domain katlanmamış (unwrapped) haldeyken subdomain ekleyebilirsin."
 
@@ -645,7 +645,7 @@ msgstr "Yalnızca domain katlanmamış (unwrapped) haldeyken subdomain ekleyebil
 msgid "You do not have enough funds"
 msgstr "Yeterli bakiyeye sahip değilsiniz"
 
-#: src/screens/DomainView.tsx:786
+#: src/screens/DomainView.tsx:768
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Herhangi bir subdomaine sahip değilsiniz. Farklı profillerinizde farklı amaçlarda kullanmak üzere istediğiniz kadar subdomain oluşturabilirsiniz. "
 
