@@ -3,34 +3,18 @@ import {
   NAME_PROGRAM_ID,
   findSubdomains,
   getDomainKeySync,
-  NameRegistryState,
-  resolve,
-  reverseLookup,
+  getNameAccountKeySync,
+  ROOT_DOMAIN_ACCOUNT,
+  getHashedNameSync,
+  REVERSE_LOOKUP_CLASS,
 } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "./xnft-hooks";
-import { Connection, PublicKey } from "@solana/web3.js";
+import { AccountInfo, PublicKey } from "@solana/web3.js";
+import BN from "bn.js";
 
 export interface SubdomainResult {
   key: string;
   subdomain: string;
-}
-
-async function findOwnedNameAccountsForUser(
-  connection: Connection,
-  userAccount: PublicKey,
-): Promise<PublicKey[]> {
-  const filters = [
-    {
-      memcmp: {
-        offset: 32,
-        bytes: userAccount.toBase58(),
-      },
-    },
-  ];
-  const accounts = await connection.getProgramAccounts(NAME_PROGRAM_ID, {
-    filters,
-  });
-  return accounts.map((a) => a.pubkey);
 }
 
 export const useSubdomains = (domain: string) => {
@@ -49,73 +33,85 @@ export const useSubdomains = (domain: string) => {
   return useAsync(fn, [!!connection, domain]);
 };
 
+const deserializeReverse = (
+  e: AccountInfo<Buffer> | null,
+): string | undefined => {
+  if (!e?.data) return undefined;
+  const nameLength = new BN(e.data.slice(96, 96 + 4), "le").toNumber();
+  return e.data
+    .slice(96 + 4, 96 + 4 + nameLength)
+    .toString()
+    .replace("\0", "");
+};
+
 export const useSubdomainsFromUser = (owner: string) => {
   const connection = useSolanaConnection();
 
   const fn = async () => {
     if (!connection) return;
-
-    const ownedAccounts = await findOwnedNameAccountsForUser(
-      connection,
-      new PublicKey(owner),
-    );
-
-    const nameRegistriesState = (
-      await NameRegistryState.retrieveBatch(connection, ownedAccounts)
-    ).filter(
-      (registryState): registryState is NameRegistryState =>
-        registryState !== undefined,
-    );
-
-    const uniqueRegistryStateParents = nameRegistriesState.filter(
-      (nameRegistryState, idx) =>
-        nameRegistriesState.findIndex((e) =>
-          e.parentName.equals(nameRegistryState.parentName),
-        ) === idx,
-    );
-
-    const userOwnedSubdomainsPromises = uniqueRegistryStateParents.map(
-      async (registryState) => {
-        const domain = await reverseLookup(
-          connection,
-          registryState.parentName,
-        );
-        const subdomains = await findSubdomains(
-          connection,
-          registryState.parentName,
-        );
-
-        const ownedSubdomains: SubdomainResult[] = [];
-        for (let sub of subdomains) {
-          const subdomain = sub + "." + domain;
-          const subdomainOwner = await resolve(connection, subdomain);
-          const key = getDomainKeySync(subdomain).pubkey;
-
-          if (subdomainOwner.equals(new PublicKey(owner))) {
-            ownedSubdomains.push({
-              key: key.toBase58(),
-              subdomain,
-            });
-          }
-        }
-
-        return ownedSubdomains;
-      },
-    );
-
-    const userSubdomainsResult: SubdomainResult[] = [];
-    const userOwnedSubdomains = await Promise.allSettled(
-      userOwnedSubdomainsPromises,
-    );
-    userOwnedSubdomains.map((e) => {
-      if (e.status === "fulfilled") {
-        userSubdomainsResult.push(...e.value);
-      }
+    const accounts = await connection.getProgramAccounts(NAME_PROGRAM_ID, {
+      filters: [{ memcmp: { offset: 32, bytes: owner } }],
     });
 
-    userSubdomainsResult.sort((a, b) => a.subdomain.localeCompare(b.subdomain));
+    // Very likely .sol subs but can be something else
+    const maybeSubs = accounts.filter(
+      (e) =>
+        !e.account.data.slice(0, 32).equals(ROOT_DOMAIN_ACCOUNT.toBuffer()),
+    );
 
-    return userSubdomainsResult;
+    // Get the reverse accounts
+    const subsRev = (
+      await connection.getMultipleAccountsInfo(
+        maybeSubs.map((e) => {
+          const hashed = getHashedNameSync(e.pubkey.toBase58());
+          const key = getNameAccountKeySync(
+            hashed,
+            REVERSE_LOOKUP_CLASS,
+            new PublicKey(e.account.data.slice(0, 32)),
+          );
+          return key;
+        }),
+      )
+    ).map(deserializeReverse);
+
+    const parentsWithSubsRevKey = subsRev
+      .map((e, idx) => {
+        if (e !== undefined) {
+          const parentKey = new PublicKey(
+            maybeSubs[idx].account.data.slice(0, 32),
+          );
+          const hashed = getHashedNameSync(parentKey.toBase58());
+          const key = getNameAccountKeySync(hashed, REVERSE_LOOKUP_CLASS);
+          return key;
+        }
+        return undefined;
+      })
+      .filter((e) => !!e) as PublicKey[];
+
+    const parentRev = (
+      await connection.getMultipleAccountsInfo(parentsWithSubsRevKey)
+    )
+      .map(deserializeReverse)
+      .filter((e) => !!e) as string[];
+
+    const result = subsRev
+      .map((e, idx) => {
+        if (!e) return;
+        const parentKey = new PublicKey(
+          maybeSubs[idx].account.data.slice(0, 32),
+        );
+        const parent = parentRev.find((e) =>
+          getDomainKeySync(e).pubkey.equals(parentKey),
+        );
+        if (!parent) return undefined;
+        const subdomain = e + "." + parent;
+        return {
+          subdomain,
+          key: getDomainKeySync(subdomain).pubkey.toBase58(),
+        };
+      })
+      .filter((e) => !!e) as SubdomainResult[];
+    return result;
   };
 
   return useAsync(fn, [!!connection, owner]);
