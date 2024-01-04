@@ -19,7 +19,7 @@ app:
     - purpose: icon
       uri: ../assets/dapp-store/fida-icon-512x512.png
 release:
-  address: 3hLUYLTWWa3uktaCq4NcYRfJK9LBqa73wiVr4PWzmbuo
+  address: GaiaHxihcTXX74EWa2ZaHNN2ofVkSQ6fvDGj9W9ewVPh
   media:
     - purpose: icon
       uri: ../assets/dapp-store/fida-icon-512x512.png
@@ -35,7 +35,7 @@ release:
       uri: ../assets/dapp-store/screenshots/cart-payment-1080x1920.png
   files:
     - purpose: install
-      uri: ../application-b76ef173-b792-4037-8d3b-98ef6ba99ea6.apk
+      uri: ../application-dfb9b115-2ab6-41df-b784-840e241fdf2e.apk
   catalog:
     en-US:
       name: SNS Manager
