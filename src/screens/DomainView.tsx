@@ -19,20 +19,8 @@ import {
 } from "@expo/vector-icons";
 import {
   Record as SNSRecord,
-  getDomainKeySync,
-  NameRegistryState,
-  transferInstruction,
-  NAME_PROGRAM_ID,
-  createNameRegistry,
-  updateInstruction,
-  Numberu32,
-  deleteInstruction,
-  serializeRecord,
-  serializeSolRecord,
-  serializeRecordV2Content,
   updateRecordV2Instruction,
   createRecordV2Instruction,
-  getRecordKeySync,
   getRecordV2Key,
   deleteRecordV2,
   Record,
@@ -41,15 +29,9 @@ import {
   writRoaRecordV2,
 } from "@bonfida/spl-name-service";
 import { isMobile } from "@src/utils/platform";
-import { ROOT_DOMAIN } from "@bonfida/name-offers";
-import {
-  PublicKey,
-  Transaction,
-  TransactionInstruction,
-} from "@solana/web3.js";
+import { TransactionInstruction } from "@solana/web3.js";
 import Clipboard from "@react-native-clipboard/clipboard";
 import { useModal } from "react-native-modalfy";
-import { useProfilePic } from "@bonfida/sns-react";
 import { ChainId, Network, post } from "@bonfida/sns-emitter";
 import { Trans, t } from "@lingui/macro";
 import tw from "@src/utils/tailwind";
