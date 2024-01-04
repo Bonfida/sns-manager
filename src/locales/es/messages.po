@@ -59,11 +59,11 @@ msgstr "Un ID humanizado para el Metaverso"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "Agrega una foto de perfil que te represente. Puede ser una foto tuya, tu NFT favorito o algo que te inspire."
 
-#: src/screens/DomainView.tsx:750
+#: src/screens/DomainView.tsx:732
 msgid "Add subdomain"
 msgstr "Agregar subdominio"
 
-#: src/screens/DomainView.tsx:563
+#: src/screens/DomainView.tsx:545
 msgid "Addresses"
 msgstr "Direcciones"
 
@@ -157,7 +157,7 @@ msgstr "Continuar"
 
 #: src/components/ProfileBlock.tsx:84
 #: src/components/ProfileBlock.tsx:96
-#: src/screens/DomainView.tsx:635
+#: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "Copiado!"
 
@@ -175,7 +175,7 @@ msgstr "Crea un perfil atractivo agregando enlaces a Twitter, Discord y Telegram
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:503
+#: src/screens/DomainView.tsx:485
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -221,8 +221,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Cada kb adicional de memoria cuesta alrededor de 0.007 SOL (0.001 USDC)"
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:589
-#: src/screens/DomainView.tsx:709
+#: src/screens/DomainView.tsx:571
+#: src/screens/DomainView.tsx:691
 msgid "Edit"
 msgstr "Editar"
 
@@ -328,12 +328,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "En esto"
 
-#: src/screens/DomainView.tsx:318
+#: src/screens/DomainView.tsx:300
 msgid "Invalid {key} address"
 msgstr "Dirección {key} inválida"
 
 #: src/components/EditPicture.tsx:57
-#: src/screens/DomainView.tsx:309
+#: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "URL inválida"
 
@@ -361,7 +361,7 @@ msgstr "Nueva URL de imagen"
 msgid "Next"
 msgstr "Siguiente"
 
-#: src/screens/DomainView.tsx:708
+#: src/screens/DomainView.tsx:690
 msgid "No changes to save"
 msgstr "No hay cambios que guardar"
 
@@ -370,7 +370,7 @@ msgstr "No hay cambios que guardar"
 msgid "No domain found"
 msgstr "No se encontró ningún dominio"
 
-#: src/screens/DomainView.tsx:656
+#: src/screens/DomainView.tsx:638
 msgid "Not set"
 msgstr "No establecido"
 
@@ -457,12 +457,12 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "Descuento de registro"
 
-#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:571
 msgid "Revert"
 msgstr "Revertir"
 
 #: src/components/EditPicture.tsx:217
-#: src/screens/DomainView.tsx:707
+#: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Guardar"
 
@@ -503,7 +503,7 @@ msgstr ""
 msgid "Skip"
 msgstr "Saltar"
 
-#: src/screens/DomainView.tsx:546
+#: src/screens/DomainView.tsx:528
 msgid "Socials"
 msgstr "Redes Sociales"
 
@@ -523,7 +523,7 @@ msgstr "¡Subdominio {domain}.sol eliminado exitosamente!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "¡Subdominio {subdomain}.sol creado exitosamente!"
 
-#: src/screens/DomainView.tsx:579
+#: src/screens/DomainView.tsx:561
 msgid "Subdomains"
 msgstr "Subdominios"
 
@@ -543,7 +543,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "El tamaño de almacenamiento determinará la cantidad máxima de datos que puedes almacenar en tu dominio."
 
-#: src/screens/DomainView.tsx:791
+#: src/screens/DomainView.tsx:773
 msgid "There are no subdomains."
 msgstr "No hay subdominios."
 
@@ -551,7 +551,7 @@ msgstr "No hay subdominios."
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "Este dominio ha sido transferido a través de Wormhole y está disponible en BNB"
 
-#: src/screens/DomainView.tsx:459
+#: src/screens/DomainView.tsx:441
 msgid "This domain is wrapped in an NFT"
 msgstr "Este dominio está envuelto en un NFT"
 
@@ -563,7 +563,7 @@ msgstr ""
 msgid "Total"
 msgstr "Total"
 
-#: src/screens/DomainView.tsx:487
+#: src/screens/DomainView.tsx:469
 msgid "Transfer"
 msgstr "Transferir"
 
@@ -592,7 +592,7 @@ msgstr "Nombre de dominio único para tu proyecto"
 msgid "Unwrap domain"
 msgstr "Desenvolver dominio"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Unwrap NFT"
 msgstr "Desenvolver NFT"
 
@@ -625,7 +625,7 @@ msgstr "Qué considerar:"
 msgid "Wrap domain"
 msgstr "Envolver dominio"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Wrap to NFT"
 msgstr "Envolver en NFT"
 
@@ -637,7 +637,7 @@ msgstr "Envuelve tu dominio en un NFT"
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "Ahora puedes disfrutar de todos los beneficios de ser dueño de un dominio. Comienza completando los perfiles asociados a los dominios."
 
-#: src/screens/DomainView.tsx:761
+#: src/screens/DomainView.tsx:743
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Solo puedes agregar subdominios cuando el dominio no está envuelto en un NFT."
 
@@ -645,7 +645,7 @@ msgstr "Solo puedes agregar subdominios cuando el dominio no está envuelto en u
 msgid "You do not have enough funds"
 msgstr "No dispone de fondos suficientes"
 
-#: src/screens/DomainView.tsx:786
+#: src/screens/DomainView.tsx:768
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Aún no tienes subdominios. Puedes crear tantos como desees para usar tus perfiles con diferentes propósitos."
 

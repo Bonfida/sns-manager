@@ -83,11 +83,11 @@ msgstr "메타버스를 위한 인간화된 ID"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "당신의 멋지고 매력적인 프로필 사진을 추가하세요. 당신의 사진, 마음에 드는 NFT, 혹은 영감을 주는 것도 좋아요!"
 
-#: src/screens/DomainView.tsx:750
+#: src/screens/DomainView.tsx:732
 msgid "Add subdomain"
 msgstr "서브도메인 추가"
 
-#: src/screens/DomainView.tsx:563
+#: src/screens/DomainView.tsx:545
 msgid "Addresses"
 msgstr "주소들"
 
@@ -201,7 +201,7 @@ msgstr "계속하기"
 
 #: src/components/ProfileBlock.tsx:84
 #: src/components/ProfileBlock.tsx:96
-#: src/screens/DomainView.tsx:635
+#: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "복사 완료!"
 
@@ -219,7 +219,7 @@ msgstr "다양한 사람들과 연결하기 위해 트위터, 디스코드 및 �
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:503
+#: src/screens/DomainView.tsx:485
 msgid "Delete"
 msgstr "삭제"
 
@@ -265,8 +265,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "메모리 1kb 추가당 비용은 약 0.007 SOL (0.001 USDC)입니다"
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:589
-#: src/screens/DomainView.tsx:709
+#: src/screens/DomainView.tsx:571
+#: src/screens/DomainView.tsx:691
 msgid "Edit"
 msgstr "편집"
 
@@ -394,7 +394,7 @@ msgstr "인젝티브"
 msgid "Into this"
 msgstr "이것으로"
 
-#: src/screens/DomainView.tsx:318
+#: src/screens/DomainView.tsx:300
 msgid "Invalid {key} address"
 msgstr "유효하지 않은 {key} 주소"
 
@@ -411,7 +411,7 @@ msgstr "유효하지 않은 {key} 주소"
 #~ msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
 
 #: src/components/EditPicture.tsx:57
-#: src/screens/DomainView.tsx:309
+#: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "유효하지 않은 URL입니다"
 
@@ -448,7 +448,7 @@ msgstr "사진 업로드 URL"
 msgid "Next"
 msgstr "다음"
 
-#: src/screens/DomainView.tsx:708
+#: src/screens/DomainView.tsx:690
 msgid "No changes to save"
 msgstr "저장할 변경 사항이 없습니다"
 
@@ -469,7 +469,7 @@ msgstr "도메인을 찾을 수 없습니다"
 #~ "\n"
 #~ "서브도메인을 찾을 수 없습니다"
 
-#: src/screens/DomainView.tsx:656
+#: src/screens/DomainView.tsx:638
 msgid "Not set"
 msgstr "설정되지 않음"
 
@@ -560,12 +560,12 @@ msgstr "레딧"
 msgid "Registration discount"
 msgstr "등록 할인"
 
-#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:571
 msgid "Revert"
 msgstr "취소"
 
 #: src/components/EditPicture.tsx:217
-#: src/screens/DomainView.tsx:707
+#: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "저장"
 
@@ -624,7 +624,7 @@ msgstr ""
 msgid "Skip"
 msgstr "건너뛰기"
 
-#: src/screens/DomainView.tsx:546
+#: src/screens/DomainView.tsx:528
 msgid "Socials"
 msgstr "소셜"
 
@@ -661,7 +661,7 @@ msgstr "서브도메인 {domain}.sol이(가) 성공적으로 삭제되었습니�
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "서브도메인 {subdomain}.sol이(가) 성공적으로 생성되었습니다"
 
-#: src/screens/DomainView.tsx:579
+#: src/screens/DomainView.tsx:561
 msgid "Subdomains"
 msgstr "서브도메인"
 
@@ -685,7 +685,7 @@ msgstr "텔레그램"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "저장 용량은 도메인에 저장할 수 있는 데이터의 최대량입니다."
 
-#: src/screens/DomainView.tsx:791
+#: src/screens/DomainView.tsx:773
 msgid "There are no subdomains."
 msgstr "서브도메인이 없습니다."
 
@@ -697,7 +697,7 @@ msgstr "서브도메인이 없습니다."
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "이 도메인은 웜홀을 통해 연결되었으며 BNB에서 사용할 수 있습니다"
 
-#: src/screens/DomainView.tsx:459
+#: src/screens/DomainView.tsx:441
 msgid "This domain is wrapped in an NFT"
 msgstr "이 도메인은 NFT로 래핑되어 있습니다."
 
@@ -713,7 +713,7 @@ msgstr "합계"
 #~ msgid "Total USD"
 #~ msgstr "USD 합계"
 
-#: src/screens/DomainView.tsx:487
+#: src/screens/DomainView.tsx:469
 msgid "Transfer"
 msgstr "전송"
 
@@ -747,7 +747,7 @@ msgstr "당신의 프로젝트를 위한 개성적인 도메인 이름"
 msgid "Unwrap domain"
 msgstr "도메인 언랩하기"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Unwrap NFT"
 msgstr "NFT 언랩하기"
 
@@ -792,7 +792,7 @@ msgstr "도메인 랩하기"
 #~ msgid "Wrap domain into NFT"
 #~ msgstr "도메인을 NFT로 랩하기"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Wrap to NFT"
 msgstr "NFT로 랩하기"
 
@@ -804,7 +804,7 @@ msgstr "당신의 도메인을 NFT로 랩하기"
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "도메인에 연동된 프로필을 작성을 하므로서 도메인의 모든 혜택을 누리세요."
 
-#: src/screens/DomainView.tsx:761
+#: src/screens/DomainView.tsx:743
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있습니다."
 
@@ -812,7 +812,7 @@ msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있
 msgid "You do not have enough funds"
 msgstr "자금이 부족합니다."
 
-#: src/screens/DomainView.tsx:786
+#: src/screens/DomainView.tsx:768
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "아직 보유하고 있는 서브도메인이 없습니다. 다양한 용도로 프로필을 사용하기 위해 원하는 만큼 생성해보세요."
 

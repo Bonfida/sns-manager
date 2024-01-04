@@ -59,11 +59,11 @@ msgstr "为元宇宙打造的人性化ID"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "上传一张能代表你的头像图片。它可以是你自己的照片，或是你最喜欢的NFT，或是给你带来灵感的图片。"
 
-#: src/screens/DomainView.tsx:750
+#: src/screens/DomainView.tsx:732
 msgid "Add subdomain"
 msgstr "添加子域名"
 
-#: src/screens/DomainView.tsx:563
+#: src/screens/DomainView.tsx:545
 msgid "Addresses"
 msgstr "地址"
 
@@ -157,7 +157,7 @@ msgstr "继续"
 
 #: src/components/ProfileBlock.tsx:84
 #: src/components/ProfileBlock.tsx:96
-#: src/screens/DomainView.tsx:635
+#: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "已复制!"
 
@@ -175,7 +175,7 @@ msgstr "通过添加Twitter、Discord和Telegram的链接，创建一个具有�
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:503
+#: src/screens/DomainView.tsx:485
 msgid "Delete"
 msgstr "删除"
 
@@ -221,8 +221,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "每额外增加的1kb内存需花费约0.007 SOL（0.001 USDC）"
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:589
-#: src/screens/DomainView.tsx:709
+#: src/screens/DomainView.tsx:571
+#: src/screens/DomainView.tsx:691
 msgid "Edit"
 msgstr "编辑"
 
@@ -330,12 +330,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "进入"
 
-#: src/screens/DomainView.tsx:318
+#: src/screens/DomainView.tsx:300
 msgid "Invalid {key} address"
 msgstr "无效的 {key} 钱包地址"
 
 #: src/components/EditPicture.tsx:57
-#: src/screens/DomainView.tsx:309
+#: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "网址无效"
 
@@ -363,7 +363,7 @@ msgstr "新的图片网址"
 msgid "Next"
 msgstr "下一步"
 
-#: src/screens/DomainView.tsx:708
+#: src/screens/DomainView.tsx:690
 msgid "No changes to save"
 msgstr "无需保存更改"
 
@@ -372,7 +372,7 @@ msgstr "无需保存更改"
 msgid "No domain found"
 msgstr "未找到域名"
 
-#: src/screens/DomainView.tsx:656
+#: src/screens/DomainView.tsx:638
 msgid "Not set"
 msgstr "未设置"
 
@@ -459,12 +459,12 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "注册折扣"
 
-#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:571
 msgid "Revert"
 msgstr "返回"
 
 #: src/components/EditPicture.tsx:217
-#: src/screens/DomainView.tsx:707
+#: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "保存"
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Skip"
 msgstr "跳过"
 
-#: src/screens/DomainView.tsx:546
+#: src/screens/DomainView.tsx:528
 msgid "Socials"
 msgstr "社交媒体"
 
@@ -525,7 +525,7 @@ msgstr "子域名 {domain}.sol 删除成功!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "子域名 {subdomain}.sol 创建成功!"
 
-#: src/screens/DomainView.tsx:579
+#: src/screens/DomainView.tsx:561
 msgid "Subdomains"
 msgstr "子域名"
 
@@ -545,7 +545,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "存储容量将会决定域名可储存的最大数据量"
 
-#: src/screens/DomainView.tsx:791
+#: src/screens/DomainView.tsx:773
 msgid "There are no subdomains."
 msgstr "尚无任何子域名。"
 
@@ -553,7 +553,7 @@ msgstr "尚无任何子域名。"
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "该域名已通过Wormhole桥接，可在BNB上使用"
 
-#: src/screens/DomainView.tsx:459
+#: src/screens/DomainView.tsx:441
 msgid "This domain is wrapped in an NFT"
 msgstr "该域名已被封装为NFT"
 
@@ -565,7 +565,7 @@ msgstr ""
 msgid "Total"
 msgstr "总计"
 
-#: src/screens/DomainView.tsx:487
+#: src/screens/DomainView.tsx:469
 msgid "Transfer"
 msgstr "转移"
 
@@ -594,7 +594,7 @@ msgstr "为您的项目创建独一无二的域名"
 msgid "Unwrap domain"
 msgstr "解除封装域名"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Unwrap NFT"
 msgstr "将NFT解除封装"
 
@@ -627,7 +627,7 @@ msgstr "注意事项："
 msgid "Wrap domain"
 msgstr "封装域名"
 
-#: src/screens/DomainView.tsx:517
+#: src/screens/DomainView.tsx:499
 msgid "Wrap to NFT"
 msgstr "封装为NFT"
 
@@ -639,7 +639,7 @@ msgstr "将你的域名封装成NFT"
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名相关个人资料开始使用。"
 
-#: src/screens/DomainView.tsx:761
+#: src/screens/DomainView.tsx:743
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "只有在域名解开封装后才能添加子域名。"
 
@@ -647,7 +647,7 @@ msgstr "只有在域名解开封装后才能添加子域名。"
 msgid "You do not have enough funds"
 msgstr "您的资金不足"
 
-#: src/screens/DomainView.tsx:786
+#: src/screens/DomainView.tsx:768
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "您还没有任何子域名。您可以创建任意数量的子域名，以便将您的个人资料用于不同的用途。"
 
