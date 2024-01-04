@@ -27,7 +27,7 @@ msgstr "{domain}.sol establecido como nombre de dominio favorito exitosamente"
 msgid "{domain}.sol successfully transfered!"
 msgstr "{dominio}.sol ¡transferido con éxito! ?"
 
-#: src/screens/SearchResult.tsx:55
+#: src/screens/SearchResult.tsx:59
 msgid "{input}.sol is not a valid domain"
 msgstr "{input}.sol no es un dominio válido"
 
@@ -59,11 +59,11 @@ msgstr "Un ID humanizado para el Metaverso"
 msgid "Add a profile pic that represents you. It can be a photo of yourself, your favourite NFT or something that inspires you."
 msgstr "Agrega una foto de perfil que te represente. Puede ser una foto tuya, tu NFT favorito o algo que te inspire."
 
-#: src/screens/DomainView.tsx:785
+#: src/screens/DomainView.tsx:750
 msgid "Add subdomain"
 msgstr "Agregar subdominio"
 
-#: src/screens/DomainView.tsx:604
+#: src/screens/DomainView.tsx:563
 msgid "Addresses"
 msgstr "Direcciones"
 
@@ -85,13 +85,13 @@ msgstr "Al hacer clic en \"{actionName}\", se te pedirá una confirmación desde
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:246
+#: src/components/EditPicture.tsx:210
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/App.tsx:147
-#: src/App.tsx:163
+#: src/App.tsx:149
+#: src/App.tsx:165
 msgid "Cart"
 msgstr "Carrito"
 
@@ -99,7 +99,7 @@ msgstr "Carrito"
 msgid "Change language"
 msgstr "Cambiar idioma"
 
-#: src/components/EditPicture.tsx:212
+#: src/components/EditPicture.tsx:176
 msgid "Change profile picture"
 msgstr "Cambiar foto de perfil"
 
@@ -112,10 +112,15 @@ msgid "Clear search"
 msgstr "Limpiar búsqueda"
 
 #: src/components/ProgressExplainerModal.tsx:24
-msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
-msgstr "Haz clic en el ícono de estrella para seleccionar tu perfil favorito. Sigue el progreso de tu perfil principal con la barra de completitud del perfil."
+msgid "Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar."
+msgstr ""
 
-#: src/components/ProgressExplainerModal.tsx:109
+#: src/components/ProgressExplainerModal.tsx:24
+#~ msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
+#~ msgstr "Haz clic en el ícono de estrella para seleccionar tu perfil favorito. Sigue el progreso de tu perfil principal con la barra de completitud del perfil."
+
+#: src/components/ProgressExplainerModal.tsx:104
+#: src/components/RecordV2Badge.tsx:28
 #: src/components/SuccessSubdomainModal.tsx:39
 #: src/components/TokenizeModal.tsx:203
 msgid "Close"
@@ -143,16 +148,16 @@ msgid "Congrats on purchasing new domains!"
 msgstr "¡Felicidades por comprar nuevos dominios!"
 
 #: src/components/ProgressExplainerModal.tsx:48
-msgid "Connect your backpack username to your on-chain identity."
-msgstr "Conecta tu nombre de usuario de Backpack con tu identidad en la cadena."
+#~ msgid "Connect your backpack username to your on-chain identity."
+#~ msgstr "Conecta tu nombre de usuario de Backpack con tu identidad en la cadena."
 
 #: src/screens/Cart/index.tsx:315
 msgid "Continue"
 msgstr "Continuar"
 
-#: src/components/ProfileBlock.tsx:81
-#: src/components/ProfileBlock.tsx:93
-#: src/screens/DomainView.tsx:676
+#: src/components/ProfileBlock.tsx:84
+#: src/components/ProfileBlock.tsx:96
+#: src/screens/DomainView.tsx:635
 msgid "Copied!"
 msgstr "Copiado!"
 
@@ -170,7 +175,7 @@ msgstr "Crea un perfil atractivo agregando enlaces a Twitter, Discord y Telegram
 
 #: src/components/DeleteModal.tsx:99
 #: src/components/DeleteModal.tsx:105
-#: src/screens/DomainView.tsx:544
+#: src/screens/DomainView.tsx:503
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -206,7 +211,7 @@ msgstr "¡Descubre el dominio que te representa!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "La tokenización de un nombre de dominio (envuelto) implica convertir un nombre de dominio en un NFT. Para revelar el nombre de dominio original, el token puede ser redimido (desenvuelto)."
 
-#: src/App.tsx:137
+#: src/App.tsx:139
 #: src/screens/Profile/index.tsx:186
 msgid "Domains"
 msgstr "Dominios"
@@ -216,8 +221,8 @@ msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Cada kb adicional de memoria cuesta alrededor de 0.007 SOL (0.001 USDC)"
 
 #: src/screens/Cart/index.tsx:267
-#: src/screens/DomainView.tsx:630
-#: src/screens/DomainView.tsx:744
+#: src/screens/DomainView.tsx:589
+#: src/screens/DomainView.tsx:709
 msgid "Edit"
 msgstr "Editar"
 
@@ -303,7 +308,7 @@ msgstr "Comenzar con mis perfiles"
 msgid "Github"
 msgstr "Github"
 
-#: src/components/ProgressExplainerModal.tsx:63
+#: src/components/ProgressExplainerModal.tsx:58
 msgid "How to boost your profile?"
 msgstr "¿Cómo mejorar tu perfil?"
 
@@ -323,12 +328,12 @@ msgstr "Injective"
 msgid "Into this"
 msgstr "En esto"
 
-#: src/screens/DomainView.tsx:371
+#: src/screens/DomainView.tsx:318
 msgid "Invalid {key} address"
 msgstr "Dirección {key} inválida"
 
-#: src/components/EditPicture.tsx:63
-#: src/screens/DomainView.tsx:362
+#: src/components/EditPicture.tsx:57
+#: src/screens/DomainView.tsx:309
 msgid "Invalid URL"
 msgstr "URL inválida"
 
@@ -348,15 +353,15 @@ msgstr "Mis dominios"
 msgid "New {domain}.sol owner"
 msgstr "Nuevo propietario de {domain}.sol"
 
-#: src/components/EditPicture.tsx:235
+#: src/components/EditPicture.tsx:199
 msgid "New picture URL"
 msgstr "Nueva URL de imagen"
 
-#: src/components/ProgressExplainerModal.tsx:115
+#: src/components/ProgressExplainerModal.tsx:110
 msgid "Next"
 msgstr "Siguiente"
 
-#: src/screens/DomainView.tsx:743
+#: src/screens/DomainView.tsx:708
 msgid "No changes to save"
 msgstr "No hay cambios que guardar"
 
@@ -365,7 +370,7 @@ msgstr "No hay cambios que guardar"
 msgid "No domain found"
 msgstr "No se encontró ningún dominio"
 
-#: src/screens/DomainView.tsx:697
+#: src/screens/DomainView.tsx:656
 msgid "Not set"
 msgstr "No establecido"
 
@@ -377,6 +382,10 @@ msgstr "Aún no hay nada en tu carrito"
 msgid "Order summary"
 msgstr "Resumen del pedido"
 
+#: src/components/RecordV2Badge.tsx:101
+msgid "Ownership is verified"
+msgstr ""
+
 #: src/screens/Cart/index.tsx:325
 msgid "Pay with"
 msgstr "Pagar con"
@@ -385,7 +394,7 @@ msgstr "Pagar con"
 msgid "Payment"
 msgstr "Pago"
 
-#: src/components/EditPicture.tsx:170
+#: src/components/EditPicture.tsx:134
 msgid "Permission to access photo album is required"
 msgstr "Se requiere permiso para acceder al álbum de fotos"
 
@@ -393,7 +402,7 @@ msgstr "Se requiere permiso para acceder al álbum de fotos"
 msgid "Pic"
 msgstr "Foto"
 
-#: src/components/EditPicture.tsx:233
+#: src/components/EditPicture.tsx:197
 msgid "Picture URL"
 msgstr "URL de la foto"
 
@@ -405,11 +414,11 @@ msgstr "Recuerda que, una vez que transfieres un dominio, la acción es irrevers
 msgid "POINT"
 msgstr "PUNTO"
 
-#: src/screens/HomeScreen.tsx:137
+#: src/screens/HomeScreen.tsx:138
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:126
+#: src/App.tsx:128
 msgid "Profile"
 msgstr "Perfil"
 
@@ -421,6 +430,25 @@ msgstr "Finalización del perfil: {percentage}%"
 msgid "Purchased"
 msgstr "Comprado"
 
+#: src/components/RecordV2Badge.tsx:72
+msgid "Record content ownership is not supported for this type of record"
+msgstr ""
+
+#: src/components/RecordV2Badge.tsx:87
+msgid "Record content ownership is not verified"
+msgstr ""
+
+#: src/components/RecordV2Badge.tsx:73
+#: src/components/RecordV2Badge.tsx:88
+#: src/components/RecordV2Badge.tsx:102
+msgid "Record Right of Association"
+msgstr ""
+
+#: src/components/RecordV2Badge.tsx:41
+#: src/components/RecordV2Badge.tsx:54
+msgid "Record staleness"
+msgstr ""
+
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
 msgstr "Reddit"
@@ -429,17 +457,17 @@ msgstr "Reddit"
 msgid "Registration discount"
 msgstr "Descuento de registro"
 
-#: src/screens/DomainView.tsx:630
+#: src/screens/DomainView.tsx:589
 msgid "Revert"
 msgstr "Revertir"
 
-#: src/components/EditPicture.tsx:253
-#: src/screens/DomainView.tsx:742
+#: src/components/EditPicture.tsx:217
+#: src/screens/DomainView.tsx:707
 msgid "Save"
 msgstr "Guardar"
 
-#: src/screens/HomeScreen.tsx:165
-#: src/screens/HomeScreen.tsx:177
+#: src/screens/HomeScreen.tsx:166
+#: src/screens/HomeScreen.tsx:178
 msgid "Search domain"
 msgstr "Buscar dominio"
 
@@ -447,14 +475,14 @@ msgstr "Buscar dominio"
 msgid "Search domains"
 msgstr "Buscar dominios"
 
-#: src/screens/HomeScreen.tsx:94
+#: src/screens/HomeScreen.tsx:95
 #: src/screens/Profile/index.tsx:193
-#: src/screens/SearchResult.tsx:67
+#: src/screens/SearchResult.tsx:72
 msgid "Search for a domain"
 msgstr "Buscar un dominio"
 
-#: src/screens/HomeScreen.tsx:106
-#: src/screens/SearchResult.tsx:80
+#: src/screens/HomeScreen.tsx:107
+#: src/screens/SearchResult.tsx:85
 msgid "Search your .SOL domain"
 msgstr "Busca tu dominio .SOL"
 
@@ -467,11 +495,15 @@ msgstr "Asegura un dominio para ti"
 msgid "SHDW"
 msgstr "SHDW"
 
-#: src/components/ProgressExplainerModal.tsx:103
+#: src/components/RecordV2Badge.tsx:53
+msgid "Signed by the domain owner"
+msgstr ""
+
+#: src/components/ProgressExplainerModal.tsx:98
 msgid "Skip"
 msgstr "Saltar"
 
-#: src/screens/DomainView.tsx:587
+#: src/screens/DomainView.tsx:546
 msgid "Socials"
 msgstr "Redes Sociales"
 
@@ -491,7 +523,7 @@ msgstr "¡Subdominio {domain}.sol eliminado exitosamente!"
 msgid "Subdomain {subdomain}.sol successfully created!"
 msgstr "¡Subdominio {subdomain}.sol creado exitosamente!"
 
-#: src/screens/DomainView.tsx:620
+#: src/screens/DomainView.tsx:579
 msgid "Subdomains"
 msgstr "Subdominios"
 
@@ -511,7 +543,7 @@ msgstr "Telegram"
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "El tamaño de almacenamiento determinará la cantidad máxima de datos que puedes almacenar en tu dominio."
 
-#: src/screens/DomainView.tsx:826
+#: src/screens/DomainView.tsx:791
 msgid "There are no subdomains."
 msgstr "No hay subdominios."
 
@@ -519,15 +551,19 @@ msgstr "No hay subdominios."
 msgid "This domain has been bridged via Wormhole and is available on BNB"
 msgstr "Este dominio ha sido transferido a través de Wormhole y está disponible en BNB"
 
-#: src/screens/DomainView.tsx:500
+#: src/screens/DomainView.tsx:459
 msgid "This domain is wrapped in an NFT"
 msgstr "Este dominio está envuelto en un NFT"
+
+#: src/components/RecordV2Badge.tsx:40
+msgid "This record is not signed"
+msgstr ""
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"
 msgstr "Total"
 
-#: src/screens/DomainView.tsx:528
+#: src/screens/DomainView.tsx:487
 msgid "Transfer"
 msgstr "Transferir"
 
@@ -556,7 +592,7 @@ msgstr "Nombre de dominio único para tu proyecto"
 msgid "Unwrap domain"
 msgstr "Desenvolver dominio"
 
-#: src/screens/DomainView.tsx:558
+#: src/screens/DomainView.tsx:517
 msgid "Unwrap NFT"
 msgstr "Desenvolver NFT"
 
@@ -564,7 +600,7 @@ msgstr "Desenvolver NFT"
 msgid "Unwrap your domain from NFT"
 msgstr "Desenvolver tu dominio del NFT"
 
-#: src/components/EditPicture.tsx:227
+#: src/components/EditPicture.tsx:191
 msgid "Upload a picture..."
 msgstr "Subir una imagen..."
 
@@ -589,7 +625,7 @@ msgstr "Qué considerar:"
 msgid "Wrap domain"
 msgstr "Envolver dominio"
 
-#: src/screens/DomainView.tsx:558
+#: src/screens/DomainView.tsx:517
 msgid "Wrap to NFT"
 msgstr "Envolver en NFT"
 
@@ -601,7 +637,7 @@ msgstr "Envuelve tu dominio en un NFT"
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "Ahora puedes disfrutar de todos los beneficios de ser dueño de un dominio. Comienza completando los perfiles asociados a los dominios."
 
-#: src/screens/DomainView.tsx:796
+#: src/screens/DomainView.tsx:761
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Solo puedes agregar subdominios cuando el dominio no está envuelto en un NFT."
 
@@ -609,7 +645,7 @@ msgstr "Solo puedes agregar subdominios cuando el dominio no está envuelto en u
 msgid "You do not have enough funds"
 msgstr "No dispone de fondos suficientes"
 
-#: src/screens/DomainView.tsx:821
+#: src/screens/DomainView.tsx:786
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Aún no tienes subdominios. Puedes crear tantos como desees para usar tus perfiles con diferentes propósitos."
 
