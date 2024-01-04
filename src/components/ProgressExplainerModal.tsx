@@ -64,7 +64,7 @@ export const ProgressExplainerModal = ({
           source={stepsImages[currentStep].image}
         />
 
-        <View style={tw`flex flex-row items-start gap-2 mt-2`}>
+        <View style={tw`flex flex-col items-center gap-2 mt-2`}>
           {stepsImages[currentStep].icon}
 
           <Text style={tw`text-sm font-medium text-center`}>
