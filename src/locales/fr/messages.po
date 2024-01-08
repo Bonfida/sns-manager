@@ -28,8 +28,12 @@ msgid "{domain}.sol successfully transfered!"
 msgstr "Transfert réussi !"
 
 #: src/screens/SearchResult.tsx:59
-msgid "{input}.sol is not a valid domain"
-msgstr "{input}.sol n'est pas un domaine valide."
+#~ msgid "{input}.sol is not a valid domain"
+#~ msgstr "{input}.sol n'est pas un domaine valide."
+
+#: src/screens/SearchResult.tsx:64
+msgid "{inputFieldValue}.sol is not a valid domain"
+msgstr ""
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -503,12 +507,12 @@ msgstr "Recherchez des domains"
 
 #: src/screens/HomeScreen.tsx:95
 #: src/screens/Profile/index.tsx:193
-#: src/screens/SearchResult.tsx:72
+#: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Recherchez un domaine"
 
 #: src/screens/HomeScreen.tsx:107
-#: src/screens/SearchResult.tsx:85
+#: src/screens/SearchResult.tsx:90
 msgid "Search your .SOL domain"
 msgstr "Recherchez votre domaine .SOL"
 
