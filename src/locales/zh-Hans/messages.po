@@ -28,8 +28,12 @@ msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol 汇款成功"
 
 #: src/screens/SearchResult.tsx:59
-msgid "{input}.sol is not a valid domain"
-msgstr "{input}.sol 不是有效的域名"
+#~ msgid "{input}.sol is not a valid domain"
+#~ msgstr "{input}.sol 不是有效的域名"
+
+#: src/screens/SearchResult.tsx:64
+msgid "{inputFieldValue}.sol is not a valid domain"
+msgstr ""
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -479,12 +483,12 @@ msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:95
 #: src/screens/Profile/index.tsx:193
-#: src/screens/SearchResult.tsx:72
+#: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:107
-#: src/screens/SearchResult.tsx:85
+#: src/screens/SearchResult.tsx:90
 msgid "Search your .SOL domain"
 msgstr "搜索你的 .SOL 域名"
 

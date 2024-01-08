@@ -28,8 +28,12 @@ msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol이 성공적으로 전송되었습니다!"
 
 #: src/screens/SearchResult.tsx:59
-msgid "{input}.sol is not a valid domain"
-msgstr "{input}.sol은(는) 유효한 도메인이 아닙니다"
+#~ msgid "{input}.sol is not a valid domain"
+#~ msgstr "{input}.sol은(는) 유효한 도메인이 아닙니다"
+
+#: src/screens/SearchResult.tsx:64
+msgid "{inputFieldValue}.sol is not a valid domain"
+msgstr ""
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -585,7 +589,7 @@ msgstr "도메인 검색"
 
 #: src/screens/HomeScreen.tsx:95
 #: src/screens/Profile/index.tsx:193
-#: src/screens/SearchResult.tsx:72
+#: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "도메인을 검색하기"
 
@@ -595,7 +599,7 @@ msgstr "도메인을 검색하기"
 #~ msgstr "당신의 이름.sol을 검색하세요"
 
 #: src/screens/HomeScreen.tsx:107
-#: src/screens/SearchResult.tsx:85
+#: src/screens/SearchResult.tsx:90
 msgid "Search your .SOL domain"
 msgstr "당신의 SOL 도메인 검색하기"
 
