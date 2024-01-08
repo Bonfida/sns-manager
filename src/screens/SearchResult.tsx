@@ -67,7 +67,7 @@ export const SearchResult = ({
       <ScrollView showsHorizontalScrollIndicator={false}>
         <CustomTextInput
           autoCapitalize="none"
-          onChangeText={(newText) => setSearch(newText.toLowerCase())}
+          onChangeText={(newText) => setInput(newText.toLowerCase())}
           value={input}
           placeholder={t`Search for a domain`}
           type="search"
@@ -113,7 +113,9 @@ export const SearchResult = ({
                 </View>
               )}
 
-              {!results.loading && results.result && suggestions.loading ? (
+              {!results.loading &&
+              results.result?.length &&
+              suggestions.loading ? (
                 <>
                   <DomainSearchResultRow
                     domain={results.result![0].domain}
