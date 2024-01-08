@@ -27,12 +27,17 @@ export const SearchResult = ({
   const connection = useSolanaConnection();
   const { currentModal } = useModal();
   const { setStatus } = useStatusModalContext();
-  const [search, setSearch] = useState(domain || "");
-  const [input, setInput] = useState(domain || "");
-  const results = useSearch({ connection: connection!, domain: search });
+  const [activeSearchQuery, setSearchQuery] = useState(domain || "");
+  // "inputFieldValue" is only responsible for what is displayed in input field, data
+  // is loaded based on "activeSearchQuery"
+  const [inputFieldValue, setInput] = useState(domain || "");
+  const results = useSearch({
+    connection: connection!,
+    domain: activeSearchQuery,
+  });
   const suggestions = useDomainSuggestions({
     connection: connection!,
-    domain: search,
+    domain: activeSearchQuery,
   });
   const navigation = useNavigation<profileScreenProp>();
   const isFocused = useIsFocused();
@@ -40,26 +45,26 @@ export const SearchResult = ({
   const [showPopularDomains, togglePopularDomains] = useState(loadPopular);
 
   useEffect(() => {
-    setSearch(domain || search);
-    setInput(domain || search);
+    setSearchQuery(domain || activeSearchQuery);
+    setInput(domain || activeSearchQuery);
   }, [domain, isFocused]);
 
   const handle = async () => {
-    if (!input) return;
+    if (!inputFieldValue) return;
     togglePopularDomains(false);
-    if (isPubkey(input)) {
+    if (isPubkey(inputFieldValue)) {
       return navigation.navigate("Home", {
         screen: "search-profile",
-        params: { owner: input },
+        params: { owner: inputFieldValue },
       });
     }
-    if (!validate(input)) {
+    if (!validate(inputFieldValue)) {
       return setStatus({
         status: "error",
-        message: t`${input}.sol is not a valid domain`,
+        message: t`${inputFieldValue}.sol is not a valid domain`,
       });
     }
-    setSearch(trimTld(input));
+    setSearchQuery(trimTld(inputFieldValue));
   };
 
   return (
@@ -68,7 +73,7 @@ export const SearchResult = ({
         <CustomTextInput
           autoCapitalize="none"
           onChangeText={(newText) => setInput(newText.toLowerCase())}
-          value={input}
+          value={inputFieldValue}
           placeholder={t`Search for a domain`}
           type="search"
           editable={currentModal !== "Error"}
@@ -81,7 +86,7 @@ export const SearchResult = ({
         <View style={tw`mt-4 w-[100%]`}>
           <UiButton
             onPress={handle}
-            disabled={!input}
+            disabled={!inputFieldValue}
             content={t`Search your .SOL domain`}
           />
         </View>
