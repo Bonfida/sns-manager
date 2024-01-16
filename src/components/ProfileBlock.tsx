@@ -10,13 +10,13 @@ import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 import { useWallet } from "@src/hooks/useWallet";
 import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
-import { usePicRecord } from "@src/hooks/useRecords";
+import { useProfilePic } from "@bonfida/sns-react";
 
 interface ProfileBlockProps {
   children?: ReactNode;
   owner: string;
   domain: string;
-  picRecord: ReturnType<typeof usePicRecord>;
+  picRecord: ReturnType<typeof useProfilePic>;
 }
 
 export const ProfileBlock = ({
@@ -52,9 +52,9 @@ export const ProfileBlock = ({
       >
         <Image
           source={
-            picRecord.uri
+            picRecord.result
               ? {
-                  uri: picRecord.uri,
+                  uri: picRecord.result,
                 }
               : require("@assets/default-pic.png")
           }
@@ -64,7 +64,7 @@ export const ProfileBlock = ({
           <TouchableOpacity
             onPress={() =>
               openModal("EditPicture", {
-                currentPic: picRecord.uri,
+                currentPic: picRecord.result,
                 domain: domain,
                 setAsFav: !favorite.result?.reverse,
                 refresh: picRecord.execute,
