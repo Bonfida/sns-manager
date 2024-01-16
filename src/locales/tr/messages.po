@@ -111,7 +111,7 @@ msgstr "Profil resmini değiştir"
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:244
+#: src/screens/Profile/index.tsx:269
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "Domains"
 msgstr "Domainler"
 
@@ -349,9 +349,13 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "My domains"
 msgstr "Domainlerim"
+
+#: src/screens/Profile/index.tsx:281
+msgid "My sub domains"
+msgstr ""
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -370,7 +374,7 @@ msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:234
+#: src/screens/Profile/index.tsx:259
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -426,7 +430,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:159
+#: src/screens/Profile/index.tsx:184
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -480,7 +484,7 @@ msgid "Search domains"
 msgstr "Domainler ara"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:193
+#: src/screens/Profile/index.tsx:218
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
@@ -518,6 +522,10 @@ msgstr "Depo Hacmi"
 #: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr "Depo"
+
+#: src/screens/Profile/index.tsx:281
+msgid "Sub domains"
+msgstr ""
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
