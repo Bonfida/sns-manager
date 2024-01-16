@@ -43,7 +43,6 @@ import {
   SOCIAL_RECORDS,
   useAddressRecords,
   useSocialRecords,
-  usePicRecord,
 } from "@src/hooks/useRecords";
 import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { useDomainInfo } from "@src/hooks/useDomainInfo";
@@ -60,6 +59,7 @@ import { useHandleError } from "@src/hooks/useHandleError";
 import { LoadingState } from "@src/screens/Profile/LoadingState";
 import { RecordV2Badge } from "@src/components/RecordV2Badge";
 import { sendRoaRequest } from "@src/hooks/useRecordsV2Guardians";
+import { useProfilePic } from "@bonfida/sns-react";
 
 const getIcon = (record: SocialRecord) => {
   const defaultIconAttrs = {
@@ -115,7 +115,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const addressRecords = useAddressRecords(domain);
   const domainInfo = useDomainInfo(domain);
   const subdomains = useSubdomains(domain);
-  const picRecord = usePicRecord(domain);
+  const picRecord = useProfilePic(connection!, domain);
   const { publicKey } = useWallet();
 
   const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
