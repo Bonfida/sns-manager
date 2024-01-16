@@ -31,6 +31,7 @@ import { ProfileBlock } from "@src/components/ProfileBlock";
 
 import { LoadingState } from "./LoadingState";
 import { EmptyState } from "./EmptyState";
+import { getDomainKeySync } from "@bonfida/spl-name-service";
 
 export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const connection = useSolanaConnection();
@@ -83,6 +84,25 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     }
   }, [connected]);
 
+  const subsOnly = useMemo(() => {
+    if (!subdomains.result) return [];
+    return subdomains.result
+      ?.filter(
+        (sub) =>
+          !domains.result?.some(
+            (e) => e.domain === sub.subdomain.split(".")[1],
+          ),
+      )
+      .map((e) => {
+        const domain = e.subdomain.split(".")[1];
+        return {
+          key: getDomainKeySync(domain).pubkey.toBase58(),
+          subdomains: [{ subdomain: e.subdomain, key: e.key }],
+          domain,
+        };
+      });
+  }, [domains.status, domains.loading, subdomains.status, subdomains.loading]);
+
   const domainsList = useMemo(() => {
     if (!domains.result) return [];
 
@@ -119,6 +139,11 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     subdomains.status,
     subdomains.loading,
   ]);
+
+  const filteredSubdomainsList = useMemo(() => {
+    if (!searchQuery) return subsOnly;
+    return subsOnly.filter((item) => item?.domain?.includes(searchQuery));
+  }, [subsOnly, searchQuery]);
 
   const filteredDomainsList = useMemo(() => {
     if (!searchQuery) return domainsList;
@@ -249,6 +274,28 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
             </>
           )}
         </View>
+
+        {filteredSubdomainsList.length > 0 && (
+          <View style={tw`mt-10 mb-2`}>
+            <Text style={tw`flex-none text-lg font-medium`}>
+              {isOwner ? t`My sub domains` : t`Sub domains`}
+            </Text>
+            <FlatList
+              data={filteredSubdomainsList}
+              scrollEnabled={false}
+              renderItem={({ item }) => (
+                <DomainRow
+                  key={item.key}
+                  refresh={refresh}
+                  domain={item.domain}
+                  subdomains={item.subdomains}
+                  isOwner={false}
+                />
+              )}
+              keyExtractor={(item) => item.domain}
+            />
+          </View>
+        )}
       </ScrollView>
     </Screen>
   );
