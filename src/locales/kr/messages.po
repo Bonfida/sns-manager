@@ -151,7 +151,7 @@ msgstr "프로필 사진 변경"
 msgid "Clear all"
 msgstr "모두 지우기"
 
-#: src/screens/Profile/index.tsx:244
+#: src/screens/Profile/index.tsx:269
 msgid "Clear search"
 msgstr "검색 지우기"
 
@@ -260,7 +260,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "Domains"
 msgstr "도메인"
 
@@ -432,9 +432,13 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "문서로 더 알아보세요"
 
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "My domains"
 msgstr "나의 도메인"
+
+#: src/screens/Profile/index.tsx:281
+msgid "My sub domains"
+msgstr ""
 
 #: src/screens/Profile.tsx:248
 #~ msgid "My subdomains"
@@ -457,7 +461,7 @@ msgid "No changes to save"
 msgstr "저장할 변경 사항이 없습니다"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:234
+#: src/screens/Profile/index.tsx:259
 msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
@@ -529,7 +533,7 @@ msgstr "프로필"
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr "프로필 완료율: {percentage}%"
 
-#: src/screens/Profile/index.tsx:159
+#: src/screens/Profile/index.tsx:184
 msgid "Profile completion: {percentage}%"
 msgstr "프로필 완성도: {percentage}%"
 
@@ -588,7 +592,7 @@ msgid "Search domains"
 msgstr "도메인 검색"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:193
+#: src/screens/Profile/index.tsx:218
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "도메인을 검색하기"
@@ -656,6 +660,10 @@ msgstr "저장 용량"
 #: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr "저장 용량:"
+
+#: src/screens/Profile/index.tsx:281
+msgid "Sub domains"
+msgstr ""
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"

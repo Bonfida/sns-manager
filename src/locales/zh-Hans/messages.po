@@ -111,7 +111,7 @@ msgstr "更换个人头像"
 msgid "Clear all"
 msgstr "清除所有"
 
-#: src/screens/Profile/index.tsx:244
+#: src/screens/Profile/index.tsx:269
 msgid "Clear search"
 msgstr "清除搜索记录"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要将其恢复为原始域名，可通过转换（解开封装）该通证完成操作。"
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "Domains"
 msgstr "域名"
 
@@ -351,9 +351,13 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "在docs中学习更多内容"
 
-#: src/screens/Profile/index.tsx:186
+#: src/screens/Profile/index.tsx:211
 msgid "My domains"
 msgstr "我的域名"
+
+#: src/screens/Profile/index.tsx:281
+msgid "My sub domains"
+msgstr ""
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -372,7 +376,7 @@ msgid "No changes to save"
 msgstr "无需保存更改"
 
 #: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:234
+#: src/screens/Profile/index.tsx:259
 msgid "No domain found"
 msgstr "未找到域名"
 
@@ -428,7 +432,7 @@ msgstr ""
 msgid "Profile"
 msgstr "个人账户"
 
-#: src/screens/Profile/index.tsx:159
+#: src/screens/Profile/index.tsx:184
 msgid "Profile completion: {percentage}%"
 msgstr "个人资料完成度: {percentage}%"
 
@@ -482,7 +486,7 @@ msgid "Search domains"
 msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:193
+#: src/screens/Profile/index.tsx:218
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "搜索域名"
@@ -520,6 +524,10 @@ msgstr "存储容量"
 #: src/screens/Cart/index.tsx:251
 msgid "Storage:"
 msgstr "存储容量:"
+
+#: src/screens/Profile/index.tsx:281
+msgid "Sub domains"
+msgstr ""
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
