@@ -16,21 +16,25 @@ import { isTokenized } from "@bonfida/name-tokenizer";
 import { t } from "@lingui/macro";
 import { PublicKey, TransactionInstruction } from "@solana/web3.js";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
-import { useSolanaConnection } from "@src/hooks/xnft-hooks";
 import { sendTx } from "@src/utils/send-tx";
 import { WrapModal } from "./WrapModal";
 import { unwrap } from "@src/utils/unwrap";
-import { useWallet } from "@src/hooks/useWallet";
+import {
+  useWallet,
+  usePictureRecordValidation,
+  useSolanaConnection,
+  useHandleError,
+} from "@src/hooks";
 import { uploadToIPFS } from "@src/utils/ipfs";
 import { UiButton } from "@src/components/UiButton";
 import { CustomTextInput } from "@src/components/CustomTextInput";
-import { useHandleError } from "@src/hooks/useHandleError";
 
 export const EditPicture = ({
   modal: { closeModal, getParam },
 }: {
   modal: { closeModal: () => void; getParam: <T>(a: string, b?: string) => T };
 }) => {
+  const connection = useSolanaConnection();
   const currentPic = getParam<string | undefined>("currentPic");
   const domain = getParam<string>("domain");
   const setAsFav = getParam<string>("domain");
@@ -38,9 +42,9 @@ export const EditPicture = ({
   const { setStatus } = useStatusModalContext();
   const [loading, setLoading] = useState(false);
   const [pic, setPic] = useState<string | undefined>("");
-  const connection = useSolanaConnection();
   const { handleError } = useHandleError();
   const { publicKey, signTransaction, setVisible, connected } = useWallet();
+  const { isValid: isCurrentPicValid } = usePictureRecordValidation(currentPic);
 
   const handle = async () => {
     if (!pic) return;
@@ -172,14 +176,17 @@ export const EditPicture = ({
       setLoading(false);
     }
   };
+
   return (
     <WrapModal closeModal={closeModal} title={t`Change profile picture`}>
       <View style={tw`flex items-center justify-center my-6`}>
         <Image
           style={tw`w-[100px] rounded-full h-[100px]`}
           source={
-            pic || currentPic
-              ? { uri: pic || currentPic }
+            pic
+              ? { uri: pic }
+              : isCurrentPicValid
+              ? { uri: currentPic }
               : require("@assets/default-pic.png")
           }
         />

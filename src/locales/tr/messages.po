@@ -89,13 +89,13 @@ msgstr "\"{actionName}\"ya tıklayınca cüzdan onayı vermeniz istenecektir. "
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:210
+#: src/components/EditPicture.tsx:217
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/App.tsx:149
-#: src/App.tsx:165
+#: src/App.tsx:150
+#: src/App.tsx:166
 msgid "Cart"
 msgstr "Araç"
 
@@ -103,7 +103,7 @@ msgstr "Araç"
 msgid "Change language"
 msgstr "Dili  değiştir"
 
-#: src/components/EditPicture.tsx:176
+#: src/components/EditPicture.tsx:181
 msgid "Change profile picture"
 msgstr "Profil resmini değiştir"
 
@@ -111,7 +111,7 @@ msgstr "Profil resmini değiştir"
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:283
+#: src/screens/Profile/index.tsx:286
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -215,8 +215,8 @@ msgstr "Seni yansıtan domaini keşfet!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
-#: src/App.tsx:139
-#: src/screens/Profile/index.tsx:225
+#: src/App.tsx:140
+#: src/screens/Profile/index.tsx:228
 msgid "Domains"
 msgstr "Domainler"
 
@@ -336,7 +336,7 @@ msgstr "Buna doğru"
 msgid "Invalid {key} address"
 msgstr "Geçersiz {key} adresi"
 
-#: src/components/EditPicture.tsx:57
+#: src/components/EditPicture.tsx:61
 #: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "Geçersiz URL "
@@ -349,11 +349,11 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:225
+#: src/screens/Profile/index.tsx:228
 msgid "My domains"
 msgstr "Domainlerim"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "{domain}.sol'un yeni sahibi"
 
-#: src/components/EditPicture.tsx:199
+#: src/components/EditPicture.tsx:206
 msgid "New picture URL"
 msgstr "Yeni resim URL'si"
 
@@ -374,7 +374,7 @@ msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:273
+#: src/screens/Profile/index.tsx:276
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -402,7 +402,7 @@ msgstr "ile öde"
 msgid "Payment"
 msgstr "Ödeme"
 
-#: src/components/EditPicture.tsx:134
+#: src/components/EditPicture.tsx:138
 msgid "Permission to access photo album is required"
 msgstr "Fotoğraf albümüne erişim izni gereklidir"
 
@@ -410,7 +410,7 @@ msgstr "Fotoğraf albümüne erişim izni gereklidir"
 msgid "Pic"
 msgstr "Resim"
 
-#: src/components/EditPicture.tsx:197
+#: src/components/EditPicture.tsx:204
 msgid "Picture URL"
 msgstr "Resim URL'si"
 
@@ -426,11 +426,11 @@ msgstr "PUAN"
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:128
+#: src/App.tsx:129
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:198
+#: src/screens/Profile/index.tsx:201
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -469,7 +469,7 @@ msgstr "Kaydetme indirimi"
 msgid "Revert"
 msgstr "Eski haline getir"
 
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:224
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Kaydet"
@@ -484,7 +484,7 @@ msgid "Search domains"
 msgstr "Domainler ara"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:235
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
@@ -523,7 +523,7 @@ msgstr "Depo Hacmi"
 msgid "Storage:"
 msgstr "Depo"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
 msgstr ""
 
@@ -612,7 +612,7 @@ msgstr "NFT'yi geri katla (unwrapping)"
 msgid "Unwrap your domain from NFT"
 msgstr "Domaini, NFT'den geri katla (unwrapping)"
 
-#: src/components/EditPicture.tsx:191
+#: src/components/EditPicture.tsx:198
 msgid "Upload a picture..."
 msgstr "Bir resim yükle..."
 

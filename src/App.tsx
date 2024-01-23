@@ -10,6 +10,7 @@ global.Buffer = global.Buffer || require("buffer").Buffer;
 import { registerRootComponent } from "expo";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { ActivityIndicator, View, Text } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ReactNode, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -195,19 +196,25 @@ function App() {
 
   return (
     <ErrorBoundary FallbackComponent={CustomFallback}>
-      <SolanaProvider>
-        <RecoilRoot>
-          <NavigationContainer>
-            <LanguageProvider i18n={i18n}>
-              <StatusModalProvider>
-                <ModalProvider stack={stackModal}>
-                  <TabNavigator />
-                </ModalProvider>
-              </StatusModalProvider>
-            </LanguageProvider>
-          </NavigationContainer>
-        </RecoilRoot>
-      </SolanaProvider>
+      {/*
+        GestureHandlerRootView wrapper because of this
+        https://github.com/gorhom/react-native-bottom-sheet/issues/1389
+      */}
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SolanaProvider>
+          <RecoilRoot>
+            <NavigationContainer>
+              <LanguageProvider i18n={i18n}>
+                <StatusModalProvider>
+                  <ModalProvider stack={stackModal}>
+                    <TabNavigator />
+                  </ModalProvider>
+                </StatusModalProvider>
+              </LanguageProvider>
+            </NavigationContainer>
+          </RecoilRoot>
+        </SolanaProvider>
+      </GestureHandlerRootView>
     </ErrorBoundary>
   );
 }

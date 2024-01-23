@@ -91,13 +91,13 @@ msgstr "En cliquant sur \"{actionName}\", votre portefeuille vous demandera une 
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:210
+#: src/components/EditPicture.tsx:217
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/App.tsx:149
-#: src/App.tsx:165
+#: src/App.tsx:150
+#: src/App.tsx:166
 msgid "Cart"
 msgstr "Panier"
 
@@ -105,7 +105,7 @@ msgstr "Panier"
 msgid "Change language"
 msgstr "Changez la langue"
 
-#: src/components/EditPicture.tsx:176
+#: src/components/EditPicture.tsx:181
 msgid "Change profile picture"
 msgstr "Changez votre photo de profil"
 
@@ -113,7 +113,7 @@ msgstr "Changez votre photo de profil"
 msgid "Clear all"
 msgstr "Tout effacer"
 
-#: src/screens/Profile/index.tsx:283
+#: src/screens/Profile/index.tsx:286
 msgid "Clear search"
 msgstr "Effacez la recherche"
 
@@ -223,8 +223,8 @@ msgstr "Découvrez le domaine qui vous représente !"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "La tokenisation (enveloppement) de noms de domaine consiste à convertir un nom de domaine en NFT."
 
-#: src/App.tsx:139
-#: src/screens/Profile/index.tsx:225
+#: src/App.tsx:140
+#: src/screens/Profile/index.tsx:228
 msgid "Domains"
 msgstr "Domaines"
 
@@ -351,7 +351,7 @@ msgstr "Dans cela"
 msgid "Invalid {key} address"
 msgstr "Adresse {key} invalide"
 
-#: src/components/EditPicture.tsx:57
+#: src/components/EditPicture.tsx:61
 #: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "URL invalide"
@@ -364,11 +364,11 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "En savoir plus dans nos docs"
 
-#: src/screens/Profile/index.tsx:225
+#: src/screens/Profile/index.tsx:228
 msgid "My domains"
 msgstr "Mes domaines"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 "\n"
 ""
 
-#: src/components/EditPicture.tsx:199
+#: src/components/EditPicture.tsx:206
 msgid "New picture URL"
 msgstr "Nouvelle photo de profil"
 
@@ -394,7 +394,7 @@ msgid "No changes to save"
 msgstr "Aucuns changements à sauvegarder"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:273
+#: src/screens/Profile/index.tsx:276
 msgid "No domain found"
 msgstr "Aucun domaine trouvé"
 
@@ -422,7 +422,7 @@ msgstr "Payer avec"
 msgid "Payment"
 msgstr "Paiement"
 
-#: src/components/EditPicture.tsx:134
+#: src/components/EditPicture.tsx:138
 msgid "Permission to access photo album is required"
 msgstr ""
 "Une autorisation pour accéder à l'album photo est requise.\n"
@@ -436,7 +436,7 @@ msgstr ""
 msgid "Pic"
 msgstr "Photo"
 
-#: src/components/EditPicture.tsx:197
+#: src/components/EditPicture.tsx:204
 msgid "Picture URL"
 msgstr "URL de la photo"
 
@@ -452,11 +452,11 @@ msgstr "POINT"
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:128
+#: src/App.tsx:129
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:198
+#: src/screens/Profile/index.tsx:201
 msgid "Profile completion: {percentage}%"
 msgstr "Avancement du profil : {pourcentage} %"
 
@@ -495,7 +495,7 @@ msgstr "Remise sur l'enregistrement"
 msgid "Revert"
 msgstr "Annuler"
 
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:224
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Sauvegarder"
@@ -510,7 +510,7 @@ msgid "Search domains"
 msgstr "Recherchez des domains"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:235
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Recherchez un domaine"
@@ -549,7 +549,7 @@ msgstr "Taille de stockage"
 msgid "Storage:"
 msgstr "Stockage:"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
 msgstr ""
 
@@ -638,7 +638,7 @@ msgstr "Désenvelopper le NFT"
 msgid "Unwrap your domain from NFT"
 msgstr "Désenveloppez votre domaine du NFT"
 
-#: src/components/EditPicture.tsx:191
+#: src/components/EditPicture.tsx:198
 msgid "Upload a picture..."
 msgstr "Téléchargez une photo..."
 

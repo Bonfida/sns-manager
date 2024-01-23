@@ -16,8 +16,9 @@ interface ProfileBlockProps {
   children?: ReactNode;
   owner: string;
   domain: string;
-  picRecord: ReturnType<typeof useProfilePic>;
+  picRecord: string | undefined;
   isPicValid: boolean;
+  onNewPicUploaded: () => void;
 }
 
 export const ProfileBlock = ({
@@ -26,6 +27,7 @@ export const ProfileBlock = ({
   children,
   picRecord,
   isPicValid,
+  onNewPicUploaded,
 }: ProfileBlockProps) => {
   const { publicKey } = useWallet();
   const { setStatus } = useStatusModalContext();
@@ -54,9 +56,7 @@ export const ProfileBlock = ({
       >
         <Image
           source={
-            isPicValid
-              ? { uri: picRecord.result }
-              : require("@assets/default-pic.png")
+            isPicValid ? { uri: picRecord } : require("@assets/default-pic.png")
           }
           style={tw`w-full h-full rounded-full`}
         />
@@ -64,10 +64,10 @@ export const ProfileBlock = ({
           <TouchableOpacity
             onPress={() =>
               openModal("EditPicture", {
-                currentPic: picRecord.result,
+                currentPic: picRecord,
                 domain: domain,
                 setAsFav: !favorite.result?.reverse,
-                refresh: picRecord.execute,
+                refresh: onNewPicUploaded,
               })
             }
             style={tw`h-[24px] w-[24px] rounded-full flex items-center justify-center absolute bottom-0 right-0 bg-brand-accent`}
