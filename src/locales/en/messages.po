@@ -149,7 +149,7 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:269
+#: src/screens/Profile/index.tsx:283
 msgid "Clear search"
 msgstr ""
 
@@ -258,7 +258,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr ""
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "Domains"
 msgstr ""
 
@@ -428,11 +428,11 @@ msgstr ""
 msgid "Learn more in our docs"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "My domains"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "My sub domains"
 msgstr ""
 
@@ -456,8 +456,8 @@ msgstr ""
 msgid "No changes to save"
 msgstr ""
 
-#: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:259
+#: src/components/SearchModal.tsx:74
+#: src/screens/Profile/index.tsx:273
 msgid "No domain found"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgstr ""
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr ""
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:198
 msgid "Profile completion: {percentage}%"
 msgstr ""
 
@@ -579,12 +579,12 @@ msgstr ""
 msgid "Search domain"
 msgstr ""
 
-#: src/components/SearchModal.tsx:51
+#: src/components/SearchModal.tsx:50
 msgid "Search domains"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:218
+#: src/screens/Profile/index.tsx:232
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr ""
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Storage:"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "Sub domains"
 msgstr ""
 

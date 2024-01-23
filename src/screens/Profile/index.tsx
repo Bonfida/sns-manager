@@ -11,6 +11,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { useProfilePic } from "@bonfida/sns-react";
 import { Trans, t } from "@lingui/macro";
 import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
 
 import tw from "@src/utils/tailwind";
 
@@ -49,6 +50,18 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const favorite = useFavoriteDomain(owner);
   const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
   const progress = useUserProgress();
+
+  const [isCustomPicValid, setValidCustomPic] = useState(false);
+  const checkValidity = async () => {
+    try {
+      if (!picRecord.result) return;
+      await axios.get(picRecord.result);
+      setValidCustomPic(true);
+    } catch {}
+  };
+  useEffect(() => {
+    checkValidity();
+  }, [picRecord.result]);
 
   const isOwner = owner === publicKey?.toBase58();
 
@@ -176,6 +189,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           owner={owner!}
           domain={favorite.result?.reverse || domains?.result?.[0]?.domain!}
           picRecord={picRecord}
+          isPicValid={isCustomPicValid}
         >
           {showProgress && isOwner && (
             <View>
