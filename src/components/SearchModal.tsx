@@ -4,7 +4,6 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
-  TouchableWithoutFeedback,
   FlatList,
 } from "react-native";
 import tw from "../utils/tailwind";

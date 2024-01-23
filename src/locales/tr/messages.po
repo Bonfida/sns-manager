@@ -111,7 +111,7 @@ msgstr "Profil resmini değiştir"
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:269
+#: src/screens/Profile/index.tsx:283
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "Domains"
 msgstr "Domainler"
 
@@ -349,11 +349,11 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "My domains"
 msgstr "Domainlerim"
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "My sub domains"
 msgstr ""
 
@@ -373,8 +373,8 @@ msgstr "Sonraki"
 msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
-#: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:259
+#: src/components/SearchModal.tsx:74
+#: src/screens/Profile/index.tsx:273
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -430,7 +430,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:198
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -479,12 +479,12 @@ msgstr "Kaydet"
 msgid "Search domain"
 msgstr "Domain ara"
 
-#: src/components/SearchModal.tsx:51
+#: src/components/SearchModal.tsx:50
 msgid "Search domains"
 msgstr "Domainler ara"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:218
+#: src/screens/Profile/index.tsx:232
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
@@ -523,7 +523,7 @@ msgstr "Depo Hacmi"
 msgid "Storage:"
 msgstr "Depo"
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "Sub domains"
 msgstr ""
 

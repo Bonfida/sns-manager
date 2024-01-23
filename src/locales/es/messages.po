@@ -111,7 +111,7 @@ msgstr "Cambiar foto de perfil"
 msgid "Clear all"
 msgstr "Limpiar todo"
 
-#: src/screens/Profile/index.tsx:269
+#: src/screens/Profile/index.tsx:283
 msgid "Clear search"
 msgstr "Limpiar búsqueda"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "La tokenización de un nombre de dominio (envuelto) implica convertir un nombre de dominio en un NFT. Para revelar el nombre de dominio original, el token puede ser redimido (desenvuelto)."
 
 #: src/App.tsx:139
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "Domains"
 msgstr "Dominios"
 
@@ -349,11 +349,11 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Aprende más en nuestra documentación"
 
-#: src/screens/Profile/index.tsx:211
+#: src/screens/Profile/index.tsx:225
 msgid "My domains"
 msgstr "Mis dominios"
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "My sub domains"
 msgstr ""
 
@@ -373,8 +373,8 @@ msgstr "Siguiente"
 msgid "No changes to save"
 msgstr "No hay cambios que guardar"
 
-#: src/components/SearchModal.tsx:75
-#: src/screens/Profile/index.tsx:259
+#: src/components/SearchModal.tsx:74
+#: src/screens/Profile/index.tsx:273
 msgid "No domain found"
 msgstr "No se encontró ningún dominio"
 
@@ -430,7 +430,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/screens/Profile/index.tsx:184
+#: src/screens/Profile/index.tsx:198
 msgid "Profile completion: {percentage}%"
 msgstr "Finalización del perfil: {percentage}%"
 
@@ -479,12 +479,12 @@ msgstr "Guardar"
 msgid "Search domain"
 msgstr "Buscar dominio"
 
-#: src/components/SearchModal.tsx:51
+#: src/components/SearchModal.tsx:50
 msgid "Search domains"
 msgstr "Buscar dominios"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:218
+#: src/screens/Profile/index.tsx:232
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Buscar un dominio"
@@ -523,7 +523,7 @@ msgstr "Tamaño de Almacenamiento"
 msgid "Storage:"
 msgstr "Almacenamiento:"
 
-#: src/screens/Profile/index.tsx:281
+#: src/screens/Profile/index.tsx:295
 msgid "Sub domains"
 msgstr ""
 

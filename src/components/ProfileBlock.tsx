@@ -17,6 +17,7 @@ interface ProfileBlockProps {
   owner: string;
   domain: string;
   picRecord: ReturnType<typeof useProfilePic>;
+  isPicValid: boolean;
 }
 
 export const ProfileBlock = ({
@@ -24,6 +25,7 @@ export const ProfileBlock = ({
   domain,
   children,
   picRecord,
+  isPicValid,
 }: ProfileBlockProps) => {
   const { publicKey } = useWallet();
   const { setStatus } = useStatusModalContext();
@@ -52,10 +54,8 @@ export const ProfileBlock = ({
       >
         <Image
           source={
-            picRecord.result
-              ? {
-                  uri: picRecord.result,
-                }
+            isPicValid
+              ? { uri: picRecord.result }
               : require("@assets/default-pic.png")
           }
           style={tw`w-full h-full rounded-full`}
