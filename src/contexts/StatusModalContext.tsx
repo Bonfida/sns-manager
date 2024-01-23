@@ -65,7 +65,7 @@ const StatusModalProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
       {currentStatus && (
         <View
-          style={tw`absolute flex flex-row items-start gap-2 px-4 py-3 overflow-hidden rounded-lg shadow-lg  top-3 right-3 left-3 bg-background-secondary`}
+          style={tw`absolute flex flex-row items-start gap-2 px-4 py-3 overflow-hidden rounded-lg shadow-lg top-3 right-3 left-3 bg-background-secondary`}
           onLayout={(event) =>
             setContainerWidth(event.nativeEvent.layout.width)
           }
@@ -87,6 +87,7 @@ const StatusModalProvider = ({ children }: { children: React.ReactNode }) => {
               name="error"
               size={20}
               color={tw.color("content-error")}
+              style={tw`top-0.5`}
             />
           )}
           {currentStatus.status === "success" && (
@@ -94,14 +95,15 @@ const StatusModalProvider = ({ children }: { children: React.ReactNode }) => {
               name="checkmark-circle"
               size={20}
               color={tw.color("content-success")}
+              style={tw`top-0.5`}
             />
           )}
 
-          <Text style={tw`text-base font-medium text-content-primary`}>
+          <Text style={tw`pr-4 text-base font-medium text-content-primary`}>
             {currentStatus.message}
           </Text>
           <TouchableOpacity
-            style={tw`absolute top-1 right-0.5 w-5 h-5`}
+            style={tw`absolute w-5 h-5 top-1 right-3`}
             onPress={closeStatus}
           >
             <Ionicons
