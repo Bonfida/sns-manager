@@ -123,13 +123,13 @@ msgstr ""
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:210
+#: src/components/EditPicture.tsx:217
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr ""
 
-#: src/App.tsx:149
-#: src/App.tsx:165
+#: src/App.tsx:150
+#: src/App.tsx:166
 msgid "Cart"
 msgstr ""
 
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Change language"
 msgstr ""
 
-#: src/components/EditPicture.tsx:176
+#: src/components/EditPicture.tsx:181
 msgid "Change profile picture"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:283
+#: src/screens/Profile/index.tsx:286
 msgid "Clear search"
 msgstr ""
 
@@ -257,8 +257,8 @@ msgstr ""
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr ""
 
-#: src/App.tsx:139
-#: src/screens/Profile/index.tsx:225
+#: src/App.tsx:140
+#: src/screens/Profile/index.tsx:228
 msgid "Domains"
 msgstr ""
 
@@ -410,7 +410,7 @@ msgstr ""
 #~ msgid "Invalid IPFS record - Must start with ipfs://"
 #~ msgstr ""
 
-#: src/components/EditPicture.tsx:57
+#: src/components/EditPicture.tsx:61
 #: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr ""
@@ -428,11 +428,11 @@ msgstr ""
 msgid "Learn more in our docs"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:225
+#: src/screens/Profile/index.tsx:228
 msgid "My domains"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
 msgstr ""
 
@@ -444,7 +444,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr ""
 
-#: src/components/EditPicture.tsx:199
+#: src/components/EditPicture.tsx:206
 msgid "New picture URL"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgid "No changes to save"
 msgstr ""
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:273
+#: src/screens/Profile/index.tsx:276
 msgid "No domain found"
 msgstr ""
 
@@ -493,7 +493,7 @@ msgstr ""
 msgid "Payment"
 msgstr ""
 
-#: src/components/EditPicture.tsx:134
+#: src/components/EditPicture.tsx:138
 msgid "Permission to access photo album is required"
 msgstr ""
 
@@ -501,7 +501,7 @@ msgstr ""
 msgid "Pic"
 msgstr ""
 
-#: src/components/EditPicture.tsx:197
+#: src/components/EditPicture.tsx:204
 msgid "Picture URL"
 msgstr ""
 
@@ -517,7 +517,7 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:128
+#: src/App.tsx:129
 msgid "Profile"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgstr ""
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr ""
 
-#: src/screens/Profile/index.tsx:198
+#: src/screens/Profile/index.tsx:201
 msgid "Profile completion: {percentage}%"
 msgstr ""
 
@@ -564,7 +564,7 @@ msgstr ""
 msgid "Revert"
 msgstr ""
 
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:224
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr ""
@@ -584,7 +584,7 @@ msgid "Search domains"
 msgstr ""
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:235
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr ""
@@ -653,7 +653,7 @@ msgstr ""
 msgid "Storage:"
 msgstr ""
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
 msgstr ""
 
@@ -764,7 +764,7 @@ msgstr ""
 msgid "Unwrap your domain from NFT"
 msgstr ""
 
-#: src/components/EditPicture.tsx:191
+#: src/components/EditPicture.tsx:198
 msgid "Upload a picture..."
 msgstr ""
 

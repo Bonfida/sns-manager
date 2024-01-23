@@ -8,22 +8,22 @@ import {
 import { useEffect, useState, useMemo } from "react";
 import { useModal } from "react-native-modalfy";
 import { useIsFocused } from "@react-navigation/native";
-import { useProfilePic } from "@bonfida/sns-react";
+import { useRecordsV2 } from "@bonfida/sns-react";
 import { Trans, t } from "@lingui/macro";
 import { Octicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import axios from "axios";
 
 import tw from "@src/utils/tailwind";
 
-import { useDomains } from "@src/hooks/useDomains";
-import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
-import { useSolanaConnection } from "@src/hooks/xnft-hooks";
-import { useUserProgress } from "@src/hooks/useUserProgress";
-import { useWallet } from "@src/hooks/useWallet";
 import {
+  usePictureRecordValidation,
+  useDomains,
+  useFavoriteDomain,
+  useSolanaConnection,
+  useUserProgress,
+  useWallet,
   useSubdomainsFromUser,
   SubdomainResult,
-} from "@src/hooks/useSubdomains";
+} from "@src/hooks";
 
 import { Screen } from "@src/components/Screen";
 import { DomainRow } from "@src/components/DomainRow";
@@ -32,7 +32,7 @@ import { ProfileBlock } from "@src/components/ProfileBlock";
 
 import { LoadingState } from "./LoadingState";
 import { EmptyState } from "./EmptyState";
-import { getDomainKeySync } from "@bonfida/spl-name-service";
+import { Record, getDomainKeySync } from "@bonfida/spl-name-service";
 
 export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const connection = useSolanaConnection();
@@ -48,20 +48,23 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const isFocused = useIsFocused();
   const favorite = useFavoriteDomain(owner);
-  const picRecord = useProfilePic(connection!, favorite.result?.reverse || "");
-  const progress = useUserProgress();
+  const {
+    result: picRecordsList = [],
+    execute: refreshPic,
+    loading: picLoading,
+  } = useRecordsV2(connection!, favorite.result?.reverse!, [Record.Pic], true);
 
-  const [isCustomPicValid, setValidCustomPic] = useState(false);
-  const checkValidity = async () => {
-    try {
-      if (!picRecord.result) return;
-      await axios.get(picRecord.result);
-      setValidCustomPic(true);
-    } catch {}
-  };
-  useEffect(() => {
-    checkValidity();
-  }, [picRecord.result]);
+  const picRecord = useMemo(() => {
+    const picRecord = picRecordsList.find(
+      (r) => r?.record === Record.Pic,
+    )?.deserializedContent;
+
+    return picRecord;
+  }, [picRecordsList]);
+
+  const { isValid: isCurrentPicValid } = usePictureRecordValidation(picRecord);
+
+  const progress = useUserProgress();
 
   const isOwner = owner === publicKey?.toBase58();
 
@@ -76,16 +79,13 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     await Promise.allSettled([
       favorite.execute(),
       progress.execute(),
-      picRecord.execute(),
+      refreshPic(),
       subdomains.execute(),
     ]);
   };
 
   const loading =
-    domains.loading ||
-    picRecord.loading ||
-    progress.loading ||
-    subdomains.loading;
+    domains.loading || picLoading || progress.loading || subdomains.loading;
 
   useEffect(() => {
     refresh().then();
@@ -189,7 +189,10 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           owner={owner!}
           domain={favorite.result?.reverse || domains?.result?.[0]?.domain!}
           picRecord={picRecord}
-          isPicValid={isCustomPicValid}
+          isPicValid={isCurrentPicValid}
+          onNewPicUploaded={() => {
+            refreshPic();
+          }}
         >
           {showProgress && isOwner && (
             <View>

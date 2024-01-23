@@ -125,13 +125,13 @@ msgstr "{actionName}\"을(를) 클릭하면 지갑에서 승인 확인을 받게
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:210
+#: src/components/EditPicture.tsx:217
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:149
-#: src/App.tsx:165
+#: src/App.tsx:150
+#: src/App.tsx:166
 msgid "Cart"
 msgstr "장바구니"
 
@@ -139,7 +139,7 @@ msgstr "장바구니"
 msgid "Change language"
 msgstr "언어 변경"
 
-#: src/components/EditPicture.tsx:176
+#: src/components/EditPicture.tsx:181
 msgid "Change profile picture"
 msgstr "프로필 사진 변경"
 
@@ -151,7 +151,7 @@ msgstr "프로필 사진 변경"
 msgid "Clear all"
 msgstr "모두 지우기"
 
-#: src/screens/Profile/index.tsx:283
+#: src/screens/Profile/index.tsx:286
 msgid "Clear search"
 msgstr "검색 지우기"
 
@@ -259,8 +259,8 @@ msgstr "당신만의 도메인을 탐색하세요!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
 
-#: src/App.tsx:139
-#: src/screens/Profile/index.tsx:225
+#: src/App.tsx:140
+#: src/screens/Profile/index.tsx:228
 msgid "Domains"
 msgstr "도메인"
 
@@ -414,7 +414,7 @@ msgstr "유효하지 않은 {key} 주소"
 #~ msgid "Invalid IPFS record - Must start with ipfs://"
 #~ msgstr "유효하지 않은 IPFS 기록 - 반드시 ipfs://로 시작해야 합니다"
 
-#: src/components/EditPicture.tsx:57
+#: src/components/EditPicture.tsx:61
 #: src/screens/DomainView.tsx:291
 msgid "Invalid URL"
 msgstr "유효하지 않은 URL입니다"
@@ -432,11 +432,11 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "문서로 더 알아보세요"
 
-#: src/screens/Profile/index.tsx:225
+#: src/screens/Profile/index.tsx:228
 msgid "My domains"
 msgstr "나의 도메인"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
 msgstr ""
 
@@ -448,7 +448,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "새로운 {domain}.sol 소유자"
 
-#: src/components/EditPicture.tsx:199
+#: src/components/EditPicture.tsx:206
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
@@ -461,7 +461,7 @@ msgid "No changes to save"
 msgstr "저장할 변경 사항이 없습니다"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:273
+#: src/screens/Profile/index.tsx:276
 msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
@@ -501,7 +501,7 @@ msgstr "결제 방법"
 msgid "Payment"
 msgstr "결제"
 
-#: src/components/EditPicture.tsx:134
+#: src/components/EditPicture.tsx:138
 msgid "Permission to access photo album is required"
 msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 
@@ -509,7 +509,7 @@ msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 msgid "Pic"
 msgstr "사진"
 
-#: src/components/EditPicture.tsx:197
+#: src/components/EditPicture.tsx:204
 msgid "Picture URL"
 msgstr "사진 URL"
 
@@ -525,7 +525,7 @@ msgstr "포인트"
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:128
+#: src/App.tsx:129
 msgid "Profile"
 msgstr "프로필"
 
@@ -533,7 +533,7 @@ msgstr "프로필"
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr "프로필 완료율: {percentage}%"
 
-#: src/screens/Profile/index.tsx:198
+#: src/screens/Profile/index.tsx:201
 msgid "Profile completion: {percentage}%"
 msgstr "프로필 완성도: {percentage}%"
 
@@ -572,7 +572,7 @@ msgstr "등록 할인"
 msgid "Revert"
 msgstr "취소"
 
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:224
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "저장"
@@ -592,7 +592,7 @@ msgid "Search domains"
 msgstr "도메인 검색"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:235
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "도메인을 검색하기"
@@ -661,7 +661,7 @@ msgstr "저장 용량"
 msgid "Storage:"
 msgstr "저장 용량:"
 
-#: src/screens/Profile/index.tsx:295
+#: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
 msgstr ""
 
@@ -767,7 +767,7 @@ msgstr "NFT 언랩하기"
 msgid "Unwrap your domain from NFT"
 msgstr "NFT에서 도메인을 언랩하기"
 
-#: src/components/EditPicture.tsx:191
+#: src/components/EditPicture.tsx:198
 msgid "Upload a picture..."
 msgstr "사진 업로드..."
 
