@@ -89,7 +89,7 @@ msgstr "\"{actionName}\"ya tıklayınca cüzdan onayı vermeniz istenecektir. "
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:219
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "İptal"
@@ -103,7 +103,7 @@ msgstr "Araç"
 msgid "Change language"
 msgstr "Dili  değiştir"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:183
 msgid "Change profile picture"
 msgstr "Profil resmini değiştir"
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "{domain}.sol'un yeni sahibi"
 
-#: src/components/EditPicture.tsx:206
+#: src/components/EditPicture.tsx:208
 msgid "New picture URL"
 msgstr "Yeni resim URL'si"
 
@@ -410,7 +410,7 @@ msgstr "Fotoğraf albümüne erişim izni gereklidir"
 msgid "Pic"
 msgstr "Resim"
 
-#: src/components/EditPicture.tsx:204
+#: src/components/EditPicture.tsx:206
 msgid "Picture URL"
 msgstr "Resim URL'si"
 
@@ -469,7 +469,7 @@ msgstr "Kaydetme indirimi"
 msgid "Revert"
 msgstr "Eski haline getir"
 
-#: src/components/EditPicture.tsx:224
+#: src/components/EditPicture.tsx:226
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Kaydet"
@@ -612,7 +612,7 @@ msgstr "NFT'yi geri katla (unwrapping)"
 msgid "Unwrap your domain from NFT"
 msgstr "Domaini, NFT'den geri katla (unwrapping)"
 
-#: src/components/EditPicture.tsx:198
+#: src/components/EditPicture.tsx:200
 msgid "Upload a picture..."
 msgstr "Bir resim yükle..."
 

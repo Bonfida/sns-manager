@@ -89,7 +89,7 @@ msgstr "点击\"{actionName}\"，在您的钱包中完成确认"
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:219
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "取消"
@@ -103,7 +103,7 @@ msgstr "购物车"
 msgid "Change language"
 msgstr "更换语言"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:183
 msgid "Change profile picture"
 msgstr "更换个人头像"
 
@@ -363,7 +363,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "新的 {domain}.sol 所有者"
 
-#: src/components/EditPicture.tsx:206
+#: src/components/EditPicture.tsx:208
 msgid "New picture URL"
 msgstr "新的图片网址"
 
@@ -412,7 +412,7 @@ msgstr "请求获取相册权限"
 msgid "Pic"
 msgstr "图片"
 
-#: src/components/EditPicture.tsx:204
+#: src/components/EditPicture.tsx:206
 msgid "Picture URL"
 msgstr "图片网址"
 
@@ -471,7 +471,7 @@ msgstr "注册折扣"
 msgid "Revert"
 msgstr "返回"
 
-#: src/components/EditPicture.tsx:224
+#: src/components/EditPicture.tsx:226
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "保存"
@@ -614,7 +614,7 @@ msgstr "将NFT解除封装"
 msgid "Unwrap your domain from NFT"
 msgstr "将NFT解除封装为你的域名"
 
-#: src/components/EditPicture.tsx:198
+#: src/components/EditPicture.tsx:200
 msgid "Upload a picture..."
 msgstr "上传一张图片..."
 

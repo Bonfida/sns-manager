@@ -91,7 +91,7 @@ msgstr "En cliquant sur \"{actionName}\", votre portefeuille vous demandera une 
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:219
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "Annuler"
@@ -105,7 +105,7 @@ msgstr "Panier"
 msgid "Change language"
 msgstr "Changez la langue"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:183
 msgid "Change profile picture"
 msgstr "Changez votre photo de profil"
 
@@ -381,7 +381,7 @@ msgstr ""
 "\n"
 ""
 
-#: src/components/EditPicture.tsx:206
+#: src/components/EditPicture.tsx:208
 msgid "New picture URL"
 msgstr "Nouvelle photo de profil"
 
@@ -436,7 +436,7 @@ msgstr ""
 msgid "Pic"
 msgstr "Photo"
 
-#: src/components/EditPicture.tsx:204
+#: src/components/EditPicture.tsx:206
 msgid "Picture URL"
 msgstr "URL de la photo"
 
@@ -495,7 +495,7 @@ msgstr "Remise sur l'enregistrement"
 msgid "Revert"
 msgstr "Annuler"
 
-#: src/components/EditPicture.tsx:224
+#: src/components/EditPicture.tsx:226
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "Sauvegarder"
@@ -638,7 +638,7 @@ msgstr "Désenvelopper le NFT"
 msgid "Unwrap your domain from NFT"
 msgstr "Désenveloppez votre domaine du NFT"
 
-#: src/components/EditPicture.tsx:198
+#: src/components/EditPicture.tsx:200
 msgid "Upload a picture..."
 msgstr "Téléchargez une photo..."
 

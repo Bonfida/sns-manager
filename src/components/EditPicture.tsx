@@ -144,6 +144,7 @@ export const EditPicture = ({
         allowsEditing: true,
         aspect: [1, 1],
         quality: 0.5,
+        base64: true,
         exif: false,
       });
 
@@ -153,10 +154,11 @@ export const EditPicture = ({
         if (!asset) {
           throw new Error("Failed to get image asset");
         }
-        const filename = `${domain}-${+Date.now()}.jpg`;
+
         const image = asset.uri.startsWith("data:image")
           ? asset.uri
           : asset.base64 || undefined;
+
         if (!image) {
           throw new Error("Failed to get image");
         }

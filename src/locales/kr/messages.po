@@ -125,7 +125,7 @@ msgstr "{actionName}\"을(를) 클릭하면 지갑에서 승인 확인을 받게
 
 #: src/components/CreateSubdomainModal.tsx:92
 #: src/components/DeleteModal.tsx:92
-#: src/components/EditPicture.tsx:217
+#: src/components/EditPicture.tsx:219
 #: src/components/TransferModal.tsx:109
 msgid "Cancel"
 msgstr "취소"
@@ -139,7 +139,7 @@ msgstr "장바구니"
 msgid "Change language"
 msgstr "언어 변경"
 
-#: src/components/EditPicture.tsx:181
+#: src/components/EditPicture.tsx:183
 msgid "Change profile picture"
 msgstr "프로필 사진 변경"
 
@@ -448,7 +448,7 @@ msgstr ""
 msgid "New {domain}.sol owner"
 msgstr "새로운 {domain}.sol 소유자"
 
-#: src/components/EditPicture.tsx:206
+#: src/components/EditPicture.tsx:208
 msgid "New picture URL"
 msgstr "사진 업로드 URL"
 
@@ -509,7 +509,7 @@ msgstr "사진 앨범에 접근하기 위한 권한이 필요합니다"
 msgid "Pic"
 msgstr "사진"
 
-#: src/components/EditPicture.tsx:204
+#: src/components/EditPicture.tsx:206
 msgid "Picture URL"
 msgstr "사진 URL"
 
@@ -572,7 +572,7 @@ msgstr "등록 할인"
 msgid "Revert"
 msgstr "취소"
 
-#: src/components/EditPicture.tsx:224
+#: src/components/EditPicture.tsx:226
 #: src/screens/DomainView.tsx:689
 msgid "Save"
 msgstr "저장"
@@ -767,7 +767,7 @@ msgstr "NFT 언랩하기"
 msgid "Unwrap your domain from NFT"
 msgstr "NFT에서 도메인을 언랩하기"
 
-#: src/components/EditPicture.tsx:198
+#: src/components/EditPicture.tsx:200
 msgid "Upload a picture..."
 msgstr "사진 업로드..."
 
