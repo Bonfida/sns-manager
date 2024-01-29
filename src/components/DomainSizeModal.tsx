@@ -7,6 +7,7 @@ import { useStorageMap } from "@src/hooks/useStorageMap";
 import { WrapModal } from "./WrapModal";
 
 const LIST = [
+  { label: "0kb", value: 0 },
   { label: "1kb", value: 1_000 },
   { label: "2kb", value: 2_000 },
   { label: "3kb", value: 3_000 },
@@ -29,7 +30,7 @@ export const DomainSizeModal = ({
 
   useEffect(() => {
     if (!map.get(domain)) {
-      actions.set(domain, 1_000);
+      actions.set(domain, 0);
     }
   }, []);
 
