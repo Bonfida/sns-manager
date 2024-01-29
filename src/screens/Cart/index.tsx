@@ -71,7 +71,7 @@ const checkEnoughFunds = async (
   return balances > total;
 };
 
-const DEFAULT_SPACE = 1_000;
+const DEFAULT_SPACE = 0;
 
 type CurrentStep = 1 | 2 | 3;
 
