@@ -220,7 +220,7 @@ msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需�
 msgid "Domains"
 msgstr "域名"
 
-#: src/components/DomainSizeModal.tsx:63
+#: src/components/DomainSizeModal.tsx:64
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "每额外增加的1kb内存需花费约0.007 SOL（0.001 USDC）"
 
@@ -517,7 +517,7 @@ msgstr "跳过"
 msgid "Socials"
 msgstr "社交媒体"
 
-#: src/components/DomainSizeModal.tsx:46
+#: src/components/DomainSizeModal.tsx:47
 msgid "Storage Size"
 msgstr "存储容量"
 
@@ -553,7 +553,7 @@ msgstr "成功！"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/DomainSizeModal.tsx:51
+#: src/components/DomainSizeModal.tsx:52
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "存储容量将会决定域名可储存的最大数据量"
 

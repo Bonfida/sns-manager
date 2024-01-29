@@ -264,7 +264,7 @@ msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환�
 msgid "Domains"
 msgstr "도메인"
 
-#: src/components/DomainSizeModal.tsx:63
+#: src/components/DomainSizeModal.tsx:64
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "메모리 1kb 추가당 비용은 약 0.007 SOL (0.001 USDC)입니다"
 
@@ -653,7 +653,7 @@ msgstr "소셜"
 #~ msgid "Something went wrong - try again"
 #~ msgstr "문제가 발생했습니다 - 다시 시도하세요"
 
-#: src/components/DomainSizeModal.tsx:46
+#: src/components/DomainSizeModal.tsx:47
 msgid "Storage Size"
 msgstr "저장 용량"
 
@@ -693,7 +693,7 @@ msgstr "완료되었습니다!"
 msgid "Telegram"
 msgstr "텔레그램"
 
-#: src/components/DomainSizeModal.tsx:51
+#: src/components/DomainSizeModal.tsx:52
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "저장 용량은 도메인에 저장할 수 있는 데이터의 최대량입니다."
 

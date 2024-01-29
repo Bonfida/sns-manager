@@ -228,7 +228,7 @@ msgstr "La tokenisation (enveloppement) de noms de domaine consiste à convertir
 msgid "Domains"
 msgstr "Domaines"
 
-#: src/components/DomainSizeModal.tsx:63
+#: src/components/DomainSizeModal.tsx:64
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Chaque kb supplémentaire de mémoire coûte environ 0,007 SOL (0,001 USDC)."
 
@@ -541,7 +541,7 @@ msgstr "Passer"
 msgid "Socials"
 msgstr "Réseaux sociaux"
 
-#: src/components/DomainSizeModal.tsx:46
+#: src/components/DomainSizeModal.tsx:47
 msgid "Storage Size"
 msgstr "Taille de stockage"
 
@@ -577,7 +577,7 @@ msgstr "Succès !"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/DomainSizeModal.tsx:51
+#: src/components/DomainSizeModal.tsx:52
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "La taille de stockage déterminera la quantité maximale de données que vous pouvez stocker sur votre domaine."
 
