@@ -220,7 +220,7 @@ msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönü
 msgid "Domains"
 msgstr "Domainler"
 
-#: src/components/DomainSizeModal.tsx:63
+#: src/components/DomainSizeModal.tsx:64
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Her bir fazladan kb hafıza 0.007 SOL ya da 0.001 USDC masraf çıkartır."
 
@@ -515,7 +515,7 @@ msgstr "Atla"
 msgid "Socials"
 msgstr "Sosyal Medya Hesapları"
 
-#: src/components/DomainSizeModal.tsx:46
+#: src/components/DomainSizeModal.tsx:47
 msgid "Storage Size"
 msgstr "Depo Hacmi"
 
@@ -551,7 +551,7 @@ msgstr "Başarılı!"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: src/components/DomainSizeModal.tsx:51
+#: src/components/DomainSizeModal.tsx:52
 msgid "The storage size will determine the maximum amount of data you can store on your domain."
 msgstr "Depo kapasitesi, domaininide depolanabilecek azami veri miktarını belirler. "
 
