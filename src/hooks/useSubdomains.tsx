@@ -7,10 +7,10 @@ import {
   ROOT_DOMAIN_ACCOUNT,
   getHashedNameSync,
   REVERSE_LOOKUP_CLASS,
+  deserializeReverse,
 } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "./xnft-hooks";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
-import BN from "bn.js";
 
 export interface SubdomainResult {
   key: string;
@@ -33,15 +33,12 @@ export const useSubdomains = (domain: string) => {
   return useAsync(fn, [!!connection, domain]);
 };
 
-const deserializeReverse = (
+const deserializeReverseSub = (
   e: AccountInfo<Buffer> | null,
 ): string | undefined => {
   if (!e?.data) return undefined;
-  const nameLength = new BN(e.data.slice(96, 96 + 4), "le").toNumber();
-  return e.data
-    .slice(96 + 4, 96 + 4 + nameLength)
-    .toString()
-    .replace("\0", "");
+  const reverse = deserializeReverse(e.data.slice(96));
+  return reverse?.replace("\0", "");
 };
 
 export const useSubdomainsFromUser = (owner: string) => {
@@ -72,7 +69,7 @@ export const useSubdomainsFromUser = (owner: string) => {
           return key;
         }),
       )
-    ).map(deserializeReverse);
+    ).map(deserializeReverseSub);
 
     const parentsWithSubsRevKey = subsRev
       .map((e, idx) => {
@@ -91,7 +88,7 @@ export const useSubdomainsFromUser = (owner: string) => {
     const parentRev = (
       await connection.getMultipleAccountsInfo(parentsWithSubsRevKey)
     )
-      .map(deserializeReverse)
+      .map(deserializeReverseSub)
       .filter((e) => !!e) as string[];
 
     const result = subsRev
