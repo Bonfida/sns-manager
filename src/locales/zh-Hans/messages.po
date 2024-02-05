@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-01 20:16+1000\n"
-"PO-Revision-Date: 2023-08-09 14:44+0000\n"
+"PO-Revision-Date: 2024-02-05 12:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: Simplified Chinese\n"
 "Language: zh-Hans\n"
@@ -27,13 +27,9 @@ msgstr "{domain}.sol 成功设置为喜爱的域名"
 msgid "{domain}.sol successfully transfered!"
 msgstr "{domain}.sol 汇款成功"
 
-#: src/screens/SearchResult.tsx:59
-#~ msgid "{input}.sol is not a valid domain"
-#~ msgstr "{input}.sol 不是有效的域名"
-
 #: src/screens/SearchResult.tsx:64
 msgid "{inputFieldValue}.sol is not a valid domain"
-msgstr ""
+msgstr "{inputFieldValue}.sol 域名不可用"
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -117,11 +113,7 @@ msgstr "清除搜索记录"
 
 #: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar."
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:24
-#~ msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
-#~ msgstr "点击星星图标设置您最喜欢的域名。通过进度栏追踪个人主要资料完成进度。"
+msgstr "单击星形图标选择设置您最喜欢的域名资料。通过个人资料完成进度条追踪您最喜欢的域名资料的完成进度。"
 
 #: src/components/ProgressExplainerModal.tsx:104
 #: src/components/RecordV2Badge.tsx:28
@@ -150,10 +142,6 @@ msgstr "确认"
 #: src/screens/Cart/index.tsx:409
 msgid "Congrats on purchasing new domains!"
 msgstr "祝贺您成功购买新域名！"
-
-#: src/components/ProgressExplainerModal.tsx:48
-#~ msgid "Connect your backpack username to your on-chain identity."
-#~ msgstr "将backpack用户名与您的链上身份连接。"
 
 #: src/screens/Cart/index.tsx:315
 msgid "Continue"
@@ -357,7 +345,7 @@ msgstr "我的域名"
 
 #: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
-msgstr ""
+msgstr "我的子域名"
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -394,7 +382,7 @@ msgstr "订单摘要"
 
 #: src/components/RecordV2Badge.tsx:101
 msgid "Ownership is verified"
-msgstr ""
+msgstr "所有权已验证"
 
 #: src/screens/Cart/index.tsx:325
 msgid "Pay with"
@@ -426,7 +414,7 @@ msgstr "积分"
 
 #: src/screens/HomeScreen.tsx:138
 msgid "Privacy Policy"
-msgstr ""
+msgstr "隐私条款"
 
 #: src/App.tsx:129
 msgid "Profile"
@@ -442,22 +430,22 @@ msgstr "已购买"
 
 #: src/components/RecordV2Badge.tsx:72
 msgid "Record content ownership is not supported for this type of record"
-msgstr ""
+msgstr "该记录内容不支持当前种类解析记录格式"
 
 #: src/components/RecordV2Badge.tsx:87
 msgid "Record content ownership is not verified"
-msgstr ""
+msgstr "记录内容所有权尚未认证"
 
 #: src/components/RecordV2Badge.tsx:73
 #: src/components/RecordV2Badge.tsx:88
 #: src/components/RecordV2Badge.tsx:102
 msgid "Record Right of Association"
-msgstr ""
+msgstr "记录关联权"
 
 #: src/components/RecordV2Badge.tsx:41
 #: src/components/RecordV2Badge.tsx:54
 msgid "Record staleness"
-msgstr ""
+msgstr "记录失效"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -507,7 +495,7 @@ msgstr "SHDW"
 
 #: src/components/RecordV2Badge.tsx:53
 msgid "Signed by the domain owner"
-msgstr ""
+msgstr "域名持有人已签名"
 
 #: src/components/ProgressExplainerModal.tsx:98
 msgid "Skip"
@@ -527,7 +515,7 @@ msgstr "存储容量:"
 
 #: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
-msgstr ""
+msgstr "子域名"
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
@@ -571,7 +559,7 @@ msgstr "该域名已被封装为NFT"
 
 #: src/components/RecordV2Badge.tsx:40
 msgid "This record is not signed"
-msgstr ""
+msgstr "该记录尚未签名"
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"

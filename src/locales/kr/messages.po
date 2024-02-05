@@ -33,7 +33,7 @@ msgstr "{domain}.sol이 성공적으로 전송되었습니다!"
 
 #: src/screens/SearchResult.tsx:64
 msgid "{inputFieldValue}.sol is not a valid domain"
-msgstr ""
+msgstr "{inputFieldValue}.sol은(는) 유효한 도메인이 아닙니다"
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -157,7 +157,7 @@ msgstr "검색 지우기"
 
 #: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar."
-msgstr ""
+msgstr "별 아이콘을 클릭하여 좋아하는 프로필을 선택하세요. 프로필 완료 진행률을 프로필 완성도 바를 통해 확인하세요."
 
 #: src/components/ProgressExplainerModal.tsx:24
 #~ msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
@@ -438,7 +438,7 @@ msgstr "나의 도메인"
 
 #: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
-msgstr ""
+msgstr "나의 서브도메인"
 
 #: src/screens/Profile.tsx:248
 #~ msgid "My subdomains"
@@ -468,13 +468,13 @@ msgstr "도메인을 찾을 수 없습니다"
 #: src/screens/Profile.tsx:266
 #~ msgid "No subdomain found"
 #~ msgstr ""
-#~ "\n"
+#~ "서브도메인을 찾을 수 없습니다\n"
 #~ "서브도메인을 찾을 수 없습니다"
 
 #: src/screens/DomainView.tsx:210
 #~ msgid "No subdomains found"
 #~ msgstr ""
-#~ "\n"
+#~ "도메인을 찾을 수 없습니다\n"
 #~ "서브도메인을 찾을 수 없습니다"
 
 #: src/screens/DomainView.tsx:638
@@ -491,7 +491,7 @@ msgstr "주문 내역"
 
 #: src/components/RecordV2Badge.tsx:101
 msgid "Ownership is verified"
-msgstr ""
+msgstr "소유권이 확인되지 않았습니다"
 
 #: src/screens/Cart/index.tsx:325
 msgid "Pay with"
@@ -523,7 +523,7 @@ msgstr "포인트"
 
 #: src/screens/HomeScreen.tsx:138
 msgid "Privacy Policy"
-msgstr ""
+msgstr "개인정보 보호정책"
 
 #: src/App.tsx:129
 msgid "Profile"
@@ -543,22 +543,22 @@ msgstr "구매 완료"
 
 #: src/components/RecordV2Badge.tsx:72
 msgid "Record content ownership is not supported for this type of record"
-msgstr ""
+msgstr "이런 종류의 레코드는 레코드 컨텐츠 소유권이 지원되지 않습니다."
 
 #: src/components/RecordV2Badge.tsx:87
 msgid "Record content ownership is not verified"
-msgstr ""
+msgstr "이 유형의 레코드에는 레코드 콘텐츠 소유권이 지원되지 않습니다."
 
 #: src/components/RecordV2Badge.tsx:73
 #: src/components/RecordV2Badge.tsx:88
 #: src/components/RecordV2Badge.tsx:102
 msgid "Record Right of Association"
-msgstr ""
+msgstr "레코드 결사의 자유"
 
 #: src/components/RecordV2Badge.tsx:41
 #: src/components/RecordV2Badge.tsx:54
 msgid "Record staleness"
-msgstr ""
+msgstr "레코드 부실"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -626,7 +626,7 @@ msgstr "섀도우 드라이브"
 
 #: src/components/RecordV2Badge.tsx:53
 msgid "Signed by the domain owner"
-msgstr ""
+msgstr "도메인 소유주가 로그인했습니다"
 
 #: src/components/ProgressExplainerModal.tsx:98
 msgid "Skip"
@@ -663,7 +663,7 @@ msgstr "저장 용량:"
 
 #: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
-msgstr ""
+msgstr "서브도메인"
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
@@ -715,7 +715,7 @@ msgstr "이 도메인은 NFT로 래핑되어 있습니다."
 
 #: src/components/RecordV2Badge.tsx:40
 msgid "This record is not signed"
-msgstr ""
+msgstr "이 레코드는 서명되지 않았습니다."
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"

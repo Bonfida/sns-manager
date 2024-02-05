@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-14 17:06+1000\n"
-"PO-Revision-Date: 2023-08-04 13:09+0000\n"
+"PO-Revision-Date: 2024-02-05 13:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -27,13 +27,9 @@ msgstr "Domaine favori défini avec succès."
 msgid "{domain}.sol successfully transfered!"
 msgstr "Transfert réussi !"
 
-#: src/screens/SearchResult.tsx:59
-#~ msgid "{input}.sol is not a valid domain"
-#~ msgstr "{input}.sol n'est pas un domaine valide."
-
 #: src/screens/SearchResult.tsx:64
 msgid "{inputFieldValue}.sol is not a valid domain"
-msgstr ""
+msgstr "{inputFieldValue}.sol n'est pas un domaine valide"
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -119,11 +115,7 @@ msgstr "Effacez la recherche"
 
 #: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar."
-msgstr ""
-
-#: src/components/ProgressExplainerModal.tsx:24
-#~ msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
-#~ msgstr "Cliquez sur l'icône en forme d'étoile pour sélectionner votre profil préféré. Suivez la progression de complétion de votre profil principal grâce à la barre de complétion du profil."
+msgstr "Cliquez sur l'icône en forme d'étoile pour sélectionner votre profil préféré. Suivez la progression de l'achèvement de votre profil favori grâce à la barre d'achèvement du profil."
 
 #: src/components/ProgressExplainerModal.tsx:104
 #: src/components/RecordV2Badge.tsx:28
@@ -158,10 +150,6 @@ msgstr "Confirmation"
 #: src/screens/Cart/index.tsx:409
 msgid "Congrats on purchasing new domains!"
 msgstr "Félicitations pour l'achat de nouveaux domaines !"
-
-#: src/components/ProgressExplainerModal.tsx:48
-#~ msgid "Connect your backpack username to your on-chain identity."
-#~ msgstr "Connectez votre nom d'utilisateur Backpack à votre identité on-chain."
 
 #: src/screens/Cart/index.tsx:315
 msgid "Continue"
@@ -370,7 +358,7 @@ msgstr "Mes domaines"
 
 #: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
-msgstr ""
+msgstr "Mes sous-domaines"
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -412,7 +400,7 @@ msgstr "Résumé de la commande"
 
 #: src/components/RecordV2Badge.tsx:101
 msgid "Ownership is verified"
-msgstr ""
+msgstr "La propriété est vérifiée"
 
 #: src/screens/Cart/index.tsx:325
 msgid "Pay with"
@@ -450,7 +438,7 @@ msgstr "POINT"
 
 #: src/screens/HomeScreen.tsx:138
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politique de confidentialité"
 
 #: src/App.tsx:129
 msgid "Profile"
@@ -466,22 +454,22 @@ msgstr "Acheté"
 
 #: src/components/RecordV2Badge.tsx:72
 msgid "Record content ownership is not supported for this type of record"
-msgstr ""
+msgstr "La propriété du contenu n'est pas prise en charge pour ce type de record"
 
 #: src/components/RecordV2Badge.tsx:87
 msgid "Record content ownership is not verified"
-msgstr ""
+msgstr "La propriété du contenu n'est pas vérifiée"
 
 #: src/components/RecordV2Badge.tsx:73
 #: src/components/RecordV2Badge.tsx:88
 #: src/components/RecordV2Badge.tsx:102
 msgid "Record Right of Association"
-msgstr ""
+msgstr "Droit d'association"
 
 #: src/components/RecordV2Badge.tsx:41
 #: src/components/RecordV2Badge.tsx:54
 msgid "Record staleness"
-msgstr ""
+msgstr "Validité"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -531,7 +519,7 @@ msgstr "SHDW"
 
 #: src/components/RecordV2Badge.tsx:53
 msgid "Signed by the domain owner"
-msgstr ""
+msgstr "Signé par le propriétaire du domaine"
 
 #: src/components/ProgressExplainerModal.tsx:98
 msgid "Skip"
@@ -551,7 +539,7 @@ msgstr "Stockage:"
 
 #: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
-msgstr ""
+msgstr "Sous-domaines"
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
@@ -595,7 +583,7 @@ msgstr "Ce domaine est enveloppé dans un NFT"
 
 #: src/components/RecordV2Badge.tsx:40
 msgid "This record is not signed"
-msgstr ""
+msgstr "Cet record n'est pas signé"
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"

@@ -25,7 +25,7 @@ msgstr "{domain}.sol establecido como nombre de dominio favorito exitosamente"
 
 #: src/components/TransferModal.tsx:67
 msgid "{domain}.sol successfully transfered!"
-msgstr "{dominio}.sol ¡transferido con éxito! ?"
+msgstr "{dominio}.sol ¡transferido con éxito!"
 
 #: src/screens/SearchResult.tsx:59
 #~ msgid "{input}.sol is not a valid domain"
@@ -33,7 +33,7 @@ msgstr "{dominio}.sol ¡transferido con éxito! ?"
 
 #: src/screens/SearchResult.tsx:64
 msgid "{inputFieldValue}.sol is not a valid domain"
-msgstr ""
+msgstr "{inputFieldValue}.sol no es un dominio válido"
 
 #: src/screens/HomeScreen.tsx:54
 msgid "{search}.sol is not a valid domain"
@@ -117,7 +117,7 @@ msgstr "Limpiar búsqueda"
 
 #: src/components/ProgressExplainerModal.tsx:24
 msgid "Click the star icon to select your favorite profile. Keep track of your favorite profile's completion progress with the profile completion bar."
-msgstr ""
+msgstr "Haz clic en el ícono de estrella para seleccionar tu perfil favorito. Dale seguimiento al progreso de finalización de tu perfil favorito con la barra de progreso de perfil."
 
 #: src/components/ProgressExplainerModal.tsx:24
 #~ msgid "Click the star icon to select your favorite profile. Keep track of your main profile's completion progress with the profile completion bar."
@@ -355,7 +355,7 @@ msgstr "Mis dominios"
 
 #: src/screens/Profile/index.tsx:298
 msgid "My sub domains"
-msgstr ""
+msgstr "Mis subdominios"
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -392,7 +392,7 @@ msgstr "Resumen del pedido"
 
 #: src/components/RecordV2Badge.tsx:101
 msgid "Ownership is verified"
-msgstr ""
+msgstr "La propiedad está verificada"
 
 #: src/screens/Cart/index.tsx:325
 msgid "Pay with"
@@ -424,7 +424,7 @@ msgstr "PUNTO"
 
 #: src/screens/HomeScreen.tsx:138
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Política de privacidad"
 
 #: src/App.tsx:129
 msgid "Profile"
@@ -440,22 +440,22 @@ msgstr "Comprado"
 
 #: src/components/RecordV2Badge.tsx:72
 msgid "Record content ownership is not supported for this type of record"
-msgstr ""
+msgstr "La propiedad del contenido del registro no es compatible con este tipo de registro"
 
 #: src/components/RecordV2Badge.tsx:87
 msgid "Record content ownership is not verified"
-msgstr ""
+msgstr "La propiedad del contenido del registro no está verificada"
 
 #: src/components/RecordV2Badge.tsx:73
 #: src/components/RecordV2Badge.tsx:88
 #: src/components/RecordV2Badge.tsx:102
 msgid "Record Right of Association"
-msgstr ""
+msgstr "Registro del derecho de asociación"
 
 #: src/components/RecordV2Badge.tsx:41
 #: src/components/RecordV2Badge.tsx:54
 msgid "Record staleness"
-msgstr ""
+msgstr "Estancamiento del registro"
 
 #: src/utils/record/place-holder.tsx:59
 msgid "Reddit"
@@ -505,7 +505,7 @@ msgstr "SHDW"
 
 #: src/components/RecordV2Badge.tsx:53
 msgid "Signed by the domain owner"
-msgstr ""
+msgstr "Firmado por el dueño del dominio"
 
 #: src/components/ProgressExplainerModal.tsx:98
 msgid "Skip"
@@ -525,7 +525,7 @@ msgstr "Almacenamiento:"
 
 #: src/screens/Profile/index.tsx:298
 msgid "Sub domains"
-msgstr ""
+msgstr "Subdominios"
 
 #: src/components/DeleteModal.tsx:56
 msgid "subdomain {domain}.sol successfully deleted!"
@@ -569,7 +569,7 @@ msgstr "Este dominio está envuelto en un NFT"
 
 #: src/components/RecordV2Badge.tsx:40
 msgid "This record is not signed"
-msgstr ""
+msgstr "Este registro no está firmado"
 
 #: src/components/OrderSummary.tsx:55
 msgid "Total"
