@@ -8,7 +8,6 @@ export const useDomainInfo = (domain: string) => {
   const connection = useSolanaConnection();
 
   const queryFn = async () => {
-    console.log("useDomainInfo called");
     if (!connection) return;
     const { pubkey } = getDomainKeySync(domain);
     const { registry, nftOwner } = await NameRegistryState.retrieve(
@@ -27,7 +26,6 @@ export const useDomainInfo = (domain: string) => {
   return useQuery({
     queryKey: [QueryKeys.domainInfo, domain],
     queryFn,
-
     staleTime: 1000 * 30,
   });
 };

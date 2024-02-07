@@ -57,5 +57,6 @@ export const usePyth = () => {
   return useQuery({
     queryKey: [],
     queryFn,
+    staleTime: 1000 * 5,
   });
 };
