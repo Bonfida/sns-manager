@@ -182,7 +182,7 @@ export const Cart = () => {
             QueryKeys.domainInfo,
             QueryKeys.subdomains,
             QueryKeys.subdomainsFromUser,
-          ].includes(query.queryKey[0]),
+          ].includes(query?.queryKey?.[0]),
         refetchType: "all",
       });
     } catch (err) {
