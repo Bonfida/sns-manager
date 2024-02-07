@@ -130,8 +130,8 @@ msgstr "{actionName}\"을(를) 클릭하면 지갑에서 승인 확인을 받게
 msgid "Cancel"
 msgstr "취소"
 
-#: src/App.tsx:150
-#: src/App.tsx:166
+#: src/App.tsx:152
+#: src/App.tsx:168
 msgid "Cart"
 msgstr "장바구니"
 
@@ -147,11 +147,11 @@ msgstr "프로필 사진 변경"
 #~ msgid "Choose a picture"
 #~ msgstr "사진을 선택하세요"
 
-#: src/screens/Cart/index.tsx:227
+#: src/screens/Cart/index.tsx:239
 msgid "Clear all"
 msgstr "모두 지우기"
 
-#: src/screens/Profile/index.tsx:286
+#: src/screens/Profile/index.tsx:290
 msgid "Clear search"
 msgstr "검색 지우기"
 
@@ -179,15 +179,15 @@ msgstr "직접 수집 및 교환하거나 NFT로 교환하세요!"
 msgid "Confirm"
 msgstr "확인"
 
-#: src/screens/Cart/index.tsx:381
+#: src/screens/Cart/index.tsx:393
 msgid "Confirm and pay"
 msgstr "확인하고 결제하기"
 
-#: src/screens/Cart/index.tsx:447
+#: src/screens/Cart/index.tsx:459
 msgid "Confirmation"
 msgstr "확인"
 
-#: src/screens/Cart/index.tsx:409
+#: src/screens/Cart/index.tsx:421
 msgid "Congrats on purchasing new domains!"
 msgstr "새 도메인 구매를 축하합니다!"
 
@@ -199,12 +199,12 @@ msgstr "새 도메인 구매를 축하합니다!"
 #~ msgid "Connect your backpack username to your on-chain identity."
 #~ msgstr "백팩 (Backpack) 사용자 이름을 온체인 신원과 연결하세요."
 
-#: src/screens/Cart/index.tsx:315
+#: src/screens/Cart/index.tsx:327
 msgid "Continue"
 msgstr "계속하기"
 
-#: src/components/ProfileBlock.tsx:84
-#: src/components/ProfileBlock.tsx:96
+#: src/components/ProfileBlock.tsx:83
+#: src/components/ProfileBlock.tsx:95
 #: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "복사 완료!"
@@ -247,7 +247,7 @@ msgstr "디스코드"
 msgid "Discount"
 msgstr "할인"
 
-#: src/screens/Cart/index.tsx:312
+#: src/screens/Cart/index.tsx:324
 msgid "Discounts may be applied in the next step"
 msgstr "다음 단계에서 할인이 적용될 수 있습니다."
 
@@ -259,8 +259,8 @@ msgstr "당신만의 도메인을 탐색하세요!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
 
-#: src/App.tsx:140
-#: src/screens/Profile/index.tsx:228
+#: src/App.tsx:142
+#: src/screens/Profile/index.tsx:232
 msgid "Domains"
 msgstr "도메인"
 
@@ -268,7 +268,7 @@ msgstr "도메인"
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "메모리 1kb 추가당 비용은 약 0.007 SOL (0.001 USDC)입니다"
 
-#: src/screens/Cart/index.tsx:267
+#: src/screens/Cart/index.tsx:279
 #: src/screens/DomainView.tsx:571
 #: src/screens/DomainView.tsx:691
 msgid "Edit"
@@ -362,7 +362,7 @@ msgstr ""
 ".sol 도메인을 구매하고\n"
 "프로필 작성을 시작하세요."
 
-#: src/screens/Cart/index.tsx:422
+#: src/screens/Cart/index.tsx:434
 msgid "Get started with my profiles"
 msgstr "내 프로필 작성 시작하기"
 
@@ -432,17 +432,17 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "문서로 더 알아보세요"
 
-#: src/screens/Profile/index.tsx:228
+#: src/screens/Profile/index.tsx:232
 msgid "My domains"
 msgstr "나의 도메인"
 
 #: src/screens/Profile/index.tsx:298
-msgid "My sub domains"
-msgstr "나의 서브도메인"
-
-#: src/screens/Profile.tsx:248
-#~ msgid "My subdomains"
+#~ msgid "My sub domains"
 #~ msgstr "나의 서브도메인"
+
+#: src/screens/Profile/index.tsx:302
+msgid "My subdomains"
+msgstr "나의 서브도메인"
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -461,7 +461,7 @@ msgid "No changes to save"
 msgstr "저장할 변경 사항이 없습니다"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:276
+#: src/screens/Profile/index.tsx:280
 msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
@@ -493,11 +493,11 @@ msgstr "주문 내역"
 msgid "Ownership is verified"
 msgstr "소유권이 확인되지 않았습니다"
 
-#: src/screens/Cart/index.tsx:325
+#: src/screens/Cart/index.tsx:337
 msgid "Pay with"
 msgstr "결제 방법"
 
-#: src/screens/Cart/index.tsx:446
+#: src/screens/Cart/index.tsx:458
 msgid "Payment"
 msgstr "결제"
 
@@ -525,7 +525,7 @@ msgstr "포인트"
 msgid "Privacy Policy"
 msgstr "개인정보 보호정책"
 
-#: src/App.tsx:129
+#: src/App.tsx:131
 msgid "Profile"
 msgstr "프로필"
 
@@ -533,7 +533,7 @@ msgstr "프로필"
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr "프로필 완료율: {percentage}%"
 
-#: src/screens/Profile/index.tsx:201
+#: src/screens/Profile/index.tsx:205
 msgid "Profile completion: {percentage}%"
 msgstr "프로필 완성도: {percentage}%"
 
@@ -592,7 +592,7 @@ msgid "Search domains"
 msgstr "도메인 검색"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:235
+#: src/screens/Profile/index.tsx:239
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "도메인을 검색하기"
@@ -657,11 +657,11 @@ msgstr "소셜"
 msgid "Storage Size"
 msgstr "저장 용량"
 
-#: src/screens/Cart/index.tsx:251
+#: src/screens/Cart/index.tsx:263
 msgid "Storage:"
 msgstr "저장 용량:"
 
-#: src/screens/Profile/index.tsx:298
+#: src/screens/Profile/index.tsx:302
 msgid "Sub domains"
 msgstr "서브도메인"
 
@@ -812,7 +812,7 @@ msgstr "NFT로 랩하기"
 msgid "Wrap your domain into an NFT"
 msgstr "당신의 도메인을 NFT로 랩하기"
 
-#: src/screens/Cart/index.tsx:414
+#: src/screens/Cart/index.tsx:426
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "도메인에 연동된 프로필을 작성을 하므로서 도메인의 모든 혜택을 누리세요."
 
@@ -820,7 +820,7 @@ msgstr "도메인에 연동된 프로필을 작성을 하므로서 도메인의 
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "도메인이 언랩된 경우에만 서브도메인을 추가할 수 있습니다."
 
-#: src/screens/Cart/index.tsx:122
+#: src/screens/Cart/index.tsx:123
 msgid "You do not have enough funds"
 msgstr "자금이 부족합니다."
 
@@ -832,7 +832,7 @@ msgstr "아직 보유하고 있는 서브도메인이 없습니다. 다양한 �
 #~ msgid "Your <0>Name</0>. Your <1>Power</1>."
 #~ msgstr "당신의 <0>이름</0>. 당신의 <1>선택</1>."
 
-#: src/screens/Cart/index.tsx:445
+#: src/screens/Cart/index.tsx:457
 msgid "Your domains"
 msgstr "당신의 도메인"
 

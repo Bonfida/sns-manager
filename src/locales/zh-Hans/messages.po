@@ -90,8 +90,8 @@ msgstr "点击\"{actionName}\"，在您的钱包中完成确认"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/App.tsx:150
-#: src/App.tsx:166
+#: src/App.tsx:152
+#: src/App.tsx:168
 msgid "Cart"
 msgstr "购物车"
 
@@ -103,11 +103,11 @@ msgstr "更换语言"
 msgid "Change profile picture"
 msgstr "更换个人头像"
 
-#: src/screens/Cart/index.tsx:227
+#: src/screens/Cart/index.tsx:239
 msgid "Clear all"
 msgstr "清除所有"
 
-#: src/screens/Profile/index.tsx:286
+#: src/screens/Profile/index.tsx:290
 msgid "Clear search"
 msgstr "清除搜索记录"
 
@@ -131,24 +131,24 @@ msgstr "直接收藏、交易或封装成 NFT！"
 msgid "Confirm"
 msgstr "确认"
 
-#: src/screens/Cart/index.tsx:381
+#: src/screens/Cart/index.tsx:393
 msgid "Confirm and pay"
 msgstr "确认并支付"
 
-#: src/screens/Cart/index.tsx:447
+#: src/screens/Cart/index.tsx:459
 msgid "Confirmation"
 msgstr "确认"
 
-#: src/screens/Cart/index.tsx:409
+#: src/screens/Cart/index.tsx:421
 msgid "Congrats on purchasing new domains!"
 msgstr "祝贺您成功购买新域名！"
 
-#: src/screens/Cart/index.tsx:315
+#: src/screens/Cart/index.tsx:327
 msgid "Continue"
 msgstr "继续"
 
-#: src/components/ProfileBlock.tsx:84
-#: src/components/ProfileBlock.tsx:96
+#: src/components/ProfileBlock.tsx:83
+#: src/components/ProfileBlock.tsx:95
 #: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "已复制!"
@@ -191,7 +191,7 @@ msgstr "Discord"
 msgid "Discount"
 msgstr "折扣"
 
-#: src/screens/Cart/index.tsx:312
+#: src/screens/Cart/index.tsx:324
 msgid "Discounts may be applied in the next step"
 msgstr "您可在下一步使用折扣"
 
@@ -203,8 +203,8 @@ msgstr "发现能代表你的域名！"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "域名通证化（封装）是指将域名转换为 NFT，如果您需要将其恢复为原始域名，可通过转换（解开封装）该通证完成操作。"
 
-#: src/App.tsx:140
-#: src/screens/Profile/index.tsx:228
+#: src/App.tsx:142
+#: src/screens/Profile/index.tsx:232
 msgid "Domains"
 msgstr "域名"
 
@@ -212,7 +212,7 @@ msgstr "域名"
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "每额外增加的1kb内存需花费约0.007 SOL（0.001 USDC）"
 
-#: src/screens/Cart/index.tsx:267
+#: src/screens/Cart/index.tsx:279
 #: src/screens/DomainView.tsx:571
 #: src/screens/DomainView.tsx:691
 msgid "Edit"
@@ -294,7 +294,7 @@ msgstr ""
 "获取 .sol 域名并 \n"
 " 开始构建您的个人资料"
 
-#: src/screens/Cart/index.tsx:422
+#: src/screens/Cart/index.tsx:434
 msgid "Get started with my profiles"
 msgstr "从个人资料开始"
 
@@ -339,13 +339,17 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "在docs中学习更多内容"
 
-#: src/screens/Profile/index.tsx:228
+#: src/screens/Profile/index.tsx:232
 msgid "My domains"
 msgstr "我的域名"
 
 #: src/screens/Profile/index.tsx:298
-msgid "My sub domains"
-msgstr "我的子域名"
+#~ msgid "My sub domains"
+#~ msgstr "我的子域名"
+
+#: src/screens/Profile/index.tsx:302
+msgid "My subdomains"
+msgstr ""
 
 #: src/components/TransferModal.tsx:80
 msgid "New {domain}.sol owner"
@@ -364,7 +368,7 @@ msgid "No changes to save"
 msgstr "无需保存更改"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:276
+#: src/screens/Profile/index.tsx:280
 msgid "No domain found"
 msgstr "未找到域名"
 
@@ -384,11 +388,11 @@ msgstr "订单摘要"
 msgid "Ownership is verified"
 msgstr "所有权已验证"
 
-#: src/screens/Cart/index.tsx:325
+#: src/screens/Cart/index.tsx:337
 msgid "Pay with"
 msgstr "支付方式"
 
-#: src/screens/Cart/index.tsx:446
+#: src/screens/Cart/index.tsx:458
 msgid "Payment"
 msgstr "支付方式"
 
@@ -416,11 +420,11 @@ msgstr "积分"
 msgid "Privacy Policy"
 msgstr "隐私条款"
 
-#: src/App.tsx:129
+#: src/App.tsx:131
 msgid "Profile"
 msgstr "个人账户"
 
-#: src/screens/Profile/index.tsx:201
+#: src/screens/Profile/index.tsx:205
 msgid "Profile completion: {percentage}%"
 msgstr "个人资料完成度: {percentage}%"
 
@@ -474,7 +478,7 @@ msgid "Search domains"
 msgstr "搜索域名"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:235
+#: src/screens/Profile/index.tsx:239
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "搜索域名"
@@ -509,11 +513,11 @@ msgstr "社交媒体"
 msgid "Storage Size"
 msgstr "存储容量"
 
-#: src/screens/Cart/index.tsx:251
+#: src/screens/Cart/index.tsx:263
 msgid "Storage:"
 msgstr "存储容量:"
 
-#: src/screens/Profile/index.tsx:298
+#: src/screens/Profile/index.tsx:302
 msgid "Sub domains"
 msgstr "子域名"
 
@@ -635,7 +639,7 @@ msgstr "封装为NFT"
 msgid "Wrap your domain into an NFT"
 msgstr "将你的域名封装成NFT"
 
-#: src/screens/Cart/index.tsx:414
+#: src/screens/Cart/index.tsx:426
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名相关个人资料开始使用。"
 
@@ -643,7 +647,7 @@ msgstr "现在开始您可以尽情享受拥有域名的益处。从填写域名
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "只有在域名解开封装后才能添加子域名。"
 
-#: src/screens/Cart/index.tsx:122
+#: src/screens/Cart/index.tsx:123
 msgid "You do not have enough funds"
 msgstr "您的资金不足"
 
@@ -651,7 +655,7 @@ msgstr "您的资金不足"
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "您还没有任何子域名。您可以创建任意数量的子域名，以便将您的个人资料用于不同的用途。"
 
-#: src/screens/Cart/index.tsx:445
+#: src/screens/Cart/index.tsx:457
 msgid "Your domains"
 msgstr "你的域名"
 
