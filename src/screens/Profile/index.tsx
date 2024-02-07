@@ -188,7 +188,11 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       <ScrollView showsHorizontalScrollIndicator={false}>
         <ProfileBlock
           owner={owner!}
-          domain={favorite.result?.reverse || domains?.result?.[0]?.domain!}
+          domain={
+            favorite.result?.reverse ||
+            domains?.result?.[0]?.domain! ||
+            subdomains?.result?.[0]?.subdomain!
+          }
           picRecord={picRecord}
           isPicValid={isCurrentPicValid}
           onNewPicUploaded={() => {
