@@ -98,7 +98,7 @@ export const Cart = () => {
     0,
   );
 
-  const price = pyth.result?.get(mint)?.price;
+  const price = pyth.data?.get(mint)?.price;
 
   const total = totalUsd / (price || 1);
 

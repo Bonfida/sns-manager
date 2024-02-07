@@ -3,7 +3,7 @@ import { PublicKey } from "@solana/web3.js";
 import { Connection } from "@solana/web3.js";
 import { tokenList } from "../utils/tokens/popular-tokens";
 import { useSolanaConnection } from "./xnft-hooks";
-import { useAsync } from "react-async-hook";
+import { useQuery } from "@tanstack/react-query";
 
 export interface Pyth {
   price: number;
@@ -39,7 +39,8 @@ const getPrice = async (connection: Connection, feed: PublicKey) => {
 
 export const usePyth = () => {
   const connection = useSolanaConnection();
-  const fn = async () => {
+
+  const queryFn = async () => {
     if (!connection) return;
     const results = new Map<string, Pyth>();
     for (let x of FEEDS.keys()) {
@@ -52,5 +53,9 @@ export const usePyth = () => {
 
     return results;
   };
-  return useAsync(fn, [!!connection]);
+
+  return useQuery({
+    queryKey: [],
+    queryFn,
+  });
 };

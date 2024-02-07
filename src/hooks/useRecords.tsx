@@ -3,7 +3,6 @@ import {
   ETH_ROA_RECORDS,
   GUARDIANS,
   Record,
-  RecordResult,
   SELF_SIGNED,
 } from "@bonfida/spl-name-service";
 import { useRecordsV2 } from "@bonfida/sns-react";
@@ -76,7 +75,7 @@ export const useRecords = (domain: string | undefined, records: Record[]) => {
 
   const execute: ExecuteFunction<void> = useCallback(async () => {
     try {
-      await domainInfo.execute();
+      await domainInfo.refetch();
       await res.execute();
     } catch (error) {
       console.error(error);
@@ -90,11 +89,11 @@ export const useRecords = (domain: string | undefined, records: Record[]) => {
   });
 
   useEffect(() => {
-    if (!res || !res.result || !domainInfo || !domainInfo.result) {
+    if (!res || !res.result || !domainInfo || !domainInfo.data) {
       return setData({
         execute,
         result: [],
-        loading: res.loading || domainInfo.loading,
+        loading: res.loading || domainInfo.isLoading,
       });
     }
 
@@ -108,7 +107,7 @@ export const useRecords = (domain: string | undefined, records: Record[]) => {
       const header = r?.retrievedRecord.header;
       const stalenessId = r?.retrievedRecord.getStalenessId();
       const roaId = r?.retrievedRecord.getRoAId();
-      const owner = new PublicKey(domainInfo.result.owner);
+      const owner = new PublicKey(domainInfo.data.owner);
 
       // Check staleness
       if (
@@ -144,16 +143,16 @@ export const useRecords = (domain: string | undefined, records: Record[]) => {
     setData({
       result: _data,
       execute,
-      loading: domainInfo.loading || res.loading,
+      loading: domainInfo.isLoading || res.loading,
     });
   }, [
     res.loading,
     JSON.stringify(res.result?.map((e) => e?.deserializedContent)),
-    domainInfo.result?.owner,
-    domainInfo.result?.isTokenized,
+    domainInfo.data?.owner,
+    domainInfo.data?.isTokenized,
     domain,
     ...records,
-    domainInfo.loading,
+    domainInfo.isLoading,
   ]);
 
   return data;

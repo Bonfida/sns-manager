@@ -1,5 +1,6 @@
-import { useAsync } from "react-async-hook";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { QueryKeys } from "@src/lib";
 
 export interface Result {
   key: string;
@@ -12,15 +13,20 @@ export interface Response {
 }
 
 const get = async (key: string | undefined | null) => {
-  if (!key) return;
+  if (!key) return [];
   const { data }: { data: Response } = await axios.get(
     `https://sns-sdk-proxy.bonfida.workers.dev/domains/${key}`,
   );
-  if (data.s !== "ok") return;
+  if (data.s !== "ok") return [];
   data.result.sort((a, b) => a.domain.localeCompare(b.domain));
   return data.result;
 };
 
 export const useDomains = (owner: string | null | undefined) => {
-  return useAsync(get, [owner]);
+  return useQuery({
+    queryKey: [QueryKeys.domainsList, owner],
+    queryFn: () => get(owner),
+    enabled: !!owner,
+    staleTime: 1000 * 30,
+  });
 };
