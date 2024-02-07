@@ -1,11 +1,14 @@
 import { isTokenized } from "@bonfida/name-tokenizer";
-import { useSolanaConnection } from "../hooks/xnft-hooks";
+import { useQuery } from "@tanstack/react-query";
 import { NameRegistryState, getDomainKeySync } from "@bonfida/spl-name-service";
-import { useAsync } from "react-async-hook";
+import { QueryKeys } from "@src/lib";
+import { useSolanaConnection } from "../hooks/xnft-hooks";
 
 export const useDomainInfo = (domain: string) => {
   const connection = useSolanaConnection();
-  const fn = async () => {
+
+  const queryFn = async () => {
+    console.log("useDomainInfo called");
     if (!connection) return;
     const { pubkey } = getDomainKeySync(domain);
     const { registry, nftOwner } = await NameRegistryState.retrieve(
@@ -20,5 +23,11 @@ export const useDomainInfo = (domain: string) => {
       isTokenized: _isTokenized,
     };
   };
-  return useAsync(fn, [!!connection, domain]);
+
+  return useQuery({
+    queryKey: [QueryKeys.domainInfo, domain],
+    queryFn,
+
+    staleTime: 1000 * 30,
+  });
 };

@@ -52,7 +52,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     result: picRecordsList = [],
     execute: refreshPic,
     loading: picLoading,
-  } = useRecordsV2(connection!, favorite.result?.reverse!, [Record.Pic], true);
+  } = useRecordsV2(connection!, favorite.data?.reverse!, [Record.Pic], true);
 
   const picRecord = useMemo(() => {
     const picRecord = picRecordsList.find(
@@ -68,24 +68,25 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
 
   const isOwner = owner === publicKey?.toBase58();
 
-  const completedStep = (progress?.result || [])?.filter(
-    (e) => !!e.value,
-  ).length;
+  const completedStep = (progress?.data || [])?.filter((e) => !!e.value).length;
 
   const percentage = Math.floor((100 * completedStep) / 6);
   const showProgress = percentage !== 100;
 
   const refresh = async () => {
     await Promise.allSettled([
-      favorite.execute(),
-      progress.execute(),
+      favorite.refetch(),
+      progress.refetch(),
       refreshPic(),
-      subdomains.execute(),
+      subdomains.refetch(),
     ]);
   };
 
   const loading =
-    domains.loading || picLoading || progress.loading || subdomains.loading;
+    domains.isLoading ||
+    picLoading ||
+    progress.isLoading ||
+    subdomains.isLoading;
 
   useEffect(() => {
     refresh().then();
@@ -98,13 +99,11 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   }, [connected]);
 
   const subsOnly = useMemo(() => {
-    if (!subdomains.result) return [];
-    return subdomains.result
+    if (!subdomains.data) return [];
+    return subdomains.data
       ?.filter(
         (sub) =>
-          !domains.result?.some(
-            (e) => e.domain === sub.subdomain.split(".")[1],
-          ),
+          !domains.data?.some((e) => e.domain === sub.subdomain.split(".")[1]),
       )
       .map((e) => {
         const domain = e.subdomain.split(".")[1];
@@ -114,18 +113,23 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
           domain,
         };
       });
-  }, [domains.status, domains.loading, subdomains.status, subdomains.loading]);
+  }, [
+    domains.status,
+    domains.isLoading,
+    subdomains.status,
+    subdomains.isLoading,
+  ]);
 
   const domainsList = useMemo(() => {
-    if (!domains.result) return [];
+    if (!domains.data) return [];
 
-    const domainsResult = domains.result.map((item) => {
+    const domainsResult = domains.data.map((item) => {
       const relatedSubdomains: SubdomainResult[] = [];
 
       // Find subdomains related to domain
-      if (subdomains.result) {
+      if (subdomains.data) {
         relatedSubdomains.push(
-          ...subdomains.result.filter(
+          ...subdomains.data.filter(
             (sub) => sub.subdomain.split(".")[1] === item.domain,
           ),
         );
@@ -135,22 +139,22 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
         ...item,
         // Just a double-check that domain pubkey is correct
         key:
-          favorite.result?.reverse === item.domain
-            ? favorite.result.domain.toBase58()
+          favorite.data?.reverse === item.domain
+            ? favorite.data.domain.toBase58()
             : item.key,
         subdomains: relatedSubdomains,
       };
     });
 
     return domainsResult.sort((a, b) =>
-      a!.domain === favorite.result?.reverse ? -1 : 1,
+      a!.domain === favorite.data?.reverse ? -1 : 1,
     );
   }, [
     domains.status,
-    domains.loading,
-    favorite.result?.reverse,
+    domains.isLoading,
+    favorite.data?.reverse,
     subdomains.status,
-    subdomains.loading,
+    subdomains.isLoading,
   ]);
 
   const filteredSubdomainsList = useMemo(() => {
@@ -187,7 +191,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       <ScrollView showsHorizontalScrollIndicator={false}>
         <ProfileBlock
           owner={owner!}
-          domain={favorite.result?.reverse || domains?.result?.[0]?.domain!}
+          domain={favorite.data?.reverse || domains?.data?.[0]?.domain!}
           picRecord={picRecord}
           isPicValid={isCurrentPicValid}
           onNewPicUploaded={() => {
@@ -260,7 +264,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
                 <DomainRow
                   key={item.domain}
                   refresh={refresh}
-                  isFav={favorite.result?.reverse === item.domain}
+                  isFav={favorite.data?.reverse === item.domain}
                   domain={item.domain}
                   subdomains={item.subdomains}
                   isOwner={isOwner}
@@ -295,7 +299,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
         {filteredSubdomainsList.length > 0 && (
           <View style={tw`mt-10 mb-2`}>
             <Text style={tw`flex-none text-lg font-medium`}>
-              {isOwner ? t`My sub domains` : t`Sub domains`}
+              {isOwner ? t`My subdomains` : t`Sub domains`}
             </Text>
             <FlatList
               data={filteredSubdomainsList}

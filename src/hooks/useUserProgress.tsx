@@ -4,8 +4,9 @@ import {
   getRecord,
 } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "./xnft-hooks";
-import { useAsync } from "react-async-hook";
 import { useWallet } from "./useWallet";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "@src/lib";
 
 export enum ProgressStep {
   Favorite = 0,
@@ -33,7 +34,7 @@ export const useUserProgress = () => {
   const { publicKey } = useWallet();
   const connection = useSolanaConnection();
 
-  const fn = async () => {
+  const queryFn = async () => {
     const res: Progress[] = [];
     if (!publicKey || !connection) return;
 
@@ -63,5 +64,9 @@ export const useUserProgress = () => {
     return res;
   };
 
-  return useAsync(fn, [publicKey, !!connection]);
+  return useQuery({
+    queryKey: [QueryKeys.userProgressBar, publicKey],
+    queryFn,
+    staleTime: 1000 * 30,
+  });
 };

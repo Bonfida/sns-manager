@@ -118,27 +118,27 @@ export const DomainView = ({ domain }: { domain: string }) => {
   const picRecord = useProfilePic(connection!, domain);
   const { publicKey } = useWallet();
 
-  const isOwner = domainInfo.result?.owner === publicKey?.toBase58();
+  const isOwner = domainInfo.data?.owner === publicKey?.toBase58();
 
   const isSubdomain = domain?.split(".").length === 2;
   const hasSubdomain =
-    subdomains.result !== undefined && subdomains.result.length !== 0;
-  const isTokenized = domainInfo.result?.isTokenized;
+    subdomains.data !== undefined && subdomains.data.length !== 0;
+  const isTokenized = domainInfo.data?.isTokenized;
 
   const loading =
     socialRecords.loading ||
     addressRecords.loading ||
-    domainInfo.loading ||
+    domainInfo.isLoading ||
     picRecord.loading ||
-    subdomains.loading;
+    subdomains.isLoading;
 
   const refresh = async () => {
     await Promise.allSettled([
-      domainInfo.execute(),
+      domainInfo.refetch(),
       socialRecords?.execute(),
       addressRecords?.execute(),
       picRecord.execute(),
-      subdomains.execute(),
+      subdomains.refetch(),
     ]);
   };
 
@@ -421,7 +421,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
           <TouchableOpacity
             onPress={() =>
               openModal("TokenizeModal", {
-                refresh: () => domainInfo.execute(),
+                refresh: () => domainInfo.refetch(),
                 domain,
                 isTokenized,
                 isOwner,
@@ -451,7 +451,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
         <View style={tw`mb-6`}>
           <ProfileBlock
-            owner={domainInfo.result?.owner!}
+            owner={domainInfo.data?.owner!}
             domain={domain}
             picRecord={picRecord}
           >
@@ -462,7 +462,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                   onPress={() =>
                     openModal("Transfer", {
                       domain,
-                      refresh: () => domainInfo.execute(),
+                      refresh: () => domainInfo.refetch(),
                     })
                   }
                   small
@@ -477,7 +477,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                       onPress={() =>
                         openModal("Delete", {
                           domain,
-                          refresh: () => domainInfo.execute(),
+                          refresh: () => domainInfo.refetch(),
                         })
                       }
                       small
@@ -491,7 +491,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
                         openModal("TokenizeModal", {
                           domain,
                           isTokenized,
-                          refresh: () => domainInfo.execute(),
+                          refresh: () => domainInfo.refetch(),
                           isOwner,
                         })
                       }
@@ -750,7 +750,7 @@ export const DomainView = ({ domain }: { domain: string }) => {
 
             {hasSubdomain ? (
               <FlatList
-                data={subdomains.result}
+                data={subdomains.data}
                 style={isOwner && tw`mt-4`}
                 scrollEnabled={false}
                 contentContainerStyle={tw`flex flex-col gap-3`}

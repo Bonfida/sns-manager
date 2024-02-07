@@ -94,10 +94,10 @@ export const SearchResult = ({
         <View style={tw`mt-3`}>
           {showPopularDomains && topDomainsSales ? (
             <>
-              {topDomainsSales.loading && <RenderSkeleton />}
-              {!topDomainsSales.loading && (
+              {topDomainsSales.isLoading && <RenderSkeleton />}
+              {!topDomainsSales.isLoading && (
                 <FlatList
-                  data={topDomainsSales.result}
+                  data={topDomainsSales.data}
                   scrollEnabled={false}
                   renderItem={({ item }) => (
                     <DomainSearchResultRow

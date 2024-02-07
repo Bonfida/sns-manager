@@ -1,4 +1,3 @@
-import { useAsync } from "react-async-hook";
 import {
   NAME_PROGRAM_ID,
   findSubdomains,
@@ -11,6 +10,8 @@ import {
 } from "@bonfida/spl-name-service";
 import { useSolanaConnection } from "./xnft-hooks";
 import { AccountInfo, PublicKey } from "@solana/web3.js";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "@src/lib";
 
 export interface SubdomainResult {
   key: string;
@@ -20,7 +21,7 @@ export interface SubdomainResult {
 export const useSubdomains = (domain: string) => {
   const connection = useSolanaConnection();
 
-  const fn = async () => {
+  const queryFn = async () => {
     if (!connection) return;
     const { pubkey: key } = getDomainKeySync(domain);
 
@@ -30,7 +31,11 @@ export const useSubdomains = (domain: string) => {
     return subdomains;
   };
 
-  return useAsync(fn, [!!connection, domain]);
+  return useQuery({
+    queryKey: [QueryKeys.subdomainsFromUser, domain],
+    queryFn,
+    staleTime: 1000 * 30,
+  });
 };
 
 const deserializeReverseSub = (
@@ -44,7 +49,7 @@ const deserializeReverseSub = (
 export const useSubdomainsFromUser = (owner: string) => {
   const connection = useSolanaConnection();
 
-  const fn = async () => {
+  const queryFn = async () => {
     if (!connection) return;
     const accounts = await connection.getProgramAccounts(NAME_PROGRAM_ID, {
       filters: [{ memcmp: { offset: 32, bytes: owner } }],
@@ -111,5 +116,9 @@ export const useSubdomainsFromUser = (owner: string) => {
     return result;
   };
 
-  return useAsync(fn, [!!connection, owner]);
+  return useQuery({
+    queryKey: [QueryKeys.subdomainsFromUser, owner],
+    queryFn,
+    staleTime: 1000 * 30,
+  });
 };
