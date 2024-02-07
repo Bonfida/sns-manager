@@ -37,6 +37,8 @@ import { CreateSubdomainModal } from "./components/CreateSubdomainModal";
 import { SuccessSubdomainModal } from "./components/SuccessSubdomainModal";
 import { t } from "@lingui/macro";
 import { i18n } from "@lingui/core";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib";
 import {
   LanguageProvider,
   useLanguageContext,
@@ -201,19 +203,21 @@ function App() {
         https://github.com/gorhom/react-native-bottom-sheet/issues/1389
       */}
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <SolanaProvider>
-          <RecoilRoot>
-            <NavigationContainer>
-              <LanguageProvider i18n={i18n}>
-                <StatusModalProvider>
-                  <ModalProvider stack={stackModal}>
-                    <TabNavigator />
-                  </ModalProvider>
-                </StatusModalProvider>
-              </LanguageProvider>
-            </NavigationContainer>
-          </RecoilRoot>
-        </SolanaProvider>
+        <QueryClientProvider client={queryClient}>
+          <SolanaProvider>
+            <RecoilRoot>
+              <NavigationContainer>
+                <LanguageProvider i18n={i18n}>
+                  <StatusModalProvider>
+                    <ModalProvider stack={stackModal}>
+                      <TabNavigator />
+                    </ModalProvider>
+                  </StatusModalProvider>
+                </LanguageProvider>
+              </NavigationContainer>
+            </RecoilRoot>
+          </SolanaProvider>
+        </QueryClientProvider>
       </GestureHandlerRootView>
     </ErrorBoundary>
   );
