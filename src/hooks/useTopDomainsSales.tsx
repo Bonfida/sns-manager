@@ -1,5 +1,5 @@
-import { useAsync } from "react-async-hook";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const URL = "https://sns-api.bonfida.com/sales/top";
 
@@ -13,7 +13,7 @@ interface SearchResponseEntity {
 }
 
 export const useTopDomainsSales = (allowedToLoad: boolean = true) => {
-  const fn = async () => {
+  const queryFn = async () => {
     if (!allowedToLoad) return;
 
     const startTime = new Date();
@@ -41,5 +41,10 @@ export const useTopDomainsSales = (allowedToLoad: boolean = true) => {
     }));
   };
 
-  return useAsync(fn, []);
+  return useQuery({
+    queryKey: [],
+    queryFn,
+    enabled: allowedToLoad,
+    staleTime: 1000 * 30,
+  });
 };

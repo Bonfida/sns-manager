@@ -10,7 +10,6 @@ import tw from "@src/utils/tailwind";
 import { abbreviate } from "@src/utils/abbreviate";
 import { useWallet } from "@src/hooks/useWallet";
 import { useFavoriteDomain } from "@src/hooks/useFavoriteDomain";
-import { useProfilePic } from "@bonfida/sns-react";
 
 interface ProfileBlockProps {
   children?: ReactNode;
@@ -66,7 +65,7 @@ export const ProfileBlock = ({
               openModal("EditPicture", {
                 currentPic: picRecord,
                 domain: domain,
-                setAsFav: !favorite.result?.reverse,
+                setAsFav: !favorite.data?.reverse,
                 refresh: onNewPicUploaded,
               })
             }

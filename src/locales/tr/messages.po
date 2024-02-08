@@ -94,8 +94,8 @@ msgstr "\"{actionName}\"ya tıklayınca cüzdan onayı vermeniz istenecektir. "
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/App.tsx:150
-#: src/App.tsx:166
+#: src/App.tsx:152
+#: src/App.tsx:168
 msgid "Cart"
 msgstr "Araç"
 
@@ -107,11 +107,11 @@ msgstr "Dili  değiştir"
 msgid "Change profile picture"
 msgstr "Profil resmini değiştir"
 
-#: src/screens/Cart/index.tsx:227
+#: src/screens/Cart/index.tsx:239
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:286
+#: src/screens/Profile/index.tsx:290
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -139,15 +139,15 @@ msgstr "Topla ve doğrudan ya da NFT halinde takas et!"
 msgid "Confirm"
 msgstr "Onayla"
 
-#: src/screens/Cart/index.tsx:381
+#: src/screens/Cart/index.tsx:393
 msgid "Confirm and pay"
 msgstr "Onayla ve öde"
 
-#: src/screens/Cart/index.tsx:447
+#: src/screens/Cart/index.tsx:459
 msgid "Confirmation"
 msgstr "Onay"
 
-#: src/screens/Cart/index.tsx:409
+#: src/screens/Cart/index.tsx:421
 msgid "Congrats on purchasing new domains!"
 msgstr "Yeni domain satın alımlarınız için tebrikler!"
 
@@ -155,12 +155,12 @@ msgstr "Yeni domain satın alımlarınız için tebrikler!"
 #~ msgid "Connect your backpack username to your on-chain identity."
 #~ msgstr "Backpack kullanıcı isminizi zincir üstü kimlikle eşleştirin."
 
-#: src/screens/Cart/index.tsx:315
+#: src/screens/Cart/index.tsx:327
 msgid "Continue"
 msgstr "İlerle"
 
-#: src/components/ProfileBlock.tsx:84
-#: src/components/ProfileBlock.tsx:96
+#: src/components/ProfileBlock.tsx:83
+#: src/components/ProfileBlock.tsx:95
 #: src/screens/DomainView.tsx:617
 msgid "Copied!"
 msgstr "Kopyalandı"
@@ -203,7 +203,7 @@ msgstr "Discord"
 msgid "Discount"
 msgstr "İndirim"
 
-#: src/screens/Cart/index.tsx:312
+#: src/screens/Cart/index.tsx:324
 msgid "Discounts may be applied in the next step"
 msgstr "İndirimler sonraki adımda hesaba katılacaktır"
 
@@ -215,8 +215,8 @@ msgstr "Seni yansıtan domaini keşfet!"
 msgid "Domain name tokenization (wrapping), involves converting a domain name into an NFT. To reveal the original domain name, the token can be redeemed (unwrapped)."
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
-#: src/App.tsx:140
-#: src/screens/Profile/index.tsx:228
+#: src/App.tsx:142
+#: src/screens/Profile/index.tsx:232
 msgid "Domains"
 msgstr "Domainler"
 
@@ -224,7 +224,7 @@ msgstr "Domainler"
 msgid "Each additional kb of memory costs around 0.007 SOL (0.001 USDC)"
 msgstr "Her bir fazladan kb hafıza 0.007 SOL ya da 0.001 USDC masraf çıkartır."
 
-#: src/screens/Cart/index.tsx:267
+#: src/screens/Cart/index.tsx:279
 #: src/screens/DomainView.tsx:571
 #: src/screens/DomainView.tsx:691
 msgid "Edit"
@@ -304,7 +304,7 @@ msgid ""
 " start building your profile"
 msgstr "Bir .sol domain edinin ve profilinizi oluşturmaya başlayın"
 
-#: src/screens/Cart/index.tsx:422
+#: src/screens/Cart/index.tsx:434
 msgid "Get started with my profiles"
 msgstr "Profillerim kısmından başlayın"
 
@@ -349,12 +349,16 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:228
+#: src/screens/Profile/index.tsx:232
 msgid "My domains"
 msgstr "Domainlerim"
 
 #: src/screens/Profile/index.tsx:298
-msgid "My sub domains"
+#~ msgid "My sub domains"
+#~ msgstr ""
+
+#: src/screens/Profile/index.tsx:302
+msgid "My subdomains"
 msgstr ""
 
 #: src/components/TransferModal.tsx:80
@@ -374,7 +378,7 @@ msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:276
+#: src/screens/Profile/index.tsx:280
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -394,11 +398,11 @@ msgstr "Emir geçmişi"
 msgid "Ownership is verified"
 msgstr ""
 
-#: src/screens/Cart/index.tsx:325
+#: src/screens/Cart/index.tsx:337
 msgid "Pay with"
 msgstr "ile öde"
 
-#: src/screens/Cart/index.tsx:446
+#: src/screens/Cart/index.tsx:458
 msgid "Payment"
 msgstr "Ödeme"
 
@@ -426,11 +430,11 @@ msgstr "PUAN"
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/App.tsx:129
+#: src/App.tsx:131
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:201
+#: src/screens/Profile/index.tsx:205
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -484,7 +488,7 @@ msgid "Search domains"
 msgstr "Domainler ara"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:235
+#: src/screens/Profile/index.tsx:239
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
@@ -519,11 +523,11 @@ msgstr "Sosyal Medya Hesapları"
 msgid "Storage Size"
 msgstr "Depo Hacmi"
 
-#: src/screens/Cart/index.tsx:251
+#: src/screens/Cart/index.tsx:263
 msgid "Storage:"
 msgstr "Depo"
 
-#: src/screens/Profile/index.tsx:298
+#: src/screens/Profile/index.tsx:302
 msgid "Sub domains"
 msgstr ""
 
@@ -645,7 +649,7 @@ msgstr "NFT'ye katla (wrapping)"
 msgid "Wrap your domain into an NFT"
 msgstr "Domaini, NFT'ye katla (wrapping)"
 
-#: src/screens/Cart/index.tsx:414
+#: src/screens/Cart/index.tsx:426
 msgid "You can enjoy the full benefits of owning a domain now. Get started by filling in the profiles attached to the domains."
 msgstr "Artık bir domaine sahip olmanın tüm avantajlarından faydalanabilirsin. Domainle ilişkilendirilmiş profili doldurarak başla."
 
@@ -653,7 +657,7 @@ msgstr "Artık bir domaine sahip olmanın tüm avantajlarından faydalanabilirsi
 msgid "You can only add subdomains when the domain is unwrapped."
 msgstr "Yalnızca domain katlanmamış (unwrapped) haldeyken subdomain ekleyebilirsin."
 
-#: src/screens/Cart/index.tsx:122
+#: src/screens/Cart/index.tsx:123
 msgid "You do not have enough funds"
 msgstr "Yeterli bakiyeye sahip değilsiniz"
 
@@ -661,7 +665,7 @@ msgstr "Yeterli bakiyeye sahip değilsiniz"
 msgid "You don’t have any subdomains yet. You can create as many as you want to use your profiles for different purposes."
 msgstr "Herhangi bir subdomaine sahip değilsiniz. Farklı profillerinizde farklı amaçlarda kullanmak üzere istediğiniz kadar subdomain oluşturabilirsiniz. "
 
-#: src/screens/Cart/index.tsx:445
+#: src/screens/Cart/index.tsx:457
 msgid "Your domains"
 msgstr "Domainleriniz"
 

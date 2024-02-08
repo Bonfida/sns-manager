@@ -43,6 +43,7 @@ import { Screen } from "@src/components/Screen";
 import { UiButton } from "@src/components/UiButton";
 import { EmptyState } from "./EmptyState";
 import { useStatusModalContext } from "@src/contexts/StatusModalContext";
+import { QueryKeys, queryClient } from "@src/lib";
 
 const getTokenAccountBalance = async (
   connection: Connection,
@@ -98,7 +99,7 @@ export const Cart = () => {
     0,
   );
 
-  const price = pyth.result?.get(mint)?.price;
+  const price = pyth.data?.get(mint)?.price;
 
   const total = totalUsd / (price || 1);
 
@@ -173,6 +174,17 @@ export const Cart = () => {
 
       setLoading(false);
       goSuccessStep();
+
+      await queryClient.invalidateQueries({
+        predicate: (query: any) =>
+          [
+            QueryKeys.domainsList,
+            QueryKeys.domainInfo,
+            QueryKeys.subdomains,
+            QueryKeys.subdomainsFromUser,
+          ].includes(query?.queryKey?.[0]),
+        refetchType: "all",
+      });
     } catch (err) {
       setLoading(false);
       handleError(err);
