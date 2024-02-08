@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "versionCode": 14
+      "versionCode": 15
     },
     "owner": "sns-manager"
   }
