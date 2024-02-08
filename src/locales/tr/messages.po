@@ -111,7 +111,7 @@ msgstr "Profil resmini değiştir"
 msgid "Clear all"
 msgstr "Tümünü temizle"
 
-#: src/screens/Profile/index.tsx:290
+#: src/screens/Profile/index.tsx:295
 msgid "Clear search"
 msgstr "Aramaları temizle"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "Domain ismini tokenize edilmesi (wrapping), domain isminin NFT'ye dönüşümüdür. Asıl domain isminin tekrardan elde edilmesi için tokenin geri katlanması (unwrapping) gereklidir. "
 
 #: src/App.tsx:142
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "Domains"
 msgstr "Domainler"
 
@@ -349,7 +349,7 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Dokümanlarımızı okuyarak daha fazla bilgi edinin"
 
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "My domains"
 msgstr "Domainlerim"
 
@@ -357,7 +357,7 @@ msgstr "Domainlerim"
 #~ msgid "My sub domains"
 #~ msgstr ""
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "My subdomains"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgid "No changes to save"
 msgstr "Kaydedilecek değişiklik yok"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:280
+#: src/screens/Profile/index.tsx:285
 msgid "No domain found"
 msgstr "Domain bulunamadı"
 
@@ -434,7 +434,7 @@ msgstr ""
 msgid "Profile"
 msgstr "Profil"
 
-#: src/screens/Profile/index.tsx:205
+#: src/screens/Profile/index.tsx:210
 msgid "Profile completion: {percentage}%"
 msgstr "Profil tamamlama:  {percentage}%"
 
@@ -488,7 +488,7 @@ msgid "Search domains"
 msgstr "Domainler ara"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:239
+#: src/screens/Profile/index.tsx:244
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Domain için arama yap"
@@ -527,7 +527,7 @@ msgstr "Depo Hacmi"
 msgid "Storage:"
 msgstr "Depo"
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "Sub domains"
 msgstr ""
 
