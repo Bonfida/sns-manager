@@ -14,7 +14,10 @@ xnft-bundle.zip
 
 # macOS
 .DS_Store
+
+#env
 .env
+.env.*
 
 # Android
 *.apk

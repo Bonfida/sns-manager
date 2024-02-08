@@ -169,6 +169,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
   }, [domainsList, searchQuery]);
 
   const hasDomain = domainsList !== undefined && domainsList.length !== 0;
+  const hasSubs = subsOnly !== undefined && subsOnly.length !== 0;
 
   if (loading) {
     return (
@@ -178,7 +179,7 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
     );
   }
 
-  if (!loading && !hasDomain && isOwner) {
+  if (!loading && !hasDomain && !hasSubs && isOwner) {
     return (
       <Screen style={tw`p-0`}>
         <EmptyState owner={owner} />
@@ -191,7 +192,11 @@ export const ProfileScreen = ({ owner }: { owner?: string }) => {
       <ScrollView showsHorizontalScrollIndicator={false}>
         <ProfileBlock
           owner={owner!}
-          domain={favorite.data?.reverse || domains?.data?.[0]?.domain!}
+          domain={
+            favorite.data?.reverse ||
+            domains?.data?.[0]?.domain! ||
+            subdomains?.data?.[0]?.subdomain!
+          }
           picRecord={picRecord}
           isPicValid={isCurrentPicValid}
           onNewPicUploaded={() => {

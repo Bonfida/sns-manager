@@ -111,7 +111,7 @@ msgstr "Cambiar foto de perfil"
 msgid "Clear all"
 msgstr "Limpiar todo"
 
-#: src/screens/Profile/index.tsx:290
+#: src/screens/Profile/index.tsx:295
 msgid "Clear search"
 msgstr "Limpiar búsqueda"
 
@@ -216,7 +216,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "La tokenización de un nombre de dominio (envuelto) implica convertir un nombre de dominio en un NFT. Para revelar el nombre de dominio original, el token puede ser redimido (desenvuelto)."
 
 #: src/App.tsx:142
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "Domains"
 msgstr "Dominios"
 
@@ -349,7 +349,7 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "Aprende más en nuestra documentación"
 
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "My domains"
 msgstr "Mis dominios"
 
@@ -357,7 +357,7 @@ msgstr "Mis dominios"
 #~ msgid "My sub domains"
 #~ msgstr "Mis subdominios"
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "My subdomains"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgid "No changes to save"
 msgstr "No hay cambios que guardar"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:280
+#: src/screens/Profile/index.tsx:285
 msgid "No domain found"
 msgstr "No se encontró ningún dominio"
 
@@ -434,7 +434,7 @@ msgstr "Política de privacidad"
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/screens/Profile/index.tsx:205
+#: src/screens/Profile/index.tsx:210
 msgid "Profile completion: {percentage}%"
 msgstr "Finalización del perfil: {percentage}%"
 
@@ -488,7 +488,7 @@ msgid "Search domains"
 msgstr "Buscar dominios"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:239
+#: src/screens/Profile/index.tsx:244
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "Buscar un dominio"
@@ -527,7 +527,7 @@ msgstr "Tamaño de Almacenamiento"
 msgid "Storage:"
 msgstr "Almacenamiento:"
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "Sub domains"
 msgstr "Subdominios"
 

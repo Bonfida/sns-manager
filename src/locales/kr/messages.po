@@ -151,7 +151,7 @@ msgstr "프로필 사진 변경"
 msgid "Clear all"
 msgstr "모두 지우기"
 
-#: src/screens/Profile/index.tsx:290
+#: src/screens/Profile/index.tsx:295
 msgid "Clear search"
 msgstr "검색 지우기"
 
@@ -260,7 +260,7 @@ msgid "Domain name tokenization (wrapping), involves converting a domain name in
 msgstr "도메인 이름 토큰화(래핑)는 도메인 이름을 NFT로 변환하는 것을 뜻 합니다. 원래 도메인 이름을 드러내려면 토큰을 인출(언래핑)할 수 있습니다."
 
 #: src/App.tsx:142
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "Domains"
 msgstr "도메인"
 
@@ -432,7 +432,7 @@ msgstr "IPFS"
 msgid "Learn more in our docs"
 msgstr "문서로 더 알아보세요"
 
-#: src/screens/Profile/index.tsx:232
+#: src/screens/Profile/index.tsx:237
 msgid "My domains"
 msgstr "나의 도메인"
 
@@ -440,7 +440,7 @@ msgstr "나의 도메인"
 #~ msgid "My sub domains"
 #~ msgstr "나의 서브도메인"
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "My subdomains"
 msgstr "나의 서브도메인"
 
@@ -461,7 +461,7 @@ msgid "No changes to save"
 msgstr "저장할 변경 사항이 없습니다"
 
 #: src/components/SearchModal.tsx:74
-#: src/screens/Profile/index.tsx:280
+#: src/screens/Profile/index.tsx:285
 msgid "No domain found"
 msgstr "도메인을 찾을 수 없습니다"
 
@@ -533,7 +533,7 @@ msgstr "프로필"
 #~ msgid "Profile completed: {percentage}%"
 #~ msgstr "프로필 완료율: {percentage}%"
 
-#: src/screens/Profile/index.tsx:205
+#: src/screens/Profile/index.tsx:210
 msgid "Profile completion: {percentage}%"
 msgstr "프로필 완성도: {percentage}%"
 
@@ -592,7 +592,7 @@ msgid "Search domains"
 msgstr "도메인 검색"
 
 #: src/screens/HomeScreen.tsx:95
-#: src/screens/Profile/index.tsx:239
+#: src/screens/Profile/index.tsx:244
 #: src/screens/SearchResult.tsx:77
 msgid "Search for a domain"
 msgstr "도메인을 검색하기"
@@ -661,7 +661,7 @@ msgstr "저장 용량"
 msgid "Storage:"
 msgstr "저장 용량:"
 
-#: src/screens/Profile/index.tsx:302
+#: src/screens/Profile/index.tsx:307
 msgid "Sub domains"
 msgstr "서브도메인"
 
